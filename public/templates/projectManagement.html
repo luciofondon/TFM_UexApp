@@ -1,0 +1,421 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header" ng-init="init();">
+    <h1>
+        Proyecto
+        <small>{{project.name}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Proyecto</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content" >
+
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Configuración del proyecto</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
+                                <a href ng-click="setTab($index)" ng-click="loadQuestions(topic._id)" data-toggle="tab">{{topic.name}}</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href>
+                                    Configuración <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#modal-topic">Nuevo topic</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-jira" href="">Exportar a Jira</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-redmine" href="">Exportar a Redmine</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-template" href="">Guardar plantilla</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div ng-repeat="topic in topics" ng-show="isSet($index)" class="tab-pane active" >
+                                <button class="btn btn-block btn-info" data-toggle="modal" ng-click="marcarTopic(topic._id);" data-target="#modal-question" type="button"><i class="icon fa fa-plus"></i> Nueva pregunta</button>
+								<br><br><br>
+
+								<div class="form-group" ng-repeat="question in topic.questions" >
+
+									<div class="callout callout-info">
+										<h4>
+											{{$index}}. {{question.description}}
+											<a class="edit" style="margin-right: 10px;cursor:pointer;" ng-click="marcarPregunta(question._id);" title="Nueva respuesta" data-toggle="modal" data-target="#modal-answer">
+												<i class="icon fa fa-plus"></i>
+											</a>
+										</h4>
+									</div>
+
+                                    <div ng-repeat="answer in question.answers">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="{{question._id}}"  value="{{answer.description}} ">
+												{{answer.description}}
+												<a class="edit" style="margin-right: 10px;cursor:pointer;" ng-click="marcarTopic(topic._id);" title="Nueva pregunta asociada a la respuesta" data-toggle="modal" data-target="#modal-question">
+													<i class="icon fa fa-plus"></i>
+												</a>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            Gestión de identificación de riesgos
+        </div>
+        <!-- /.box-footer-->
+
+    </div>
+    <!-- /.box -->
+
+</section>
+<!-- /.content -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- Inicio: Popup para creat/actualizar un proyecto-->
+<div id="modal-topic" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Crear topic</h4>
+            </div>
+            <div class="modal-body">
+                <form id="incidence_form" role="form">
+                    <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+                        <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <div>
+                            <strong>Error!</strong> {{error}}.
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
+                        <div class="col-md-7">
+                            <input type="text" id="InputText" ng-model="topic.name" class="form-control"/>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="createTopic();">Crear topic</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin: Popup para crear/actualizar un proyecto-->
+
+
+<!-- Inicio: Popup para creat/actualizar un proyecto-->
+<div id="modal-question" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Crear pregunta</h4>
+            </div>
+            <div class="modal-body">
+                <form id="incidence_form" role="form">
+                    <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+                        <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <div>
+                            <strong>Error!</strong> {{error}}.
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="InputText" class="col-md-4 control-label">Pregunta (*)</label>
+                        <div class="col-md-7">
+                            <input type="text" id="InputText" ng-model="question.description" class="form-control"/>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="createQuestion();">Crear pregunta</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin: Popup para crear/actualizar un proyecto-->
+
+
+
+<!-- Inicio: Popup para creat/actualizar un proyecto-->
+<div id="modal-answer" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" >Crear respuesta</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="incidence_form" role="form">
+                        <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+                            <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <div>
+                                <strong>Error!</strong> {{error}}.
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">Respuesta (*)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="InputText" ng-model="answer.description" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <label for="InputText" class="col-md-4 control-label">Requisito (*)</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="InputText" ng-model="answer.requirement" class="form-control"/>
+                                </div>
+                            </div>
+
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="createAnswer();">Crear Respuesta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin: Popup para crear/actualizar un proyecto-->
+
+
+
+
+
+<!-- Inicio: Popup para exportar a Jira-->
+<div id="modal-jira" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Exportar proyecto a Jira</h4>
+            </div>
+            <div class="modal-body">
+                <form id="incidence_form" role="form">
+                    <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+                        <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <div>
+                            <strong>Error!</strong> {{error}}.
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="InputText" class="col-md-4 control-label">Proyecto (*)</label>
+                        <div class="col-md-7">
+                            <input type="text"  id="InputText" ng-model="project.name" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
+                            <div class="col-md-7">
+                                <input type="text"  id="InputText" ng-model="project.key" class="form-control"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
+                            <div class="col-md-7">
+                                <textarea style="resize:none"  id="InputText" ng-model="project.description" class="form-control"/>
+                            </div>
+                            </div>
+
+                            <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">IP Jira (*)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="InputText" ng-model="project.ip" class="form-control"/>
+                            </div>
+                            </div>
+
+                            <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">Puerto Jira (*)</label>
+                            <div class="col-md-7">
+                                <input type="number" id="InputText" ng-model="project.port" class="form-control"/>
+                            </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="InputText" class="col-md-4 control-label">Usuario (*)</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="InputText" ng-model="project.user" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                    <label for="InputText" class="col-md-4 control-label">Contraseña (*)</label>
+                                    <div class="col-md-7">
+                                        <input type="password" id="InputText" ng-model="project.password" class="form-control"/>
+                                    </div>
+                                </div>
+
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="exportJira();">Exportar proyecto</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin: Popup para exportar a Jira-->
+
+
+
+<!-- Inicio: Popup para exportar a Redmine-->
+<div id="modal-redmine" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Exportar proyecto a Redmine</h4>
+            </div>
+            <div class="modal-body">
+                <form id="incidence_form" role="form">
+                    <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+                        <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <div>
+                            <strong>Error!</strong> {{error}}.
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="InputText" class="col-md-4 control-label">Proyecto (*)</label>
+                        <div class="col-md-7">
+                            <input type="text"  id="InputText" ng-model="project.name" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
+                            <div class="col-md-7">
+                                <input type="text"  id="InputText" ng-model="project.key" class="form-control"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
+                            <div class="col-md-7">
+                                <textarea style="resize:none"  id="InputText" ng-model="project.description" class="form-control"/>
+                            </div>
+                            </div>
+
+                            <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">IP Redmine (*)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="InputText" ng-model="project.ip" class="form-control"/>
+                            </div>
+                            </div>
+
+                            <div class="form-group row">
+                            <label for="InputText" class="col-md-4 control-label">Puerto Redmine (*)</label>
+                            <div class="col-md-7">
+                                <input type="number" id="InputText" ng-model="project.port" class="form-control"/>
+                            </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="InputText" class="col-md-4 control-label">Token (*)</label>
+                                <div class="col-md-7">
+                                        <textarea style="resize:none" id="InputText" ng-model="project.token" class="form-control"/>
+                                    </div>
+                            </div>
+
+
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="exportRedmine();">Exportar proyecto</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin: Popup para exportar a Redmine-->
+
+
+
+
+
+<!-- Inicio: Popup para exportar a Redmine-->
+<div id="modal-template" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" >Guardar plantilla</h4>
+			</div>
+			<div class="modal-body">
+				<form id="incidence_form" role="form">
+					<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+						<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<div>
+							<strong>Error!</strong> {{error}}.
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="InputText" class="col-md-4 control-label">Nombre plantilla (*)</label>
+						<div class="col-md-7">
+							<input type="text"  id="InputText" ng-model="template.name" class="form-control"/>
+						</div>
+					</div>
+
+
+
+
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" ng-click="saveTemplate();">Guardar plantilla</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin: Popup para exportar a Redmine-->
