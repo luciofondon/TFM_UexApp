@@ -3,9 +3,7 @@
 	"version": "2.0.0",
 	"description": "Frontal de la aplicacion web.",
 	"author": "Gamma Solutions - i + d",
-	"dependencies": {
-
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"grunt": "^1.0.1",
 		"grunt-contrib-concat": "^1.0.1",

@@ -1,41 +1,41 @@
-var angularRoutingApp = angular.module('tfm.uex', ['ui.router', 'bsTable']);
+var angularRoutingApp = angular.module('tfm.uex', ['ui.router', 'satellizer', 'bsTable']);
 
 angularRoutingApp.config(function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('home', {
 			url: "/home",
-			templateUrl	: 'templates/home.html',
+			templateUrl	: 'app/views/home.html',
 			controller 	: 'SystemController',
 		})
 		.state('userList', {
 			url: "/userList",
-			templateUrl: "templates/userList.html",
+			templateUrl: "app/views/userList.html",
 			controller 	: 'UserListController'
 		})
 		.state('templateList', {
 			url: "/templateList",
-			templateUrl: "templates/templateList.html",
+			templateUrl: "app/views/templateList.html",
 			controller 	: 'TemplateListController'
 		})
 		.state('rolList', {
 			url : '/rolList',
-			templateUrl : 'templates/rolList.html',
+			templateUrl : 'app/views/rolList.html',
 			controller 	: 'RolListController'
 		})
 		.state('projectList', {
 			url : '/projectList',
-			templateUrl : 'templates/projectList.html',
+			templateUrl : 'app/views/projectList.html',
 			controller 	: 'ProjectListController'
 		})
 		.state('projectManagement', {
 			url: "/projectManagement/:projectId",
-			templateUrl : 'templates/projectManagement.html',
+			templateUrl : 'app/views/projectManagement.html',
 			controller 	: 'ProjectManagementController'
 		})
 		.state('userDetail', {
 			url: "/userDetail/:userId",
-			templateUrl : 'templates/userDetail.html',
+			templateUrl : 'app/views/userDetail.html',
 			controller 	: 'UserDetailController'
 		});
 
