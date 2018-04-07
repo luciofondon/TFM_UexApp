@@ -1,5 +1,5 @@
 var userMiddleware = require('../middlewares/UserMiddleware'),
-userDAO = require('../DAOS/UserDAO');
+    userDAO = require('../DAOS/UserDAO');
 
 module.exports = function() {
 

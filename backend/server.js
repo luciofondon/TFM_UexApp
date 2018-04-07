@@ -9,9 +9,10 @@ var express = require("express"),
 	mongoose = require('mongoose'),
 	logger = require('morgan'),
 	config = require('./config/config'),
-	authenticatedMiddleware = require('./src/middlewares/AuthenticatedMiddleware');
+	systemMiddleware = require('./src/middlewares/SystemMiddleware'),
+	userController = require('./src/controllers/UserController')();
 
-
+ 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Simula POST
@@ -21,20 +22,25 @@ app.use(logger('dev'));
 
 var router = express.Router();
 
+var api = express.Router();
+require('./src/routes/ProjectRoute')(api);
+require('./src/routes/RolRoute')(api);
+require('./src/routes/UserRoute')(api);
+require('./src/routes/TopicRoute')(api);
+require('./src/routes/QuestionRoute')(api);
+require('./src/routes/TemplateRoute')(api);
+
 //Control de token
-//app.use("/api", authenticatedMiddleware.ensureAuthenticated);
-
-require('./src/routes/ProjectRoute')(app);
-require('./src/routes/RolRoute')(app);
-require('./src/routes/UserRoute')(app);
-require('./src/routes/TopicRoute')(app);
-require('./src/routes/QuestionRoute')(app);
-require('./src/routes/TemplateRoute')(app);
+app.route('/api/login').post(userController.login);
+app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
 
-// Iniciamos el servidor y la base de datos
-mongoose.connect(config.MONGO_PATH, function(err) {
-    app.listen(config.SERVER_PORT, function(){
-    	console.log('Servidor arrancado en http://localhost:' + config.SERVER_PORT);
-    });
+// Conexion a Mongo y despliegue del servidor
+mongoose.connect(config.MONGO_PATH, {useMongoClient: true},  function(err, res) {
+	if(err) {
+		console.log('ERROR! connecting to Database. ' + err);
+	}
+	app.listen(config.SERVER_PORT, function() {
+		console.log("INFO! EFI BACKEND lanzado http://localhost:" + config.SERVER_PORT);
+	});
 });

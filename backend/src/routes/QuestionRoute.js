@@ -8,12 +8,12 @@ module.exports = function(app){
 	var questionController = require('../controllers/QuestionController')();
 
 	//CRUD pregunta
-	app.route('/api/question/:questionId')
+	app.route('/question/:questionId')
 		.get(questionController.read)
 		.put(questionController.update)
         .delete(questionController.delete);
         
-    app.route('/api/questions/topic/:topicId')
+    app.route('/questions/topic/:topicId')
         .get(questionController.readAllByTopic)
 		.post(questionController.createByTopic);  
     

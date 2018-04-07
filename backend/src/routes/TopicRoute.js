@@ -7,7 +7,7 @@ module.exports = function(app){
 	
 	var topicController = require('../controllers/TopicController')();
 	
-    app.route('/api/topics/project/:projectId')
+    app.route('/topics/project/:projectId')
         .get(topicController.readAllByProject)
 		.post(topicController.createByProject);
         

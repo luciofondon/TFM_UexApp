@@ -8,12 +8,12 @@ module.exports = function(app){
 	var templateController = require('../controllers/TemplateController')();
 
 	//CRUD proyecto
-	app.route('/api/templates')
+	app.route('/templates')
 		.get(templateController.readAll)
 		.post(templateController.create);
 
 	//CRUD proyecto
-	app.route('/api/template/:templateId')
+	app.route('/template/:templateId')
 		.get(templateController.read)
 		.put(templateController.update)
 		.delete(templateController.delete);

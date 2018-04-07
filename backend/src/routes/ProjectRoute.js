@@ -8,17 +8,17 @@ module.exports = function(app){
 	var projectController = require('../controllers/ProjectController')();
 	
 	//CRUD proyecto
-	app.route('/api/projects')
+	app.route('/projects')
 		.get(projectController.readAll)
 		.post(projectController.create);
 	  
 	//CRUD proyecto
-	app.route('/api/project/:projectId')
+	app.route('/project/:projectId')
 		.get(projectController.read)
 		.put(projectController.update)
 		.delete(projectController.delete);
 
-	app.route('/api/project/:app/:projectId')
+	app.route('/project/:app/:projectId')
 		.post(projectController.exportData)
 
 	app.param('projectId', projectController.loadProject);

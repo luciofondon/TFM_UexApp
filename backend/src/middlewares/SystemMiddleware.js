@@ -5,7 +5,7 @@ var jwt = require('jwt-simple'),
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 exports.ensureAuthenticated = function(req, res, next) {
   console.log("Entra")
-  if(!req.headers.authorization) {
+  /*if(!req.headers.authorization) {
     return res.status(403).send({message: "Tu petición no tiene cabecera de autorización"});
   }
   
@@ -19,6 +19,6 @@ exports.ensureAuthenticated = function(req, res, next) {
   }
   
   //En el payload del token esta el identificador del usuario
-  req.user = payload.sub;
+  req.user = payload.sub;*/
   next();
 }
