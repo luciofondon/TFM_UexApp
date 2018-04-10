@@ -67,12 +67,12 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 
 	function getUser(){
 		if ($auth.isAuthenticated()){
-			UserService.getMe().then(function(response) {
+			/*UserService.getMe().then(function(response) {
 				$rootScope.LoginUser = response.data.user;
 				$rootScope.LoginUserLevel = response.data.level;
-			},function (error){
+			}).catch(function (error){
 				console.log(error);
-			});
+			});*/
 		}
 	}
 }]);

@@ -18,6 +18,9 @@ module.exports = function(app){
       .put(userController.update)
       .delete(userController.delete);
     
+    app.route('/user/me')
+      .get(userController.me);
+    
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
       .put(userController.resetPassword);

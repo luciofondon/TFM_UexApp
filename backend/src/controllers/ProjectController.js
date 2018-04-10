@@ -15,6 +15,7 @@ module.exports = function() {
         },
 
         readAll: function(req, res) {
+            console.log("entra")
             projectDAO.readAllProject(req,res);
         },
 

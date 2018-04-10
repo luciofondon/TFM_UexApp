@@ -47,4 +47,8 @@ UserSchema.methods = {
 }
 
 
+UserSchema.statics.load = function(userId, callback) {
+  this.findOne({_id: userId}).exec(callback);
+};
+
 module.exports = mongoose.model('User', UserSchema);

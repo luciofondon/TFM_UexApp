@@ -32,7 +32,7 @@ require('./src/routes/TemplateRoute')(api);
 
 //Control de token
 app.route('/api/login').post(userController.login);
-app.use("/api", systemMiddleware.ensureAuthenticated, api);
+//app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
 
 // Conexion a Mongo y despliegue del servidor

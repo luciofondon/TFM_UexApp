@@ -19,11 +19,11 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini" ng-controller='MainController'>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 <div class="wrapper">
 
   <!-- Main Header -->
-  <header class="main-header">
+  <header class="main-header" ng-if="isLoggedIn()">
 
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -111,7 +111,7 @@
               <!-- The user image in the navbar-->
               <img src="images/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Lucio Fondón</span>
+              <span class="hidden-xs">{{LoginUser.name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -119,8 +119,8 @@
                 <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Lucio Fondón
-                  <small>Miembro desde Nov. 2012</small>
+                  {{LoginUser.name}}
+                  <small>{{LoginUser.email}}</small>
                 </p>
               </li>
 
@@ -147,7 +147,7 @@
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+  <aside class="main-sidebar" ng-if="isLoggedIn()">
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
