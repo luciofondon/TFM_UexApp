@@ -1,5 +1,7 @@
 
-angular.module('tfm.uex').controller('UserListController', ['$scope', '$http', function($scope, $http){
+angular.module('tfm.uex').controller('UserListController', 
+    ['$scope', '$http', 'UserService', 'BootstrapTableService',
+        function($scope, $http, UserService, BootstrapTableService){
     $scope.alerts = [];
     $scope.errores = [];
     $scope.user = {};

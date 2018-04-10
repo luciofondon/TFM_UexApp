@@ -1,4 +1,4 @@
-angular.module('gamma.smarthlight').factory('BootstrapTableService', function(){
+angular.module('tfm.uex').factory('BootstrapTableService', function(){
 
 	return {
 		createTableSimple: function(data, nameFile, columns, filterShowClear){

@@ -43,15 +43,17 @@ exports.loginUser = function(req, res) {
 
 
 function loginUser(req, res){
-    User.findOne({email: req.body.email.toLowerCase()}, function(err, user) {
-        if(err || user == undefined)
-            return res.status(500).json({ error: 'Usuario no encontrado' });
+    if(req.body.email != undefined && req.body.password != undefined){
+        User.findOne({email: req.body.email.toLowerCase()}, function(err, user) {
+           /* if(err || user == undefined)
+                return res.status(500).json({ error: 'Usuario no encontrado' });
 
-        if(!user.equalPassword(req.body.password))
-            return res.status(500).json({ error: 'Clave de usuario no valida'});
-        
-        return res.status(200).send({token: systemService.createToken(user)});
-    });
+            if(!user.equalPassword(req.body.password))
+                return res.status(500).json({ error: 'Clave de usuario no valida'});
+            */
+            return res.status(200).send({token: systemService.createToken(user)});
+        });
+    }
 }
 
 

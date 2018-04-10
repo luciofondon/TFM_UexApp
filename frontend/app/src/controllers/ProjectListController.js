@@ -1,4 +1,6 @@
-angular.module('tfm.uex').controller('ProjectListController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
+angular.module('tfm.uex').controller('ProjectListController', 
+    ['$scope', '$rootScope', '$http', 'ProjectService', 'BootstrapTableService', 
+        function($scope, $rootScope, $http, ProjectService, BootstrapTableService){
 
     $scope.bsTableProject = {};
     $scope.alerts = [];
@@ -9,8 +11,8 @@ angular.module('tfm.uex').controller('ProjectListController', ['$scope', '$rootS
 
 
 	$scope.init = function(){
-		console.log("Entra")
-		$http.get('/api/templates').then(function(response) {
+        console.log("Entra")
+        ProjectService.getProjects().then(function(response) {
             $scope.templates = response.data;
         });
 	};
@@ -39,8 +41,7 @@ angular.module('tfm.uex').controller('ProjectListController', ['$scope', '$rootS
 
         if( $scope.errores.length > 0)
             return false
-        else
-            return true;
+        return true;
     }
 
 
@@ -58,7 +59,9 @@ angular.module('tfm.uex').controller('ProjectListController', ['$scope', '$rootS
     };
 
 	$scope.loadProjectList = function(){
-        $http.get('/api/projects').success(function(projects) {
+        ProjectService.getProjects().then(function(response) {
+
+            var projects = response.data;
             projects.forEach(function(project){
                 var created = new Date(project.created);
                 project.created = ("0" + created.getHours()).slice(-2) +":"+ ("0" + created.getMinutes()).slice(-2)+":"+("0" + created.getSeconds()).slice(-2) + " " + ("0" + created.getDate()).slice(-2)+"/"+("0" + (created.getMonth()+1)).slice(-2)+"/"+created.getFullYear();
@@ -72,44 +75,17 @@ angular.module('tfm.uex').controller('ProjectListController', ['$scope', '$rootS
                 ].join('');
             }
 
-            $scope.bsTableProject = {
-                options: {
-                    data: projects,
-                    toolbar:"#crear",
-                    exportDataType: "all",
-                    exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
-                    exportOptions:{
-                        fileName: "ProyectosTFM-Uex",
-                        ignoreColumn:[0],
-                        type:'pdf',
-                        jspdf: {
-                            orientation: 'l',
-                            format: 'a3',
-                            margins: {left:10, right:10, top:20, bottom:20},
-                            autotable: {tableWidth: 'wrap'}
-                        }
-                    },
-                    striped: true,
-                    showToggle: true,
-                    showExport: true,
-                    pagination: true,
-                    pageSize: 15,
-                    pageList: [5, 10, 15, 25, 50, 100],
-                    search: true,
-                    showColumns: true,
-                    minimumCountColumns: 1,
-                    clickToSelect: false,
-                    maintainSelected: true,
-                    mobileResponsive: true,
-                    columns: [
-                        {align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
-                        {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-                        {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
-                        {field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
-                        {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
-                    ]
-                }
-            };
+            var columns = [
+                {align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
+                {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
+                {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
+                {field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
+                {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
+            ];
+
+            $scope.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
+
+           
         })
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {

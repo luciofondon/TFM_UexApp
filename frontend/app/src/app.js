@@ -1,5 +1,5 @@
 var app = angular.module('gamma.efi.zentinnel', [
-	'ui.router',
+	'ui.router', 
 	'satellizer',
 	'bsTable',
 	'ui.select',
