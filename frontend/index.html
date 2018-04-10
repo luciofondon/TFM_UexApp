@@ -19,7 +19,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini" ng-controller='SystemController'>
+<body class="hold-transition skin-blue sidebar-mini" ng-controller='MainController'>
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -130,7 +130,7 @@
                   <a ui-sref="userDetail({projectId: project._id})" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar sesión</a>
+                  <a href ng-click="logout()" class="btn btn-default btn-flat">Cerrar sesión</a>
                 </div>
               </li>
             </ul>
@@ -333,7 +333,7 @@
 
 
 <!-- Inicio: Controladores angular -->
-<script src="app/src/SystemController.js"></script>
+<script src="app/src/app.js"></script>
 <script src="app/src/controllers/ProjectListController.js"></script>
 <script src="app/src/controllers/ProjectManagementController.js"></script>
 <script src="app/src/controllers/RolListController.js"></script>
@@ -341,6 +341,7 @@
 <script src="app/src/controllers/UserDetailController.js"></script>
 <script src="app/src/controllers/TemplateListController.js"></script>
 <script src="app/src/controllers/LoginController.js"></script>
+<script src="app/src/controllers/MainController.js"></script>
 
 
 
