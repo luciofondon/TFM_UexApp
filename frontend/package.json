@@ -1,8 +1,8 @@
 {
-	"name": "efi.zentinnel.com",
+	"name": "UexApp",
 	"version": "2.0.0",
 	"description": "Frontal de la aplicacion web.",
-	"author": "Gamma Solutions - i + d",
+	"author": "@luciofondon",
 	"dependencies": {},
 	"devDependencies": {
 		"grunt": "^1.0.1",
