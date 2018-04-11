@@ -1,3 +1,5 @@
+## 1.1. Introducción. ##
+Aplicación web encargada de generar los diferentes riesgos de seguridad...
 
 ## 2.1. Instalar Mongo DB. ##
 MongoDB es una base de datos libre y de código abierto NoSQL utilizada comúnmente en aplicaciones web modernas.
@@ -186,48 +188,4 @@ Para poder comprobar que los diferentes test unitarios de la API funcionan corre
 
 ```
 mocha --recursive test
-```
-
-
-
-
-
-
-# ServerApp
-
-## Descripción
-Servicio encargado ....
-
-
-## Instalaciónn
-```
-mongo mongoDB/ScriptDefault.js
-```
-```
-npm install
-```
-
-```
-bower install
-```
-
-```
-mongo StriptDefaultDB.js
-```
-
-```
-mv config/config.js.dist config/config.js 
-```
-
-
-Generar el fichero config/config.js 
-
-## Ejecucion
-En desarrollo ejecutamos:
-```
-node server.js
-```
-En producción ejecutamos:
-```
-NODE_ENV=production forever start server.js
 ```
