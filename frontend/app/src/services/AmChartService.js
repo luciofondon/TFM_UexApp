@@ -1,4 +1,4 @@
-angular.module('gamma.smarthlight').service('AmChartService', function() {
+angular.module('tfm-uex').service('AmChartService', function() {
 
 	return {
 		createChartSerial: function(data, formatItem, divId, titleHead, nameFile, periodo){
