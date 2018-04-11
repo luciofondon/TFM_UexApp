@@ -21,8 +21,8 @@ function sendMail(email, head, body){
         }
     });
 
-    let ruta = path.join(__dirname,'../../public/assets/img/logo-gamma-solutions.png');
-    let footer = '<br><p>Mensaje generado por el sistema de telegestión de Gamma Solutions.<br> <img src="cid:logogamma.png" height="100"/>'
+    let ruta = path.join(__dirname,'../../public/assets/img/uex.png');
+    let footer = '<br><p>Mensaje generado por UexApp. Universidad Extremadura.<br> <img src="cid:logogamma.png" height="100"/>'
     let mailOptions = {
         from: config.USER_MAIL,
         to: email,
