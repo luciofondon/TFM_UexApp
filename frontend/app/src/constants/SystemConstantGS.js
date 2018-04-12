@@ -1,4 +1,4 @@
-angular.module('tfm.uex').constant('SystemConstantGS', {
+angular.module('tfm.uex').constant('SystemConstant', {
 
 
 
