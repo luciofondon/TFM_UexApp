@@ -2,81 +2,33 @@
 conn = new Mongo("localhost");
 db = conn.getDB("tfm");
 
-var topicos = [
+var users = [
 	{
-		name: "Iniciales"
-	},
-	{ 
-		name: "Gestión de usuarios - Mode de datos"
-	},
-	{
-		name: "Autenticación"
-	},
-	{
-		name: "Control de acceso"
-	},
-	{
-		name: "Administración de sesiones"
-	},
-	{
-		name: "Validación de entradas"
-	},
-	{
-		name: "Manipulación de errores"
+		name: "Administrador",
+		lastName: "Administrador",
+		email: "admin@mail.com",
+		lastName: "Administrador",
+		userName: "admin",
+		created: new Date(),
+		password: "1234",
+		phoneNumber : 666666666
 	}
 ];
 
-var fields = [
-
-]
-
-var questions = [
+var roles = [
 	{
-		question: "¿Qué tipo de aplicativo es?",
-		field:
-		topic: topicos[0]._id
+		description: "Administrador",
+		name: "Administrador",
+		level: 1
 	},
 	{
-		question: "¿Qué tipo de datos almacena?"
-		field:
-		topic: topicos[0]._id
-	},
-	{
-		question: "¿Qué uso se hace del modelo de datos almacenados?",
-		field:
-		topic: topicos[0]._id
-	},
-	{
-		question: "¿El uso de la aplicación se acoge a algún marco regulatorio?",
-		field:
-		topic: topicos[0]._id
-	},
-		{
-		question: "¿Qué tipo de datos se guardan del usuario?",
-		field:
-		topic: topicos[1]._id
-	},
-	{
-		question: "¿Cómo se gestiona el ciclo de vida de la información del modelo datos?"
-		field:
-		topic: topicos[1]._id
-	},
-	{
-		question: "¿Existe una política de tratamiento de los datos de usuario?",
-		field:
-		topic: topicos[1]._id
-	},
-	{
-		question: "¿El uso de la aplicación se acoge a algún marco regulatorio?",
-		field:
-		topic: topicos[1]._id
+		description: "Consultor",
+		name: "consultor",
+		level: 1
 	}
-
 ];
 
-
-
-
-db.getCollections('topics').insert(topicos);
+db.getCollections('users').insert(users);
+db.getCollections('rols').insert(roles);
 
 

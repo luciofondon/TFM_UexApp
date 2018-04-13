@@ -72,10 +72,11 @@ function readAllUser(req, res){
                         
                         //Asignar nombre del rol
                         for(let i = 0; i <  roles.length ; i++){ 
-                            if(roles[i]._id.toString() == user.role.toString()){
-                                userFormat.rolName = roles[i].name;
-                                break;
-                            }
+                            if(user.role != undefined)
+                                if(roles[i]._id.toString() == user.role.toString()){
+                                    userFormat.rolName = roles[i].name;
+                                    break;
+                                }
                         }
 
                        
@@ -91,9 +92,26 @@ function readAllUser(req, res){
 function createUser(req, res){    
     let user = new User(req.body);
     //Codificar la password
+    console.log("LLamando a codifica")
     user.encodePassword(req.body.password);
+    console.log("despues de cod")
     if(validateUser(user)){
         user.save(function(err) {            
+            if (err) {
+                return res.status(500).json({error: 'Cannot save the user'});
+            }
+            res.json(user);
+        });
+    }else
+        return res.status(500).json({ error: "Parametros de la API no validos"});
+}
+
+function createUser(req, res){
+    let user = new User(req.body);
+    //Codificar la password
+    user.encodePassword(req.body.password);
+    if(validateUser(user)){
+        user.save(function(err) {
             if (err) {
                 return res.status(500).json({error: 'Cannot save the user'});
             }

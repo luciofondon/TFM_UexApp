@@ -32,11 +32,11 @@ require('./src/routes/TemplateRoute')(api);
 
 //Control de token
 app.route('/api/login').post(userController.login);
-//app.use("/api", systemMiddleware.ensureAuthenticated, api);
+app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
 
 // Conexion a Mongo y despliegue del servidor
-mongoose.connect(config.MONGO_PATH, {useMongoClient: true},  function(err, res) {
+mongoose.connect(config.MONGO_PATH,  function(err, res) {
 	if(err) {
 		console.log('ERROR! connecting to Database. ' + err);
 	}

@@ -35,7 +35,10 @@ exports.forbidden = function(req, res, next){
 
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 function ensureAuthenticated(req, res, next) {
-    if(!req.headers.authorization) {
+    console.log("ensure")
+    next();
+
+    /*if(!req.headers.authorization) {
         unauthorized(req, res, next);
     } else {
         //Obtenemos el token del usuario y lo decodificamos
@@ -64,7 +67,7 @@ function ensureAuthenticated(req, res, next) {
             }
             next();
         });
-    }
+    }*/
 }
 
 function rolAdmin(req, res, next){
