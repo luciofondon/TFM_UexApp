@@ -1,7 +1,7 @@
 
 angular.module('tfm.uex').controller('UserListController', 
-    ['$scope', '$http', 'UserService', 'BootstrapTableService',
-        function($scope, $http, UserService, BootstrapTableService){
+    ['$scope', '$http', 'UserService', 'RolService', 'ProjectService', 'BootstrapTableService',
+        function($scope, $http, UserService, RolService, ProjectService, BootstrapTableService){
     $scope.alerts = [];
     $scope.errores = [];
     $scope.user = {};
@@ -12,8 +12,8 @@ angular.module('tfm.uex').controller('UserListController',
 
 
     $scope.init = function() {
-        $http.get('/api/roles').success(function(roles) {
-            $scope.roles = roles;
+        RolService.getRoles().then(function(response) {
+            $scope.roles = response.data;
         });
 
         $http.get("/api/projects").success(function(projects) {
@@ -23,7 +23,8 @@ angular.module('tfm.uex').controller('UserListController',
 
 
     $scope.loadUserList = function(){
-        $http.get('/api/users').success(function(users) {
+        UserService.getUsers().then(function(response) {
+            var users = response.data;
             var actionFormatterUsers = function(value, row, index) {
                 return [
                     '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Editar" data-toggle="modal" data-target="#modal-user">',
@@ -148,9 +149,9 @@ angular.module('tfm.uex').controller('UserListController',
             $scope.errores.push("Debe introducirse un email válido");
         else if($scope.user.name == undefined || $scope.user.name == "") 
             $scope.errores.push("Se debe indicar un nombre para el usuario");
-        else if($scope.user.username == undefined || $scope.user.username == "") 
+        else if($scope.user.userName == undefined || $scope.user.userName == "") 
             $scope.errores.push("Se debe indicar un nombre de usuario");
-        else if(($scope.user.phone != undefined && $scope.user.phone != "") && ($scope.user.phone.length < 9 || !Number.isInteger(parseInt($scope.user.phone))))
+        else if(($scope.user.phoneNumber != undefined && $scope.user.phoneNumber != "") && ($scope.user.phoneNumber.length < 9 || !Number.isInteger(parseInt($scope.user.phone))))
             $scope.errores.push("El teléfono facilitado no es válido");
         else if(($scope.user.password == undefined || $scope.user.password == "") && $scope.mode == 1) 
             $scope.errores.push("Se debe especificar una contraseña");

@@ -35,10 +35,7 @@ exports.forbidden = function(req, res, next){
 
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 function ensureAuthenticated(req, res, next) {
-    console.log("ensure")
-    next();
-
-    /*if(!req.headers.authorization) {
+    if(!req.headers.authorization) {
         unauthorized(req, res, next);
     } else {
         //Obtenemos el token del usuario y lo decodificamos
@@ -49,7 +46,6 @@ function ensureAuthenticated(req, res, next) {
         if(payload.exp <= moment().unix()) {
             return res.status(401).send({message: "El token ha expirado"});
         }
-
         //En el payload del token esta el identificador del usuario
         req.authUserId = payload.sub;
         req.authUser = null;
@@ -62,12 +58,12 @@ function ensureAuthenticated(req, res, next) {
                 return res.status(500).json({error: 'El identificador '+ req.authUserId +' no existe'});
             
             req.authUser = user;
-            if(user.role){
-                req.authUserLevel = user.role.level;
+            if(user.rol){
+                req.authUserLevel = user.rol.level;
             }
             next();
         });
-    }*/
+    }
 }
 
 function rolAdmin(req, res, next){

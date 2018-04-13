@@ -17,6 +17,11 @@ var app = angular.module('tfm.uex',
 				url: '/login',
 				templateUrl: 'app/views/login.html',
 				controller: 'LoginController'
+			}) 
+			.state('error', {
+				url: '/error/:code',
+				templateUrl: 'app/views/error.html',
+				controller: 'HttpErrorController'
 			})
 			.state('home', {
 				url: "/home",

@@ -24,7 +24,7 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 	};
 
 	function getUsers(){
-		return $http.get('/api/user/list');
+		return $http.get('/api/users');
 	}
 
 	function getUser(userId){

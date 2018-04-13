@@ -48,8 +48,8 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 	}	
 
 	function updateHeader(){
-	/*	if ($auth.isAuthenticated()){
-			$http.get('/api/incidences/false').then(function(response) {
+		if ($auth.isAuthenticated()){
+			/*$http.get('/api/incidences/false').then(function(response) {
 				ignoreLoadingBar: true
 				$rootScope.incidences = response.data;
 			},function (error){
@@ -61,18 +61,18 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 				$rootScope.notifications = response.data;
 			},function(error){
 				console.log(error);
-			});
-		}*/
+			});*/
+		}
 	}
 
 	function getUser(){
 		if ($auth.isAuthenticated()){
-			/*UserService.getMe().then(function(response) {
+			UserService.getMe().then(function(response) {
 				$rootScope.LoginUser = response.data.user;
 				$rootScope.LoginUserLevel = response.data.level;
 			}).catch(function (error){
 				console.log(error);
-			});*/
+			});
 		}
 	}
 }]);

@@ -10,8 +10,9 @@ angular.module('tfm.uex').controller('LoginController',
 		$window.location.href = '/';
 		//$state.go('projects');
 	}
-
+ 
 	$scope.login = function(){
+		console.log("Login")
 		$auth.login({
 			email: $scope.email,
 			password: $scope.password
@@ -27,4 +28,4 @@ angular.module('tfm.uex').controller('LoginController',
 			$scope.error = response.data.error;
 		});
 	}
-}]);
+}]); 
