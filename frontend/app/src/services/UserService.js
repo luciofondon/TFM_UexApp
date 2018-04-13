@@ -48,8 +48,7 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 	}
 
 	function getMe(){
-		return	$http.get('/api/user/me');
+		return $http.get('/api/user/me');
 	}
-
 
 }]);

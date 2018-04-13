@@ -35,6 +35,7 @@ exports.forbidden = function(req, res, next){
 
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 function ensureAuthenticated(req, res, next) {
+    console.log(req.headers.authorization)
     if(!req.headers.authorization) {
         unauthorized(req, res, next);
     } else {
@@ -57,10 +58,11 @@ function ensureAuthenticated(req, res, next) {
             if (user == undefined)
                 return res.status(500).json({error: 'El identificador '+ req.authUserId +' no existe'});
             
+            //Todas las peticiones tienen disponible el usuario
             req.authUser = user;
-            if(user.rol){
+            /*if(user.rol){
                 req.authUserLevel = user.rol.level;
-            }
+            }*/
             next();
         });
     }
