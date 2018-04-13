@@ -25,8 +25,8 @@ module.exports = function(app){
     app.route('/user/resetPassword/:userId')
       .put(userController.resetPassword);
   
-    app.route('/auth/login')
+   /* app.route('/auth/login')
       .post(userController.login);
-   
+   */
     app.param('userId', userController.loadUser);
   }

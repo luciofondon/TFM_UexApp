@@ -36,15 +36,13 @@ module.exports = function() {
             userDAO.loginUser(req, res);
         },
         me: function(req, res){
-            console.log("Entra a consultar el usuario")
+            console.log("entra me")
             var user = {
                 "user": req.authUser,
                 "level": req.authUserLevel
             }
-
             res.json(user);
         }
-
     }
 }
 

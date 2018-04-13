@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController', 
-    ['$scope', '$rootScope', '$http', 'ProjectService', 'BootstrapTableService', 
-        function($scope, $rootScope, $http, ProjectService, BootstrapTableService){
+    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', 
+        function($scope, $rootScope, ProjectService, BootstrapTableService){
 
     $scope.bsTableProject = {};
     $scope.alerts = [];
@@ -9,30 +9,26 @@ angular.module('tfm.uex').controller('ProjectListController',
     $scope.mode = 1;
 	$scope.templates = [];
 
-
 	$scope.init = function(){
-        console.log("Entra")
         ProjectService.getProjects().then(function(response) {
             $scope.templates = response.data;
         });
 	};
 
-
     $scope.createProject = function (){
         if(validate()){
-            $http.post('/api/projects', $scope.project).success(function(project) {
+            ProjectService.addProject($scope.project).then(function(project) {
                 $scope.project =  {};
                 $scope.loadProjectList();
                 $scope.alerts = [];
                 $scope.alerts.push("Proyecto creado correctamente.")
                 $('#modal-project').modal('hide');
-                $http.get('/api/projects').success(function(projects) {
+                ProjectService.getProjects().then(function(projects) {
                     $rootScope.projects = projects; //Actualizar proyectos del menu laterail
                 });
             });
         }
     }
-
 
     function validate(){
         $scope.errores = [];
@@ -44,10 +40,9 @@ angular.module('tfm.uex').controller('ProjectListController',
         return true;
     }
 
-
     $scope.updateProject = function() {
         if(validate()){
-            $http.put('/api/project/' +  $scope.project._id, $scope.project).success(function(alarm, status) {
+            ProjectService.updateProject($scope.project).then(function(alarm, status) {
                 $scope.loadProjectList();
                 $('#modal-project').modal('hide');
                 //Actualizamos el menu lateral
@@ -84,18 +79,15 @@ angular.module('tfm.uex').controller('ProjectListController',
             ];
 
             $scope.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
-
-           
-        })
+        });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
             $scope.mode = 2;
             $scope.errores = [];
-            $http.get('/api/project/' + row._id).success(function(project, status) {
+            ProjectService.getProject(row._id).then(function(project, status) {
                 $scope.project = project;
             });
         }};
     };
-
 
 }]);

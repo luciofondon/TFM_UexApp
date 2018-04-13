@@ -1,7 +1,7 @@
 
 angular.module('tfm.uex').controller('UserListController', 
-    ['$scope', '$http', 'UserService', 'RolService', 'ProjectService', 'BootstrapTableService',
-        function($scope, $http, UserService, RolService, ProjectService, BootstrapTableService){
+    ['$scope', 'UserService', 'RolService', 'ProjectService', 'BootstrapTableService',
+        function($scope, UserService, RolService, ProjectService, BootstrapTableService){
     $scope.alerts = [];
     $scope.errores = [];
     $scope.user = {};
@@ -16,7 +16,7 @@ angular.module('tfm.uex').controller('UserListController',
             $scope.roles = response.data;
         });
 
-        $http.get("/api/projects").success(function(projects) {
+        ProjectService.getProjects().then(function(projects) {
             $scope.projects = projects;
         });
     }
@@ -39,51 +39,19 @@ angular.module('tfm.uex').controller('UserListController',
                 ].join('');
             }  
 
-            $scope.bsTableUsers = {
-                options: {
-                    data: users, 
-                    striped: true,
-                    showToggle: true,
-                    toolbar:"#crear",
-                    exportDataType: "all",
-                    exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
-                    exportOptions:{
-                        fileName: "UsuariosTFM-Uex",
-                        ignoreColumn:[0],
-                        type:'pdf',
-                        jspdf: {
-                            orientation: 'l',
-                            format: 'a3',
-                            margins: {left:10, right:10, top:20, bottom:20},
-                            autotable: {tableWidth: 'wrap'}
-                        }
-                    },
-                    showRefresh: false,
-                    showExport: true,
-                    pagination: true,      
-                    pageSize: 15,
-                    exportDataType:'all',
-                    pageList: [5, 10, 15, 25, 50, 100],
-                    search: true,
-                    showColumns: true,
-                    showPaginationSwitch: true,
-                    minimumCountColumns: 1,
-                    clickToSelect: false,
-                    maintainSelected: true,
-                    mobileResponsive: true,                                                    
-                    columns: [
-                        {align: 'center', width:'80px', valign: 'middle', formatter:actionFormatterUsers, events:'actionEventsUsers'}, 
-                        {field: "createdFormat", title: "Creacion", align: 'center', valign: 'middle', sortable: true},
-                        {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true}, 
-                        {field: "username", title: "Usuario", align: 'center', valign: 'middle', sortable: true}, 
-                        {field: "email", title: "Email", align: 'center', valign: 'middle', sortable: true}, 
-                        {field: "rolName", title: "Rol", align: 'center', valign: 'middle', sortable: true}, 
-                        {field: "phone", title: "Telefono", align: 'center', valign: 'middle', sortable: true},
-                        {field: "projectsFormat", title: "Proyectos", align: 'center', valign: 'middle', sortable: true, visible:false},
-                        {field: "municipiosFormat", title: "Municipios", align: 'center', valign: 'middle', sortable: true, visible:false}
-                    ]
-                }
-            };
+            var columns = [
+                {align: 'center', width:'80px', valign: 'middle', formatter:actionFormatterUsers, events:'actionEventsUsers'}, 
+                {field: "createdFormat", title: "Creacion", align: 'center', valign: 'middle', sortable: true},
+                {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true}, 
+                {field: "userName", title: "Usuario", align: 'center', valign: 'middle', sortable: true}, 
+                {field: "email", title: "Email", align: 'center', valign: 'middle', sortable: true}, 
+                {field: "rolName", title: "Rol", align: 'center', valign: 'middle', sortable: true}, 
+                {field: "phone", title: "Telefono", align: 'center', valign: 'middle', sortable: true},
+                {field: "projectsFormat", title: "Proyectos", align: 'center', valign: 'middle', sortable: true, visible:false},
+                {field: "municipiosFormat", title: "Municipios", align: 'center', valign: 'middle', sortable: true, visible:false}
+            ];
+
+            $scope.bsTableUsers = BootstrapTableService.createTableSimple(users, "UsuariosTFM-Uex", columns);
 
             window.actionEventsUsers = {'click .edit': function (e, value, row, index) {
                     $scope.errores = [];
@@ -93,7 +61,7 @@ angular.module('tfm.uex').controller('UserListController',
 
                 },'click .remove': function (e, value, row, index) {
                     if(confirm("¿Estás seguro de borrar el usuario?")){
-                        $http.delete('/api/user/' + row._id).success(function(user) {
+                        UserService.removeUser(row._id).then(function(user) {
                             for(var i = $scope.bsTableUsers.options.data.length; i--;){
                                 if($scope.bsTableUsers.options.data[i]._id == row._id){                   
                                     $scope.bsTableUsers.options.data.splice(i, 1); 
@@ -115,10 +83,10 @@ angular.module('tfm.uex').controller('UserListController',
     $scope.reset = function() {
         $scope.alerts = [];
         if(validatePassword()){
-            $http.put('/api/user/resetPassword/' + $scope.user._id, $scope.resetPassword).success(function() {
+            UserService.resetPassword($scope.user._id, $scope.resetPassword).then(function() {
                 $scope.alerts.push("La contraseña ha sido actualizada correctamente");
                 $('#modal-password').modal('hide');
-            }).error(function(data) {
+            }).catch(function(data) {
                 alert(data[0].msg);
             });
         }
@@ -169,7 +137,7 @@ angular.module('tfm.uex').controller('UserListController',
     $scope.createUser = function() {
         console.log($scope.user)
         if(validateUser()){
-            $http.post('/api/users', $scope.user).success(function(project) { 
+            UserService.addUser($scope.user).then(function(project) { 
                 $scope.user = {};
                 $scope.loadUserList();
                 $scope.alerts = [];
@@ -182,7 +150,7 @@ angular.module('tfm.uex').controller('UserListController',
     $scope.updateUser = function() {   
         $scope.alertas = [];
         if(validateUser()){
-            $http.put('/api/user/' + $scope.user._id, $scope.user).success(function(){
+            UserService.updateUser(scope.user).then(function(){
                 $scope.loadUserList();
                 $scope.alertas.push("Usuario actualizado correctamente");
                 $('#modal-user').modal('hide')
