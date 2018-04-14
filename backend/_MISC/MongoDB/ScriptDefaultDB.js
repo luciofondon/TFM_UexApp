@@ -28,7 +28,7 @@ var roles = [
 	}
 ];
 
-db.getCollections('users').insert(users);
-db.getCollections('rols').insert(roles);
+db.getCollection('users').insert(users);
+db.getCollection('rols').insert(roles);
 
 
