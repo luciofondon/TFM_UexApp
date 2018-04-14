@@ -2,16 +2,20 @@ var app = angular.module('tfm.uex',
 	[	
 		'ui.router', 
 		'satellizer', 
-		'bsTable'
+		'bsTable',
+		'angular-loading-bar',
 	])
 	.constant('cfg', {
 		backendUrl: '/api'
 	})
-	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg) {
+	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg, cfpLoadingBarProvider) {
 		// Parametros de configuración
 		$authProvider.loginUrl = cfg.backendUrl + "/login";
 		$authProvider.tokenName = "token";
 		$authProvider.tokenPrefix = "tfm.uex";
+		cfpLoadingBarProvider.includeSpinner = false;
+		cfpLoadingBarProvider.latencyThreshold = 500;
+		
 		$stateProvider
 			.state('login', {
 				url: '/login',

@@ -7,18 +7,18 @@ module.exports = function(app){
   
     var userController = require('../controllers/UserController')();
   
-    // CRUD calendario
+    // CRUD usuario
     app.route('/users')
       .get(userController.readAll)
       .post(userController.create);
     
-    // CRUD calendario
+    // CRUD usuario
     app.route('/user/:userId')
       .get(userController.read)
       .put(userController.update)
       .delete(userController.delete);
     
-    app.route('/user/me')
+    app.route('/user/cfg/me')
       .get(userController.me);
     
     // Modificar la contrasena del usuario

@@ -15,12 +15,10 @@ module.exports = function() {
         },
 
         readAll: function(req, res) {
-            console.log("entra")
             projectDAO.readAllProject(req,res);
         },
 
         create: function(req, res) {
-            console.log(req.body)
             projectDAO.createProject(req,res);
         },
 
