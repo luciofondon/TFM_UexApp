@@ -67,10 +67,10 @@ angular.module('tfm.uex').controller('ProjectListController',
                     '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
                     	'<i class="glyphicon glyphicon-edit"></i>',
                     '</a>',
-                    '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador" data-toggle="modal" data-target="#modal-password">',
+                    '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador">',
                         '<i class="fa fa-cogs"></i>',
                     '</a>',
-                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Generador" data-toggle="modal" data-target="#modal-project">',
+                    '<a class="generator" style="margin-right: 10px;cursor:pointer;" title="Generador">',
                         '<i class="fa fa-calendar-check-o"></i>',
                     '</a>' 
                 ].join('');
@@ -95,8 +95,11 @@ angular.module('tfm.uex').controller('ProjectListController',
                 });
             },'click .configurator': function (e, value, row, index) {
               	//Cambiar de estado
-			    $state.go('projectManagement', {projectId:row._id});
-            }
+			    $state.go('configuratorManagement', {projectId:row._id});
+            },'click .generator': function (e, value, row, index) {
+                //Cambiar de estado
+              $state.go('generatorManagement', {projectId:row._id});
+          }
         };
     };
 

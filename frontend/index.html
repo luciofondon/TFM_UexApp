@@ -173,7 +173,7 @@
               </a>
               <ul class="treeview-menu">
                 <li ng-repeat="project in projects">
-                  <a ui-sref="projectManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> {{project.name}}</a>
+                  <a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> {{project.name}}</a>
                 </li>
                 <li><a ui-sref="projectList"><i class="fa fa-edit"></i>Configuración</a></li>
               </ul>
@@ -311,7 +311,8 @@
     <!-- Inicio: Controladores angular -->
     <script src="app/src/app.js"></script>
     <script src="app/src/controllers/ProjectListController.js"></script>
-    <script src="app/src/controllers/ProjectManagementController.js"></script>
+    <script src="app/src/controllers/ConfiguratorManagementController.js"></script>
+    <script src="app/src/controllers/GeneratorManagementController.js"></script>
     <script src="app/src/controllers/RolListController.js"></script>
     <script src="app/src/controllers/UserListController.js"></script>
     <script src="app/src/controllers/UserDetailController.js"></script>
@@ -328,6 +329,7 @@
     <script src="app/src/services/RolService.js"></script>
     <script src="app/src/services/ProjectService.js"></script>
     <script src="app/src/services/BootstrapTableService.js"></script>
+    <script src="app/src/services/DashboardService.js"></script>
 
     <!-- Fin: Controladores angular -->
     <script>

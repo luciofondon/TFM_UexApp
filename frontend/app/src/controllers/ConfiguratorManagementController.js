@@ -1,4 +1,4 @@
-angular.module('tfm.uex').controller('ProjectManagementController', 
+angular.module('tfm.uex').controller('ConfiguratorManagementController', 
     ['$scope', '$stateParams', 'ProjectService', 
         function($scope, $stateParams, ProjectService){
 
@@ -8,7 +8,7 @@ angular.module('tfm.uex').controller('ProjectManagementController',
 
     $scope.question = {};
     $scope.answer = {};
-    $scope.topics = [];
+    $scope.topics = []; 
     $scope.questions = [];
     $scope.project = {};
 	$scope.errores  = [];

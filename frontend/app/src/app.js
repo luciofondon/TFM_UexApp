@@ -88,15 +88,22 @@ var app = angular.module('tfm.uex',
 					loginRequired: loginRequired
 				}
 			})
-			.state('projectManagement', {
-				url: "/projectManagement/:projectId",
-				templateUrl : 'app/views/projectManagement.html',
-				controller 	: 'ProjectManagementController',
+			.state('configuratorManagement', {
+				url: "/configuratorManagement/:projectId",
+				templateUrl : 'app/views/configuratorManagement.html',
+				controller 	: 'ConfiguratorManagementController',
+				resolve:{
+					loginRequired: loginRequired
+				}
+			})
+			.state('generatorManagement', {
+				url: "/generatorManagement/:projectId",
+				templateUrl : 'app/views/generatorManagement.html',
+				controller 	: 'GeneratorManagementController',
 				resolve:{
 					loginRequired: loginRequired
 				}
 			});
-
 		$urlRouterProvider.otherwise("dashboard");
 		function loginRequired ($rootScope, $q, $auth, $location) {
 			var deferred = $q.defer()

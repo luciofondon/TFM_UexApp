@@ -262,3 +262,5 @@ sudo apt-get install jenkins
 ```
 systemctl status jenkins
 ```
+
+## 7. Configurar SONAR
