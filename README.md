@@ -189,3 +189,60 @@ Para poder comprobar que los diferentes test unitarios de la API funcionan corre
 ```
 mocha --recursive test
 ```
+
+## 6. CONFIGURAR NGINX
+
+```
+sudo apt-get install nginx
+```
+
+Comprobar servidor nginx
+```
+systemctl status nginx
+```
+
+Editar el siguiente fichero
+```
+vim /etc/nginx/sites-enabled/default
+```
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+    server_name tfm.luciofondon.com;
+    return 301 http://www.tfm.luciofondon.com$request_uri;
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.tfm.luciofondon.com;
+    location / {
+        proxy_pass http://localhost:4008;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name luciofondon.com;
+    return 301 http://www.luciofondon.com$request_uri;
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.luciofondon.com;
+    location / {
+        proxy_pass http://localhost:4008;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```

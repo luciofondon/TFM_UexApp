@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectManagementController', 
-    ['$scope', '$stateParams', '$http', 'ProjectService', 
-        function($scope, $stateParams, $http, ProjectService){
+    ['$scope', '$stateParams', 'ProjectService', 
+        function($scope, $stateParams, ProjectService){
 
     $scope.topic = {};
     $scope.topicId = "";

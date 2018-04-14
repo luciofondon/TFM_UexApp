@@ -4,14 +4,14 @@ db = conn.getDB("tfm");
 
 var users = [
 	{
-		name: "Administrador",
-		lastName: "Administrador",
-		email: "admin@mail.com",
-		lastName: "Administrador",
-		userName: "admin",
-		created: new Date(),
-		password: "1234",
-		phoneNumber : 666666666
+		"name" : "Administrador",
+		"lastName" : "Administrador",
+		"rol" : ObjectId("5ad10ee96bc202b82683bd54"),
+		"userName" : "admin",
+		"email" : "admin@mail.com",
+		"created" : new Date(),
+		"salt" : "I2O47xf+KFkZOa+eP4fRRw==",
+		"hashedPassword" : "ziFIvpsjpkh05TO7JjTNwssyGpBJg4KnekBUJPJzIe6bnKmckcuywPFibQBhbPTPFvdrIksjUM+LaG0OcGpjIg==",
 	}
 ];
 
@@ -23,8 +23,8 @@ var roles = [
 	},
 	{
 		description: "Consultor",
-		name: "consultor",
-		level: 1
+		name: "Consultor",
+		level: 2
 	}
 ];
 
