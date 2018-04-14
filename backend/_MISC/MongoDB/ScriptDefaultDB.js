@@ -1,6 +1,6 @@
 
 conn = new Mongo("localhost");
-db = conn.getDB("tfm");
+db = conn.getDB("tfm-uex");
 
 var users = [
 	{
@@ -27,8 +27,9 @@ var roles = [
 		level: 2
 	}
 ];
-
+print("Lanzando script...")
 db.getCollection('users').insert(users);
 db.getCollection('rols').insert(roles);
+print("Script terminado")
 
 
