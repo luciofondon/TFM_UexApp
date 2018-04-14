@@ -246,3 +246,19 @@ server {
     }
 }
 ```
+
+## 6. CONFIGURAR Jenkins
+Instalar Java
+```
+sudo apt-get install default-jdk
+```
+
+```
+wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+echo -e "\ndeb http://pkg.jenkins-ci.org/debian binary/" | sudo tee --append /etc/apt/sources.list > /dev/null 
+sudo apt-get update
+sudo apt-get install jenkins
+``` 
+```
+systemctl status jenkins
+```
