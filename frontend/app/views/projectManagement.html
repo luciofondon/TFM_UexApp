@@ -121,9 +121,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
+                        <label for="topicName" class="col-md-4 control-label">Nombre (*)</label>
                         <div class="col-md-7">
-                            <input type="text" id="InputText" ng-model="topic.name" class="form-control"/>
+                            <input type="text" id="topicName" ng-model="topic.name" class="form-control"/>
                         </div>
                     </div>
 
@@ -157,9 +157,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="InputText" class="col-md-4 control-label">Pregunta (*)</label>
+                        <label for="questionDescription" class="col-md-4 control-label">Pregunta (*)</label>
                         <div class="col-md-7">
-                            <input type="text" id="InputText" ng-model="question.description" class="form-control"/>
+                            <input type="text" id="questionDescription" ng-model="question.description" class="form-control"/>
                         </div>
                     </div>
 
@@ -192,16 +192,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Respuesta (*)</label>
+                            <label for="answerDescription" class="col-md-4 control-label">Respuesta (*)</label>
                             <div class="col-md-7">
-                                <input type="text" id="InputText" ng-model="answer.description" class="form-control"/>
+                                <input type="text" id="answerDescription" ng-model="answer.description" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                                <label for="InputText" class="col-md-4 control-label">Requisito (*)</label>
+                                <label for="answerRequirement" class="col-md-4 control-label">Requisito (*)</label>
                                 <div class="col-md-7">
-                                    <input type="text" id="InputText" ng-model="answer.requirement" class="form-control"/>
+                                    <input type="text" id="answerRequirement" ng-model="answer.requirement" class="form-control"/>
                                 </div>
                             </div>
 
@@ -237,56 +237,54 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="InputText" class="col-md-4 control-label">Proyecto (*)</label>
+                        <label for="projectName" class="col-md-4 control-label">Proyecto (*)</label>
                         <div class="col-md-7">
-                            <input type="text"  id="InputText" ng-model="project.name" class="form-control"/>
+                            <input type="text"  id="projectName" ng-model="project.name" class="form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
+                            <label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
                             <div class="col-md-7">
-                                <input type="text"  id="InputText" ng-model="project.key" class="form-control"/>
+                                <input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
                             </div>
                         </div>
 
 
-                        <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
-                            <div class="col-md-7">
-                                <textarea style="resize:none"  id="InputText" ng-model="project.description" class="form-control"/>
-                            </div>
-                            </div>
-
                             <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">IP Jira (*)</label>
-                            <div class="col-md-7">
-                                <input type="text" id="InputText" ng-model="project.ip" class="form-control"/>
-                            </div>
-                            </div>
-
-                            <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Puerto Jira (*)</label>
-                            <div class="col-md-7">
-                                <input type="number" id="InputText" ng-model="project.port" class="form-control"/>
-                            </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label for="InputText" class="col-md-4 control-label">Usuario (*)</label>
+                                <label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
                                 <div class="col-md-7">
-                                    <input type="text" id="InputText" ng-model="project.user" class="form-control"/>
+                                    <textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
                                 </div>
                             </div>
+
                             <div class="form-group row">
-                                    <label for="InputText" class="col-md-4 control-label">Contraseña (*)</label>
-                                    <div class="col-md-7">
-                                        <input type="password" id="InputText" ng-model="project.password" class="form-control"/>
-                                    </div>
+                                <label for="projectIpJira" class="col-md-4 control-label">IP Jira (*)</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="projectIpJira" ng-model="project.ip" class="form-control"/>
                                 </div>
+                            </div>
 
+                            <div class="form-group row">
+                                <label for="projectPortJira" class="col-md-4 control-label">Puerto Jira (*)</label>
+                                <div class="col-md-7">
+                                    <input type="number" id="projectPortJira" ng-model="project.port" class="form-control"/>
+                                </div>
+                            </div>
 
+                            <div class="form-group row">
+                                <label for="projectUser" class="col-md-4 control-label">Usuario (*)</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="projectUser" ng-model="project.user" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="projectPassword" class="col-md-4 control-label">Contraseña (*)</label>
+                                <div class="col-md-7">
+                                    <input type="password" id="projectPassword" ng-model="project.password" class="form-control"/>
+                                </div>
+                            </div>
 
                 </form>
 
@@ -317,51 +315,48 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="InputText" class="col-md-4 control-label">Proyecto (*)</label>
+                        <label for="projectNameRedmine" class="col-md-4 control-label">Proyecto (*)</label>
                         <div class="col-md-7">
-                            <input type="text"  id="InputText" ng-model="project.name" class="form-control"/>
+                            <input type="text"  id="projectNameRedmine" ng-model="project.name" class="form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
+                            <label for="key" class="col-md-4 control-label">KEY (*)</label>
                             <div class="col-md-7">
-                                <input type="text"  id="InputText" ng-model="project.key" class="form-control"/>
+                                <input type="text"  id="key" ng-model="project.key" class="form-control"/>
                             </div>
                         </div>
 
 
                         <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
+                            <label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
                             <div class="col-md-7">
-                                <textarea style="resize:none"  id="InputText" ng-model="project.description" class="form-control"/>
+                                <textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
                             </div>
                             </div>
 
                             <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">IP Redmine (*)</label>
+                            <label for="projectIp" class="col-md-4 control-label">IP Redmine (*)</label>
                             <div class="col-md-7">
-                                <input type="text" id="InputText" ng-model="project.ip" class="form-control"/>
+                                <input type="text" id="projectIp" ng-model="project.ip" class="form-control"/>
                             </div>
                             </div>
 
                             <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Puerto Redmine (*)</label>
+                            <label for="projectPort" class="col-md-4 control-label">Puerto Redmine (*)</label>
                             <div class="col-md-7">
-                                <input type="number" id="InputText" ng-model="project.port" class="form-control"/>
+                                <input type="number" id="projectPort" ng-model="project.port" class="form-control"/>
                             </div>
                             </div>
 
 
                             <div class="form-group row">
-                                <label for="InputText" class="col-md-4 control-label">Token (*)</label>
+                                <label for="token" class="col-md-4 control-label">Token (*)</label>
                                 <div class="col-md-7">
-                                        <textarea style="resize:none" id="InputText" ng-model="project.token" class="form-control"/>
-                                    </div>
+                                    <textarea style="resize:none" id="token" ng-model="project.token" class="form-control"/>
+                                </div>
                             </div>
-
-
-
 
                 </form>
 
@@ -394,9 +389,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="InputText" class="col-md-4 control-label">Nombre plantilla (*)</label>
+						<label for="templateName" class="col-md-4 control-label">Nombre plantilla (*)</label>
 						<div class="col-md-7">
-							<input type="text"  id="InputText" ng-model="template.name" class="form-control"/>
+							<input type="text"  id="templateName" ng-model="template.name" class="form-control"/>
 						</div>
 					</div>
 

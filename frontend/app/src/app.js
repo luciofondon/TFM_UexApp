@@ -22,6 +22,11 @@ var app = angular.module('tfm.uex',
 				templateUrl: 'app/views/login.html',
 				controller: 'LoginController'
 			}) 
+			.state('register', {
+				url: '/register',
+				templateUrl: 'app/views/register.html',
+				controller: 'RegisterController'
+			}) 
 			.state('error', {
 				url: '/error/:code',
 				templateUrl: 'app/views/error.html',
@@ -43,6 +48,14 @@ var app = angular.module('tfm.uex',
 					loginRequired: loginRequired
 				}
 			})
+			.state('userDetail', {
+				url: "/userDetail",
+				templateUrl: "app/views/userDetail.html",
+				controller 	: 'UserDetailController',
+				resolve:{
+					loginRequired: loginRequired
+				}
+			})
 			.state('templateList', {
 				url: "/templateList",
 				templateUrl: "app/views/templateList.html",
@@ -55,6 +68,14 @@ var app = angular.module('tfm.uex',
 				url : '/rolList',
 				templateUrl : 'app/views/rolList.html',
 				controller 	: 'RolListController',
+				resolve:{
+					loginRequired: loginRequired
+				}
+			})
+			.state('dashboard', {
+				url : '/dashboard',
+				templateUrl : 'app/views/dashboard.html',
+				controller 	: 'DashboardController',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -74,17 +95,9 @@ var app = angular.module('tfm.uex',
 				resolve:{
 					loginRequired: loginRequired
 				}
-			})
-			.state('userDetail', {
-				url: "/userDetail/:userId",
-				templateUrl : 'app/views/userDetail.html',
-				controller 	: 'UserDetailController',
-				resolve:{
-					loginRequired: loginRequired
-				}
 			});
 
-		$urlRouterProvider.otherwise("projectList");
+		$urlRouterProvider.otherwise("dashboard");
 		function loginRequired ($rootScope, $q, $auth, $location) {
 			var deferred = $q.defer()
 			if ($auth.isAuthenticated()) {

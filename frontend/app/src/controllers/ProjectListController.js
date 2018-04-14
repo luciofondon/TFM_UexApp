@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController', 
-    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', 
-        function($scope, $rootScope, ProjectService, BootstrapTableService){
+    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 
+        function($scope, $rootScope, ProjectService, BootstrapTableService, $state){
 
     $scope.bsTableProject = {};
     $scope.alerts = [];
@@ -66,7 +66,13 @@ angular.module('tfm.uex').controller('ProjectListController',
                 return [
                     '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
                     	'<i class="glyphicon glyphicon-edit"></i>',
-                    '</a>'
+                    '</a>',
+                    '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador" data-toggle="modal" data-target="#modal-password">',
+                        '<i class="fa fa-cogs"></i>',
+                    '</a>',
+                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Generador" data-toggle="modal" data-target="#modal-project">',
+                        '<i class="fa fa-calendar-check-o"></i>',
+                    '</a>' 
                 ].join('');
             }
 
@@ -82,12 +88,16 @@ angular.module('tfm.uex').controller('ProjectListController',
         });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
-            $scope.mode = 2;
-            $scope.errores = [];
-            ProjectService.getProject(row._id).then(function(project, status) {
-                $scope.project = project;
-            });
-        }};
+                $scope.mode = 2;
+                $scope.errores = [];
+                ProjectService.getProject(row._id).then(function(response) {
+                    $scope.project = response.data;
+                });
+            },'click .configurator': function (e, value, row, index) {
+              	//Cambiar de estado
+			    $state.go('projectManagement', {projectId:row._id});
+            }
+        };
     };
 
 }]);

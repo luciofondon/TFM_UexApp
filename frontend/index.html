@@ -30,7 +30,7 @@
       <header class="main-header" ng-if="isLoggedIn()">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a ui-sref="dashboard" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>U</b>ex</span>
           <!-- logo for regular state and mobile devices -->
@@ -40,7 +40,7 @@
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <a href class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a>
 
@@ -108,7 +108,7 @@
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
                   <img src="images/user2-160x160.jpg" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -128,7 +128,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a ui-sref="userDetail({projectId: project._id})" class="btn btn-default btn-flat">Perfil</a>
+                      <a ui-sref="userDetail" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
                       <a href ng-click="logout()" class="btn btn-default btn-flat">Cerrar sesión</a>
@@ -152,7 +152,7 @@
               <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Lucio Fondón</p>
+              <p>{{LoginUser.name}}</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -266,7 +266,7 @@
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js"></script>
     <script src="bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js"></script>
     <script src="bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
-    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <!--<script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.28/jspdf.plugin.autotable.js"></script>
     <script src="bower_components/bootstrap-table/dist/extensions/select2-filter/bootstrap-table-select2-filter.min.js"></script>
@@ -319,6 +319,8 @@
     <script src="app/src/controllers/LoginController.js"></script>
     <script src="app/src/controllers/MainController.js"></script>
     <script src="app/src/controllers/HttpErrorController.js"></script>
+    <script src="app/src/controllers/DashboardController.js"></script>
+    <script src="app/src/controllers/RegisterController.js"></script>
 
 
     <script src="app/src/services/AmChartService.js"></script>

@@ -43,6 +43,7 @@ angular.module('tfm.uex').controller('UserListController',
                 {align: 'center', width:'80px', valign: 'middle', formatter:actionFormatterUsers, events:'actionEventsUsers'}, 
                 {field: "createdFormat", title: "Creacion", align: 'center', valign: 'middle', sortable: true},
                 {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true}, 
+                {field: "lastName", title: "Apellidos", align: 'center', valign: 'middle', sortable: true}, 
                 {field: "userName", title: "Usuario", align: 'center', valign: 'middle', sortable: true}, 
                 {field: "email", title: "Email", align: 'center', valign: 'middle', sortable: true}, 
                 {field: "rolName", title: "Rol", align: 'center', valign: 'middle', sortable: true}, 
@@ -54,6 +55,7 @@ angular.module('tfm.uex').controller('UserListController',
             $scope.bsTableUsers = BootstrapTableService.createTableSimple(users, "UsuariosTFM-Uex", columns);
 
             window.actionEventsUsers = {'click .edit': function (e, value, row, index) {
+                console.log(row)
                     $scope.errores = [];
                     $scope.user = row;
                     $scope.mode = 2;
@@ -74,11 +76,10 @@ angular.module('tfm.uex').controller('UserListController',
                     $scope.user = row;
                     $scope.resetPassword = {};
                     $scope.$apply();
-                },
+                }
             }; 
         });
     }
-
 
     $scope.reset = function() {
         $scope.alerts = [];

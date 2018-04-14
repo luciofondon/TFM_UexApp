@@ -1,4 +1,6 @@
-angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '$stateParams', '$http', function($scope, $stateParams, $http){
+angular.module('tfm.uex').controller('ProjectManagementController', 
+    ['$scope', '$stateParams', '$http', 'ProjectService', 
+        function($scope, $stateParams, $http, ProjectService){
 
     $scope.topic = {};
     $scope.topicId = "";
@@ -12,65 +14,50 @@ angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '
 	$scope.errores  = [];
 	$scope.template = {};
 	$scope.templates = [];
+	$scope.tab = 0; //Tab que se mostrara en la vista
 
     $scope.init = function(){
-		console.log("Iniciando")
-        $http.get('/api/topics/project/' + $stateParams.projectId).success(function(topics) {
-			$scope.topics = topics;
-			console.log($scope.topics)
+        ProjectService.getTopics($stateParams.projectId).then(function(response) {
+			$scope.topics = response.data;
         });
 
-        $http.get('/api/project/' + $stateParams.projectId).then(function(response) {
+        ProjectService.getProject($stateParams.projectId).then(function(response) {
             $scope.project = response.data;
 		});
-
-
     }
-
 
     $scope.marcarTopic = function(topicId){
         $scope.topicId = topicId;
 	};
 
 	$scope.marcarTopicyRespuesta = function(topicId, answerId){
-		console.log(topicId)
-		console.log(answerId)
-
         $scope.topicId = topicId;
 	};
 
 	$scope.marcarPregunta = function(questionId){
         $scope.questionId = questionId;
-	};
-
-
-
-	$scope.tab = 0; //Tab que se mostrara en la vista
-
+    };
+    
     $scope.setTab = function(newTab){
-      $scope.tab = newTab;
+        $scope.tab = newTab;
     };
 
     $scope.isSet = function(tabNum){
-      return $scope.tab === tabNum;
+        return $scope.tab === tabNum;
 	};
 
-
 	$scope.saveTemplate = function(){
-		console.log("Entrndo")
-		$http.post('/api/templates', $scope.template).success(function(topic) {
+		/*$http.post('/api/templates', $scope.template).success(function(topic) {
 			$scope.template =  {};
 			$scope.alerts = [];
 			$scope.alerts.push("Plantialla guardada correctamente.")
 			$('#modal-template').modal('hide');
-		});
-
+		});*/
 	};
-
 
     $scope.createTopic = function(){
         if(validateTopic()){
-            $http.post('/api/topics/project/' + $stateParams.projectId, $scope.topic).success(function(topic) {
+            ProjectService.addTopic($stateParams.projectId, $scope.topic).then(function(response) {
                 $scope.topic =  {};
                 $scope.alerts = [];
                 $scope.alerts.push("Topic creado correctamente.")
@@ -87,13 +74,12 @@ angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '
 
         if( $scope.errores.length > 0)
             return false;
-        else
-            return true;
+        return true;
 	}
 
     $scope.createQuestion = function(){
         if(validateQuestion()){
-            $http.post('/api/questions/topic/' + $scope.topicId, $scope.question).success(function(question) {
+            ProjectService.addQuestion($scope.topicId, $scope.question).then(function(response) {
                 $scope.question =  {};
                 $scope.alerts = [];
                 $scope.alerts.push("Pregunta creada correctamente.")
@@ -107,41 +93,31 @@ angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '
         $scope.errores = [];
         if($scope.question.description == undefined || $scope.question.description == "")
              $scope.errores.push("El campo nombre de la pregunta es obligatorio");
-
         if( $scope.errores.length > 0)
             return false
         else
             return true;
     }
 
-
-
     $scope.createAnswer = function(){
-
-        $http.get('/api/question/' + $scope.questionId).success(function(question) {
-            question.answers.push($scope.answer);
-            $http.put('/api/question/' + $scope.questionId, question).success(function(question) {
-				$scope.init();
-				$('#modal-answer').modal('hide');
-
-            });
+       // $http.get('/api/question/' + $scope.questionId).success(function(question) {
+        //    question.answers.push($scope.answer);
+        ProjectService.addAnswer($scope.questionId, $scope.answer).then(function(question) {
+            $scope.init();
+            $('#modal-answer').modal('hide');
         });
     };
 
-
-
     $scope.exportJira = function(){
-        if(validateJira()){
+        /*if(validateJira()){
             $http.post('/api/project/jira/' + $stateParams.projectId, $scope.project).success(function(response){
                 $('#modal-jira').modal('hide');
                 alert("Proyecto creado correctamente");
             }).error(function(response) {
                 $scope.errores.push(response.error)
             });
-        }
-
+        }*/
     }
-
 
     function validateJira (){
         $scope.errores = [];
@@ -166,18 +142,16 @@ angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '
             return true;
     }
 
-
     $scope.exportRedmine = function(){
-        if(validateRedmine()){
+        /*if(validateRedmine()){
             $http.post('/api/project/redmine/' + $stateParams.projectId, $scope.project).success(function(question){
                 $('#modal-redmine').modal('hide');
                 alert("Proyecto creado correctamente");
             }).error(function(response) {
                 $scope.errores.push(response.error)
             });
-        }
+        }*/
     }
-
 
     function validateRedmine (){
         $scope.errores = [];
@@ -196,8 +170,7 @@ angular.module('tfm.uex').controller('ProjectManagementController', ['$scope', '
 
         if( $scope.errores.length > 0)
             return false
-        else
-            return true;
+        return true;
     }
 
 }]);
