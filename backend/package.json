@@ -1,19 +1,19 @@
 {
-  "name": "serverapp",
+  "name": "uexapp",
   "version": "1.0.0",
   "description": "Backend encargado de comunicarse con el frontend",
   "main": "auth.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "mocha",
+    "start": "pm2 start backend/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://luciofondon@bitbucket.org/tfmunex/serverapp.git"
+    "url": "git+https://github.com/luciofondon/TFM_UexApp.git"
   },
   "author": "@luciofondon",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/tfmunex/serverapp#readme",
+  "homepage": "https://github.com/luciofondon/TFM_UexApp#readme",
   "dependencies": {
     "auth": "0.0.9",
     "body-parser": "^1.18.2",
