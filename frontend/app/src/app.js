@@ -24,7 +24,7 @@ var app = angular.module('tfm.uex',
 			}) 
 			.state('register', {
 				url: '/register',
-				templateUrl: 'app/views/register.html',
+				templateUrl: 'app/views/signup.html',
 				controller: 'RegisterController'
 			}) 
 			.state('error', {
@@ -104,7 +104,9 @@ var app = angular.module('tfm.uex',
 					loginRequired: loginRequired
 				}
 			});
+		
 		$urlRouterProvider.otherwise("dashboard");
+		
 		function loginRequired ($rootScope, $q, $auth, $location) {
 			var deferred = $q.defer()
 			if ($auth.isAuthenticated()) {
@@ -112,17 +114,7 @@ var app = angular.module('tfm.uex',
 			} else {
 				$location.path('/login')
 			}
-			return deferred.promise
+			return deferred.promise;
 		}
 
 });
-
-
-/*
-app.controller('SystemController', ['$scope', '$http', '$rootScope', '$timeout', function($scope, $http, $rootScope, $timeout) {
-    $http.get('/api/projects').success(function(projects) {
-		$rootScope.projects = projects;
-	});
-
-}]);
-*/ 
