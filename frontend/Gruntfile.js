@@ -1,19 +1,58 @@
 module.exports = function(grunt){
 
     grunt.initConfig({
-        less: { // Pasar de less a css
+		// Pasar de less a css
+        less: { 
             all  : {
                 files: {
                   'app/styles/css/app.css': 'app/styles/less/app.less',
                 }
             },
         },
+		//Concatenar fichero JS
+        concat: {
+            options: {
+                separator: '\n\n',
+                banner   : '/*! Trabajo Fin de Master - Universidad Extremadura assets.js\n'
+                + '* ================\n'
+                + '* Dependencias externas de TFMUex . Este fichero\n'
+                + '* incluye las librerías descargadas a traves del\n'
+                + '* gestor de dependencias de frontend BOWER.\n'
+                + '*\n'
+                + '\n\n'
+            },
+            dist   : {
+                src : [
+                    'bower_components/jquery/dist/jquery.min.js',
+                    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js', 
+                    'bower_components/admin-lte/dist/js/adminlte.min.js', 
+                    'bower_components/bootstrap-table/dist/bootstrap-table.min.js', // Dependencias de Bootstrap table
+                    'bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/select2-filter/bootstrap-table-select2-filter.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js',
+                    'bower_components/moment/min/moment.min.js',
+                    'bower_components/bootstrap-daterangepicker/daterangepicker.js'
+                    'bower_components/satellizer/dist/satellizer.min.js',
+                    'bower_components/amcharts/dist/amcharts/amcharts.js', // Dependencias de AmChart
+                    'bower_components/amcharts/dist/amcharts/pie.js',
+                    'bower_components/amcharts/dist/amcharts/serial.js',
+                    'bower_components/amcharts/dist/amcharts/lang/es.js',
+                    'bower_components/amcharts/dist/amcharts/themes/light.js',
+                    'bower_components/amcharts/dist/amcharts/plugins/responsive/responsive.min.js',
+                    'bower_components/angular-loading-bar/build/loading-bar.min.js'
+
+                ],
+                dest: 'public/js/assets.min.js'
+            }
+        },
 
         // Validar codigo JS
         jshint: {
             all: ['Gruntfile.js', 'public/js/**/*.js', 'src/**/*.js']
         },
- 
         // Validar fichero CSS
         csslint: {
             options: {
@@ -23,8 +62,8 @@ module.exports = function(grunt){
                 'public/dist/css/AdminLTE.css'
             ]
         },
-
-        watch: { // Ejecutar las tareas anteriores cuando se modifiquen algun fichero
+		// Ejecutar las tareas anteriores cuando se modifiquen algun fichero
+        watch: { 
             css: {
                files: ['app/styles/less/*.less'],
                tasks: ['less:all'],
