@@ -13,7 +13,7 @@ var app = angular.module('tfm.uex',
 		$authProvider.loginUrl = cfg.backendUrl + "/login";
 		$authProvider.tokenName = "token";
 		$authProvider.tokenPrefix = "tfm.uex";
-		cfpLoadingBarProvider.includeSpinner = false;
+		cfpLoadingBarProvider.includeSpinner = true;
 		cfpLoadingBarProvider.latencyThreshold = 500;
 		
 		$stateProvider
