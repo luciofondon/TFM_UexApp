@@ -42,6 +42,17 @@ module.exports = function(grunt){
             },
         },
 		//*******************************************************************CONFIGURACIONES JS
+		uglify: { // Mimificar JavaScript
+            options   : {
+                mangle          : true,
+                preserveComments: 'some'
+            },
+            production: {
+                files: {
+                  'public/dist/js/app.min.js':	['app/src/app.js', 'app/src/**/*.js'],
+                }
+            }
+        },
 		//Concatenar fichero JS
         concat: {
             options: {
@@ -156,9 +167,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
-    grunt.registerTask("default", ["less:all", "watch"]); // "$grunt"
-    grunt.registerTask("dev", ["less:all", "watch"]); // "$grunt dev"
-    grunt.registerTask("pro", ["less:all"]); // "$grunt pro"
+    grunt.registerTask("default", ["less:all", "copy:pro"]); // "$grunt"
+    grunt.registerTask("dev", ["less:all", "watch", "copy:dev"]); // "$grunt dev"
+    grunt.registerTask("pro", ["less:all", "copy:pro"]); // "$grunt pro"
     grunt.registerTask("lint", ["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", ["jsdoc"]); // "$grunt doc"
 }; 
