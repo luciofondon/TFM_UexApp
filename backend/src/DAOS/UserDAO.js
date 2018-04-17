@@ -33,8 +33,12 @@ exports.deleteUser = function(req, res) {
     deleteUser(req, res);
 }
 
+exports.signup = function(req, res) {
+    signupUser(req, res);
+}
+
 exports.resetPasswordUser = function(req, res) {
-resetPasswordUser(req, res);
+	resetPasswordUser(req, res);
 }
 
 exports.loginUser = function(req, res) {
@@ -56,6 +60,10 @@ function loginUser(req, res){
     }
 }
 
+function signupUser(req, res){
+	return res.status(200).send({token: systemService.createToken(user)});
+
+}
 
 function readAllUser(req, res){
     let usersFormat = [];
