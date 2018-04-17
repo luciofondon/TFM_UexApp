@@ -61,8 +61,22 @@ function loginUser(req, res){
 }
 
 function signupUser(req, res){
-	return res.status(200).send({token: systemService.createToken(user)});
-
+	let user = new User(req.body);
+    //Codificar la password
+    user.encodePassword(req.body.password);
+    if(validateUser(user)){
+		//Le colocamos el rol de consultor
+		Rol.findOne({level:2}).exec(function(err, rol) {
+			user.rol = rol._id;
+			user.save(function(err) {            
+				if (err) {
+					return res.status(500).json({error: 'Cannot save the user'});
+				}
+				res.json(user);
+			});
+		});
+    }else
+        return res.status(500).json({ error: "Parametros de la API no validos"});
 }
 
 function readAllUser(req, res){
