@@ -4,7 +4,7 @@ module.exports = function(grunt){
         less: { // Pasar de less a css
             all  : {
                 files: {
-                  'app/styles/css/app.css' : 'app/styles/less/app.less',
+                  'app/styles/css/app.css': 'app/styles/less/app.less',
                 }
             },
         },
@@ -26,7 +26,7 @@ module.exports = function(grunt){
 
         watch: { // Ejecutar las tareas anteriores cuando se modifiquen algun fichero
             css: {
-               files: ['app/styles/less/**/*.less'],
+               files: ['app/styles/less/*.less'],
                tasks: ['less:all'],
                options: {
                  spawn: false,
@@ -36,7 +36,7 @@ module.exports = function(grunt){
 		// Generar documentacion interna en HTML con JSDoc
 		jsdoc : {
 			dist : {
-				src: ['app/src/**/*.js', 'README.md'],
+				src: ['app/src/**/*.js', '../README.md'],
 				options: {
 					destination: 'doc'
 				}
@@ -55,6 +55,8 @@ module.exports = function(grunt){
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
     grunt.registerTask("default", ["less:all", "watch"]); // "$grunt"
+    grunt.registerTask("dev", ["less:all", "watch"]); // "$grunt dev"
+    grunt.registerTask("pro", ["less:all"]); // "$grunt pro"
     grunt.registerTask("lint", ["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", ["jsdoc"]); // "$grunt doc"
-};
+}; 
