@@ -33,4 +33,3 @@ npm-debug.log
 # Bower Files
 # --------------------
 */bower_components/*
-package-lock.json
