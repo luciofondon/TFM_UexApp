@@ -175,7 +175,28 @@
                 <li ng-repeat="project in projects">
                   <a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> {{project.name}}</a>
                 </li>
-                <li><a ui-sref="projectList"><i class="fa fa-edit"></i>Configuración</a></li>
+				<li class="treeview">
+				  <a href="#"><i class="fa fa-circle-o"></i> Level One
+					<span class="pull-right-container">
+					  <i class="fa fa-angle-left pull-right"></i>
+					</span>
+				  </a>
+				  <ul class="treeview-menu">
+					<li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+					<li class="treeview">
+					  <a href="#"><i class="fa fa-circle-o"></i> Level Two
+						<span class="pull-right-container">
+						  <i class="fa fa-angle-left pull-right"></i>
+						</span>
+					  </a>
+					  <ul class="treeview-menu">
+						<li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+						<li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+					  </ul>
+					</li>
+				  </ul>
+				</li>
+				<li><a ui-sref="projectList"><i class="fa fa-edit"></i>Configuración</a></li>
               </ul>
             </li>
 
