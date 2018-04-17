@@ -76,14 +76,13 @@ module.exports = function(grunt){
                     'bower_components/amcharts/dist/amcharts/themes/light.js',
                     'bower_components/amcharts/dist/amcharts/plugins/responsive/responsive.min.js',
                     'bower_components/angular-loading-bar/build/loading-bar.min.js'
-
                 ],
                 dest: 'public/js/assets.min.js'
             }
         },
 		// Validar codigo JS
         jshint: {
-            all: ['Gruntfile.js', 'public/js/**/*.js', 'src/**/*.js']
+            all: ['Gruntfile.js', 'app/src/**/*.js', 'app/src/app.js']
         },
 		//*******************************************************************CONFIGURACIONES IMG
 		// Mimificar imagenes y ajustar
@@ -106,8 +105,23 @@ module.exports = function(grunt){
                     dest: 'public/dist/image'
                 }]
             }
-        }
+        },
         //*******************************************************************SISTEMA
+		//Copiar ficheros/carpeta para dejarlo en el path de recursos al que puede acceder el usuario
+		copy: {
+			dev: {
+				files: [
+		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/favicon.ico', filter: 'isFile'},
+		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/index.html', filter: 'isFile'}
+				]
+			},
+			pro: {
+				files: [
+		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/favicon.ico', filter: 'isFile'},
+		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/index.html', filter: 'isFile'}
+				]
+			},
+		},
 		// Ejecutar las tareas anteriores cuando se modifiquen algun fichero
         watch: { 
             css: {
@@ -121,7 +135,7 @@ module.exports = function(grunt){
 		// Generar documentacion interna en HTML con JSDoc
 		jsdoc : {
 			dist : {
-				src: ['app/src/**/*.js', '../README.md'],
+				src: ['app/src/**/*.js', 'app/src/app.js', '../README.md'],
 				options: {
 					destination: 'doc'
 				}
@@ -130,15 +144,16 @@ module.exports = function(grunt){
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-csslint')
     grunt.loadNpmTasks('grunt-contrib-concat')
-    grunt.loadNpmTasks('grunt-jsdoc');
 	grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-concat-css');
+	grunt.loadNpmTasks('grunt-contrib-copy')
+    grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
     grunt.registerTask("default", ["less:all", "watch"]); // "$grunt"
