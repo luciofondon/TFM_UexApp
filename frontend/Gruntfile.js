@@ -36,7 +36,7 @@ module.exports = function(grunt){
                     'bower_components/Ionicons/css/ionicons.min.css',
                     'bower_components/admin-lte/dist/css/AdminLTE.min.css',
                     'bower_components/admin-lte/dist/css/skins/skin-blue.css',
-                    'bower_components/angular-loading-bar/build/loading-bar.css',
+                    'bower_components/angular-loading-bar/build/loading-bar.min.css',
                     'bower_components/bootstrap-table/dist/bootstrap-table.min.css'
                 ],
             },
