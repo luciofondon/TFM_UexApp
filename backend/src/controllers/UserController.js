@@ -35,6 +35,11 @@ module.exports = function() {
         login: function(req, res) {
             userDAO.loginUser(req, res);
         },
+		
+		signup: function(req, res) {
+            userDAO.signup(req, res);
+        },
+		
         me: function(req, res){
             var user = {
                 "user": req.authUser,
