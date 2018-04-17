@@ -1,6 +1,16 @@
 module.exports = function(grunt){
 
     grunt.initConfig({
+		//*******************************************************************CONFIGURACIONES CSS
+		// Validar fichero CSS
+        csslint: {
+            options: {
+                csslintrc: '.csslintrc'
+            },
+            dist   : [
+                'public/dist/css/AdminLTE.css'
+            ]
+        },
 		// Pasar de less a css
         less: { 
             all  : {
@@ -9,6 +19,29 @@ module.exports = function(grunt){
                 }
             },
         },
+		// Mimificar css
+		cssmin: {
+		  target: {
+			files: {
+			  'public/dist/css/app.min.css': ['app/styles/css/app.css']
+			}
+		  }
+		},
+		//Concatenar ficheros css
+        concat_css: {
+            files: {
+                'public/dist/css/assets.css': [
+                    'bower_components/bootstrap/dist/css/bootstrap.min.css', 
+                    'bower_components/font-awesome/css/font-awesome.min.css',
+                    'bower_components/Ionicons/css/ionicons.min.css',
+                    'bower_components/admin-lte/dist/css/AdminLTE.min.css',
+                    'bower_components/admin-lte/dist/css/skins/skin-blue.css',
+                    'bower_components/angular-loading-bar/build/loading-bar.css',
+                    'bower_components/bootstrap-table/dist/bootstrap-table.min.css'
+                ],
+            },
+        },
+		//*******************************************************************CONFIGURACIONES JS
 		//Concatenar fichero JS
         concat: {
             options: {
@@ -48,6 +81,11 @@ module.exports = function(grunt){
                 dest: 'public/js/assets.min.js'
             }
         },
+		// Validar codigo JS
+        jshint: {
+            all: ['Gruntfile.js', 'public/js/**/*.js', 'src/**/*.js']
+        },
+		//*******************************************************************CONFIGURACIONES IMG
 		// Mimificar imagenes y ajustar
         imagemin: {
             static: {
@@ -69,19 +107,7 @@ module.exports = function(grunt){
                 }]
             }
         }
-        // Validar codigo JS
-        jshint: {
-            all: ['Gruntfile.js', 'public/js/**/*.js', 'src/**/*.js']
-        },
-        // Validar fichero CSS
-        csslint: {
-            options: {
-                csslintrc: '.csslintrc'
-            },
-            dist   : [
-                'public/dist/css/AdminLTE.css'
-            ]
-        },
+        //*******************************************************************SISTEMA
 		// Ejecutar las tareas anteriores cuando se modifiquen algun fichero
         watch: { 
             css: {
@@ -108,9 +134,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-csslint')
-    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat')
     grunt.loadNpmTasks('grunt-jsdoc');
+	grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-concat-css');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
     grunt.registerTask("default", ["less:all", "watch"]); // "$grunt"
