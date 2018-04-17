@@ -25,7 +25,7 @@ var app = angular.module('tfm.uex',
 			.state('register', {
 				url: '/register',
 				templateUrl: 'app/views/signup.html',
-				controller: 'RegisterController'
+				controller: 'SignupController'
 			}) 
 			.state('error', {
 				url: '/error/:code',
