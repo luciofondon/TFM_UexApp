@@ -48,7 +48,27 @@ module.exports = function(grunt){
                 dest: 'public/js/assets.min.js'
             }
         },
-
+		// Mimificar imagenes y ajustar
+        imagemin: {
+            static: {
+                options: {
+                    optimizationLevel: 3,
+                    svgoPlugins: [{removeViewBox: false}],
+                    use: [mozjpeg()] // Example plugin usage
+                },
+                files: {
+                    'public/dist/image/img.png': 'src/img.png',
+                }
+            },
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: 'public/dist/image'
+                }]
+            }
+        }
         // Validar codigo JS
         jshint: {
             all: ['Gruntfile.js', 'public/js/**/*.js', 'src/**/*.js']
