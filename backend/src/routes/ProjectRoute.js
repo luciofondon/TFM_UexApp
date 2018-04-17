@@ -5,21 +5,22 @@
 
 module.exports = function(app){
 	
-	var projectController = require('../controllers/ProjectController')();
+	var projectController = require('../controllers/ProjectController')(),
+		systemMiddleware = require('../middlewares/SystemMiddleware');
 	
 	//CRUD proyecto
 	app.route('/projects')
-		.get(projectController.readAll)
-		.post(projectController.create);
+		.get(systemMiddleware.rolAdmin, projectController.readAll)
+		.post(systemMiddleware.rolAdmin, projectController.create);
 	  
 	//CRUD proyecto
 	app.route('/project/:projectId')
-		.get(projectController.read)
-		.put(projectController.update)
-		.delete(projectController.delete);
+		.get(systemMiddleware.rolAdmin, projectController.read)
+		.put(systemMiddleware.rolAdmin, projectController.update)
+		.delete(systemMiddleware.rolAdmin, projectController.delete);
 
 	app.route('/project/:app/:projectId')
-		.post(projectController.exportData)
+		.post(systemMiddleware.rolAdmin, projectController.exportData)
 
 	app.param('projectId', projectController.loadProject);
 }
