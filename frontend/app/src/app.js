@@ -1,7 +1,7 @@
-var app = angular.module('tfm.uex', 
-	[	
-		'ui.router', 
-		'satellizer', 
+var app = angular.module('tfm.uex',
+	[
+		'ui.router',
+		'satellizer',
 		'bsTable',
 		'angular-loading-bar',
 	])
@@ -15,18 +15,18 @@ var app = angular.module('tfm.uex',
 		$authProvider.tokenPrefix = "tfm.uex";
 		cfpLoadingBarProvider.includeSpinner = true;
 		cfpLoadingBarProvider.latencyThreshold = 500;
-		
+
 		$stateProvider
 			.state('login', {
 				url: '/login',
 				templateUrl: 'app/views/login.html',
 				controller: 'LoginController'
-			}) 
+			})
 			.state('register', {
 				url: '/register',
 				templateUrl: 'app/views/signup.html',
-				controller: 'SignupController'
-			}) 
+				controller: 'SignupController as vm'
+			})
 			.state('error', {
 				url: '/error/:code',
 				templateUrl: 'app/views/error.html',
@@ -67,7 +67,7 @@ var app = angular.module('tfm.uex',
 			.state('rolList', {
 				url : '/rolList',
 				templateUrl : 'app/views/rolList.html',
-				controller 	: 'RolListController',
+				controller 	: 'RolListController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -104,15 +104,15 @@ var app = angular.module('tfm.uex',
 					loginRequired: loginRequired
 				}
 			});
-		
+
 		$urlRouterProvider.otherwise("dashboard");
-		
+
 		function loginRequired ($rootScope, $q, $auth, $location) {
-			var deferred = $q.defer()
+			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
-				deferred.resolve()
+				deferred.resolve();
 			} else {
-				$location.path('/login')
+				$location.path('/login');
 			}
 			return deferred.promise;
 		}

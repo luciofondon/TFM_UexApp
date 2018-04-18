@@ -1,5 +1,5 @@
-angular.module('tfm.uex').controller('ProjectListController', 
-    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 
+angular.module('tfm.uex').controller('ProjectListController',
+    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', '$state',
         function($scope, $rootScope, ProjectService, BootstrapTableService, $state){
 
     $scope.bsTableProject = {};
@@ -46,8 +46,8 @@ angular.module('tfm.uex').controller('ProjectListController',
                 $scope.loadProjectList();
                 $('#modal-project').modal('hide');
                 //Actualizamos el menu lateral
-                $http.get('/api/projects').success(function(projects) {
-                    $rootScope.projects = projects;
+                $http.get('/api/projects').then(function(response) {
+                    $rootScope.projects = response.data;
                 });
             });
         }
@@ -72,7 +72,7 @@ angular.module('tfm.uex').controller('ProjectListController',
                     '</a>',
                     '<a class="generator" style="margin-right: 10px;cursor:pointer;" title="Generador">',
                         '<i class="fa fa-calendar-check-o"></i>',
-                    '</a>' 
+                    '</a>'
                 ].join('');
             }
 

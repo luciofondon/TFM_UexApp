@@ -33,3 +33,6 @@ npm-debug.log
 # Bower Files
 # --------------------
 */bower_components/*
+
+frontend/public/dist/*
+frontend/DOCUMENTACION_INTERNA

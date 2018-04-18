@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 var User = require('../models/UserModel');
 var Rol = require('../models/RolModel');
 
-User = mongoose.model('User');    
-Rol = mongoose.model('Rol');    
+User = mongoose.model('User');
+Rol = mongoose.model('Rol');
 
 exports.ensureAuthenticated = function(req, res, next){
 	ensureAuthenticated(req, res, next);
@@ -49,45 +49,41 @@ function ensureAuthenticated(req, res, next) {
         //En el payload del token esta el identificador del usuario
         req.authUserId = payload.sub;
         req.authUser = null;
-        req.authUserLevel = null;
 
         User.load(req.authUserId, function(err, user) {
             if (err)
                 return res.status(500).json(err);
             if (user == undefined)
                 return res.status(500).json({error: 'El identificador '+ req.authUserId +' no existe'});
-            
+
             //Todas las peticiones tienen disponible el usuario
             req.authUser = user;
-            /*if(user.rol){
-                req.authUserLevel = user.rol.level;
-            }*/
             next();
         });
     }
 }
 
 function rolAdmin(req, res, next){
-    if (req.authUserLevel == 1){
+    if (req.authUser.rol.level == 1){
         next();
     } else {
-        forbidden(req, res, next); 
+        forbidden(req, res, next);
     }
 }
 
 function rolOperador(req, res, next){
-    if (req.authUserLevel <= 2){
+    if (req.authUser.rol.level <= 2){
         next();
     } else {
-        forbidden(req, res, next); 
+        forbidden(req, res, next);
     }
 }
 
 function rolConsultor(req, res, next){
-    if (req.authUserLevel <= 4){
+    if (req.authUser.rol.level <= 4){
         next();
     } else {
-        forbidden(req, res, next); 
+        forbidden(req, res, next);
     }
 }
 

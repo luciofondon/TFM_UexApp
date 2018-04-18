@@ -12,7 +12,7 @@ module.exports = function(grunt){
             ]
         },
 		// Pasar de less a css
-        less: { 
+        less: {
             all  : {
                 files: {
                   'app/styles/css/app.css': 'app/styles/less/app.less',
@@ -31,7 +31,7 @@ module.exports = function(grunt){
         concat_css: {
             files: {
                 'public/dist/css/assets.css': [
-                    'bower_components/bootstrap/dist/css/bootstrap.min.css', 
+                    'bower_components/bootstrap/dist/css/bootstrap.min.css',
                     'bower_components/font-awesome/css/font-awesome.min.css',
                     'bower_components/Ionicons/css/ionicons.min.css',
                     'bower_components/admin-lte/dist/css/AdminLTE.min.css',
@@ -69,8 +69,8 @@ module.exports = function(grunt){
                 src : [
                     'bower_components/jquery/dist/jquery.min.js',
                     'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-                    'bower_components/bootstrap/dist/js/bootstrap.min.js', 
-                    'bower_components/admin-lte/dist/js/adminlte.min.js', 
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    'bower_components/admin-lte/dist/js/adminlte.min.js',
                     'bower_components/bootstrap-table/dist/bootstrap-table.min.js', // Dependencias de Bootstrap table
                     'bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js',
                     'bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js',
@@ -78,7 +78,7 @@ module.exports = function(grunt){
                     'bower_components/bootstrap-table/dist/extensions/select2-filter/bootstrap-table-select2-filter.min.js',
                     'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js',
                     'bower_components/moment/min/moment.min.js',
-                    'bower_components/bootstrap-daterangepicker/daterangepicker.js'
+                    'bower_components/bootstrap-daterangepicker/daterangepicker.js',
                     'bower_components/satellizer/dist/satellizer.min.js',
                     'bower_components/amcharts/dist/amcharts/amcharts.js', // Dependencias de AmChart
                     'bower_components/amcharts/dist/amcharts/pie.js',
@@ -99,11 +99,6 @@ module.exports = function(grunt){
 		// Mimificar imagenes y ajustar
         imagemin: {
             static: {
-                options: {
-                    optimizationLevel: 3,
-                    svgoPlugins: [{removeViewBox: false}],
-                    use: [mozjpeg()] // Example plugin usage
-                },
                 files: {
                     'public/dist/image/img.png': 'src/img.png',
                 }
@@ -122,19 +117,19 @@ module.exports = function(grunt){
 		copy: {
 			dev: {
 				files: [
-		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/favicon.ico', filter: 'isFile'},
-		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/index.html', filter: 'isFile'}
+		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
+		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile'}
 				]
 			},
 			pro: {
 				files: [
-		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/favicon.ico', filter: 'isFile'},
-		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/index.html', filter: 'isFile'}
+		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
+		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/', filter: 'isFile'}
 				]
 			},
 		},
 		// Ejecutar las tareas anteriores cuando se modifiquen algun fichero
-        watch: { 
+        watch: {
             css: {
                files: ['app/styles/less/*.less'],
                tasks: ['less:all'],
@@ -148,11 +143,13 @@ module.exports = function(grunt){
 			dist : {
 				src: ['app/src/**/*.js', 'app/src/app.js', '../README.md'],
 				options: {
-					destination: 'doc'
+					destination: 'DOCUMENTACION_INTERNA'
 				}
 			}
 		}
     });
+
+
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -160,7 +157,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-csslint')
     grunt.loadNpmTasks('grunt-contrib-concat')
 	grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-concat-css');
 	grunt.loadNpmTasks('grunt-contrib-copy')
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -172,4 +169,4 @@ module.exports = function(grunt){
     grunt.registerTask("pro", ["less:all", "copy:pro"]); // "$grunt pro"
     grunt.registerTask("lint", ["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", ["jsdoc"]); // "$grunt doc"
-}; 
+};

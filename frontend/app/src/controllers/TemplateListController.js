@@ -69,8 +69,8 @@ angular.module('tfm.uex').controller('TemplateListController', ['$scope', '$root
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
             $scope.mode = 2;
             $scope.errores = [];
-            $http.get('/api/project/' + row._id).success(function(project, status) {
-                $scope.project = project;
+            $http.get('/api/project/' + row._id).then(function(response) {
+                $scope.project = response.data;
             });
         }};
     };

@@ -59,7 +59,7 @@ UserSchema.methods = {
 
 UserSchema.statics.load = function(userId, callback) {
   this.findOne({ _id: userId})
-    .populate("role")
+    .populate("rol")
     .exec(callback);
 };
 
