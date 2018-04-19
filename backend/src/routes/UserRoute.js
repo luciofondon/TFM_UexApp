@@ -5,25 +5,26 @@
 
 module.exports = function(app){
   
-    var userController = require('../controllers/UserController')();
-  
+    var userController = require('../controllers/UserController')(),
+  		systemMiddleware = require('../middlewares/SystemMiddleware');
+
     // CRUD usuario
     app.route('/users')
-      .get(userController.readAll)
-      .post(userController.create);
+      .get(systemMiddleware.rolAdmin, userController.readAll)
+      .post(systemMiddleware.rolAdmin, userController.create);
     
     // CRUD usuario
     app.route('/user/:userId')
-      .get(userController.read)
-      .put(userController.update)
-      .delete(userController.delete);
+      .get(systemMiddleware.rolAdmin, userController.read)
+      .put(systemMiddleware.rolAdmin, userController.update)
+      .delete(systemMiddleware.rolAdmin, userController.delete);
     
     app.route('/user/cfg/me')
-      .get(userController.me);
+      .get(systemMiddleware.rolAdmin, userController.me);
     
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
-      .put(userController.resetPassword);
+      .put(systemMiddleware.rolAdmin, userController.resetPassword);
   
    /* app.route('/auth/login')
       .post(userController.login);
