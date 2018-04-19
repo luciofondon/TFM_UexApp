@@ -119,13 +119,13 @@ module.exports = function(grunt){
 			dev: {
 				files: [
 		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
-		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile'}
+		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return 'indext.html';}},
 				]
 			},
 			pro: {
 				files: [
 		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
-		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/', filter: 'isFile'}
+		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return 'indext.html';}},
 				]
 			},
 		},
