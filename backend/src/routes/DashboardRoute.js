@@ -4,9 +4,10 @@
 */
 
 module.exports = function(app) {
-    var dashboardController = require('../controllers/DashboardController')();
+    var dashboardController = require('../controllers/DashboardController')(),
+		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     app.route('/dashboard')
-        .get(dashboardController.dataDashboard);
+        .get(systemMiddleware.rolAdmin, dashboardController.dataDashboard);
 
 }
