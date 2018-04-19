@@ -5,10 +5,11 @@
 
 module.exports = function(app){
 	
-	var topicController = require('../controllers/TopicController')();
-	
+	var topicController = require('../controllers/TopicController')(),
+		systemMiddleware = require('../middlewares/SystemMiddleware');
+
     app.route('/topics/project/:projectId')
-        .get(topicController.readAllByProject)
-		.post(topicController.createByProject);
+        .get(systemMiddleware.rolAdmin, topicController.readAllByProject)
+		.post(systemMiddleware.rolAdmin, topicController.createByProject);
         
 }
