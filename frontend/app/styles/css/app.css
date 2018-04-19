@@ -67,6 +67,13 @@ div.box {
 .fc-content {
   cursor: pointer;
 }
+#loading-bar .bar {
+  background: #333 !important;
+  border-color: #333 !important;
+}
+#loading-bar-spinner .spinner-icon {
+  border-color: #333 !important;
+}
 body header {
   display: none;
 }

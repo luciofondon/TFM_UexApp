@@ -11,9 +11,9 @@
 		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
 		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
-		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.css">
+		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
 		<link rel="stylesheet" href="app/styles/css/app.css">
-		<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+		<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
@@ -69,7 +69,7 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
+							<li ng-if="LoginUserLevel == 1"><a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
 							<li><a ui-sref="generatorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Generador</a></li>
 						</ul>
 						</li>
@@ -153,8 +153,6 @@
 		<script src="bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
 		<script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js"></script>
 		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/bootstrap-table.min.css" />
-		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/extensions/tree-column/bootstrap-table-tree-column.css">
-		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.css">
 		<!-- Fin: Bootstrap table -->
 
 		<!--Inicio Date-range-picker-->

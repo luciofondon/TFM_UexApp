@@ -3,48 +3,48 @@
         <b>TFM</b>Uex
     </div>
     <div class="login-box-body">
-        <div class="alert alert-danger alert-dismissible" ng-if="error!=null">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-ban"></i> Error!</h4>
-        {{error}}
+        <div class="alert alert-danger alert-dismissible" ng-if="vm.error!=null">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4><i class="icon fa fa-ban"></i> Error!</h4>
+			{{error}}
         </div>
-    
+
         <p class="login-box-msg">Registrar usuario</p>
-    
-        <form method="post" ng-submit="register()">
-        <div class="form-group has-feedback">
-            <input type="email" ng-model="name" class="form-control" placeholder="Nombre">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="email" ng-model="lastName" class="form-control" placeholder="Apellidos">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="email" ng-model="userName" class="form-control" placeholder="Usuario">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="email" ng-model="phoneNumber" class="form-control" placeholder="Teléfono">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="email" ng-model="email" class="form-control" placeholder="Email">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="password" ng-model="password" class="form-control" placeholder="Contraseña">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <input type="password" ng-model="confirmPassword" class="form-control" placeholder="Repite contraseña">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-            <button type="submit" ui-sref="login" class="btn btn-primary btn-block btn-flat">Registrar</button>
-            </div>
-        </div>
+
+        <form method="post" ng-submit="vm.register()">
+			<div class="form-group has-feedback">
+				<input type="email" ng-model="vm.user.name" class="form-control" placeholder="Nombre">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="email" ng-model="vm.user.lastName" class="form-control" placeholder="Apellidos">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="email" ng-model="vm.user.userName" class="form-control" placeholder="Usuario">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="email" ng-model="vm.user.phoneNumber" class="form-control" placeholder="Teléfono">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="email" ng-model="vm.user.email" class="form-control" placeholder="Email">
+				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" ng-model="vm.user.password" class="form-control" placeholder="Contraseña">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div class="form-group has-feedback">
+				<input type="password" ng-model="vm.user.confirmPassword" class="form-control" placeholder="Repite contraseña">
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+				<button type="submit" ui-sref="login" class="btn btn-primary btn-block btn-flat">Registrar</button>
+				</div>
+			</div>
         </form>
         <div class="social-auth-links text-right">
             <a ui-sref="login">Iniciar sesión</a><br>

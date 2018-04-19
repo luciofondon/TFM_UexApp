@@ -12,7 +12,7 @@ var express = require("express"),
 	systemMiddleware = require('./src/middlewares/SystemMiddleware'),
 	userController = require('./src/controllers/UserController')();
 
- 
+
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Simula POST
@@ -33,7 +33,7 @@ require('./src/routes/DashboardRoute')(api);
 
 //Control de token
 app.route('/api/login').post(userController.login);
-app.route('/auth/signup').post(userController.login);
+app.route('/auth/signup').post(userController.signup);
 app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
 

@@ -3,21 +3,21 @@
     <b>TFM</b>Uex
   </div>
   <div class="login-box-body">
-    <div class="alert alert-danger alert-dismissible" ng-if="error!=null">
+    <div class="alert alert-danger alert-dismissible" ng-if="vm.error!=null">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       <h4><i class="icon fa fa-ban"></i> Error!</h4>
-      {{error}}
+      {{vm.error}}
     </div>
 
     <p class="login-box-msg">Iniciar sesión</p>
 
-    <form method="post" ng-submit="login()">
+    <form method="post" ng-submit="vm.login()">
       <div class="form-group has-feedback">
-        <input type="email" ng-model="email" class="form-control" placeholder="Email">
+        <input type="email" ng-model="vm.email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" ng-model="password" class="form-control" placeholder="Password">
+        <input type="password" ng-model="vm.password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

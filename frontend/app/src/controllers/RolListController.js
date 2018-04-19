@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('RolListController',
-    ['$scope', 'RolService', 'BootstrapTableService',
-        function($scope, RolService, BootstrapTableService){
+    ['RolService', 'BootstrapTableService',
+        function(RolService, BootstrapTableService){
 
 	var vm = this;
     vm.bsTableRoles = {}

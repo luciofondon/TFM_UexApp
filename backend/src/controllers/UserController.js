@@ -6,7 +6,7 @@ module.exports = function() {
     return {
         loadUser: function(req, res, next, userId){
             userMiddleware.loadUser(req, res, next, userId);
-        },  
+        },
 
         read: function(req, res){
             res.json(req.user);
@@ -14,12 +14,12 @@ module.exports = function() {
 
         readAll: function(req, res){
             userDAO.readAllUser(req, res);
-        },   
+        },
 
         create: function(req, res){
             userDAO.createUser(req, res);
         },
-    
+
         update: function(req, res){
             userDAO.updateUser(req, res);
         },
@@ -31,19 +31,19 @@ module.exports = function() {
         resetPassword: function(req, res){
             userDAO.resetPasswordUser(req, res);
         },
-        
+
         login: function(req, res) {
             userDAO.loginUser(req, res);
         },
-		
+
 		signup: function(req, res) {
-            userDAO.signup(req, res);
+            userDAO.signupUser(req, res);
         },
-		
+
         me: function(req, res){
             var user = {
                 "user": req.authUser,
-                "level": req.authUserLevel
+                "level": req.authUser.rol.level
             }
             res.json(user);
         }

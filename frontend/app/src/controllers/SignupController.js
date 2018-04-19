@@ -1,12 +1,13 @@
 angular.module('tfm.uex').controller('SignupController',
-	['$scope', '$stateParams', '$state', 'UserService',
-		function($scope, $stateParams, $state, UserService){
+	['$stateParams', '$state', 'UserService',
+		function($stateParams, $state, UserService){
 
 	var vm = this;
 
-	$scope.register = function(){
-
-    	$state.go('login');
+	vm.register = function(){
+		UserService.signup(vm.user).then(function(response){
+			$state.go('login');
+		});
 	}
 
 }]);

@@ -1,17 +1,19 @@
-angular.module('tfm.uex').controller('TemplateListController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
+angular.module('tfm.uex').controller('TemplateListController',
+	['$rootScope', '$http', 'BootstrapTableService', 'ProjectService',
+		function($rootScope, $http, BootstrapTableService, ProjectService){
 
-    $scope.bsTableTemplate = {};
-    $scope.alerts = [];
-    $scope.errores = [];
-    $scope.mode = 1;
+	var vm = this;
 
-	$scope.init = function(){
+    vm.bsTableTemplate = {};
+    vm.alerts = [];
+    vm.errores = [];
+    vm.mode = 1;
 
-		$scope.loadProjectList();
+	vm.init = function(){
+		vm.loadProjectList();
 	};
 
-
-	$scope.loadProjectList = function(){
+	vm.loadProjectList = function(){
         $http.get('/api/templates').then(function(response) {
 			var templates = response.data;
             templates.forEach(function(template){
@@ -27,53 +29,25 @@ angular.module('tfm.uex').controller('TemplateListController', ['$scope', '$root
                 ].join('');
             }
 
-            $scope.bsTableTemplate = {
-                options: {
-                    data: templates,
-                    exportDataType: "all",
-                    exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
-                    exportOptions:{
-                        fileName: "PPlantillasTFM-Uex",
-                        ignoreColumn:[0],
-                        type:'pdf',
-                        jspdf: {
-                            orientation: 'l',
-                            format: 'a3',
-                            margins: {left:10, right:10, top:20, bottom:20},
-                            autotable: {tableWidth: 'wrap'}
-                        }
-                    },
-                    striped: true,
-                    showToggle: true,
-                    showExport: true,
-                    pagination: true,
-                    pageSize: 15,
-                    pageList: [5, 10, 15, 25, 50, 100],
-                    search: true,
-                    showColumns: true,
-                    minimumCountColumns: 1,
-                    clickToSelect: false,
-                    maintainSelected: true,
-                    mobileResponsive: true,
-                    columns: [
-                        {align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
-                        {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-                        {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
-                        {field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
-                        {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
-                    ]
-                }
-            };
-        })
+			var columns= [
+				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
+				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
+				{field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
+				{field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
+				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
+			];
+
+			vm.bsTableTemplate = BootstrapTableService.createTableSimple(roles, "PlantillaTFM-Uex", columns);
+
+        });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
-            $scope.mode = 2;
-            $scope.errores = [];
+            vm.mode = 2;
+            vm.errores = [];
             $http.get('/api/project/' + row._id).then(function(response) {
-                $scope.project = response.data;
+                vm.project = response.data;
             });
         }};
     };
-
 
 }]);

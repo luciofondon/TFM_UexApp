@@ -1,31 +1,30 @@
-angular.module('tfm.uex').controller('LoginController', 
-    ['$rootScope', '$scope', '$auth', '$state', 'UserService', '$window', 
-        function($rootScope, $scope, $auth, $state, UserService, $window){
+angular.module('tfm.uex').controller('LoginController',
+    ['$rootScope', '$auth', '$state', 'UserService', '$window',
+        function($rootScope, $auth, $state, UserService, $window){
 
-	$scope.email='';
-	$scope.password='';
-	$scope.error=null;
+	var vm = this;
+
+	vm.email='';
+	vm.password='';
+	vm.error=null;
 
 	if ($auth.isAuthenticated()) {
 		$window.location.href = '/';
 		//$state.go('projects');
 	}
- 
-	$scope.login = function(){
-		console.log("Login")
+
+	vm.login = function(){
 		$auth.login({
-			email: $scope.email,
-			password: $scope.password
+			email: vm.email,
+			password: vm.password
 		})
 		.then(function(){
 			$window.location.href = '/';
 			//$state.go('projects');
-
-			$scope.$emit('login');
+			vm.$emit('login');
 		})
 		.catch(function(response){
-			console.log(response.data.error);
-			$scope.error = response.data.error;
+			vm.error = response.data.error;
 		});
 	}
-}]); 
+}]);

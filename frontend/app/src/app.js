@@ -21,12 +21,12 @@ var app = angular.module('tfm.uex',
 			.state('login', {
 				url: '/login',
 				templateUrl: 'app/views/login.html',
-				controller: 'LoginController'
+				controller: 'LoginController as vm'
 			})
 			.state('password', {
 				url: '/password',
 				templateUrl: 'app/views/password.html',
-				controller: 'PasswordController'
+				controller: 'PasswordController as vm'
 			})
 			.state('signup', {
 				url: '/signup',
@@ -49,7 +49,7 @@ var app = angular.module('tfm.uex',
 			.state('userList', {
 				url: "/userList",
 				templateUrl: "app/views/userList.html",
-				controller 	: 'UserListController',
+				controller 	: 'UserListController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -57,7 +57,7 @@ var app = angular.module('tfm.uex',
 			.state('userDetail', {
 				url: "/userDetail",
 				templateUrl: "app/views/userDetail.html",
-				controller 	: 'UserDetailController',
+				controller 	: 'UserDetailController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -65,7 +65,7 @@ var app = angular.module('tfm.uex',
 			.state('templateList', {
 				url: "/templateList",
 				templateUrl: "app/views/templateList.html",
-				controller 	: 'TemplateListController',
+				controller 	: 'TemplateListController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -99,7 +99,8 @@ var app = angular.module('tfm.uex',
 				templateUrl : 'app/views/configuratorManagement.html',
 				controller 	: 'ConfiguratorManagementController',
 				resolve:{
-					loginRequired: loginRequired
+					loginRequired: loginRequired,
+					projectData: projectData
 				}
 			})
 			.state('generatorManagement', {
@@ -107,11 +108,20 @@ var app = angular.module('tfm.uex',
 				templateUrl : 'app/views/generatorManagement.html',
 				controller 	: 'GeneratorManagementController',
 				resolve:{
-					loginRequired: loginRequired
+					loginRequired: loginRequired,
+					projectData: projectData
 				}
 			});
 
 		$urlRouterProvider.otherwise("dashboard");
+
+		function projectData(ProjectService, $stateParams){
+			return ProjectService.getProject($stateParams.projectId).then(function(response){
+				return response;
+			}).catch(function(err) {
+				return null;
+			});
+		}
 
 		function loginRequired ($rootScope, $q, $auth, $location) {
 			var deferred = $q.defer();

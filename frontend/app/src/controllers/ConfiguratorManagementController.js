@@ -1,5 +1,5 @@
-angular.module('tfm.uex').controller('ConfiguratorManagementController', 
-    ['$scope', '$stateParams', 'ProjectService', 
+angular.module('tfm.uex').controller('ConfiguratorManagementController',
+    ['$scope', '$stateParams', 'ProjectService',
         function($scope, $stateParams, ProjectService){
 
     $scope.topic = {};
@@ -8,7 +8,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
     $scope.question = {};
     $scope.answer = {};
-    $scope.topics = []; 
+    $scope.topics = [];
     $scope.questions = [];
     $scope.project = {};
 	$scope.errores  = [];
@@ -21,9 +21,9 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			$scope.topics = response.data;
         });
 
-        ProjectService.getProject($stateParams.projectId).then(function(response) {
+       /* ProjectService.getProject($stateParams.projectId).then(function(response) {
             $scope.project = response.data;
-		});
+		});*/
     }
 
     $scope.marcarTopic = function(topicId){
@@ -37,7 +37,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.marcarPregunta = function(questionId){
         $scope.questionId = questionId;
     };
-    
+
     $scope.setTab = function(newTab){
         $scope.tab = newTab;
     };

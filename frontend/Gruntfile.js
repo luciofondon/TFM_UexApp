@@ -68,7 +68,7 @@ module.exports = function(grunt){
             pro   : {
                 src : [
                     'bower_components/jquery/dist/jquery.min.js',
-					'bower_components/angular/angular.min.js'
+					'bower_components/angular/angular.min.js',
                     'bower_components/angular-ui-router/release/angular-ui-router.min.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'bower_components/admin-lte/dist/js/adminlte.min.js',
@@ -165,9 +165,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
-    grunt.registerTask("default", ["less:all", "copy:pro", "concat:pro"]); // "$grunt"
-    grunt.registerTask("dev", ["less:all", "watch", "copy:dev"]); // "$grunt dev"
-    grunt.registerTask("pro", ["less:all", "copy:pro", "concat:pro"]); // "$grunt pro"
+	grunt.registerTask("default", 	["less:all", "copy:pro", "concat:pro"]); // "$grunt"
+	grunt.registerTask("pro", 		["less:all", "copy:pro", "concat:pro"]); // "$grunt pro"
+    grunt.registerTask("dev", 		["less:all", "copy:dev", "watch"]); // "$grunt dev"
     grunt.registerTask("lint", ["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", ["jsdoc"]); // "$grunt doc"
 };

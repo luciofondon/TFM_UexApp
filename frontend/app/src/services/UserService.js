@@ -9,6 +9,9 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 		addUser: function(user){
 			return addUser(user);
 		},
+		signup: function(user){
+			return signup(user);
+		},
 		removeUser: function(userId){
 			return removeUser(userId);
 		},
@@ -20,7 +23,7 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 		},
 		getMe: function(){
 			return getMe();
-		}		
+		}
 	};
 
 	function getUsers(){
@@ -49,6 +52,10 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 
 	function getMe(){
 		return $http.get('/api/user/cfg/me');
+	}
+
+	function signup(user){
+		return $http.post('/auth/signup', user);
 	}
 
 }]);

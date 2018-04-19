@@ -1,39 +1,38 @@
 var mongoose = require('mongoose'),
-    Schema   = mongoose.Schema,
-    crypto    = require('crypto');
-    
+    Schema = mongoose.Schema,
+    crypto = require('crypto');
 
 var UserSchema = new Schema({
-  name: {
-    type: String
-  }, 
-  lastName: {
-    type: String
-  }, 
-  email: {
-      type: String
-  },
-  userName: {
-    type: String
-  },  
-  hashedPassword: {
+	name: {
+		type: String
+	},
+	lastName: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+	userName: {
+		type: String
+	},
+	hashedPassword: {
 		type: String,
 		required: true
-  }, 
-  salt: { //Clave de codificacion de hashedPassword
+	},
+	salt: { //Clave de codificacion de hashedPassword
 		type: String,
 		required: true
-  }, 
-  rol: {
+	},
+	rol: {
 		type: Schema.ObjectId,
 		ref: "Rol",
 		required: true
 	},
-  created: {
-    type: Date,
-    default: Date.now,
-    required:true
-  } 
+	created: {
+		type: Date,
+		default: Date.now,
+		required:true
+	}
 });
 
 UserSchema.methods = {
