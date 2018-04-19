@@ -29,7 +29,7 @@ module.exports = function(grunt){
 		},
 		//Concatenar ficheros css
         concat_css: {
-            files: {
+            pro: {
                 'public/dist/css/assets.css': [
                     'bower_components/bootstrap/dist/css/bootstrap.min.css',
                     'bower_components/font-awesome/css/font-awesome.min.css',
