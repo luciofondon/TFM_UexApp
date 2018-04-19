@@ -6,7 +6,8 @@ var app = angular.module('tfm.uex',
 		'angular-loading-bar',
 	])
 	.constant('cfg', {
-		backendUrl: '/api'
+		backendUrl: '/api',
+		pathTemplates: 'app/views'
 	})
 	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg, cfpLoadingBarProvider) {
 		// Parametros de configuración
@@ -22,8 +23,13 @@ var app = angular.module('tfm.uex',
 				templateUrl: 'app/views/login.html',
 				controller: 'LoginController'
 			})
-			.state('register', {
-				url: '/register',
+			.state('password', {
+				url: '/password',
+				templateUrl: 'app/views/password.html',
+				controller: 'PasswordController'
+			})
+			.state('signup', {
+				url: '/signup',
 				templateUrl: 'app/views/signup.html',
 				controller: 'SignupController as vm'
 			})
