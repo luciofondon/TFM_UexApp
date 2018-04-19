@@ -3,8 +3,8 @@ angular.module('tfm.uex').controller('RolListController',
         function($scope, RolService, BootstrapTableService){
 
 	var vm = this;
-    $scope.bsTableRoles = {}
-	$scope.loadRolList = function(){
+    vm.bsTableRoles = {}
+	vm.loadRolList = function(){
         RolService.getRoles().then(function(response) {
             var roles = response.data;
             roles.forEach(function(rol){
@@ -19,7 +19,7 @@ angular.module('tfm.uex').controller('RolListController',
                 {field: "level", title: "Nivel", align: 'center', valign: 'middle', sortable: true}
             ];
 
-			$scope.bsTableRoles = BootstrapTableService.createTableSimple(roles, "RolesTFM-Uex", columns);
+			vm.bsTableRoles = BootstrapTableService.createTableSimple(roles, "RolesTFM-Uex", columns);
 
         });
     }
