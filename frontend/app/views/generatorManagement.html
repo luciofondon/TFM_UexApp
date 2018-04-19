@@ -41,7 +41,7 @@
 
                         <div class="tab-content">
                             <div ng-repeat="topic in topics" ng-show="isSet($index)" class="tab-pane active" >
-                                
+
 
                                 <div class="form-group" ng-repeat="question in topic.questions" >
 
@@ -61,7 +61,13 @@
                                     </div>
 
                                 </div>
-                                <br><br><br>
+								<br><br><br>
+								<div class="social-auth-links text-left">
+										<a class="btn btn-app" ng-click="setTab($index - 1)">
+											<span class="badge bg-yellow">3</span>
+											<i class="fa fa-arrow-circle-right"></i> Atras
+										</a>
+								</div>
                                 <div class="social-auth-links text-right">
                                     <a class="btn btn-app" ng-click="setTab($index + 1)">
                                         <span class="badge bg-yellow">3</span>
