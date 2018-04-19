@@ -4,18 +4,19 @@
 */
 
 module.exports = function(app) {
-    var rolController = require('../controllers/RolController')();
+    var rolController = require('../controllers/RolController')(),
+		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     // CRUD alarma
     app.route('/roles')
-        .get(rolController.readAll)
-        .post(rolController.create);
+        .get(systemMiddleware.rolAdmin, rolController.readAll)
+        .post(systemMiddleware.rolAdmin, rolController.create);
       
     // CRUD alarma
     app.route('/rol/:rolId')
-        .get(rolController.read)
-        .put(rolController.update)
-        .delete(rolController.delete);
+        .get(systemMiddleware.rolAdmin, rolController.read)
+        .put(systemMiddleware.rolAdmin, rolController.update)
+        .delete(systemMiddleware.rolAdmin, rolController.delete);
 
     app.param('rolId', rolController.loadRol);
 }
