@@ -264,3 +264,8 @@ systemctl status jenkins
 ```
 
 ## 7. Configurar SONAR
+
+
+ANEXOS
+##1. Instalar Redmine para pruebas.
+##2. Instalar Jira para pruebas.
