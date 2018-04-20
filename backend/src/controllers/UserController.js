@@ -41,11 +41,7 @@ module.exports = function() {
         },
 
         me: function(req, res){
-            var user = {
-                "user": req.authUser,
-                "level": req.authUser.rol.level
-            }
-            res.json(user);
+            res.json(req.authUser);
         }
     }
 }

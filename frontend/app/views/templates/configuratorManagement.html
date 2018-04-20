@@ -24,6 +24,22 @@
                 <div class="col-md-12">
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
+						<ul class="nav nav-wizard">
+							<li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
+								<a href ng-click="setTab($index)" ng-click="loadQuestions(topic._id)">{{$index + 1}}. {{topic.name}}</a>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href>
+									Configuración <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#modal-topic">Nuevo topic</a></li>
+									<li role="presentation" class="divider"></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-template" href="">Guardar como plantilla</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!--
                         <ul class="nav nav-tabs">
                             <li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
                                 <a href ng-click="setTab($index)" ng-click="loadQuestions(topic._id)" data-toggle="tab">{{topic.name}}</a>
@@ -35,14 +51,11 @@
                                 <ul class="dropdown-menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#modal-topic">Nuevo topic</a></li>
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-jira" href="">Exportar a Jira</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-redmine" href="">Exportar a Redmine</a></li>
-                                    <li role="presentation" class="divider"></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-template" href="">Guardar plantilla</a></li>
                                 </ul>
                             </li>
                         </ul>
-
+					-->
                         <div class="tab-content">
                             <div ng-repeat="topic in topics" ng-show="isSet($index)" class="tab-pane active" >
                                 <button class="btn btn-block btn-info" data-toggle="modal" ng-click="marcarTopic(topic._id);" data-target="#modal-question" type="button"><i class="icon fa fa-plus"></i> Nueva pregunta</button>
@@ -62,7 +75,7 @@
                                     <div ng-repeat="answer in question.answers">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="{{question._id}}"  value="{{answer.description}} ">
+                                                <input disabled type="radio" name="{{question._id}}"  value="{{answer.description}} ">
 												{{answer.description}}
 												<a class="edit" style="margin-right: 10px;cursor:pointer;" ng-click="marcarTopic(topic._id);" title="Nueva pregunta asociada a la respuesta" data-toggle="modal" data-target="#modal-question">
 													<i class="icon fa fa-plus"></i>
@@ -382,24 +395,18 @@
 				<h4 class="modal-title" >Guardar plantilla</h4>
 			</div>
 			<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-						<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						<div>
-							<strong>Error!</strong> {{error}}.
-						</div>
+				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<div>
+						<strong>Error!</strong> {{error}}.
 					</div>
-					<div class="form-group row">
-						<label for="templateName" class="col-md-4 control-label">Nombre plantilla (*)</label>
-						<div class="col-md-7">
-							<input type="text"  id="templateName" ng-model="template.name" class="form-control"/>
-						</div>
+				</div>
+				<div class="form-group row">
+					<label for="templateName" class="col-md-4 control-label">Nombre plantilla (*)</label>
+					<div class="col-md-7">
+						<input type="text"  id="templateName" ng-model="template.name" class="form-control"/>
 					</div>
-
-
-
-
-				</form>
-
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success" ng-click="saveTemplate();">Guardar plantilla</button>

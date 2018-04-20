@@ -1,0 +1,214 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header" ng-init="init();">
+    <h1>
+        Generador
+        <small>{{gm.project.name}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Generador</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content" >
+
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Generación proyecto</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+						<ul class="nav nav-wizard">
+							<li ng-class="{active: gm.isSet($index)}" ng-repeat="topic in gm.topics">
+								<a href ng-click="gm.setTab($index)" ng-click="gm.loadQuestions(topic._id)">{{$index + 1}}. {{topic.name}}</a>
+							</li>
+							<li ng-class="{active: gm.isSet(gm.topics.length)}">
+								<a href ng-click="gm.setTab(gm.topics.length)" ><strong>{{gm.topics.length + 1}}. Servidor</strong></a>
+							</li>
+							<li ng-class="{active: gm.isSet(gm.topics.length + 1)}">
+								<a href ng-click="gm.setTab(gm.topics.length + 1)"><strong>{{gm.topics.length + 2}}.Detalle</strong></a>
+							</li>
+						</ul>
+						<!--
+                        <ul class="nav nav-tabs">
+                            <li ng-class="{active: gm.isSet($index)}" ng-repeat="topic in gm.topics">
+                                <a href ng-click="gm.setTab($index)" ng-click="gm.loadQuestions(topic._id)" data-toggle="tab">{{$index + 1}}. {{topic.name}}</a>
+                            </li>
+                            <li ng-class="{active: gm.isSet(gm.topics.length)}">
+                                <a href ng-click="gm.setTab(gm.topics.length)"  data-toggle="tab"><strong>{{gm.topics.length + 1}}. Servidor</strong></a>
+                            </li>
+                            <li ng-class="{active: gm.isSet(gm.topics.length + 1)}">
+                                <a href ng-click="gm.setTab(gm.topics.length + 1)"  data-toggle="tab"><strong>{{gm.topics.length + 2}}.Detalle</strong></a>
+                            </li>
+                        </ul>
+					-->
+                        <div class="tab-content">
+							<!--Inicio: Pestana topic-->
+                            <div class="tab-pane active" ng-repeat="topic in gm.topics" ng-show="gm.isSet($index)" >
+                                <div class="form-group" ng-repeat="question in topic.questions" >
+                                    <div class="callout callout-info">
+                                        <h4>
+                                            {{$index}}. {{question.description}}
+                                        </h4>
+                                    </div>
+
+                                    <div ng-repeat="answer in question.answers">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="{{question._id}}"  value="{{answer.description}} ">
+                                                {{answer.description}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+								<br><br><br>
+								<div class="social-auth-links text-right">
+									<a class="btn btn-app" ng-click="gm.setTab($index - 1)" ng-hide="$index == 0">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-arrow-circle-left"></i> Atras
+									</a>
+									<a class="btn btn-app" ng-click="gm.setTab($index + 1)">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									</a>
+								</div>
+							</div>
+							<!--Fin: Pestana topic-->
+
+							<!--Inicio: Pestana servidor-->
+							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length)">
+
+
+								<div class="form-group row">
+									<label for="app" class="col-md-4 control-label">Apliación (*)</label>
+									<div class="col-md-7">
+										<select class="form-control" ng-model="gm.export.app">
+											<option value="" disabled="disabled">Seleccione una aplicación</option>
+											<option value="jira">Jira</option>
+											<option value="redmine">Redmine</option>
+											<option value="trello">Trello</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="ip" class="col-md-4 control-label">Dirección IP (*)</label>
+									<div class="col-md-7">
+										<input type="text" id="ip" ng-model="gm.export.ip" class="form-control"/>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="projectPortJira" class="col-md-4 control-label">Puerto (*)</label>
+									<div class="col-md-7">
+										<input type="number" id="projectPortJira" ng-model="gm.export.port" class="form-control"/>
+									</div>
+								</div>
+
+								<div class="form-group row" ng-if="gm.export.app == 'jira'">
+									<label for="projectUser" class="col-md-4 control-label">Usuario (*)</label>
+									<div class="col-md-7">
+										<input type="text" id="projectUser" ng-model="gm.export.user" class="form-control"/>
+									</div>
+								</div>
+
+								<div class="form-group row" ng-if="gm.export.app == 'jira'">
+									<label for="projectPassword" class="col-md-4 control-label">Contraseña (*)</label>
+									<div class="col-md-7">
+										<input type="password" id="projectPassword" ng-model="gm.export.password" class="form-control"/>
+									</div>
+								</div>
+
+								<div class="form-group row" ng-if="gm.export.app == 'redmine'">
+									<label for="token" class="col-md-4 control-label">Token (*)</label>
+									<div class="col-md-7">
+										<textarea style="resize:none" id="token" ng-model="gm.export.token" class="form-control"/>
+									</div>
+								</div>
+
+								<button type="button" class="btn btn-success" ng-click="">Comprobar conexión</button>
+
+								<br><br><br>
+								<div class="social-auth-links text-right">
+									<a class="btn btn-app">
+										<i class="fa fa-cloud-upload"></i> Comprobar conexión
+									</a>
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length - 1)">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-arrow-circle-left"></i> Atras
+									</a>
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1)">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									</a>
+								</div>
+
+							</div>
+							<!--Fin: Pestana servidor-->
+
+							<!--Inicio: Pestana detalle-->
+							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length + 1)" >
+
+								<div class="form-group row">
+									<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
+									<div class="col-md-7">
+										<input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
+									<div class="col-md-7">
+										<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
+									</div>
+								</div>
+
+								<br><br><br>
+								<div class="social-auth-links text-right">
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length)">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-arrow-circle-left"></i> Atras
+									</a>
+									<a class="btn btn-app">
+										<span class="badge bg-yellow">3</span>
+										<i class="fa fa-cloud-upload"></i> Exportar
+									</a>
+								</div>
+							</div>
+							<!--Fin: Pestana detalle-->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            Gestión de identificación de riesgos
+        </div>
+        <!-- /.box-footer-->
+
+    </div>
+    <!-- /.box -->
+
+</section>
+<!-- /.content -->
+
+
+
+
+
+
+
+
+
+

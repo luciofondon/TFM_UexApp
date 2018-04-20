@@ -1,8 +1,9 @@
-app.controller('MainController', ['$scope', '$http', '$rootScope', '$timeout', '$interval', '$auth', 'UserService', '$state',
-function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $state) {
-	$rootScope.LoginUser = null;
-	$rootScope.LoginUserLevel = 0;
+app.controller('MainController',
+	['$scope', '$http', '$rootScope', '$timeout', '$interval', '$auth', 'UserService', '$state',
+		function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $state) {
 
+	$rootScope.LoginUser = null;
+	var projectsSrc = [];
 	updateHeader();
 	getUser();
 	// Actualizar automaticamente la cabecera
@@ -10,6 +11,7 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 
 	$http.get('/api/projects').then(function(response) {
 		$rootScope.projects = response.data;
+		projectsSrc = $rootScope.projects;
 	});
 
 	$scope.$on('login', function(){
@@ -17,14 +19,22 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 		getUser();
 	})
 
+	$rootScope.findProject = function(filter){
+		$rootScope.projects = [];
+		projectsSrc.forEach(function(project){
+			if(project.name.toLowerCase() .includes(filter.toLowerCase()))
+				$rootScope.projects.push(project)
+		});
+	}
+
 	$rootScope.logout = function(){
 		$auth.logout()
-				.then(function() {
-						// Desconectamos al usuario y lo redirijimos
-						$state.go("login")
-						$rootScope.LoginUser = null;
-						$rootScope.LoginUserLevel = 0;
-				});
+		.then(function() {
+				// Desconectamos al usuario y lo redirijimos
+				$state.go("login")
+				$rootScope.LoginUser = null;
+				$rootScope.LoginUserLevel = 0;
+		});
 	}
 
 	$rootScope.isLoggedIn = function(){
@@ -68,8 +78,7 @@ function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $st
 	function getUser(){
 		if ($auth.isAuthenticated()){
 			UserService.getMe().then(function(response) {
-				$rootScope.LoginUser = response.data.user;
-				$rootScope.LoginUserLevel = response.data.level;
+				$rootScope.LoginUser = response.data;
 			}).catch(function (error){
 				console.log(error);
 			});

@@ -21,35 +21,27 @@ var app = angular.module('tfm.uex',
 		$stateProvider
 			.state('login', {
 				url: '/login',
-				templateUrl: 'app/views/login.html',
-				controller: 'LoginController as vm'
+				templateUrl: 'app/views/templates/login.html',
+				controller: 'LoginController as login'
 			})
 			.state('password', {
 				url: '/password',
-				templateUrl: 'app/views/password.html',
+				templateUrl: 'app/views/templates/password.html',
 				controller: 'PasswordController as vm'
 			})
 			.state('signup', {
 				url: '/signup',
-				templateUrl: 'app/views/signup.html',
-				controller: 'SignupController as vm'
+				templateUrl: 'app/views/templates/signup.html',
+				controller: 'SignupController as signup'
 			})
 			.state('error', {
 				url: '/error/:code',
-				templateUrl: 'app/views/error.html',
-				controller: 'HttpErrorController'
-			})
-			.state('home', {
-				url: "/home",
-				templateUrl	: 'app/views/home.html',
-				controller 	: 'SystemController',
-				resolve:{
-					loginRequired: loginRequired
-				}
+				templateUrl: 'app/views/templates/error.html',
+				controller: 'HttpErrorController as vm'
 			})
 			.state('userList', {
 				url: "/userList",
-				templateUrl: "app/views/userList.html",
+				templateUrl: "app/views/templates/userList.html",
 				controller 	: 'UserListController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -57,7 +49,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('userDetail', {
 				url: "/userDetail",
-				templateUrl: "app/views/userDetail.html",
+				templateUrl: "app/views/templates/userDetail.html",
 				controller 	: 'UserDetailController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -65,7 +57,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('templateList', {
 				url: "/templateList",
-				templateUrl: "app/views/templateList.html",
+				templateUrl: "app/views/templates/templateList.html",
 				controller 	: 'TemplateListController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -73,7 +65,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('rolList', {
 				url : '/rolList',
-				templateUrl : 'app/views/rolList.html',
+				templateUrl : 'app/views/templates/rolList.html',
 				controller 	: 'RolListController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -81,7 +73,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('dashboard', {
 				url : '/dashboard',
-				templateUrl : 'app/views/dashboard.html',
+				templateUrl : 'app/views/templates/dashboard.html',
 				controller 	: 'DashboardController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -89,7 +81,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('projectList', {
 				url : '/projectList',
-				templateUrl : 'app/views/projectList.html',
+				templateUrl : 'app/views/templates/projectList.html',
 				controller 	: 'ProjectListController as vm',
 				resolve:{
 					loginRequired: loginRequired
@@ -97,7 +89,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('configuratorManagement', {
 				url: "/configuratorManagement/:projectId",
-				templateUrl : 'app/views/configuratorManagement.html',
+				templateUrl : 'app/views/templates/configuratorManagement.html',
 				controller 	: 'ConfiguratorManagementController',
 				resolve:{
 					loginRequired: loginRequired,
@@ -106,8 +98,8 @@ var app = angular.module('tfm.uex',
 			})
 			.state('generatorManagement', {
 				url: "/generatorManagement/:projectId",
-				templateUrl : 'app/views/generatorManagement.html',
-				controller 	: 'GeneratorManagementController',
+				templateUrl : 'app/views/templates/generatorManagement.html',
+				controller 	: 'GeneratorManagementController as gm',
 				resolve:{
 					loginRequired: loginRequired,
 					projectData: projectData

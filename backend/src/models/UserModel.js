@@ -38,16 +38,11 @@ var UserSchema = new Schema({
 UserSchema.methods = {
   // Codificar contrasena
   encodePassword: function(password) {
-    console.log("Codificando contrasena")
     let saltGenerate = crypto.randomBytes(16).toString('base64');
     this.salt = saltGenerate;
-    console.log(this.salt)
     if (!password || !this.salt)
-      return '';
-
+      	return '';
     this.hashedPassword = crypto.pbkdf2Sync(password, saltGenerate, 10000, 64, 'sha512').toString('base64');
-    console.log(this.hashedPassword)
-
   },
 
   // Comparar la contrasena con la de BD

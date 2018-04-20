@@ -18,7 +18,7 @@
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 		<div class="wrapper">
-			<ng-include src="'app/views/templates/_header.html'"></ng-include>
+			<ng-include src="'app/views/layouts/_header.html'"></ng-include>
 
 			<!-- Left side column. contains the logo and sidebar -->
 			<aside class="main-sidebar" ng-if="isLoggedIn()">
@@ -39,11 +39,12 @@
 				</div>
 
 					<!-- search form -->
-				<form action="#" method="get" class="sidebar-form">
+				<form class="sidebar-form">
 					<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Buscar...">
-					<span class="input-group-btn">
-							<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+						<input ng-change="findProject(filter);" ng-model="filter" type="text" name="q" class="form-control" placeholder="Buscar proyecto...">
+						<span class="input-group-btn">
+							<button name="search" id="search-btn" class="btn btn-flat">
+								<i class="fa fa-search"></i>
 							</button>
 						</span>
 					</div>
@@ -69,7 +70,7 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li ng-if="LoginUserLevel == 1"><a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
+							<li ng-if="LoginUser.rol.level == 1"><a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
 							<li><a ui-sref="generatorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Generador</a></li>
 						</ul>
 						</li>
@@ -118,7 +119,7 @@
 		<!-- =============================================== -->
 
 
-		<ng-include src="'app/views/templates/_footer.html'"></ng-include>
+		<ng-include src="'app/views/layouts/_footer.html'"></ng-include>
 
 		<!--<div class="control-sidebar-bg"></div>-->
 
@@ -202,6 +203,8 @@
 		<script src="app/src/services/ProjectService.js"></script>
 		<script src="app/src/services/BootstrapTableService.js"></script>
 		<script src="app/src/services/DashboardService.js"></script>
+		<script src="app/src/services/TemplateService.js"></script>
+
 
 		<!-- Fin: Controladores angular -->
 		<script>

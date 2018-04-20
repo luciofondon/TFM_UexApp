@@ -33,7 +33,7 @@ exports.deleteUser = function(req, res) {
     deleteUser(req, res);
 }
 
-exports.signup = function(req, res) {
+exports.signupUser = function(req, res) {
     signupUser(req, res);
 }
 
@@ -54,7 +54,7 @@ function loginUser(req, res){
 
             if(!user.equalPassword(req.body.password))
                 return res.status(500).json({ error: 'Clave de usuario no valida'});
-            
+
             return res.status(200).send({token: systemService.createToken(user)});
         });
     }
@@ -67,8 +67,9 @@ function signupUser(req, res){
     if(validateUser(user)){
 		//Le colocamos el rol de consultor
 		Rol.findOne({level:2}).exec(function(err, rol) {
+			console.log(rol)
 			user.rol = rol._id;
-			user.save(function(err) {            
+			user.save(function(err) {
 				if (err) {
 					return res.status(500).json({error: 'Cannot save the user'});
 				}
@@ -86,14 +87,14 @@ function readAllUser(req, res){
             return res.status(500).json({ error: 'Cannot list all the users' });
         }
         Rol.find({}).exec(function(err, roles) {
-                    
+
                     users.forEach(function(user){
                         let userFormat = JSON.parse(JSON.stringify(user));
                         let created = new Date(user.created);
                         userFormat.createdFormat = ( "0" + created.getHours()).slice(-2)+":"+ ( "0" + created.getMinutes()).slice(-2)+":"+ ( "0" + created.getSeconds()).slice(-2) + " " + ( "0" + created.getDate()).slice(-2)+"/"+ ( "0" + (created.getMonth()+1)).slice(-2)+"/"+created.getFullYear();
-                        
+
                         //Asignar nombre del rol
-                        for(let i = 0; i <  roles.length ; i++){ 
+                        for(let i = 0; i <  roles.length ; i++){
                             if(user.role != undefined)
                                 if(roles[i]._id.toString() == user.role.toString()){
                                     userFormat.rolName = roles[i].name;
@@ -101,22 +102,22 @@ function readAllUser(req, res){
                                 }
                         }
 
-                       
+
                         usersFormat.push(userFormat);
                     });
                     res.json(usersFormat);
                 });
             });
-     
+
 }
 
 
-function createUser(req, res){    
+function createUser(req, res){
     let user = new User(req.body);
     //Codificar la password
     user.encodePassword(req.body.password);
     if(validateUser(user)){
-        user.save(function(err) {            
+        user.save(function(err) {
             if (err) {
                 return res.status(500).json({error: 'Cannot save the user'});
             }
@@ -148,7 +149,7 @@ function updateUser(req, res){
         User.findOneAndUpdate({_id: user._id}, req.body, {upsert:true}, function(err, user){
             if (err){
                 return res.status(500).json({ error: 'Cannot list all the users' });
-            } 
+            }
             return res.send("succesfully saved");
         });
     }else
@@ -175,8 +176,8 @@ function resetPasswordUser(req, res){
 
         // Enviamos el email para avisar del cambio de contraseña y guardamos la nueva contraseña
         user.save(function(err) {
-            let body =  "Estimado usuario " + user.name + ",<br/>" + 
-                    "se ha generado una nueva clave para acceder a la plataforma de SmartLight."+ 
+            let body =  "Estimado usuario " + user.name + ",<br/>" +
+                    "se ha generado una nueva clave para acceder a la plataforma de SmartLight."+
                     "<br> La nueva contraseña es: " + req.body.password +
                     "<br><br><br> Gracias por su colaboración. <br> <br> Atentamente, reciba un cordial saludo. ";
             mailService.sendMail(user.email, "SmartLIGHT. Nueva clave de acceso", body);
@@ -187,4 +188,4 @@ function resetPasswordUser(req, res){
 
 function validateUser(user){
     return true;
-} 
+}

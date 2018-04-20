@@ -255,10 +255,10 @@ sudo apt-get install default-jdk
 
 ```
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-echo -e "\ndeb http://pkg.jenkins-ci.org/debian binary/" | sudo tee --append /etc/apt/sources.list > /dev/null 
+echo -e "\ndeb http://pkg.jenkins-ci.org/debian binary/" | sudo tee --append /etc/apt/sources.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins
-``` 
+```
 ```
 systemctl status jenkins
 ```
@@ -268,4 +268,16 @@ systemctl status jenkins
 
 ANEXOS
 ##1. Instalar Redmine para pruebas.
+Destacar que se puede automatizar la instalación de Redmine mediante el uso del repositorio Bitnami. A continuación, se muestra como se realizaría la instalación mediante esta herramienta.
+´´´
+wget https://bitnami.com/redirect/to/111229/bitnami-redmine-3.3.0-0-linux-x64-installer.run
+´´´
+Damos permisos de ejecución.
+´´´
+chmod +x bitnami-redmine-3.3.0-0-linux-x64-installer.run
+´´´
+Lanzamos el proceso de instalación
+´´´
+./bitnami-redmine-3.3.0-0-linux-x64-installer.run
+´´´
 ##2. Instalar Jira para pruebas.
