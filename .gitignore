@@ -36,3 +36,5 @@ npm-debug.log
 
 frontend/public/dist/*
 frontend/DOCUMENTACION_INTERNA
+
+backend/config/config.js
