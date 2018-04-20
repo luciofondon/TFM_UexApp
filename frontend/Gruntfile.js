@@ -119,6 +119,7 @@ module.exports = function(grunt){
 			dev: {
 				files: [
 		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
+					{expand: true, src:['app/src/app.js', 'app/src/**/*.js'], dest: 'public/dist/js/', filter: 'isFile'},
 		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return dest + 'index.html';}},
 				]
 			},
