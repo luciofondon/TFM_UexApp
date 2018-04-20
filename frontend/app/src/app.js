@@ -11,7 +11,8 @@ var app = angular.module('tfm.uex',
 	})
 	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg, cfpLoadingBarProvider) {
 		// Parametros de configuración
-		$authProvider.loginUrl = cfg.backendUrl + "/login";
+		$authProvider.loginUrl = "auth/login";
+		$authProvider.signupUrl = "auth/signup";
 		$authProvider.tokenName = "token";
 		$authProvider.tokenPrefix = "tfm.uex";
 		cfpLoadingBarProvider.includeSpinner = true;
@@ -81,7 +82,7 @@ var app = angular.module('tfm.uex',
 			.state('dashboard', {
 				url : '/dashboard',
 				templateUrl : 'app/views/dashboard.html',
-				controller 	: 'DashboardController',
+				controller 	: 'DashboardController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -89,7 +90,7 @@ var app = angular.module('tfm.uex',
 			.state('projectList', {
 				url : '/projectList',
 				templateUrl : 'app/views/projectList.html',
-				controller 	: 'ProjectListController',
+				controller 	: 'ProjectListController as vm',
 				resolve:{
 					loginRequired: loginRequired
 				}

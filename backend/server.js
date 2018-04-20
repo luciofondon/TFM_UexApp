@@ -32,7 +32,7 @@ require('./src/routes/TemplateRoute')(api);
 require('./src/routes/DashboardRoute')(api);
 
 //Control de token
-app.route('/api/login').post(userController.login);
+app.route('/auth/login').post(userController.login);
 app.route('/auth/signup').post(userController.signup);
 app.use("/api", systemMiddleware.ensureAuthenticated, api);
 

@@ -3,9 +3,8 @@ angular.module('tfm.uex').controller('LoginController',
         function($rootScope, $auth, $state, UserService, $window){
 
 	var vm = this;
-
-	vm.email='';
-	vm.password='';
+	vm.email="";
+	vm.password="";
 	vm.error=null;
 
 	if ($auth.isAuthenticated()) {

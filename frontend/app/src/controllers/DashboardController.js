@@ -1,15 +1,16 @@
 angular.module('tfm.uex').controller('DashboardController',
-	['$scope', '$stateParams', 'DashboardService', 'AmChartService',
-		function($scope, $stateParams, DashboardService, AmChartService){
+	['$stateParams', 'DashboardService', 'AmChartService',
+		function($stateParams, DashboardService, AmChartService){
+	var vm = this;
 
-	$scope.data = {};
+	vm.data = {};
 
 	var data = [{"category":20, "total": 23}];
 	AmChartService.createCharPieDonut(data, "50 Total", 'chartdiv', "Título", "Exportacion");
 
 
 	DashboardService.getDataDashboard().then(function(response){
-		$scope.data = response.data;
+		vm.data = response.data;
 	});
 
 }]);

@@ -36,3 +36,4 @@ npm-debug.log
 
 frontend/public/dist/*
 frontend/DOCUMENTACION_INTERNA
+frontend/package-lock.json

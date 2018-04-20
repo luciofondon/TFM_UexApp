@@ -1,27 +1,28 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$scope', '$rootScope', 'ProjectService', 'BootstrapTableService', '$state',
-        function($scope, $rootScope, ProjectService, BootstrapTableService, $state){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state',
+        function($rootScope, ProjectService, BootstrapTableService, $state){
+	var vm = this;
 
-    $scope.bsTableProject = {};
-    $scope.alerts = [];
-    $scope.errores = [];
-    $scope.project = {};
-    $scope.mode = 1;
-	$scope.templates = [];
+    vm.bsTableProject = {};
+    vm.alerts = [];
+    vm.errores = [];
+    vm.project = {};
+    vm.mode = 1;
+	vm.templates = [];
 
-	$scope.init = function(){
+	vm.init = function(){
         ProjectService.getProjects().then(function(response) {
-            $scope.templates = response.data;
+            vm.templates = response.data;
         });
 	};
 
-    $scope.createProject = function (){
+    vm.createProject = function (){
         if(validate()){
-            ProjectService.addProject($scope.project).then(function(project) {
-                $scope.project =  {};
-                $scope.loadProjectList();
-                $scope.alerts = [];
-                $scope.alerts.push("Proyecto creado correctamente.")
+            ProjectService.addProject(vm.project).then(function(project) {
+                vm.project =  {};
+                vm.loadProjectList();
+                vm.alerts = [];
+                vm.alerts.push("Proyecto creado correctamente.")
                 $('#modal-project').modal('hide');
                 ProjectService.getProjects().then(function(projects) {
                     $rootScope.projects = projects; //Actualizar proyectos del menu laterail
@@ -31,19 +32,19 @@ angular.module('tfm.uex').controller('ProjectListController',
     }
 
     function validate(){
-        $scope.errores = [];
-        if($scope.project.name == undefined || $scope.project.name == "")
-             $scope.errores.push("El campo nombre de proyecto es obligatorio");
+        vm.errores = [];
+        if($scope.project.name == undefined || vm.project.name == "")
+			vm.errores.push("El campo nombre de proyecto es obligatorio");
 
-        if( $scope.errores.length > 0)
+        if(vm.errores.length > 0)
             return false
         return true;
     }
 
-    $scope.updateProject = function() {
+    vm.updateProject = function() {
         if(validate()){
-            ProjectService.updateProject($scope.project).then(function(alarm, status) {
-                $scope.loadProjectList();
+            ProjectService.updateProject(vm.project).then(function(alarm, status) {
+                vm.loadProjectList();
                 $('#modal-project').modal('hide');
                 //Actualizamos el menu lateral
                 $http.get('/api/projects').then(function(response) {
@@ -53,7 +54,7 @@ angular.module('tfm.uex').controller('ProjectListController',
         }
     };
 
-	$scope.loadProjectList = function(){
+	vm.loadProjectList = function(){
         ProjectService.getProjects().then(function(response) {
 
             var projects = response.data;
@@ -84,14 +85,14 @@ angular.module('tfm.uex').controller('ProjectListController',
                 {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
             ];
 
-            $scope.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
+            vm.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
         });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
-                $scope.mode = 2;
-                $scope.errores = [];
+			vm.mode = 2;
+			vm.errores = [];
                 ProjectService.getProject(row._id).then(function(response) {
-                    $scope.project = response.data;
+                    vm.project = response.data;
                 });
             },'click .configurator': function (e, value, row, index) {
               	//Cambiar de estado
