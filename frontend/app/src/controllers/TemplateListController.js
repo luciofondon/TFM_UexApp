@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('TemplateListController',
-	['$rootScope', '$http', 'BootstrapTableService', 'ProjectService',
-		function($rootScope, $http, BootstrapTableService, ProjectService){
+	['$rootScope', '$http', 'BootstrapTableService', 'TemplateService',
+		function($rootScope, $http, BootstrapTableService, TemplateService){
 
 	var vm = this;
 
@@ -14,7 +14,7 @@ angular.module('tfm.uex').controller('TemplateListController',
 	};
 
 	vm.loadProjectList = function(){
-        $http.get('/api/templates').then(function(response) {
+        TemplateService.getTemplates().then(function(response) {
 			var templates = response.data;
             templates.forEach(function(template){
                 var created = new Date(template.created);
@@ -32,12 +32,13 @@ angular.module('tfm.uex').controller('TemplateListController',
 			var columns= [
 				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
 				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-				{field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
+				{field: "nameTemplate", title: "Plantilla", align: 'center', valign: 'middle', sortable: true},
+				{field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
 				{field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
 				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
 			];
 
-			vm.bsTableTemplate = BootstrapTableService.createTableSimple(roles, "PlantillaTFM-Uex", columns);
+			vm.bsTableTemplate = BootstrapTableService.createTableSimple(templates, "PlantillaTFM-Uex", columns);
 
         });
 

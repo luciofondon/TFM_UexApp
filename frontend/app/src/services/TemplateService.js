@@ -3,11 +3,14 @@ angular.module('tfm.uex').service('TemplateService', ['$http', function($http){
 	return {
 		saveTemplate: function(projectId){
 			return saveTemplate(projectId);
-		}
+		},
+		getTemplates: function(){
+			return getTemplates();
+		},
 	};
 
-	function saveTemplate(projectId){
-		return $http.post('/api/template/' + projectId);
+	function getTemplates(projectId){
+		return $http.get('/api/templates');
 	}
 
 }]);

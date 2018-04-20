@@ -44,13 +44,13 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	};
 
 	$scope.saveTemplate = function(){
-
-		/*$http.post('/api/templates', $scope.template).success(function(topic) {
+		TemplateService.saveTemplate($stateParams.projectId).then(function(response) {
+			$scope.topics = response.data;
 			$scope.template =  {};
 			$scope.alerts = [];
 			$scope.alerts.push("Plantialla guardada correctamente.")
 			$('#modal-template').modal('hide');
-		});*/
+        });
 	};
 
     $scope.createTopic = function(){

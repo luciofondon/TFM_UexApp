@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     request = require('request');
-    
+
 var Project = require('../models/ProjectModel');
     Project = mongoose.model('Project');
 
@@ -30,7 +30,7 @@ exports.exportData = function(req, res) {
 
 function readAllProject(req, res){
     // Comprobar los proyectos a los que el usuario tiene permisos
-    Project.find({}).sort({name:1}).exec(function(err, projects) {
+    Project.find({isTemplate: false}).sort({name:1}).exec(function(err, projects) {
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the projects' });
         }
@@ -41,17 +41,17 @@ function readAllProject(req, res){
 
 function exportData(req, res){
     request(
-        { 
+        {
             method: 'POST',
             uri: config.SERVER_EXPORT + '/api/project/' + req.params.app,
             json: req.body
-        }, 
+        },
         function (error, response, body) {
             if(response != undefined)
                 res.status(response.statusCode).json(body);
             else
                 res.status(500).json("No se ha podido establecer conexion con el traductor");
-            
+
         }
     );
 }
@@ -72,7 +72,7 @@ function updateProject(req, res){
 
 
 
-function createProject(req, res){    
+function createProject(req, res){
     let project = new Project(req.body);
     if(validateProject(project)){
         project.save(function(err) {
