@@ -33,7 +33,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 
     function validate(){
         vm.errores = [];
-        if($scope.project.name == undefined || vm.project.name == "")
+        if(vm.project.name == undefined || vm.project.name == "")
 			vm.errores.push("El campo nombre de proyecto es obligatorio");
 
         if(vm.errores.length > 0)
