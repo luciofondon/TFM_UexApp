@@ -1,0 +1,29 @@
+CONFIGURACION
+- Eliminar close/minimizar vistas
+- Loading
+- Google analytic
+
+
+MODULO USUARIO
+- Selenium
+- JSDoc
+- Mocha
+- Subir foto
+*- Perfil usuario
+
+
+MODULO GENERADOR
+*- Preguntas asociadas
+*- Editar Preguntas
+*- Editar respuesta
+*- Eliminar Preguntas
+*- Eliminar respuesta
+
+MODULO GENERADOR
+
+
+MODULO TEMPLATE
+*- Guardar
+- Importar
+- Importar CSV
+- Exprotar CSV
