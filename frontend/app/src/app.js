@@ -24,11 +24,6 @@ var app = angular.module('tfm.uex',
 				templateUrl: 'app/views/templates/login.html',
 				controller: 'LoginController as login'
 			})
-			.state('password', {
-				url: '/password',
-				templateUrl: 'app/views/templates/password.html',
-				controller: 'PasswordController as vm'
-			})
 			.state('signup', {
 				url: '/signup',
 				templateUrl: 'app/views/templates/signup.html',

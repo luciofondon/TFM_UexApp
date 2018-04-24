@@ -24,12 +24,10 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
     }
 
     $scope.marcarTopic = function(topicId){
+		console.log("marcarTopic "+ topicId)
         $scope.topicId = topicId;
 	};
 
-	$scope.marcarTopicyRespuesta = function(topicId, answerId){
-        $scope.topicId = topicId;
-	};
 
 	$scope.marcarPregunta = function(questionId){
         $scope.questionId = questionId;
