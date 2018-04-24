@@ -120,5 +120,14 @@ var app = angular.module('tfm.uex',
 			}
 			return deferred.promise;
 		}
+		/*
+
+			$window.ga('create', 'UA-118019427-1', 'auto');
+
+		// track pageview on state change
+		$rootScope.$on('$stateChangeSuccess', function (event) {
+			$window.ga('send', 'pageview', $location.path());
+		});
+		*/
 
 });

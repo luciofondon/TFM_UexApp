@@ -32,4 +32,5 @@ db.getCollection('users').insert(users);
 db.getCollection('rols').insert(roles);
 print("Script terminado")
 
+//ssh -f root@139.99.98.115 -L 27037:localhost:27017 -N
 
