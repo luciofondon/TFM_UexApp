@@ -1,29 +1,77 @@
 CONFIGURACION
-- Eliminar close/minimizar vistas
-- Loading
+TR*- Eliminar close/minimizar vistas y cambiar color 
+- Loading (fixed cabecera)
+- Menu lateral
 - Google analytic
-
+- Exportar tabla
+- DAO -> Model
+- Grunt indexPro
+*- Grunt copy index
+*- Eliminar codigo HTML (ng-init)
+*- Confirm
+	https://craftpip.github.io/angular-confirm/
+- Mensaje error validacion
 
 MODULO USUARIO
 - Selenium
 - JSDoc
 - Mocha
+- Jasmine
 - Subir foto
 *- Perfil usuario
-
+*- Rol tabla usuarios
+TR*- Popup usuario (botones)
+*- Validaciones
+TR*- Captcha
+	https://www.google.com/recaptcha/admin#site/341142692?setup
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<div class="g-recaptcha" data-sitekey="6LekbFUUAAAAAC5zI4QjyPtd49-ThcSq9GNh4K-Z"></div>
 
 MODULO GENERADOR
-*- Preguntas asociadas
+- Selenium
+- JSDoc
+- Mocha
+- Jasmine
+*- Preguntas asociadas(CRUD)
 *- Editar Preguntas
 *- Editar respuesta
 *- Eliminar Preguntas
 *- Eliminar respuesta
+- Validaciones
+- controllerAs
 
 MODULO GENERADOR
-
+- Selenium
+- JSDoc
+- Mocha
+- Jasmine
+*- Interfaz generador
+- Almacenar respuestas (actualizar contador)
+- Vista comparador
+- Validaciones
 
 MODULO TEMPLATE
+- Selenium
+- JSDoc
+- Mocha
+- Jasmine
 *- Guardar
-- Importar
+*- Ver plantilla
+- Importar al crear proyecto
 - Importar CSV
 - Exprotar CSV
+
+MODULO MEDIATORY
+- Selenium
+- JSDoc
+- Mocha
+- Get apps
+- Get project
+- Integrar app.config.js
+- SOAP
+
+DASHBOARD
+*- Donut estilo
+- Grafico
+- Exportart grafico
+TR*- More info
