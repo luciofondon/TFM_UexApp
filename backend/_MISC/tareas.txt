@@ -19,6 +19,8 @@ MODULO USUARIO
 - Mocha
 - Jasmine
 - Subir foto
+	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
+	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 *- Perfil usuario
 *- Rol tabla usuarios
 TR*- Popup usuario (botones)
