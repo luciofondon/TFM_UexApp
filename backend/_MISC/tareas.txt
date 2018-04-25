@@ -11,6 +11,7 @@ TR*- Eliminar close/minimizar vistas y cambiar color
 *- Confirm
 	https://craftpip.github.io/angular-confirm/
 - Mensaje error validacion
+- Script DB
 
 MODULO USUARIO
 - Selenium
@@ -22,6 +23,7 @@ MODULO USUARIO
 *- Rol tabla usuarios
 TR*- Popup usuario (botones)
 *- Validaciones
+*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario
 TR*- Captcha
 	https://www.google.com/recaptcha/admin#site/341142692?setup
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -48,6 +50,7 @@ MODULO GENERADOR
 *- Interfaz generador
 - Almacenar respuestas (actualizar contador)
 - Vista comparador
+- Logica comparacion
 - Validaciones
 
 MODULO TEMPLATE
