@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ConfiguratorManagementController',
-    ['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService',
-        function($scope, $stateParams, ProjectService, projectData, TemplateService){
+    ['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService',
+        function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService){
 
     $scope.topic = {};
     $scope.topicId = "";
