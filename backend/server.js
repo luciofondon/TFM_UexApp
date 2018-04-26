@@ -28,6 +28,7 @@ require('./src/routes/RolRoute')(api);
 require('./src/routes/UserRoute')(api);
 require('./src/routes/TopicRoute')(api);
 require('./src/routes/QuestionRoute')(api);
+require('./src/routes/AnswerRoute')(api);
 require('./src/routes/TemplateRoute')(api);
 require('./src/routes/DashboardRoute')(api);
 
