@@ -87,7 +87,6 @@ function readAllUser(req, res){
             return res.status(500).json({ error: 'Cannot list all the users' });
         }
         Rol.find({}).exec(function(err, roles) {
-
                     users.forEach(function(user){
                         let userFormat = JSON.parse(JSON.stringify(user));
                         let created = new Date(user.created);
@@ -95,8 +94,8 @@ function readAllUser(req, res){
 
                         //Asignar nombre del rol
                         for(let i = 0; i <  roles.length ; i++){
-                            if(user.role != undefined)
-                                if(roles[i]._id.toString() == user.role.toString()){
+                            if(user.rol != undefined)
+                                if(roles[i]._id.toString() == user.rol.toString()){
                                     userFormat.rolName = roles[i].name;
                                     break;
                                 }
