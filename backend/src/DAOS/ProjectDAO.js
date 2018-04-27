@@ -26,8 +26,6 @@ exports.exportData = function(req, res) {
     exportData(req, res);
 }
 
-
-
 function readAllProject(req, res){
     // Comprobar los proyectos a los que el usuario tiene permisos
     Project.find({isTemplate: false}).sort({name:1}).exec(function(err, projects) {
@@ -37,7 +35,6 @@ function readAllProject(req, res){
         res.json(projects);
     });
 }
-
 
 function exportData(req, res){
     request(
@@ -74,20 +71,18 @@ function updateProject(req, res){
 
 function createProject(req, res){
     let project = new Project(req.body);
+	//Asignamos el proyecto al usuario que lo crea
+	project.created.req.user._id;
     if(validateProject(project)){
         project.save(function(err) {
             if (err) {
                 return res.status(500).json({error: 'Cannot save the project'});
             }
-            // Asignar el proyecto al usuario que lo ha creado
-
             res.json(project);
         });
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
 }
-
-
 
 function validateProject(project){
     return true;
