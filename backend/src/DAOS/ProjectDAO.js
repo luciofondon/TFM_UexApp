@@ -28,7 +28,13 @@ exports.exportData = function(req, res) {
 
 function readAllProject(req, res){
     // Comprobar los proyectos a los que el usuario tiene permisos
-    Project.find({isTemplate: false}).sort({name:1}).exec(function(err, projects) {
+	var filter = {};
+	if(req.user.rol.level == 1}
+	   	filter = {isTemplate: false};
+	else
+		filter = {isTemplate: false, created: req.user._id}
+	   
+    Project.find(filter).sort({name:1}).exec(function(err, projects) {
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the projects' });
         }
