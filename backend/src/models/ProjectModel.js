@@ -24,6 +24,10 @@ var projectSchema = new Schema({
 		type: String,
 		required: true
 	},
+	creator: {
+		type: Schema.ObjectId,
+		ref: "User"
+	},
 	created: {
 		type: Date,
 		default: Date.now,
