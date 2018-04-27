@@ -12,7 +12,13 @@ angular.module('tfm.uex').controller('UserListController',
     vm.municipios = [];
     vm.bsTableUsers = {};
 
-
+	vm.reset = function(){
+		vm.mode=1; 
+		vm.user = {}; 
+		vm.errores = []; 
+		vm.alertas = [];	
+	}
+	
     vm.init = function() {
         RolService.getRoles().then(function(response) {
             vm.roles = response.data;
