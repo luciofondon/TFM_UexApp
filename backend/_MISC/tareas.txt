@@ -1,31 +1,33 @@
 VIERNES: 2 H 50 MIN
 SABADO: 2 h 10 MIN
-DOMINGO/MARTES: 
+DOMINGO: 3 h 40 MIN
+MARTES: 2 h
 
 CONFIGURACION
-14*- Eliminar close/minimizar vistas y cambiar color (20 min)
+DOMINGO 14*- Eliminar close/minimizar vistas y cambiar color (20 min)
 - Loading (fixed cabecera)
 - Menu lateral
 - Google analytic
 - Exportar tabla
 - DAO -> Model
 - Grunt indexPro
-16*- Grunt copy index (10 min)
-15*- Eliminar codigo HTML (ng-init) (30 min)
+DOMINGO 16*- Grunt copy index (10 min)
+DOMINGO 15*- Eliminar codigo HTML (ng-init) (30 min)
 VIERNES 13*- Confirm (20 min)
 	https://craftpip.github.io/angular-confirm/
-- Mensaje error validacion
+- Mensaje error validacion (1 hora)
 - Script DB
+- Directiva
 
 MODULO USUARIO
 - Selenium
 - JSDoc
-- Mocha
-- Jasmine
-- Subir foto
+*- Mocha
+*- Jasmine
+MARTES *- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
-*- Perfil usuario
+MARTES *- Perfil usuario (30 MIN)
 VIERNES 3*- Rol tabla usuarios (10 min)
 VIERNES 2*- Popup usuario (botones) (10 min)
 SABADO 9*- Validaciones (20 min)
@@ -40,10 +42,10 @@ MODULO CONFIGURADOR
 - JSDoc
 - Mocha
 - Jasmine
-*- Preguntas asociadas(CRUD)
+DOMINGO *- Preguntas asociadas(CRUD) 1 hora
 VIERNES 1*- Editar Preguntas / Eliminar Preguntas (30 min)
 VIERNES 5*- Editar respuesta / Eliminar respuesta (30 min)
-- Editar /Eliminar topic
+MARTES - Editar /Eliminar topic (30 min)
 VIERNES 10*- Validaciones (30 min)
 - controllerAs
 
@@ -56,16 +58,16 @@ SABADO 6*- Interfaz generador (30 min)
 - Almacenar respuestas (actualizar contador)
 SABADO 12*- Vista comparador (1 hora)
 - Logica comparacion
-- Validaciones
+DOMINGO *- Validaciones (30 min)
 
 MODULO TEMPLATE
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
-8*- Guardar
+DOMINGO 8*- Guardar (1 hora)
 *- Ver plantilla
-- Importar al crear proyecto
+*- Importar al crear proyecto
 - Importar CSV
 - Exprotar CSV
 
@@ -79,7 +81,7 @@ MODULO MEDIATORY
 - SOAP
 
 DASHBOARD
-13*- Donut estilo (20 min)
+DOMINGO 13*- Donut estilo (20 min)
 - Grafico
 - Exportart grafico
-11*- More info (10 min)
+DOMINGO 11*- More info (10 min)
