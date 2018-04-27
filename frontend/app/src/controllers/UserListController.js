@@ -1,7 +1,7 @@
 
 angular.module('tfm.uex').controller('UserListController',
-    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService',
-        function(UserService, RolService, ProjectService, BootstrapTableService){
+    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm',
+        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm){
 	var vm = this;
 
 	vm.alerts = [];
@@ -13,12 +13,12 @@ angular.module('tfm.uex').controller('UserListController',
     vm.bsTableUsers = {};
 
 	vm.reset = function(){
-		vm.mode=1; 
-		vm.user = {}; 
-		vm.errores = []; 
-		vm.alertas = [];	
+		vm.mode=1;
+		vm.user = {};
+		vm.errores = [];
+		vm.alertas = [];
 	}
-	
+
     vm.init = function() {
         RolService.getRoles().then(function(response) {
             vm.roles = response.data;
@@ -28,7 +28,6 @@ angular.module('tfm.uex').controller('UserListController',
             vm.projects = projects;
         });
     }
-
 
 	vm.loadUserList = function(){
         UserService.getUsers().then(function(response) {
@@ -54,7 +53,7 @@ angular.module('tfm.uex').controller('UserListController',
                 {field: "lastName", title: "Apellidos", align: 'center', valign: 'middle', sortable: true},
                 {field: "userName", title: "Usuario", align: 'center', valign: 'middle', sortable: true},
                 {field: "email", title: "Email", align: 'center', valign: 'middle', sortable: true},
-                {field: "rolName", title: "Rol", align: 'center', valign: 'middle', sortable: true},
+                {field: "rol.name", title: "Rol", align: 'center', valign: 'middle', sortable: true},
                 {field: "phone", title: "Telefono", align: 'center', valign: 'middle', sortable: true},
                 {field: "projectsFormat", title: "Proyectos", align: 'center', valign: 'middle', sortable: true, visible:false},
                 {field: "municipiosFormat", title: "Municipios", align: 'center', valign: 'middle', sortable: true, visible:false}
@@ -69,6 +68,34 @@ angular.module('tfm.uex').controller('UserListController',
 				vm.$apply();
 
                 },'click .remove': function (e, value, row, index) {
+
+					$ngConfirm({
+						title: 'Usuario',
+						content: '¿Deseas eliminar el usuario?',
+						buttons: {
+							aceptar: {
+								text: 'Eliminar',
+								btnClass: 'btn-blue',
+								action: function(scope, button){
+									UserService.removeUser(row._id).then(function(user) {
+										for(var i = vm.bsTableUsers.options.data.length; i--;){
+											if(vm.bsTableUsers.options.data[i]._id == row._id){
+												vm.bsTableUsers.options.data.splice(i, 1);
+												//vm.alerts.push("Usuario eliminado correctamente")
+												$ngConfirm('El usuario ha sido eliminado correctamente');
+											}
+										}
+									});
+								}
+							},
+							cerrar: {
+								text: 'Cancelar',
+								btnClass: 'btn-orange',
+							}
+						}
+					});
+
+					/*
                     if(confirm("¿Estás seguro de borrar el usuario?")){
                         UserService.removeUser(row._id).then(function(user) {
                             for(var i = vm.bsTableUsers.options.data.length; i--;){
@@ -78,7 +105,7 @@ angular.module('tfm.uex').controller('UserListController',
                                 }
                             }
                         });
-                    }
+                    }*/
                 },'click .password': function (e, value, row, index) {
                     vm.user = row;
                     vm.resetPassword = {};
@@ -88,7 +115,7 @@ angular.module('tfm.uex').controller('UserListController',
         });
     }
 
-    vm.reset = function() {
+    vm.resetPassword = function() {
         vm.alerts = [];
         if(validatePassword()){
             UserService.resetPassword(vm.user._id, vm.resetPassword).then(function() {
@@ -102,7 +129,7 @@ angular.module('tfm.uex').controller('UserListController',
 
     function validatePassword(){
         vm.errores = [];
-        if((vmresetPassword.password == undefined || vm.resetPassword.password == ""))
+        if((vm.resetPassword.password == undefined || vm.resetPassword.password == ""))
 			vm.errores.push("Se debe especificar una contraseña");
         else if((vm.resetPassword.confirmPassword == undefined || vm.resetPassword.confirmPassword == ""))
 			vm.errores.push("Se debe completar el campo repetir contraseña");

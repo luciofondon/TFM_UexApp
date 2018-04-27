@@ -85,14 +85,41 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
         }
     }
 
+	$scope.editQuestion = function(questionId){
+		console.log(questionId)
+		QuestionService.editQuestion($stateParams.projectId, $scope.questionId).then(function(response){
+
+		});
+	}
+
+	$scope.deleteQuestion = function(questionId){
+		console.log(questionId)
+		QuestionService.deleteQuestion($stateParams.projectId, $scope.questionId).then(function(response){
+
+		});
+	}
+
+	$scope.editAnswer = function(answerId){
+		console.log(answerId)
+		AnswerService.editAnswer($stateParams.projectId, $scope.answerId).then(function(response){
+
+		});
+	}
+
+	$scope.deleteAnswer = function(answerId){
+		console.log(answerId)
+		AnswerService.deleteAnswer($stateParams.projectId, $scope.answerId).then(function(response){
+
+		});
+	}
+
     function validateQuestion (){
         $scope.errores = [];
         if($scope.question.description == undefined || $scope.question.description == "")
              $scope.errores.push("El campo nombre de la pregunta es obligatorio");
         if( $scope.errores.length > 0)
             return false
-        else
-            return true;
+        return true;
     }
 
     $scope.createAnswer = function(){
@@ -103,7 +130,5 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
             $('#modal-answer').modal('hide');
         });
     };
-
-
 
 }]);

@@ -29,11 +29,11 @@ exports.exportData = function(req, res) {
 function readAllProject(req, res){
     // Comprobar los proyectos a los que el usuario tiene permisos
 	var filter = {};
-	if(req.user.rol.level == 1}
+	if(req.authUser.rol.level == 1)
 	   	filter = {isTemplate: false};
 	else
-		filter = {isTemplate: false, created: req.user._id}
-	   
+		filter = {isTemplate: false, creator: req.user._id}
+
     Project.find(filter).sort({name:1}).exec(function(err, projects) {
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the projects' });
@@ -73,12 +73,10 @@ function updateProject(req, res){
         return res.status(500).json({ error: "Parametros de la API no validos"});
 }
 
-
-
 function createProject(req, res){
     let project = new Project(req.body);
 	//Asignamos el proyecto al usuario que lo crea
-	project.created.req.user._id;
+	project.creator = req.authUser._id;
     if(validateProject(project)){
         project.save(function(err) {
             if (err) {

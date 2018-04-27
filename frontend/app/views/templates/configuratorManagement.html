@@ -75,10 +75,10 @@
 																		{{question.description}}
 																	</td>
 																	<td class="col-sm-6 col-md-5 col-lg-4 text-right">
-																		<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" title="" data-original-title="Modificar">
+																		<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" ng-click="editQuestion(question._id);" title="" data-original-title="Modificar">
 																			<span class="fa fa-pencil fa-lg"></span>
 																		</a>
-																		<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
+																		<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" ng-click="deleteQuestion(question._id);" data-original-title="Eliminar">
 																			<span class="fa fa-trash fa-lg"></span>
 																		</a>
 																		<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="marcarPregunta(question._id);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
@@ -99,10 +99,10 @@
 																	&nbsp;&nbsp;{{answer.description}}
 																</label>
 																<div class="text-right">
-																	<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" title="" data-original-title="Modificar">
+																	<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="editAnswer(answer._id);"  data-placement="top" title="" data-original-title="Modificar">
 																		<span class="fa fa-pencil fa-lg"></span>
 																	</a>
-																	<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
+																	<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(answer._id);" data-id="2885924" data-original-title="Eliminar">
 																		<span class="fa fa-trash fa-lg"></span>
 																	</a>
 																	<a href class="text-success infoBulle a_dupli" data-id="2885924" data-placement="top" title="Nueva pregunta asociada" data-original-title="Nueva pregunta asociada">

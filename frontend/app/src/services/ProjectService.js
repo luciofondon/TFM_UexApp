@@ -57,7 +57,7 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 	}
 
 	function getTopics(projectId){
-		return $http.get('/api/topics/project/' + projectId);
+		return $http.get('/api/project/topics/' + projectId);
 	}
 
 	function addQuestion(topicId, question){

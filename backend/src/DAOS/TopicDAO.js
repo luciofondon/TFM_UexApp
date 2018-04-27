@@ -40,7 +40,6 @@ function readAllByProject(req, res){
 				topicsFormat.push(topicFormat);
 			});
 			res.json(topicsFormat);
-
 		});
     });
 }

@@ -82,34 +82,19 @@ function signupUser(req, res){
 
 function readAllUser(req, res){
     let usersFormat = [];
-    User.find({}).sort({name:1}).exec(function(err, users) {
+    User.find({}).sort({name:1}).populate("rol").exec(function(err, users){
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the users' });
         }
-        Rol.find({}).exec(function(err, roles) {
-                    users.forEach(function(user){
-                        let userFormat = JSON.parse(JSON.stringify(user));
-                        let created = new Date(user.created);
-                        userFormat.createdFormat = ( "0" + created.getHours()).slice(-2)+":"+ ( "0" + created.getMinutes()).slice(-2)+":"+ ( "0" + created.getSeconds()).slice(-2) + " " + ( "0" + created.getDate()).slice(-2)+"/"+ ( "0" + (created.getMonth()+1)).slice(-2)+"/"+created.getFullYear();
-
-                        //Asignar nombre del rol
-                        for(let i = 0; i <  roles.length ; i++){
-                            if(user.rol != undefined)
-                                if(roles[i]._id.toString() == user.rol.toString()){
-                                    userFormat.rolName = roles[i].name;
-                                    break;
-                                }
-                        }
-
-
-                        usersFormat.push(userFormat);
-                    });
-                    res.json(usersFormat);
-                });
-            });
-
+		users.forEach(function(user){
+			let userFormat = JSON.parse(JSON.stringify(user));
+			let created = new Date(user.created);
+			userFormat.createdFormat = ( "0" + created.getHours()).slice(-2)+":"+ ( "0" + created.getMinutes()).slice(-2)+":"+ ( "0" + created.getSeconds()).slice(-2) + " " + ( "0" + created.getDate()).slice(-2)+"/"+ ( "0" + (created.getMonth()+1)).slice(-2)+"/"+created.getFullYear();
+			usersFormat.push(userFormat);
+		});
+		res.json(usersFormat);
+	});
 }
-
 
 function createUser(req, res){
     let user = new User(req.body);

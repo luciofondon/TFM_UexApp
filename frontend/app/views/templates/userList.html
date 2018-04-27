@@ -29,8 +29,6 @@
       </div>
       <div class="box-body" ng-init="vm.loadUserList(); vm.init();">
 
-
-
               <div class="alert alert-info alert-success alert-dismissible" ng-repeat="alert in vm.alertas">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>Info!</strong> {{alert}}.
@@ -206,7 +204,7 @@
                   </form>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-success" ng-click="vm.reset();" >Actualizar contraseña</button>
+                  <button type="button" class="btn btn-success" ng-click="vm.resetPassword();" >Actualizar contraseña</button>
               </div>
           </div>
       </div>

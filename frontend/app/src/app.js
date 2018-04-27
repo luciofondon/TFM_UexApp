@@ -4,6 +4,7 @@ var app = angular.module('tfm.uex',
 		'satellizer',
 		'bsTable',
 		'angular-loading-bar',
+		'cp.ngConfirm'
 	])
 	.constant('cfg', {
 		backendUrl: '/api',
