@@ -22,11 +22,12 @@ module.exports = function(grunt){
         },
 		// Mimificar css
 		cssmin: {
-		  target: {
-			files: {
-			  'public/dist/css/app.min.css': ['app/styles/css/app.css']
-			}
-		  }
+			target: {
+				files: {
+			  		'public/dist/css/app.min.css': ['app/styles/css/app.css'],
+					'public/dist/css/bootstrap-nav-wizard.min.css': ['app/styles/css/bootstrap-nav-wizard.css']
+				}
+		  	}
 		},
 		//Concatenar ficheros css
         concat_css: {
@@ -131,6 +132,19 @@ module.exports = function(grunt){
 				]
 			},
 		},
+		// Renombrar ficheros
+		rename: {
+			dev: {
+				files: [
+					{src: 'public/dist/indexDEV.html', dest: 'public/dist/index.html'},
+				]
+		  	},
+			pro: {
+				files: [
+					{src: 'public/dist/indexPRO.html', dest: 'public/dist/index.html'},
+				]
+		  	},
+		},
 		// Ejecutar las tareas anteriores cuando se modifiquen algun fichero
         watch: {
             css: {
@@ -162,14 +176,15 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-concat-css');
-	grunt.loadNpmTasks('grunt-contrib-copy')
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-rename');
     grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
-	grunt.registerTask("default", 	["less:all", "copy:pro", "concat:pro"]); // "$grunt"
-	grunt.registerTask("pro", 		["less:all", "copy:pro", "concat:pro"]); // "$grunt pro"
-    grunt.registerTask("dev", 		["less:all", "copy:dev", "watch"]); // "$grunt dev"
-    grunt.registerTask("lint", ["jshint", "csslint"]); // "$grunt lint"
-    grunt.registerTask("doc", ["jsdoc"]); // "$grunt doc"
+	grunt.registerTask("default", 	["less:all", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt"
+	grunt.registerTask("pro", 		["less:all", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt pro"
+    grunt.registerTask("dev", 		["less:all", "copy:dev", "rename:dev", "watch"]); // "$grunt dev"
+    grunt.registerTask("lint", 		["jshint", "csslint"]); // "$grunt lint"
+    grunt.registerTask("doc", 		["jsdoc"]); // "$grunt doc"
 };
