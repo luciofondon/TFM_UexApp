@@ -12,6 +12,7 @@ DOMINGO 14*- Eliminar close/minimizar vistas y cambiar color (20 min)
 - DAO -> Model
 - Grunt indexPro
 DOMINGO 16*- Grunt copy index (10 min)
+	https://www.npmjs.com/package/grunt-contrib-rename
 DOMINGO 15*- Eliminar codigo HTML (ng-init) (30 min)
 VIERNES 13*- Confirm (20 min)
 	https://craftpip.github.io/angular-confirm/
