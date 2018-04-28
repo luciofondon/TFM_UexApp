@@ -33,10 +33,10 @@ MARTES *- Perfil usuario (30 MIN)
 			VIERNES 2*- Popup usuario (botones) (10 min)
 SABADO 9*- Validaciones (20 min)
 			VIERNES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (30 min)
-SABADO 7*- Captcha (20 min)
-	https://www.google.com/recaptcha/admin#site/341142692?setup
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<div class="g-recaptcha" data-sitekey="6LekbFUUAAAAAC5zI4QjyPtd49-ThcSq9GNh4K-Z"></div>
+			SABADO 7*- Captcha (20 min)
+				https://www.google.com/recaptcha/admin#site/341142692?setup
+				<script src='https://www.google.com/recaptcha/api.js'></script>
+				<div class="g-recaptcha" data-sitekey="6LekbFUUAAAAAC5zI4QjyPtd49-ThcSq9GNh4K-Z"></div>
 
 MODULO CONFIGURADOR
 - Selenium

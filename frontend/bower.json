@@ -23,6 +23,7 @@
     "admin-lte": "^2.4.3",
     "angular-loading-bar": "^0.9.0",
     "angular": "^1.6.10",
-    "angular-confirm": "angular1-confirm#^1.1.0"
+    "angular-confirm": "angular1-confirm#^1.1.0",
+    "angular-recaptcha": "^4.1.3"
   }
 }

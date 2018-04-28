@@ -1,8 +1,9 @@
 angular.module('tfm.uex').controller('SignupController',
-	['$auth', '$state', 'UserService',
-		function($auth, $state, UserService){
+	['$auth', '$state', 'UserService', 'SystemConstant',
+		function($auth, $state, UserService, SystemConstant){
 
 	var signup = this;
+	signup.key = SystemConstant.KEY_PUBLIC_RECAPTCHA;
 
 	signup.signup = function(){
 		$auth.signup(signup.user).then(function(){

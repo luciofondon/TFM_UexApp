@@ -4,7 +4,8 @@ var app = angular.module('tfm.uex',
 		'satellizer',
 		'bsTable',
 		'angular-loading-bar',
-		'cp.ngConfirm'
+		'cp.ngConfirm',
+		'vcRecaptcha'
 	])
 	.constant('cfg', {
 		backendUrl: '/api',
