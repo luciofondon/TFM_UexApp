@@ -1,34 +1,34 @@
 'use strict';
- 
-describe('Modulo app.cars', function () {
- 
+
+describe('Modulo tfm.uex', function () {
+
     beforeEach(function () {
-        module('app.cars');
+        module('tfm.uex');
     });
- 
-    describe('Cars controller', function () {
- 
-        var $scope, CarsService;
- 
+
+    describe('User controller', function () {
+
+        var $scope, UserService;
+
         beforeEach(function () {
             module(function ($provide) {
             	// inyectamos del mock
-                $provide.value('MockedCarsService', {'getAll': function () {
+                $provide.value('MockedUserService', {'getUsers': function () {
                         return [];
                     }});
             });
         });
- 
+
         beforeEach(inject(function ($rootScope) {
             $scope = $rootScope.$new();
         }));
- 
-        it('debe exponer la lista de coches', inject(function ($controller, MockedCarsService) {
-            $controller('CarsController', {'$scope': $scope, 'CarsService': MockedCarsService});
+
+        it('debe exponer la lista de usuarios', inject(function ($controller, MockedUserService) {
+            $controller('MockedUserService', {'$scope': $scope, 'UserService': MockedUserService});
             expect($controller).toBeDefined();
-            expect(CarsService);
-            expect($scope.cars.length).toBe(MockedCarsService.getAll().length);
+            expect(UserService);
+            expect($scope.users.length).toBe(MockedUserService.getAll().length);
         }));
     });
- 
+
 });

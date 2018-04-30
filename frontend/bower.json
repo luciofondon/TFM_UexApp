@@ -25,6 +25,7 @@
     "angular": "^1.6.10",
     "angular-confirm": "angular1-confirm#^1.1.0",
     "angular-recaptcha": "^4.1.3",
-    "amcharts-angular": "^1.1.0"
+    "amcharts-angular": "^1.1.0",
+    "ng-file-upload": "^12.2.13"
   }
 }

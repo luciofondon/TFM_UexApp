@@ -5,7 +5,8 @@ var app = angular.module('tfm.uex',
 		'bsTable',
 		'angular-loading-bar',
 		'cp.ngConfirm',
-		'vcRecaptcha'
+		'vcRecaptcha',
+		'ngFileUpload'
 	])
 	.constant('cfg', {
 		backendUrl: '/api',

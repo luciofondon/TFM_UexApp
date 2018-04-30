@@ -154,7 +154,9 @@ Mocha permite crear pruebas unitarias para conteplar que tras nuevos desarrollo 
 ```
 sudo npm install -g mocha
 ```
-
+```
+sudo npm install -g karma-cli
+```
 
 ## 3. VERSIONES NECESARIAS
 
@@ -188,6 +190,10 @@ Para poder comprobar que los diferentes test unitarios de la API funcionan corre
 
 ```
 mocha --recursive test
+```
+
+```
+karma test
 ```
 
 ## 6. CONFIGURAR NGINX

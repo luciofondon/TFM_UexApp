@@ -13,10 +13,16 @@ module.exports = function(grunt){
         },
 		// Pasar de less a css
         less: {
-            all  : {
+            dev: {
                 files: {
 				  'app/styles/css/app.css': 'app/styles/less/app.less',
 				  'app/styles/css/bootstrap-nav-wizard.css': 'app/styles/less/bootstrap-nav-wizard.less',
+                }
+			},
+			pro: {
+                files: {
+				  'public/dist/css/app.css': 'app/styles/less/app.less',
+				  'public/dist/css/bootstrap-nav-wizard.css': 'app/styles/less/bootstrap-nav-wizard.less',
                 }
             },
         },
@@ -41,7 +47,7 @@ module.exports = function(grunt){
                     'bower_components/bootstrap-table/dist/bootstrap-table.min.css',
 					'bower_components/angular-loading-bar/build/loading-bar.min.css',
 					'bower_components/angular-confirm/dist/angular-confirm.min.css'
-                ],
+				]
             },
         },
 		//*******************************************************************CONFIGURACIONES JS
@@ -72,28 +78,22 @@ module.exports = function(grunt){
                 src : [
                     'bower_components/jquery/dist/jquery.min.js',
 					'bower_components/angular/angular.min.js',
-                    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+					'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+					'bower_components/angular-confirm/dist/angular-confirm.min.js',
+					'bower_components/angular-recaptcha/release/angular-recaptcha.min.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'bower_components/admin-lte/dist/js/adminlte.min.js',
-                    'bower_components/bootstrap-table/dist/bootstrap-table.min.js', // Dependencias de Bootstrap table
+					'bower_components/admin-lte/dist/js/adminlte.min.js',
+					'bower_components/satellizer/dist/satellizer.min.js',
+                    'bower_components/angular-loading-bar/build/loading-bar.min.js',
+					'bower_components/ng-file-upload/ng-file-upload.min.js',
+					'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
+                    'bower_components/bootstrap-table/dist/bootstrap-table.min.js',
                     'bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js',
                     'bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js',
                     'bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js',
-                    'bower_components/bootstrap-table/dist/extensions/select2-filter/bootstrap-table-select2-filter.min.js',
-                    'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js',
-                    'bower_components/moment/min/moment.min.js',
-                    'bower_components/bootstrap-daterangepicker/daterangepicker.js',
-                    'bower_components/satellizer/dist/satellizer.min.js',
-                    'bower_components/amcharts/dist/amcharts/amcharts.js', // Dependencias de AmChart
-                    'bower_components/amcharts/dist/amcharts/pie.js',
-                    'bower_components/amcharts/dist/amcharts/serial.js',
-                    'bower_components/amcharts/dist/amcharts/lang/es.js',
-                    'bower_components/amcharts/dist/amcharts/themes/light.js',
-                    'bower_components/amcharts/dist/amcharts/plugins/responsive/responsive.min.js',
-                    'bower_components/angular-loading-bar/build/loading-bar.min.js',
-					'bower_components/angular-recaptcha/release/angular-recaptcha.min.js',
-					'bower_components/angular-confirm/dist/angular-confirm.min.js'
-                ],
+                    'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js'
+
+				],
                 dest: 'public/dist/js/assets.min.js'
             }
         },
@@ -185,9 +185,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
-	grunt.registerTask("default", 	["less:all", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt"
-	grunt.registerTask("pro", 		["less:all", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt pro"
-    grunt.registerTask("dev", 		["less:all", "copy:dev", "rename:dev", "watch"]); // "$grunt dev"
+	grunt.registerTask("default", 	["less:pro", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt"
+	grunt.registerTask("pro", 		["less:pro", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt pro"
+    grunt.registerTask("dev", 		["less:dev", "copy:dev", "rename:dev", "watch"]); // "$grunt dev"
     grunt.registerTask("lint", 		["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", 		["jsdoc"]); // "$grunt doc"
 };

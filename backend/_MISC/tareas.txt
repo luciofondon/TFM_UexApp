@@ -14,8 +14,7 @@ CONFIGURACION (90%)
 - Eliminar codigo HTML (ng-init)
 - Mensaje error validacion (1 hora)
 MARTES 14*- Exportar tabla (20 MIN)
-MARTES 13*- Grunt indexPro (20 MIN)
-MARTES 9*- Confirm (20 min) https://craftpip.github.io/angular-confirm/
+>>MARTES 13*- Grunt indexPro (20 MIN)
 
 MODULO USUARIO (95%)
 - Selenium
@@ -25,9 +24,10 @@ MODULO USUARIO (95%)
 VIERNRES*- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
+	https://github.com/danialfarid/ng-file-upload
 VIERNES*- Perfil usuario (30 MIN)
 MARTES 10*- Jasmine
-MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (20 min)
+>>MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (20 min)
 
 MODULO CONFIGURADOR (90%)
 - Selenium
@@ -37,7 +37,7 @@ MODULO CONFIGURADOR (90%)
 - controllerAs
 *- Preguntas asociadas(CRUD) 1 hora
 *- Editar /Eliminar topic (30 min)
-MARTES 5*- Validaciones (1 hora)
+>>MARTES 5*- Validaciones (1 hora)
 
 MODULO GENERADOR (70%)
 - Selenium
@@ -56,8 +56,8 @@ MODULO TEMPLATE (60%)
 - Importar CSV
 - Exprotar CSV
 DOMINGO *- Ver plantilla (1 hora)
-MARTES 12*- Importar al crear proyecto (30 min)
-MARTES 11*- Guardar (1 hora)
+>>MARTES 12*- Importar al crear proyecto (30 min)
+>>MARTES 11*- Guardar (1 hora)
 
 MODULO MEDIATORY (50%)
 - Selenium

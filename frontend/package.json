@@ -5,6 +5,7 @@
 	"author": "@luciofondon",
 	"dependencies": {},
 	"devDependencies": {
+		"angular-mocks": "^1.6.10",
 		"grunt": "^1.0.1",
 		"grunt-concat-css": "^0.3.2",
 		"grunt-contrib-concat": "^1.0.1",
@@ -17,6 +18,14 @@
 		"grunt-contrib-rename": "^0.2.0",
 		"grunt-contrib-uglify": "^3.3.0",
 		"grunt-contrib-watch": "^1.0.0",
-		"grunt-jsdoc": "^2.2.1"
+		"grunt-jsdoc": "^2.2.1",
+		"jasmine-core": "^3.1.0",
+		"karma": "^2.0.2",
+		"karma-chrome-launcher": "^2.2.0",
+		"karma-firefox-launcher": "^1.1.0",
+		"karma-jasmine": "^1.1.1"
+	},
+	"scripts": {
+		"test": "karma start karma.conf.js"
 	}
 }
