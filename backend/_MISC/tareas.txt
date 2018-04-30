@@ -78,7 +78,8 @@ DOMINGO- Integrar app.config.js (30 min)
 DOMINGO*- Get apps (30 min)
 
 DASHBOARD (40%)
-- Grafico
+DIARIO - Grafico
+DIARIO - Plantillas generadas
 DIARIO - Donut estilo (20 min)
 DIARIO - More info (10 min)
 DIARIO - Amchart https://github.com/GrantMStevens/amCharts-Angular (10 min)
