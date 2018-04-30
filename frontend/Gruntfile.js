@@ -38,8 +38,9 @@ module.exports = function(grunt){
                     'bower_components/Ionicons/css/ionicons.min.css',
                     'bower_components/admin-lte/dist/css/AdminLTE.min.css',
                     'bower_components/admin-lte/dist/css/skins/skin-blue.css',
-                    'bower_components/angular-loading-bar/build/loading-bar.min.css',
-                    'bower_components/bootstrap-table/dist/bootstrap-table.min.css'
+                    'bower_components/bootstrap-table/dist/bootstrap-table.min.css',
+					'bower_components/angular-loading-bar/build/loading-bar.min.css',
+					'bower_components/angular-confirm/dist/angular-confirm.min.css'
                 ],
             },
         },
@@ -89,7 +90,9 @@ module.exports = function(grunt){
                     'bower_components/amcharts/dist/amcharts/lang/es.js',
                     'bower_components/amcharts/dist/amcharts/themes/light.js',
                     'bower_components/amcharts/dist/amcharts/plugins/responsive/responsive.min.js',
-                    'bower_components/angular-loading-bar/build/loading-bar.min.js'
+                    'bower_components/angular-loading-bar/build/loading-bar.min.js',
+					'bower_components/angular-recaptcha/release/angular-recaptcha.min.js',
+					'bower_components/angular-confirm/dist/angular-confirm.min.js'
                 ],
                 dest: 'public/dist/js/assets.min.js'
             }

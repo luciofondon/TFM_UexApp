@@ -14,18 +14,9 @@
 <section class="content" >
 
 	<!-- Default box -->
-	<div class="box">
+	<div class="box box-info">
 		<div class="box-header with-border">
-		<h3 class="box-title">Configuración de proyectos</h3>
-
-		<div class="box-tools pull-right">
-			<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"title="Collapse">
-				<i class="fa fa-minus"></i>
-			</button>
-			<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-				<i class="fa fa-times"></i>
-			</button>
-		</div>
+			<h3 class="box-title">Configuración de proyectos</h3>
 		</div>
 		<div class="box-body" ng-init="vm.loadProjectList();">
 
@@ -85,49 +76,45 @@
                                   <strong>Error!</strong> {{error}}.
                               </div>
                           </div>
-                          <div class="form-group row">
+                       	<div class="form-group row">
                               <label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
                               <div class="col-md-7">
                                   <input type="text" id="InputText" ng-model="vm.project.name" class="form-control"/>
                               </div>
-                          </div>
+                       	</div>
 
-                          <div class="form-group row">
+                      	<div class="form-group row">
                             <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
                             <div class="col-md-7">
                                 <input type="text" id="InputText" ng-model="vm.project.key" class="form-control"/>
                             </div>
-                          </div>
+                      	</div>
 
-                          <div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
-                            <div class="col-md-7">
-                                <textarea style="resize:none" id="InputText" ng-model="vm.project.description" class="form-control"/>
-                            </div>
-                          </div>
+                      	<div class="form-group row">
+                        	<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
+                          	<div class="col-md-7">
+                      			<textarea style="resize:none" id="InputText" ng-model="vm.project.description" class="form-control"/>
+                          	</div>
+                      	</div>
 
-                          <div class="form-group row">
-                                <label for="InputText" class="col-md-4 control-label">Elejir plantilla (*)</label>
-                                <div class="col-md-7">
-
-
-									<select required id="InputText" ng-change="vm.refreshSublocation();"  ng-model="vm.meter.location" class="form-control" data-ng-options="template._id as template.name for template in vm.templates">
-											<option value="">-- No elegir plantilla previa --</option>
-										</select>
-
-                                </div>
-                              </div>
-
+                     	<div class="form-group row">
+							<label for="InputText" class="col-md-4 control-label">Elejir plantilla </label>
+							<div class="col-md-7">
+								<select required id="InputText" ng-change="vm.refreshSublocation();"  ng-model="vm.meter.location" class="form-control" data-ng-options="template._id as template.name for template in vm.templates">
+									<option value="">-- No indicar plantilla previa --</option>
+								</select>
+							</div>
+                   		</div>
+					<!--
                               <div class="form-group row">
                                     <label for="InputText" class="col-md-4 control-label">Importar plantilla (*)</label>
                                     <div class="col-md-7">
 										<input type="file"/>
 
 									</div>
-                                  </div>
+                                </div>
+					-->
 
-
-                      </form>
 
                   </div>
                   <div class="modal-footer">

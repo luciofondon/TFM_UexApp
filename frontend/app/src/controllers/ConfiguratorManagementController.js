@@ -1,4 +1,5 @@
 angular.module('tfm.uex').controller('ConfiguratorManagementController',
+<<<<<<< HEAD
     ['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService',
         function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService){
 
@@ -11,6 +12,14 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.project = projectData.data;
     $scope.topicId = ""; //Pestana de topic seleccionada
 	$scope.questionId = ""; //Pregunta seleccionada para crear respuestas
+=======
+    ['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', '$ngConfirm',
+        function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, $ngConfirm){
+	var conf = this;
+    $scope.topic = {};
+    $scope.topicId = "";
+    $scope.questionId;
+>>>>>>> bf9c0368c2c7a7abc00c2aaf362b4d8461f6cfe8
 
     $scope.topics = [];
     $scope.questions = [];

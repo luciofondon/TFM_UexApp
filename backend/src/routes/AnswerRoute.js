@@ -5,12 +5,13 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
 	app.route('/answers/:questionId')
-		.post(systemMiddleware.rolAdmin, answerController.createAnswer)
+		.post(systemMiddleware.rolOperador, answerController.createAnswer)
+
 
 	app.route('/answer/:questionId/:answerId')
-		.get(systemMiddleware.rolAdmin, answerController.readAnswer)
-		.put(systemMiddleware.rolAdmin, answerController.updateAnswer)
-		.delete(systemMiddleware.rolAdmin, answerController.deleteAnswer);
+		.get(systemMiddleware.rolOperador, answerController.readAnswer)
+		.put(systemMiddleware.rolOperador, answerController.updateAnswer)
+		.delete(systemMiddleware.rolOperador, answerController.deleteAnswer);
 
 	app.param('questionId', answerController.loadQuestion);
 

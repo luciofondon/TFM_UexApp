@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state',
-        function($rootScope, ProjectService, BootstrapTableService, $state){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService){
 	var vm = this;
 
     vm.bsTableProject = {};
@@ -9,11 +9,15 @@ angular.module('tfm.uex').controller('ProjectListController',
     vm.project = {};
     vm.mode = 1;
 	vm.templates = [];
+	vm.projects = [];
 
 	vm.init = function(){
-        ProjectService.getProjects().then(function(response) {
-            vm.templates = response.data;
+        ProjectService.getProjects().then(function(response){
+            vm.projects = response.data;
         });
+		TemplateService.getTemplates().then(function(response){
+			vm.templates = response.data;
+		});
 	};
 
     vm.createProject = function (){

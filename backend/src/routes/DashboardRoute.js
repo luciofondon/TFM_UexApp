@@ -8,6 +8,6 @@ module.exports = function(app) {
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     app.route('/dashboard')
-        .get(systemMiddleware.rolAdmin, dashboardController.dataDashboard);
+        .get(systemMiddleware.rolConsultor, dashboardController.dataDashboard);
 
 }

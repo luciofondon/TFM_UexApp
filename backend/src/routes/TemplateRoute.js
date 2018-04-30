@@ -10,10 +10,10 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
 	app.route('/templates/:projectId')
-		.post(systemMiddleware.rolAdmin, templateController.create);
+		.post(systemMiddleware.rolOperador, templateController.create);
 
 	app.route('/templates')
-		.get(systemMiddleware.rolAdmin, templateController.readAll);
+		.get(systemMiddleware.rolConsultor, templateController.readAll);
 
 
 	app.param('projectId', projectController.loadProject);

@@ -24,7 +24,7 @@ module.exports = function(app){
     
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
-      .put(systemMiddleware.rolAdmin, userController.resetPassword);
+      .put(systemMiddleware.rolConsultor, userController.resetPassword);
   
    /* app.route('/auth/login')
       .post(userController.login);

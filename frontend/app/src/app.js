@@ -87,7 +87,7 @@ var app = angular.module('tfm.uex',
 			.state('configuratorManagement', {
 				url: "/configuratorManagement/:projectId",
 				templateUrl : 'app/views/templates/configuratorManagement.html',
-				controller 	: 'ConfiguratorManagementController',
+				controller 	: 'ConfiguratorManagementController as conf',
 				resolve:{
 					loginRequired: loginRequired,
 					projectData: projectData

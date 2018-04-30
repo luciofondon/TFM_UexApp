@@ -10,16 +10,14 @@ module.exports = function(app){
 
 	//CRUD pregunta
 	app.route('/question/:questionId')
-		.get(systemMiddleware.rolAdmin, questionController.readQuestion)
-		.put(systemMiddleware.rolAdmin, questionController.updateQuestion)
-        .delete(systemMiddleware.rolAdmin, questionController.deleteQuestion)
-
-	app.param('questionId', questionController.loadQuestion);
-
+		.get(systemMiddleware.rolOperador, questionController.readQuestion)
+		.put(systemMiddleware.rolOperador, questionController.updateQuestion)
+        .delete(systemMiddleware.rolOperador, questionController.deleteQuestion)
 
     app.route('/questions/topic/:topicId')
-        .get(systemMiddleware.rolAdmin, questionController.readAllByTopic)
-		.post(systemMiddleware.rolAdmin, questionController.createByTopic);
+        .get(systemMiddleware.rolOperador, questionController.readAllByTopic)
+		.post(systemMiddleware.rolOperador, questionController.createByTopic);
 
+	app.param('questionId', questionController.loadQuestion);
 
 }

@@ -10,17 +10,17 @@ module.exports = function(app){
 	
 	//CRUD proyecto
 	app.route('/projects')
-		.get(systemMiddleware.rolAdmin, projectController.readAll)
-		.post(systemMiddleware.rolAdmin, projectController.create);
+		.get(systemMiddleware.rolConsultor, projectController.readAll)
+		.post(systemMiddleware.rolOperador, projectController.create);
 	  
 	//CRUD proyecto
 	app.route('/project/:projectId')
-		.get(systemMiddleware.rolAdmin, projectController.read)
-		.put(systemMiddleware.rolAdmin, projectController.update)
-		.delete(systemMiddleware.rolAdmin, projectController.delete);
+		.get(systemMiddleware.rolOperador, projectController.read)
+		.put(systemMiddleware.rolOperador, projectController.update)
+		.delete(systemMiddleware.rolOperador, projectController.delete);
 
 	app.route('/project/:app/:projectId')
-		.post(systemMiddleware.rolAdmin, projectController.exportData)
+		.post(systemMiddleware.rolOperador, projectController.exportData)
 
 	app.param('projectId', projectController.loadProject);
 }
