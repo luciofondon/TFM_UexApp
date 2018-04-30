@@ -9,10 +9,10 @@ CONFIGURACION (90%)
 - Menu lateral
 - Google analytic
 - DAO -> Model
-- Mensaje error validacion (1 hora)
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
+- Mensaje error validacion (1 hora)
 DIARIO- Eliminar close/minimizar vistas y cambiar color (20 min)
 MARTES 14*- Exportar tabla (20 MIN)
 MARTES 13*- Grunt indexPro (20 MIN)
@@ -21,8 +21,8 @@ MARTES 9*- Confirm (20 min) https://craftpip.github.io/angular-confirm/
 
 MODULO USUARIO (95%)
 - Selenium
-- JSDoc
-- Mocha
+- JSDoc (readme)
+*- Mocha 
 VIERNRES*- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
@@ -35,7 +35,7 @@ MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (
 	
 MODULO CONFIGURADOR (90%)
 - Selenium
-- JSDoc
+- JSDoc (readme)
 - Mocha
 - Jasmine
 - controllerAs
@@ -56,7 +56,7 @@ MARTES 7*- Vista comparador (1 hora)
 
 MODULO TEMPLATE (60%)
 - Selenium
-- JSDoc
+- JSDoc (readme)
 - Mocha
 - Jasmine
 - Importar CSV
@@ -67,13 +67,15 @@ MARTES 11*- Guardar (1 hora)
 
 MODULO MEDIATORY (50%)
 - Selenium
-- JSDoc
+- JSDoc (readme)
 - Mocha
 - SOAP
 - Autenticacion 2 servicios
+- Exportar tareas
 - Desplegar redmine
 - Desplegar Jira
-- Get project (20 min)
+*- Get issues
+*- Get project (20 min)
 DOMINGO- Integrar app.config.js (30 min)
 DOMINGO*- Get apps (30 min)
 
