@@ -27,7 +27,6 @@ VIERNRES*- Subir foto (1 HORA)
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 VIERNES*- Perfil usuario (30 MIN)
 MARTES 10*- Jasmine
-MARTES 1*-Crear tercer rol (dar permisos a funciones dependiendo del rol ) 30 min
 MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (20 min)
 
 MODULO CONFIGURADOR (90%)

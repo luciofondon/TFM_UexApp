@@ -1,19 +1,18 @@
 
 angular.module('tfm.uex').controller('UserListController',
-    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm',
-        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm){
+    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm', '$scope',
+        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm, $scope){
 	var vm = this;
-
+	vm.mode = 1;
+	vm.user = {};
 	vm.alerts = [];
     vm.errores = [];
-    vm.user = {};
     vm.resetPassword = {};
     vm.projects = [];
-    vm.municipios = [];
     vm.bsTableUsers = {};
 
 	vm.reset = function(){
-		vm.mode=1;
+		vm.mode = 1;
 		vm.user = {};
 		vm.errores = [];
 		vm.alertas = [];
@@ -65,7 +64,7 @@ angular.module('tfm.uex').controller('UserListController',
 				vm.errores = [];
 				vm.user = row;
 				vm.mode = 2;
-				vm.$apply();
+				$scope.$apply();
 
                 },'click .remove': function (e, value, row, index) {
 
@@ -109,7 +108,7 @@ angular.module('tfm.uex').controller('UserListController',
                 },'click .password': function (e, value, row, index) {
                     vm.user = row;
                     vm.resetPassword = {};
-                    vm.$apply();
+                    $scope.$apply();
                 }
             };
         });
