@@ -1,30 +1,33 @@
 angular.module('tfm.uex').factory('AnswerService', ['$http', function($http){
     return {
-		addQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		readAnswer: function(questionId, answerId){
+			return readAnswer(questionId, answerId);
 		},
-		editQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		createAnswer: function(questionId, answer){
+			return createAnswer(questionId, answer);
 		},
-		deleteQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		updateAnswer: function(questionId, answer){
+			return updateAnswer(questionId, answer);
+		},
+		deleteAnswer: function(questionId, answerId){
+			return deleteAnswer(questionId, answerId);
 		}
 	};
 
-	function addAnswer(questionId, answer){
-		return $http.get('/api/question/' + questionId).then(function(response){
-			var question = response.data;
-			question.answers.push(answer);
-			$http.put('/api/question/' + questionId, question);
-		});
+	function createAnswer(questionId, answer){
+		return $http.post('/api/answers/' + questionId, answer);
 	}
 
-	function editQuestion(topicId){
-		return $http.get('/api/topics/project/' + topicId);
+	function updateAnswer(questionId, answer){
+		return $http.put('/api/answer/' + questionId +  '/' + answer._id, answer);
 	}
 
-	function deleteQuestion(topicId){
-		return $http.get('/api/topics/project/' + topicId);
+	function deleteAnswer(questionId, answerId){
+		return $http.delete('/api/answer/' + questionId +  '/' + answerId);
+	}
+
+	function readAnswer(questionId, answerId){
+		return $http.get('/api/answer/' + questionId +  '/' + answerId);
 	}
 
 }]);

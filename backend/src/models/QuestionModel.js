@@ -22,10 +22,6 @@ var questionSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	},
-	isTemplate: {
-		type: Boolean,
-		default: false
 	}
 });
 

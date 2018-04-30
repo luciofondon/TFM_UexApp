@@ -4,15 +4,14 @@ module.exports = function(app){
 	var answerController = require('../controllers/AnswerController')(),
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
-	app.route('/answer/:questionId')
-		.get(systemMiddleware.rolAdmin, answerController.read)
-		.put(systemMiddleware.rolAdmin, answerController.update)
-        .delete(systemMiddleware.rolAdmin, answerController.delete);
+	app.route('/answers/:questionId')
+		.post(systemMiddleware.rolAdmin, answerController.createAnswer)
 
-   /* app.route('/answers/question/:questionId')
-        .get(systemMiddleware.rolAdmin, answerController.readAllByTopic)
-		.post(systemMiddleware.rolAdmin, answerController.createByTopic);  */
+	app.route('/answer/:questionId/:answerId')
+		.get(systemMiddleware.rolAdmin, answerController.readAnswer)
+		.put(systemMiddleware.rolAdmin, answerController.updateAnswer)
+		.delete(systemMiddleware.rolAdmin, answerController.deleteAnswer);
 
-   // app.param('questionId', answerController.loadQuestion);
+	app.param('questionId', answerController.loadQuestion);
 
 }

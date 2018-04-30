@@ -1,35 +1,30 @@
-var projectMiddleware = require('../middlewares/ProjectMiddleware');
-    projectDAO = require('../DAOS/ProjectDAO');
+var questionMiddleware = require('../middlewares/QuestionMiddleware');
+    answerDAO = require('../DAOS/AnswerDAO');
 
 
 module.exports = function() {
 
     return {
 
-        loadAnswer: function(req, res, next, answerId) {
-            //projectMiddleware.loadProject(req, res, next, projectId);
+        loadQuestion: function(req, res, next, questionId) {
+            questionMiddleware.loadQuestion(req, res, next, questionId);
         },
 
-        read: function(req, res) {
-            res.json(req.anwer);
+        readAnswer: function(req, res) {
+			answerDAO.readAnswer(req, res);
         },
 
-        readAll: function(req, res) {
-            //projectDAO.readAllProject(req,res);
+        createAnswer: function(req, res) {
+        	answerDAO.createAnswer(req, res);
         },
 
-        create: function(req, res) {
-           // projectDAO.createProject(req,res);
+        updateAnswer: function(req, res) {
+          	answerDAO.updateAnswer(req, res);
         },
 
-        update: function(req, res) {
-          //  projectDAO.updateProject(req,res);
-        },
-
-        delete: function(req, res) {
-          //  return res.status(500).json({ error: "API no disponible"});
-        }
-
+        deleteAnswer: function(req, res) {
+			answerDAO.deleteAnswer(req, res);
+		}
 
     }
 }

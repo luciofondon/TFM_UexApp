@@ -8,8 +8,8 @@ module.exports = function() {
             topicDAO.readAllByProject(req,res);
         },
 
-        createByProject: function(req, res) {
-            topicDAO.createByProject(req,res);
+        createTopicByProject: function(req, res) {
+            topicDAO.createTopicByProject(req, res);
         }
 
     }

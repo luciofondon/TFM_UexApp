@@ -15,16 +15,16 @@ module.exports = function() {
             questionMiddleware.loadQuestion(req, res, next, projectId);
         },
 
-        read: function(req, res) {
+        readQuestion: function(req, res) {
             res.json(req.question);
         },
 
-        update: function(req, res) {
-            questionDAO.update(req,res);
+        updateQuestion: function(req, res) {
+            questionDAO.updateQuestion(req, res);
         },
 
-        delete: function(req, res) {
-            return res.status(500).json({ error: "API no disponible"});
+        deleteQuestion: function(req, res) {
+            questionDAO.deleteQuestion(req, res);
         }
     }
 }

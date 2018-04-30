@@ -1,26 +1,33 @@
 angular.module('tfm.uex').factory('QuestionService', ['$http', function($http){
     return {
-		addQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		createQuestion: function(topicId, question){
+			return createQuestion(topicId, question);
 		},
-		editQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		updateQuestion: function(question){
+			return updateQuestion(question);
 		},
-		deleteQuestion: function(questionId, answer){
-			return addAnswer(questionId, answer);
+		deleteQuestion: function(questionId){
+			return deleteQuestion(questionId);
+		},
+		readQuestion: function(questionId){
+			return readQuestion(questionId);
 		}
 	};
 
-	function addQuestion(topicId, question){
+	function createQuestion(topicId, question){
 		return $http.post('/api/questions/topic/' + topicId, question);
 	}
 
-	function editQuestion(topicId, question){
-		return $http.post('/api/questions/topic/' + topicId, question);
+	function updateQuestion(question){
+		return $http.put('/api/question/' + question._id, question);
 	}
 
-	function deleteQuestion(topicId, question){
-		return $http.post('/api/questions/topic/' + topicId, question);
+	function deleteQuestion(questionId){
+		return $http.delete('/api/question/' + questionId);
+	}
+
+	function readQuestion(questionId){
+		return $http.get('/api/question/' + questionId);
 	}
 
 }]);

@@ -17,8 +17,8 @@ exports.readAllByProject = function(req, res) {
     readAllByProject(req, res);
 }
 
-exports.createByProject = function(req, res) {
-    createByProject(req, res);
+exports.createTopicByProject = function(req, res) {
+    createTopicByProject(req, res);
 }
 
 function readAllByProject(req, res){
@@ -44,7 +44,7 @@ function readAllByProject(req, res){
     });
 }
 
-function createByProject(req, res){
+function createTopicByProject(req, res){
     let topic = new Topic(req.body);
     topic.project = req.params.projectId; 
     if(validateTopic(topic)){

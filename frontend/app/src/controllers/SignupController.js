@@ -4,6 +4,7 @@ angular.module('tfm.uex').controller('SignupController',
 
 	var signup = this;
 	signup.key = SystemConstant.KEY_PUBLIC_RECAPTCHA;
+	signup.captcha = "";
 
 	signup.signup = function(){
 		$auth.signup(signup.user).then(function(){

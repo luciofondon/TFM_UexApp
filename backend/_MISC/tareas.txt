@@ -10,15 +10,16 @@ DOMINGO 14*- Eliminar close/minimizar vistas y cambiar color (20 min)
 - Google analytic
 - Exportar tabla
 - DAO -> Model
-- Grunt indexPro
-DOMINGO 16*- Grunt copy index (10 min)
-	https://www.npmjs.com/package/grunt-contrib-rename
-DOMINGO 15*- Eliminar codigo HTML (ng-init) (30 min)
-			VIERNES 13*- Confirm (20 min)
-				https://craftpip.github.io/angular-confirm/
 - Mensaje error validacion (1 hora)
 - Script DB
 - Directiva
+- Grunt indexPro
+DOMINGO 15*- Eliminar codigo HTML (ng-init) (30 min)
+
+			DOMINGO 16*- Grunt copy index (10 min)
+			VIERNES 13*- Confirm (20 min)
+				https://craftpip.github.io/angular-confirm/
+
 
 MODULO USUARIO
 - Selenium
@@ -29,26 +30,27 @@ MARTES *- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 MARTES *- Perfil usuario (30 MIN)
+SABADO 9*- Validaciones (20 min)
+
 			VIERNES 3*- Rol tabla usuarios (10 min)
 			VIERNES 2*- Popup usuario (botones) (10 min)
-SABADO 9*- Validaciones (20 min)
 			VIERNES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (30 min)
 			SABADO 7*- Captcha (20 min)
-				https://www.google.com/recaptcha/admin#site/341142692?setup
-				<script src='https://www.google.com/recaptcha/api.js'></script>
-				<div class="g-recaptcha" data-sitekey="6LekbFUUAAAAAC5zI4QjyPtd49-ThcSq9GNh4K-Z"></div>
+				https://github.com/VividCortex/angular-recaptcha
 
 MODULO CONFIGURADOR
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
+- controllerAs
+
 DOMINGO *- Preguntas asociadas(CRUD) 1 hora
+
 			VIERNES 1*- Editar Preguntas / Eliminar Preguntas (30 min)
 			VIERNES 5*- Editar respuesta / Eliminar respuesta (30 min)
 			MARTES - Editar /Eliminar topic (30 min)
-VIERNES 10*- Validaciones (30 min)
-- controllerAs
+			VIERNES 10*- Validaciones (30 min)
 
 MODULO GENERADOR
 - Selenium
