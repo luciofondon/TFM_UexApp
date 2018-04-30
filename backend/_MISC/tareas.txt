@@ -1,6 +1,6 @@
 MARTES: 2 h
 
-CONFIGURACION
+CONFIGURACION (90%)
 DOMINGO 14*- Eliminar close/minimizar vistas y cambiar color (20 min)
 - Loading (fixed cabecera)
 - Menu lateral
@@ -9,27 +9,27 @@ DOMINGO 14*- Eliminar close/minimizar vistas y cambiar color (20 min)
 - Mensaje error validacion (1 hora)
 - Script DB
 - Directiva
-*- Exportar tabla
-*- Grunt indexPro
-*- Eliminar codigo HTML (ng-init) (30 min)
-MARTES 6*- Grunt copy index (10 min)
-MARTES 7*- Confirm (20 min) https://craftpip.github.io/angular-confirm/
+- Eliminar codigo HTML (ng-init) (30 min)
+MARTES 14*- Exportar tabla (20 MIN)
+MARTES 13*- Grunt indexPro (20 MIN)
+MARTES 8*- Grunt copy index (10 min)
+MARTES 9*- Confirm (20 min) https://craftpip.github.io/angular-confirm/
 
-MODULO USUARIO
+MODULO USUARIO (95%)
 - Selenium
 - JSDoc
 - Mocha
 *- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
-*- Jasmine
-MARTES *- Perfil usuario (30 MIN)
-MARTES *-Crear tercer rol (dar permisos a funciones dependiendo del rol ) 30 min
+*- Perfil usuario (30 MIN)
+MARTES 10*- Jasmine
+MARTES 1*-Crear tercer rol (dar permisos a funciones dependiendo del rol ) 30 min
 MARTES 2*- Captcha (20 min)
 MARTES 3*- Validaciones (20 min)
 MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (30 min)
 	
-MODULO CONFIGURADOR
+MODULO CONFIGURADOR (90%)
 - Selenium
 - JSDoc
 - Mocha
@@ -37,31 +37,31 @@ MODULO CONFIGURADOR
 - controllerAs
 *- Preguntas asociadas(CRUD) 1 hora
 *- Editar /Eliminar topic (30 min)
-MARTES 1*- Validaciones (1 hora)
+MARTES 5*- Validaciones (1 hora)
 
-MODULO GENERADOR
+MODULO GENERADOR (70%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
 - Almacenar respuestas (actualizar contador)
 - Logica comparacion
-MARTES 5*- Interfaz generador (30 min)
-MARTES *- Vista comparador (1 hora)
-MARTES *- Validaciones (30 min)
+- Validaciones (30 min)
+MARTES 6*- Interfaz generador (30 min)
+MARTES 7*- Vista comparador (1 hora)
 
-MODULO TEMPLATE
+MODULO TEMPLATE (60%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
-*- Ver plantilla
-*- Importar al crear proyecto
 - Importar CSV
 - Exprotar CSV
-MARTES *- Guardar (1 hora)
+*- Ver plantilla
+MARTES 12*- Importar al crear proyecto (30 min)
+MARTES 11*- Guardar (1 hora)
 
-MODULO MEDIATORY
+MODULO MEDIATORY (50%)
 - Selenium
 - JSDoc
 - Mocha
@@ -70,7 +70,7 @@ MODULO MEDIATORY
 - Integrar app.config.js
 - SOAP
 
-DASHBOARD
+DASHBOARD (40%)
 - Donut estilo (20 min)
 - Grafico
 - More info (10 min)
