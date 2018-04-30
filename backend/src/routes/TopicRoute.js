@@ -9,8 +9,8 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     app.route('/project/topics/:projectId')
-        .get(systemMiddleware.roOperador, topicController.readAllByProject)
-		.post(systemMiddleware.roOperador, topicController.createByProject);
+        .get(systemMiddleware.rolOperador, topicController.readAllByProject)
+		.post(systemMiddleware.rolOperador, topicController.createByProject);
 
 	/*app.route('project/topic/:topicId')
 		.get(systemMiddleware.rolAdmin, topicController.readAllByProject)
