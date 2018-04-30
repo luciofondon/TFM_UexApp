@@ -13,15 +13,14 @@ CONFIGURACION (90%)
 - Directiva
 - Eliminar codigo HTML (ng-init)
 - Mensaje error validacion (1 hora)
-DIARIO- Eliminar close/minimizar vistas y cambiar color (20 min)
 MARTES 14*- Exportar tabla (20 MIN)
 MARTES 13*- Grunt indexPro (20 MIN)
-MARTES 8*- Grunt copy index (10 min)
 MARTES 9*- Confirm (20 min) https://craftpip.github.io/angular-confirm/
 
 MODULO USUARIO (95%)
 - Selenium
 - JSDoc (readme)
+- Captcha key importar
 *- Mocha
 VIERNRES*- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
@@ -29,8 +28,6 @@ VIERNRES*- Subir foto (1 HORA)
 VIERNES*- Perfil usuario (30 MIN)
 MARTES 10*- Jasmine
 MARTES 1*-Crear tercer rol (dar permisos a funciones dependiendo del rol ) 30 min
-MARTES 2*- Captcha (20 min)
-MARTES 3*- Validaciones (20 min)
 MARTES 4*- Asociar proyecto a usuario y mostrar solo los proyectos del usuario (20 min)
 
 MODULO CONFIGURADOR (90%)
@@ -51,8 +48,6 @@ MODULO GENERADOR (70%)
 - Logica comparacion
 SABADO - Validaciones (30 min)
 SABADO - Almacenar respuestas (actualizar contador) 1 HORA
-MARTES 6*- Interfaz generador (20 min)
-MARTES 7*- Vista comparador (1 hora)
 
 MODULO TEMPLATE (60%)
 - Selenium
@@ -80,8 +75,6 @@ DOMINGO- Integrar app.config.js (30 min)
 DOMINGO*- Get apps (30 min)
 
 DASHBOARD (40%)
-DIARIO - Grafico
+DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
 DIARIO - Plantillas generadas
 DIARIO - Donut estilo (20 min)
-DIARIO - More info (10 min)
-DIARIO - Amchart https://github.com/GrantMStevens/amCharts-Angular (10 min)

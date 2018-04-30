@@ -40,119 +40,68 @@
 								</ul>
 							</li>
 						</ul>
-						<!--
-                        <ul class="nav nav-tabs">
-                            <li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
-                                <a href ng-click="setTab($index)" ng-click="loadQuestions(topic._id)" data-toggle="tab">{{topic.name}}</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href>
-                                    Configuración <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#modal-topic">Nuevo topic</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-template" href="">Guardar plantilla</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-					-->
 
 
-                       			<div class="tab-content" ng-repeat="topic in topics" ng-if="isSet($index)">
-									<div class="container">
-										<div class="row" ng-repeat="question in topic.questions">
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<div class="row">
-														<table class="col-sm-12">
-															<tbody>
-																<tr>
-																	<td class="col-sm-1">
-																		<h4>{{$index + 1}}.</h4>
-																	</td>
-																	<td class="col-sm-5 col-md-6 col-lg-7">
-																		{{question.description}}
-																	</td>
-																	<td class="col-sm-6 col-md-5 col-lg-4 text-right">
-																		<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" ng-click="readQuestion(question._id, 2);" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-question">
-																			<span class="fa fa-pencil fa-lg"></span>
-																		</a>
-																		<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" ng-click="deleteQuestion(question._id);" data-original-title="Eliminar">
-																			<span class="fa fa-trash fa-lg"></span>
-																		</a>
-																		<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="selectQuestion(question._id);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
-																			<span class="fa fa-plus fa-lg"></span>
-																		</a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div><!-- panel-heading-->
-												<div class="panel-body">
-													<div class="row" ng-repeat="answer in question.answers">
-														<div class="col-xs-12  content-quest ">
-															<div class="box-mobil box-mobil-btn btn-block">
-																<input disabled type="radio" name="{{question._id}}" id="radio_9558915">
-																<label for="radio_9558915">
-																	&nbsp;&nbsp;{{answer.description}}
-																</label>
-																<div class="text-right">
-																	<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="readAnswer(question._id, answer._id, 2);" data-placement="top" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-answer">
-																		<span class="fa fa-pencil fa-lg"></span>
-																	</a>
-																	<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(question._id, answer._id);" data-id="2885924" data-original-title="Eliminar">
-																		<span class="fa fa-trash fa-lg"></span>
-																	</a>
-																	<a href class="text-success infoBulle a_dupli" data-id="2885924" data-placement="top" title="Nueva pregunta asociada" data-original-title="Nueva pregunta asociada">
-																		<span class="fa fa-plus fa-lg"></span>
-																	</a>
-																</div>
-															</div>
+						<div class="tab-content" ng-repeat="topic in topics" ng-if="isSet($index)">
+							<div class="container">
+								<div class="row" ng-repeat="question in topic.questions">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<div class="row">
+												<table class="col-sm-12">
+													<tbody>
+														<tr>
+															<td class="col-sm-1">
+																<h4>{{$index + 1}}.</h4>
+															</td>
+															<td class="col-sm-5 col-md-6 col-lg-7">
+																{{question.description}}
+															</td>
+															<td class="col-sm-6 col-md-5 col-lg-4 text-right">
+																<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" ng-click="readQuestion(question._id, 2);" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-question">
+																	<span class="fa fa-pencil fa-lg"></span>
+																</a>
+																<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" ng-click="deleteQuestion(question._id);" data-original-title="Eliminar">
+																	<span class="fa fa-trash fa-lg"></span>
+																</a>
+																<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="selectQuestion(question._id);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
+																	<span class="fa fa-plus fa-lg"></span>
+																</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div><!-- panel-heading-->
+										<div class="panel-body">
+											<div class="row" ng-repeat="answer in question.answers">
+												<div class="col-xs-12  content-quest ">
+													<div class="box-mobil box-mobil-btn btn-block">
+														<input disabled type="radio" name="{{question._id}}" id="radio_9558915">
+														<label for="radio_9558915">
+															&nbsp;&nbsp;{{answer.description}}
+														</label>
+														<div class="text-right">
+															<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="readAnswer(question._id, answer._id, 2);" data-placement="top" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-answer">
+																<span class="fa fa-pencil fa-lg"></span>
+															</a>
+															<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(question._id, answer._id);" data-id="2885924" data-original-title="Eliminar">
+																<span class="fa fa-trash fa-lg"></span>
+															</a>
+															<a href class="text-success infoBulle a_dupli" data-id="2885924" data-placement="top" title="Nueva pregunta asociada" data-original-title="Nueva pregunta asociada">
+																<span class="fa fa-plus fa-lg"></span>
+															</a>
 														</div>
 													</div>
-												</div><!-- panel-body-->
+												</div>
 											</div>
-										</div>
+										</div><!-- panel-body-->
 									</div>
 								</div>
+							</div>
+						</div>
 
 
-
-							<!--
-                            <div ng-repeat="topic in topics" ng-show="isSet($index)" class="tab-pane active" >
-                                <button class="btn btn-block btn-info" data-toggle="modal" ng-click="marcarTopic(topic._id);" data-target="#modal-question" type="button"><i class="icon fa fa-plus"></i> Nueva pregunta</button>
-								<br><br><br>
-
-								<div class="form-group" ng-repeat="question in topic.questions" >
-
-									<div class="callout callout-info">
-										<h4>
-											{{$index}}. {{question.description}}
-											<a class="edit" style="margin-right: 10px;cursor:pointer;" ng-click="marcarPregunta(question._id);" title="Nueva respuesta" data-toggle="modal" data-target="#modal-answer">
-												<i class="icon fa fa-plus"></i>
-											</a>
-										</h4>
-									</div>
-
-                                    <div ng-repeat="answer in question.answers">
-                                        <div class="radio">
-                                            <label>
-                                                <input disabled type="radio" name="{{question._id}}"  value="{{answer.description}} ">
-												{{answer.description}}
-												<a class="edit" style="margin-right: 10px;cursor:pointer;" ng-click="marcarTopic(topic._id);" title="Nueva pregunta asociada a la respuesta" data-toggle="modal" data-target="#modal-question">
-													<i class="icon fa fa-plus"></i>
-												</a>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-						-->
-                        </div>
 
                     </div>
                 </div>
@@ -346,8 +295,6 @@
 </div>
 <!-- Fin: Popup para exportar a Jira-->
 
-
-
 <!-- Inicio: Popup para exportar a Redmine-->
 <div id="modal-redmine" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -357,58 +304,53 @@
                 <h4 class="modal-title" >Exportar proyecto a Redmine</h4>
             </div>
             <div class="modal-body">
-                    <div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-                        <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <div>
-                            <strong>Error!</strong> {{error}}.
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="projectNameRedmine" class="col-md-4 control-label">Proyecto (*)</label>
-                        <div class="col-md-7">
-                            <input type="text"  id="projectNameRedmine" ng-model="project.name" class="form-control"/>
-                        </div>
-                    </div>
+				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
+					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<div>
+						<strong>Error!</strong> {{error}}.
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="projectNameRedmine" class="col-md-4 control-label">Proyecto (*)</label>
+					<div class="col-md-7">
+						<input type="text"  id="projectNameRedmine" ng-model="project.name" class="form-control"/>
+					</div>
+				</div>
 
-                    <div class="form-group row">
-                            <label for="key" class="col-md-4 control-label">KEY (*)</label>
-                            <div class="col-md-7">
-                                <input type="text"  id="key" ng-model="project.key" class="form-control"/>
-                            </div>
-                        </div>
+				<div class="form-group row">
+					<label for="key" class="col-md-4 control-label">KEY (*)</label>
+					<div class="col-md-7">
+						<input type="text"  id="key" ng-model="project.key" class="form-control"/>
+					</div>
+				</div>
 
+				<div class="form-group row">
+					<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
+					<div class="col-md-7">
+						<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
+					</div>
+				</div>
 
-                        <div class="form-group row">
-                            <label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
-                            <div class="col-md-7">
-                                <textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
-                            </div>
-                            </div>
+				<div class="form-group row">
+					<label for="projectIp" class="col-md-4 control-label">IP Redmine (*)</label>
+					<div class="col-md-7">
+						<input type="text" id="projectIp" ng-model="project.ip" class="form-control"/>
+					</div>
+				</div>
 
-                            <div class="form-group row">
-                            <label for="projectIp" class="col-md-4 control-label">IP Redmine (*)</label>
-                            <div class="col-md-7">
-                                <input type="text" id="projectIp" ng-model="project.ip" class="form-control"/>
-                            </div>
-                            </div>
+				<div class="form-group row">
+					<label for="projectPort" class="col-md-4 control-label">Puerto Redmine (*)</label>
+					<div class="col-md-7">
+						<input type="number" id="projectPort" ng-model="project.port" class="form-control"/>
+					</div>
+				</div>
 
-                            <div class="form-group row">
-                            <label for="projectPort" class="col-md-4 control-label">Puerto Redmine (*)</label>
-                            <div class="col-md-7">
-                                <input type="number" id="projectPort" ng-model="project.port" class="form-control"/>
-                            </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label for="token" class="col-md-4 control-label">Token (*)</label>
-                                <div class="col-md-7">
-                                    <textarea style="resize:none" id="token" ng-model="project.token" class="form-control"/>
-                                </div>
-                            </div>
-
-                </form>
-
+				<div class="form-group row">
+					<label for="token" class="col-md-4 control-label">Token (*)</label>
+					<div class="col-md-7">
+						<textarea style="resize:none" id="token" ng-model="project.token" class="form-control"/>
+					</div>
+				</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" ng-click="exportRedmine();">Exportar proyecto</button>
@@ -417,10 +359,6 @@
     </div>
 </div>
 <!-- Fin: Popup para exportar a Redmine-->
-
-
-
-
 
 <!-- Inicio: Popup para exportar a Redmine-->
 <div id="modal-template" class="modal fade" role="dialog">

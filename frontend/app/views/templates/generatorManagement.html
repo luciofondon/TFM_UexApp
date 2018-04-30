@@ -15,7 +15,7 @@
 <section class="content" >
 
     <!-- Default box -->
-    <div class="box">
+    <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Generación proyecto</h3>
         </div>
@@ -35,21 +35,48 @@
 								<a href ng-click="gm.setTab(gm.topics.length + 1)"><strong>{{gm.topics.length + 2}}.Detalle</strong></a>
 							</li>
 						</ul>
-						<!--
-                        <ul class="nav nav-tabs">
-                            <li ng-class="{active: gm.isSet($index)}" ng-repeat="topic in gm.topics">
-                                <a href ng-click="gm.setTab($index)" ng-click="gm.loadQuestions(topic._id)" data-toggle="tab">{{$index + 1}}. {{topic.name}}</a>
-                            </li>
-                            <li ng-class="{active: gm.isSet(gm.topics.length)}">
-                                <a href ng-click="gm.setTab(gm.topics.length)"  data-toggle="tab"><strong>{{gm.topics.length + 1}}. Servidor</strong></a>
-                            </li>
-                            <li ng-class="{active: gm.isSet(gm.topics.length + 1)}">
-                                <a href ng-click="gm.setTab(gm.topics.length + 1)"  data-toggle="tab"><strong>{{gm.topics.length + 2}}.Detalle</strong></a>
-                            </li>
-                        </ul>
-					-->
+
+
+
+
                         <div class="tab-content">
-							<!--Inicio: Pestana topic-->
+
+							<div class="container" ng-repeat="topic in gm.topics" ng-if="gm.isSet($index)">
+								<div class="row" ng-repeat="question in topic.questions" >
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<div class="row">
+												<table class="col-sm-12">
+													<tbody>
+														<tr>
+															<td class="col-sm-1">
+																<h4>{{$index + 1}}.</h4>
+															</td>
+															<td class="col-sm-5 col-md-6 col-lg-7">
+																{{question.description}}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="panel-body">
+											<div class="row" ng-repeat="answer in question.answers">
+												<div class="col-xs-12  content-quest ">
+													<div class="box-mobil box-mobil-btn btn-block">
+														<input type="radio" name="{{question._id}}" id="radio_9558915">
+														<label for="radio_9558915">
+															&nbsp;&nbsp;{{answer.description}}
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--Inicio: Pestana topic
                             <div class="tab-pane active" ng-repeat="topic in gm.topics" ng-show="gm.isSet($index)" >
                                 <div class="form-group" ng-repeat="question in topic.questions" >
                                     <div class="callout callout-info">
@@ -80,12 +107,10 @@
 									</a>
 								</div>
 							</div>
-							<!--Fin: Pestana topic-->
+							Fin: Pestana topic-->
 
 							<!--Inicio: Pestana servidor-->
 							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length)">
-
-
 								<div class="form-group row">
 									<label for="app" class="col-md-4 control-label">Apliación (*)</label>
 									<div class="col-md-7">
@@ -133,7 +158,6 @@
 									</div>
 								</div>
 
-								<button type="button" class="btn btn-success" ng-click="">Comprobar conexión</button>
 
 								<br><br><br>
 								<div class="social-auth-links text-right">
@@ -156,69 +180,126 @@
 							<!--Inicio: Pestana detalle-->
 							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length + 1)" >
 
-								<div class="form-group row">
-									<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
-									<div class="col-md-7">
-										<input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
-									<div class="col-md-7">
-										<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
-									</div>
-								</div>
-								
-								
 								<div class="container">
-								 	<div class="col-md-3 box box-success style="background-color: #e3e3e3;">
-										<div class="box-header">
-											<i class="fa fa-envelope"></i>
-											<h3 class="box-title">Todas las tareas</h3>
-										</div
-									</div>
-									<div class="col-md-2">
-										<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg">Primary</button>
-									</div>
-									<div class="col-md-3 box box-success" style="background-color: #e3e3e3;">
-										<div class="box-header">
-											<i class="fa fa-envelope"></i>
-											<h3 class="box-title">Tareas a exportar</h3>
-											<div class="pull-right box-tools">
-												Borrar todo
+									<div class="row">
+										<div class="col-md-3" >
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-sticky-note-o"></i>
+													<h3 class="box-title">Todas las tareas</h3>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+												</div>
 											</div>
-
 										</div>
-																			 
-										<div class="callout callout-danger">
-											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-											<h4>Titulo requisito</h4>
-											<p>Esto es la descripción del requisito...............</p>
-									  	</div>
-
-									</div>
-									<div class="col-md-2">
-										<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg">Primary</button>
-									</div>
-									<div class="col-md-3 box box-success" style="background-color: #e3e3e3;">
-										<div class="box-header">
-											<i class="fa fa-envelope"></i>
-											<h3 class="box-title">Tareas en Jira</h3>
-											<div class="pull-right box-tools">
-												 <div class="form-group">
-												  <label>Proyecto</label>
-												  <select class="form-control">
-													<option>Nuevo proyecto</option>
-													<option>Proyecto demo</option>
-													<option>Proyecto prueba</option>
-												  </select>
+										<div class="col-md-1" style="height: 650px;">
+											<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
+										</div>
+										<div class="col-md-3">
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-object-ungroup"></i>
+													<h3 class="box-title">Tareas a exportar</h3>
+													<div class="pull-right box-tools">
+														<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
+															<span class="fa fa-trash fa-lg"></span>
+														</a>
+													</div>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
 												</div>
 											</div>
 
-										</div
+										</div>
+										<div class="col-md-1" style="height: 650px;">
+											<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
+										</div>
+										<div class="col-md-4">
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-clone"></i>
+													<h3 class="box-title">Tareas en Jira</h3>
+													<div class="pull-right box-tools">
+														<select class="form-control">
+															<option>Nuevo proyecto</option>
+															<option>Proyecto demo</option>
+															<option>Proyecto prueba</option>
+														</select>
+													</div>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+													<div class="callout callout-info">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>Titulo requisito</h4>
+														<p>Esto es la descripción del requisito...............</p>
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+
 									</div>
-									
+								</div>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12" >
+											<div class="form-group row">
+												<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
+												<div class="col-md-7">
+													<input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
+												<div class="col-md-7">
+													<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
+												</div>
+											</div>
+
+										</div>
+									</div>
 								</div>
 
 								<br><br><br>
@@ -253,10 +334,6 @@
 
 </section>
 <!-- /.content -->
-
-
-
-
 
 
 

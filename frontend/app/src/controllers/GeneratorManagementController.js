@@ -6,6 +6,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
     gm.tab = 0; //Tab que se mostrara en la vista
     gm.topics = [];
 	gm.project = projectData.data;
+    gm.topicId = ""; //Pestana de topic seleccionada
 
     ProjectService.getTopics($stateParams.projectId).then(function(response) {
         gm.topics = response.data;
@@ -18,6 +19,14 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
     gm.isSet = function(tabNum){
         return gm.tab === tabNum;
 	};
+
+	gm.init = function(){
+        ProjectService.getTopics($stateParams.projectId).then(function(response) {
+			gm.topics = response.data;
+			if(gm.topics.length > 0)
+			gm.topicId = $scope.topics[0]._id;
+        });
+    }
 
 }]);
 
