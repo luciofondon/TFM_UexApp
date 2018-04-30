@@ -6,7 +6,9 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     mailService = require('../services/MailService'),
-    systemService = require('../services/SystemService');
+    systemService = require('../services/SystemService'),
+	fs = require('fs');
+
 
 var User = require('../models/UserModel');
     User = mongoose.model('User');
@@ -45,6 +47,30 @@ exports.loginUser = function(req, res) {
     loginUser(req, res);
 }
 
+exports.upload = function(req, res) {
+    upload(req, res);
+}
+
+function upload(req, res) {
+    console.log(req.files);
+    var tmp_path = req.files.photo.path;
+    // Ruta donde colocaremos las imagenes
+    var target_path = './public/images/' + req.files.photo.name;
+   // Comprobamos que el fichero es de tipo imagen
+    if (req.files.photo.type.indexOf('image')==-1){
+    	res.send('El fichero que deseas subir no es una imagen');
+    } else {
+         // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
+        fs.rename(tmp_path, target_path, function(err) {
+            if (err) throw err;
+            // Eliminamos el fichero temporal
+            fs.unlink(tmp_path, function() {
+                if (err) throw err;
+                res.render('upload',{message: '/images/' + req.files.photo.name,title: 'ejemplo de subida de imagen'});
+            });
+         });
+     }
+}
 
 function loginUser(req, res){
     if(req.body.email != undefined && req.body.password != undefined){
