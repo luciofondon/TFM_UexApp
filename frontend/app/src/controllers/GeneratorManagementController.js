@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('GeneratorManagementController',
-    ['$stateParams', 'ProjectService', 'projectData',
-        function($stateParams, ProjectService, projectData){
+    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm',
+        function($stateParams, ProjectService, projectData, $ngConfirm){
 	var gm = this;
 
     gm.tab = 0; //Tab que se mostrara en la vista
