@@ -11,16 +11,16 @@ module.exports = function(app){
 	//CRUD proyecto
 	app.route('/projects')
 		.get(systemMiddleware.rolConsultor, projectController.readAll)
-		.post(systemMiddleware.roOperador, projectController.create);
+		.post(systemMiddleware.rolOperador, projectController.create);
 	  
 	//CRUD proyecto
 	app.route('/project/:projectId')
-		.get(systemMiddleware.roOperador, projectController.read)
-		.put(systemMiddleware.roOperador, projectController.update)
-		.delete(systemMiddleware.roOperador, projectController.delete);
+		.get(systemMiddleware.rolOperador, projectController.read)
+		.put(systemMiddleware.rolOperador, projectController.update)
+		.delete(systemMiddleware.rolOperador, projectController.delete);
 
 	app.route('/project/:app/:projectId')
-		.post(systemMiddleware.roOperador, projectController.exportData)
+		.post(systemMiddleware.rolOperador, projectController.exportData)
 
 	app.param('projectId', projectController.loadProject);
 }
