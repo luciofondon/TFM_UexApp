@@ -5,9 +5,9 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
 	app.route('/answer/:questionId')
-		.get(systemMiddleware.rolAdmin, answerController.read)
-		.put(systemMiddleware.rolAdmin, answerController.update)
-        .delete(systemMiddleware.rolAdmin, answerController.delete);
+		.get(systemMiddleware.rolOperador, answerController.read)
+		.put(systemMiddleware.rolOperador, answerController.update)
+        .delete(systemMiddleware.rolOperador, answerController.delete);
 
    /* app.route('/answers/question/:questionId')
         .get(systemMiddleware.rolAdmin, answerController.readAllByTopic)
