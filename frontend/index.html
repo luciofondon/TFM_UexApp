@@ -86,19 +86,19 @@
 					<li><a ui-sref="templateList"><i class="fa fa-book"></i> <span>Plantillas</span></a></li>
 
 
-					<li class="header">ADMINISTRACIÓN</li>
-					<li class="treeview">
-					<a href="#">
-						<i class="fa fa-users"></i>
-						<span>Acceso</span>
-						<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a ui-sref="userList"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-						<li><a ui-sref="rolList"><i class="fa fa-circle-o"></i> Roles</a></li>
-					</ul>
+					<li class="header" ng-if="LoginUser.rol.level == 1">ADMINISTRACIÓN</li>
+					<li class="treeview" ng-if="LoginUser.rol.level == 1">
+						<a href="#">
+							<i class="fa fa-users"></i>
+							<span>Acceso</span>
+							<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a ui-sref="userList"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+							<li><a ui-sref="rolList"><i class="fa fa-circle-o"></i> Roles</a></li>
+						</ul>
 					</li>
 				</ul>
 
