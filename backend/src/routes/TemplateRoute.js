@@ -10,19 +10,13 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
 	app.route('/templates/:projectId')
-		.post(systemMiddleware.rolOperador, templateController.createTemplate);
+		.post(systemMiddleware.rolOperador, templateController.createTemplate)
+
+	app.route('/template/:projectId')
+		.delete(systemMiddleware.rolAdmin, templateController.deleteTemplate);
 
 	app.route('/templates')
 		.get(systemMiddleware.rolConsultor, templateController.readAllTemplate);
 
-
 	app.param('projectId', projectController.loadProject);
-
-	//CRUD proyecto
-	/*app.route('/template/:templateId')
-		.get(systemMiddleware.rolAdmin, templateController.read)
-		.put(systemMiddleware.rolAdmin, templateController.update)
-		.delete(systemMiddleware.rolAdmin, templateController.delete);
-
-	app.param('templateId', templateController.loadTemplate);*/
 };

@@ -38,9 +38,8 @@ var projectSchema = new Schema({
 	}
 });
 
-projectSchema.statics.load = function(projectId, callback) {
+projectSchema.statics.load = function(projectId, callback){
 	this.findOne({_id: projectId}).exec(callback);
 };
-
 
 module.exports = mongoose.model('Project', projectSchema);

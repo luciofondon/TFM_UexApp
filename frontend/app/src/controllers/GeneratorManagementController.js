@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('GeneratorManagementController',
-    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm',
-        function($stateParams, ProjectService, projectData, $ngConfirm){
+    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm', 'TopicService',
+        function($stateParams, ProjectService, projectData, $ngConfirm, TopicService){
 	var gm = this;
 
     gm.tab = 0; //Tab que se mostrara en la vista
@@ -8,7 +8,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	gm.project = projectData.data;
     gm.topicId = ""; //Pestana de topic seleccionada
 
-    ProjectService.getTopics($stateParams.projectId).then(function(response) {
+    TopicService.getTopics($stateParams.projectId).then(function(response) {
         gm.topics = response.data;
     });
 
@@ -21,7 +21,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	};
 
 	gm.init = function(){
-        ProjectService.getTopics($stateParams.projectId).then(function(response) {
+        TopicService.getTopics($stateParams.projectId).then(function(response) {
 			gm.topics = response.data;
 			if(gm.topics.length > 0)
 			gm.topicId = $scope.topics[0]._id;

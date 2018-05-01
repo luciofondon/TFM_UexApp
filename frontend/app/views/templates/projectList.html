@@ -21,13 +21,6 @@
 		<div class="box-body" ng-init="vm.loadProjectList();">
 
 
-			<div class="alert alert-info alert-success alert-dismissible"  ng-repeat="alert in vm.alerts">
-				<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<div>
-					<strong>Info!</strong> {{alert}}.
-				</div>
-			</div>
-
 			<button id="crear" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear proyecto
 			</button>
@@ -36,8 +29,6 @@
 			<div class="table-responsive my-table">
 				<table id="table" bs-table-control="vm.bsTableProject"></table>
 			</div>
-
-
 
 
 		</div>
@@ -52,75 +43,56 @@
 </section>
 <!-- /.content -->
 
+<!-- Inicio: Popup para creat/actualizar un proyecto-->
+<div id="modal-project" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" ng-show="vm.mode == 1">Crear proyecto</h4>
+				<h4 class="modal-title" ng-show="vm.mode == 2">Actualizar proyecto</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible"  ng-if="vm.error != null">
+					<div>
+						<strong>Error!</strong> {{vm.error}}.
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
+					<div class="col-md-7">
+						<input type="text" id="InputText" ng-model="vm.project.name" class="form-control"/>
+					</div>
+				</div>
 
+				<div class="form-group row">
+					<label for="InputText" class="col-md-4 control-label">KEY (*)</label>
+					<div class="col-md-7">
+						<input type="text" id="InputText" ng-model="vm.project.key" class="form-control"/>
+					</div>
+				</div>
 
+				<div class="form-group row">
+					<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
+					<div class="col-md-7">
+						<textarea style="resize:none" id="InputText" ng-model="vm.project.description" class="form-control"/>
+					</div>
+				</div>
 
-
-
-
-
-
-       <!-- Inicio: Popup para creat/actualizar un proyecto-->
-       <div id="modal-project" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title" ng-show="vm.mode == 1">Crear proyecto</h4>
-                      <h4 class="modal-title" ng-show="vm.mode == 2">Actualizar proyecto</h4>
-                  </div>
-                  <div class="modal-body">
-						<div class="alert alert-danger alert-dismissible"  ng-if="vm.error != null">
-							<div>
-								<strong>Error!</strong> {{vm.error}}.
-							</div>
-						</div>
-                       	<div class="form-group row">
-                              <label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
-                              <div class="col-md-7">
-                                  <input type="text" id="InputText" ng-model="vm.project.name" class="form-control"/>
-                              </div>
-                       	</div>
-
-                      	<div class="form-group row">
-                            <label for="InputText" class="col-md-4 control-label">KEY (*)</label>
-                            <div class="col-md-7">
-                                <input type="text" id="InputText" ng-model="vm.project.key" class="form-control"/>
-                            </div>
-                      	</div>
-
-                      	<div class="form-group row">
-                        	<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
-                          	<div class="col-md-7">
-                      			<textarea style="resize:none" id="InputText" ng-model="vm.project.description" class="form-control"/>
-                          	</div>
-                      	</div>
-
-                     	<div class="form-group row">
-							<label for="InputText" class="col-md-4 control-label">Elejir plantilla </label>
-							<div class="col-md-7">
-								<select required id="InputText" ng-change="vm.refreshSublocation();"  ng-model="vm.meter.location" class="form-control" data-ng-options="template._id as template.name for template in vm.templates">
-									<option value="">-- No indicar plantilla previa --</option>
-								</select>
-							</div>
-                   		</div>
-					<!--
-                              <div class="form-group row">
-                                    <label for="InputText" class="col-md-4 control-label">Importar plantilla (*)</label>
-                                    <div class="col-md-7">
-										<input type="file"/>
-
-									</div>
-                                </div>
-					-->
-
-
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createProject();">Crear proyecto</button>
-                      <button type="button" ng-show="vm.mode == 2" class="btn btn-success" ng-click="vm.updateProject();">Actualizar proyecto</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- Fin: Popup para crear/actualizar un proyecto-->
+				<div class="form-group row">
+					<label for="InputText" class="col-md-4 control-label">Elejir plantilla (*) </label>
+					<div class="col-md-7">
+						<select required id="InputText" ng-change="vm.refreshSublocation();"  ng-model="vm.templateId" class="form-control" data-ng-options="template._id as template.nameTemplate for template in vm.templates">
+							<option value="">-- No indicar plantilla previa --</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createProject();">Crear proyecto</button>
+				<button type="button" ng-show="vm.mode == 2" class="btn btn-success" ng-click="vm.updateProject();">Actualizar proyecto</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin: Popup para crear/actualizar un proyecto-->

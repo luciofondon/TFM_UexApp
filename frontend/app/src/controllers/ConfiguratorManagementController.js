@@ -19,7 +19,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.error = null;
 
     $scope.init = function(){
-        ProjectService.getTopics($stateParams.projectId).then(function(response) {
+        TopicService.getTopics($stateParams.projectId).then(function(response) {
 			$scope.topics = response.data;
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
@@ -100,7 +100,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
         if(validateQuestion()){
             QuestionService.createQuestion($scope.topicId, $scope.question).then(function(response) {
                 $scope.question =  {};
-				$ngConfirm('La pregunta se ha creadp correctamente');
+				$ngConfirm('La pregunta se ha creado correctamente');
                 $scope.init();
                 $('#modal-question').modal('hide');
             });
@@ -167,8 +167,8 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.updateAnswer = function(){
 		if(validateAnswer()){
 			AnswerService.updateAnswer($scope.questionId, $scope.answer).then(function(response){
-				alert("Actualizado correctamente")
 				$('#modal-answer').modal('hide');
+				$ngConfirm('La respuesta se ha actualizado correctamente');
 				$scope.init();
 			});
 		}

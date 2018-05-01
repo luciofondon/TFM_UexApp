@@ -1,6 +1,4 @@
-var templateMiddleware = require('../middlewares/TemplateMiddleware'),
-    templateDAO = require('../DAOS/TemplateDAO');
-
+var templateDAO = require('../DAOS/TemplateDAO');
 
 module.exports = function(){
 
@@ -10,6 +8,9 @@ module.exports = function(){
 		},
 		readAllTemplate: function(req, res) {
             templateDAO.readAllTemplate(req,res);
+		},
+		deleteTemplate: function(req, res) {
+            templateDAO.deleteTemplate(req,res);
 		}
     }
 }

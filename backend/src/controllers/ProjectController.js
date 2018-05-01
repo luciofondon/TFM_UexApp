@@ -10,31 +10,34 @@ module.exports = function() {
             projectMiddleware.loadProject(req, res, next, projectId);
         },
 
-        read: function(req, res) {
+        readProject: function(req, res) {
             res.json(req.project);
         },
 
-        readAll: function(req, res) {
+        readAllProject: function(req, res) {
             projectDAO.readAllProject(req,res);
         },
 
-        create: function(req, res) {
+        createProject: function(req, res) {
             projectDAO.createProject(req,res);
         },
 
-        update: function(req, res) {
+        updateProject: function(req, res) {
             projectDAO.updateProject(req,res);
         },
 
-        delete: function(req, res) {
+        deleteProject: function(req, res) {
             //No permitir esta opcion porque los municipios pertenencen al proyecto
             return res.status(500).json({ error: "API no disponible"});
         },
 
         exportData: function(req, res) {
             projectDAO.exportData(req,res);
-        }
+		},
 
+		generateProject: function(req, res){
+            projectDAO.generateProject(req,res);
+		}
 
     }
 }

@@ -94,6 +94,15 @@ var app = angular.module('tfm.uex',
 					projectData: projectData
 				}
 			})
+			.state('templateDetail', {
+				url: "/templateDetail/:templateId",
+				templateUrl : 'app/views/templates/templateDetail.html',
+				controller 	: 'TemplateDetailController as td',
+				resolve:{
+					loginRequired: loginRequired,
+					templateData: templateData
+				}
+			})
 			.state('generatorManagement', {
 				url: "/generatorManagement/:projectId",
 				templateUrl : 'app/views/templates/generatorManagement.html',
@@ -108,6 +117,14 @@ var app = angular.module('tfm.uex',
 
 		function projectData(ProjectService, $stateParams){
 			return ProjectService.getProject($stateParams.projectId).then(function(response){
+				return response;
+			}).catch(function(err) {
+				return null;
+			});
+		}
+
+		function templateData(ProjectService, $stateParams){
+			return ProjectService.getProject($stateParams.templateId).then(function(response){
 				return response;
 			}).catch(function(err) {
 				return null;

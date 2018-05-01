@@ -1,8 +1,3 @@
-MARTES: 6 h 30 m
-DIARIO: 1 HORA
-VIERNES: 1H 30 MIN
-SABADO: 1H 30 MIN
-DOMINGO: 2 horas
 
 CONFIGURACION (90%)
 - Loading (fixed cabecera)
@@ -26,8 +21,7 @@ VIERNES*- Subir foto (1 HORA)
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
 >>4 MARTES- Perfil usuario (30 MIN)
->>6 MARTES- Jasmine 30 min
->> MARTE ACTUALIZAR USUARIO
+>>5 MARTES- Jasmine 30 min
 
 MODULO CONFIGURADOR (90%)
 - Selenium
@@ -38,40 +32,36 @@ MODULO CONFIGURADOR (90%)
 *- Preguntas asociadas(CRUD) 1 hora
 *- Editar /Eliminar topic (30 min)
 
-MODULO GENERADOR (75%)
+MODULO GENERADOR (80%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
 - Logica comparacion
->>MARTES - Validaciones (30 min)
->>MARTES - Almacenar respuestas (actualizar contador) 1 HORA
-
-MODULO TEMPLATE (60%)
+>>3 MARTES - Validaciones (30 min)
+>>6 MARTES - Almacenar respuestas (actualizar contador) 1 HORA4
+MODULO TEMPLATE (80%)
 - Selenium
 - JSDoc (readme)
 - Mocha
 - Jasmine
 - Importar CSV
 - Exprotar CSV
-VIERNES - Eliminar template administrador
->>MARTES *- Ver plantilla (1 hora)
->>2 MARTES*- Importar al crear proyecto (30 min)
->>1 MARTES*- Guardar (30 min)
+>>1 MARTES*- Importar al crear proyecto (30 min)
 
-MODULO MEDIATORY (50%)
+MODULO MEDIATORY (60%)
 - Selenium
 - JSDoc (readme)
 - Mocha
 - SOAP
 - Autenticacion 2 servicios
 - Exportar tareas
-- Desplegar redmine
-- Desplegar Jira
+*- Desplegar redmine
+*- Desplegar Jira
 *- Get issues
-*- Get project (20 min)
+SABADO- Get project (20 min)
 SABADO- Integrar app.config.js (30 min)
-SABADO*- Get apps (30 min)
+SABADO- Get apps (30 min)
 
 DASHBOARD (40%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular

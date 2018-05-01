@@ -7,8 +7,14 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     request = require('request');
 
-var Project = require('../models/ProjectModel');
-    Project = mongoose.model('Project');
+var Project = require('../models/ProjectModel'),
+	Project = mongoose.model('Project');
+
+var Topic = require('../models/TopicModel'),
+	Topic = mongoose.model('Topic');
+
+var Question = require('../models/QuestionModel'),
+	Question = mongoose.model('Question');
 
 exports.readAllProject = function(req, res) {
     readAllProject(req, res);
@@ -24,6 +30,44 @@ exports.updateProject = function(req, res) {
 
 exports.exportData = function(req, res) {
     exportData(req, res);
+}
+
+exports.generateProject = function(req, res) {
+    generateProject(req, res);
+}
+
+function generateProject(req, res){
+	let template = req.body;
+	let project = req.project;
+	let projectCopy = JSON.parse(JSON.stringify(project));
+	let projectTemplate = new Project(projectCopy);
+	projectTemplate.isTemplate = false;
+	projectTemplate.creator = req.authUser._id;
+	projectTemplate.nameTemplate = undefined;
+	projectTemplate._id = mongoose.Types.ObjectId();
+	projectTemplate.save(function(err){
+		Topic.find({project: projectCopy._id}, {"__v":0}).exec(function(err, topics){
+			topics.forEach(function(topic){
+				let topicCopy = JSON.parse(JSON.stringify(topic));
+				let topicTemplate = new Topic(topicCopy);
+				topicTemplate.project = projectTemplate._id;
+				topicTemplate._id = mongoose.Types.ObjectId();
+				topicTemplate.save(function(err){
+					Question.find({topic: topicCopy._id}, {"__v":0}).exec(function(err, questions){
+						questions.forEach(function(question){
+							let questionCopy = JSON.parse(JSON.stringify(question));
+							let questionTemplate = new Question(questionCopy);
+							questionTemplate._id = mongoose.Types.ObjectId();
+							questionTemplate.topic = topicTemplate._id;
+							questionTemplate.save();
+						});
+
+					});
+				});
+			});
+			res.json({state: "ok"});
+		});
+	});
 }
 
 function readAllProject(req, res){

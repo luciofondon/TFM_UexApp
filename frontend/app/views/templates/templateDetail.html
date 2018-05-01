@@ -1,0 +1,99 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header" ng-init="init();">
+		<h1>
+			Generador
+			<small>{{td.project.name}}</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Generador</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content" >
+
+		<!-- Default box -->
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">Generación proyecto</h3>
+			</div>
+			<div class="box-body">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Custom Tabs -->
+						<div class="nav-tabs-custom">
+							<ul class="nav nav-wizard">
+								<li ng-class="{active: td.isSet($index)}" ng-repeat="topic in td.topics">
+									<a href ng-click="td.setTab($index)" ng-click="td.loadQuestions(topic._id)">{{$index + 1}}. {{topic.name}}</a>
+								</li>
+
+							</ul>
+
+
+
+
+							<div class="tab-content">
+
+								<div class="container" ng-repeat="topic in td.topics" ng-if="td.isSet($index)">
+									<div class="row" ng-repeat="question in topic.questions" >
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<div class="row">
+													<table class="col-sm-12">
+														<tbody>
+															<tr>
+																<td class="col-sm-1">
+																	<h4>{{$index + 1}}.</h4>
+																</td>
+																<td class="col-sm-5 col-md-6 col-lg-7">
+																	{{question.description}}
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="panel-body">
+												<div class="row" ng-repeat="answer in question.answers">
+													<div class="col-xs-12  content-quest ">
+														<div class="box-mobil box-mobil-btn btn-block">
+															<input type="radio" name="{{question._id}}" id="radio_9558915">
+															<label for="radio_9558915">
+																&nbsp;&nbsp;{{answer.description}}
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.box-body -->
+
+			<div class="box-footer">
+				Gestión de identificación de riesgos
+			</div>
+			<!-- /.box-footer-->
+
+		</div>
+		<!-- /.box -->
+
+	</section>
+	<!-- /.content -->
+
+
+
+
+
+

@@ -6,28 +6,23 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		getProject: function(projectId){
 			return getProject(projectId);
 		},
-		addProject: function(project){
-			return addProject(project);
+		createProject: function(project){
+			return createProject(project);
 		},
 		removeProject: function(projectId){
-			return removeProject(projectId);
+			return deleteProject(projectId);
 		},
 		updateProject: function(project){
 			return updateProject(project);
 		},
-		getTopics: function(projectId){
-			return getTopics(projectId);
-		},
-		/*addTopic: function(projectId, topic){
-			return addTopic(projectId, topic);
-		},
-		addQuestion: function(topicId, question){
-			return addQuestion(topicId, question);
-		},
-		addAnswer: function(questionId, answer){
-			return addAnswer(questionId, answer);
-		}*/
+		generateProject: function(templateId, project){
+			return generateProject(templateId, project);
+		}
 	};
+
+	function generateProject(templateId, project){
+		return $http.post('/api/project/template/' + templateId, project);
+	}
 
 	function getProjects(){
 		return $http.get('/api/projects');
@@ -37,11 +32,11 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		return $http.get('/api/project/' + projectId);
 	}
 
-	function addProject(project){
+	function createProject(project){
 		return $http.post('/api/projects', project);
 	}
 
-	function removeProject(projectId){
+	function deleteProject(projectId){
 		return $http.delete('/api/project/' + projectId);
 	}
 
@@ -51,29 +46,5 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 
 
 
-
-	/*function addTopic(projectId, topic){
-		return $http.post('/api/topics/project/' + projectId, topic);
-	}*/
-
-	function getTopics(projectId){
-		return $http.get('/api/project/topics/' + projectId);
-	}
-
-	/*function addQuestion(topicId, question){
-		return $http.post('/api/questions/topic/' + topicId, question);
-	}
-
-	function getQuestions(topicId){
-		return $http.get('/api/topics/project/' + topicId);
-	}
-
-	function addAnswer(questionId, answer){
-		return $http.get('/api/question/' + questionId).then(function(response){
-			var question = response.data;
-			question.answers.push(answer);
-			$http.put('/api/question/' + questionId, question);
-		});
-	}*/
 
 }]);

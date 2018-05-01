@@ -4,13 +4,12 @@ angular.module('tfm.uex').controller('ProjectListController',
 	var vm = this;
 
     vm.bsTableProject = {};
-    vm.alerts = [];
     vm.error = null;
     vm.project = {};
     vm.mode = 1;
 	vm.templates = [];
 	vm.projects = [];
-
+	vm.templateId = ""; //Plantilla seleccionada
 	vm.init = function(){
         ProjectService.getProjects().then(function(response){
             vm.projects = response.data;
@@ -22,22 +21,39 @@ angular.module('tfm.uex').controller('ProjectListController',
 
     vm.createProject = function (){
         if(validate()){
-            ProjectService.addProject(vm.project).then(function(project) {
-                vm.project =  {};
-                vm.loadProjectList();
-                vm.alerts = [];
-                vm.alerts.push("Proyecto creado correctamente.")
-                $('#modal-project').modal('hide');
-                ProjectService.getProjects().then(function(projects) {
-                    $rootScope.projects = projects; //Actualizar proyectos del menu laterail
-                });
-            });
-        }
+			if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
+				ProjectService.generateProject(vm.templateId, vm.project).then(function(response) {
+					vm.templateId = "";
+					vm.project =  {};
+					vm.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.getProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente con plantilla importada");
+
+				});
+			}else{
+				ProjectService.createProject(vm.project).then(function(response) {
+					vm.project =  {};
+					vm.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.getProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente");
+				});
+			}
+		}
     }
 
     function validate(){
 		vm.error = null;
         if(vm.project.name == undefined || vm.project.name == "")
+			vm.error = "El campo nombre de proyecto es obligatorio";
+		else if(vm.project.key == undefined || vm.project.key == "")
+			vm.error = "El campo nombre de proyecto es obligatorio";
+		else if(vm.project.description == undefined || vm.project.description == "")
 			vm.error = "El campo nombre de proyecto es obligatorio";
 		return vm.error != null ? false : true;
     }
