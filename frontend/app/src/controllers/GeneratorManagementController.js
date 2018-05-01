@@ -26,7 +26,31 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 			if(gm.topics.length > 0)
 			gm.topicId = $scope.topics[0]._id;
         });
-    }
+	}
+
+	gm.checkUpload = function(){
+		if(validateServidor()){
+			$ngConfirm("La conexión se ha podido establecer correctamente")
+		}else
+			$ngConfirm(gm.error)
+
+	}
+
+	function validateServidor(){
+		gm.error = null;
+        if((gm.export.app == undefined || gm.export.app == ""))
+			gm.error = "Se debe especificar la aplicación seleccionada";
+        else if((gm.export.ip == undefined || gm.export.ip == ""))
+			gm.error = "Se debe indicar la la dirección IP del servidor";
+
+
+		return gm.error != null ? true : false;
+	}
+
+	gm.validateTopic = function(){
+
+		$ngConfirm("Debes indicar la respuesta de todas las preguntas")
+	}
 
 }]);
 

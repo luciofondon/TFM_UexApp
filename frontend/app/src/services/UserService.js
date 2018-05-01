@@ -23,6 +23,9 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 		},
 		getMe: function(){
 			return getMe();
+		},
+		updateMeUser: function(user){
+			return updateMeUser(user);
 		}
 	};
 
@@ -44,6 +47,10 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 
 	function updateUser(user){
 		return $http.put('/api/user/' + user._id, user);
+	}
+
+	function updateMeUser(user){
+		return $http.put('/api/user/cfg/me', user);
 	}
 
 	function resetPassword(userId, password){

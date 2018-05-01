@@ -21,35 +21,39 @@ var Project = require('../models/ProjectModel');
 
 exports.readAllUser = function(req, res) {
     readAllUser(req, res);
-}
+};
 
 exports.createUser = function(req, res) {
     createUser(req, res);
-}
+};
 
 exports.updateUser = function(req, res) {
     updateUser(req, res);
-}
+};
 
 exports.deleteUser = function(req, res) {
     deleteUser(req, res);
-}
+};
 
 exports.signupUser = function(req, res) {
     signupUser(req, res);
-}
+};
 
 exports.resetPasswordUser = function(req, res) {
 	resetPasswordUser(req, res);
-}
+};
 
 exports.loginUser = function(req, res) {
     loginUser(req, res);
-}
+};
 
 exports.upload = function(req, res) {
     upload(req, res);
-}
+};
+
+exports.updateMeUser = function(req, res) {
+    updateMeUser(req, res);
+};
 
 function upload(req, res) {
     console.log(req.files);
@@ -70,6 +74,11 @@ function upload(req, res) {
             });
          });
      }
+}
+
+function updateMeUser(req, res){
+
+	console.log("Actualizando")
 }
 
 function loginUser(req, res){

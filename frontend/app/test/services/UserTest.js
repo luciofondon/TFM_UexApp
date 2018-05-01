@@ -9,7 +9,7 @@ describe('Modulo tfm.uex', function () {
 
         var userService;
 
-        beforeEach(function () {
+        beforeEach(function(){
             inject(['UserService', function (service) {
                     userService = service;
                 }

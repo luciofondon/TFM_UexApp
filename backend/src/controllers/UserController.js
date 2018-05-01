@@ -42,6 +42,10 @@ module.exports = function() {
 
         me: function(req, res){
             res.json(req.authUser);
+		},
+
+		updateMeUser: function(req, res) {
+            userDAO.updateMeUser(req, res);
         }
     }
 }

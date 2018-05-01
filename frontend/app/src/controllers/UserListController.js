@@ -121,7 +121,7 @@ angular.module('tfm.uex').controller('UserListController',
         else if((vm.resetPassword.password != vm.resetPassword.confirmPassword))
 			vm.error = "Las dos contraseñas especificadas no coinciden";
 
-			return $scope.error != null ? true : false;
+			return vm.error != null ? true : false;
 	}
 
     function validateUser(){
@@ -145,7 +145,7 @@ angular.module('tfm.uex').controller('UserListController',
         else if((vm.user.password != vm.user.confirmPassword) && vm.mode == 1)
 			vm.error ="Las dos contraseñas especificadas no coinciden";
 
-		return $scope.error != null ? true : false;
+		return vm.error != null ? true : false;
     }
 
     vm.createUser = function() {

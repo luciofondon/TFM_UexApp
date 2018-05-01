@@ -20,7 +20,9 @@ module.exports = function(app){
       .delete(systemMiddleware.rolAdmin, userController.delete);
 
     app.route('/user/cfg/me')
-      .get(systemMiddleware.rolConsultor, userController.me);
+	  .get(systemMiddleware.rolConsultor, userController.me)
+	  .put(systemMiddleware.rolConsultor, userController.updateMeUser);
+
 
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
