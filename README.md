@@ -250,6 +250,25 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
+server {
+    listen 80;
+    listen [::]:80;
+    server_name jira.luciofondon.com;
+    return 301 http://www.luciofondon.com$request_uri;
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.jira.luciofondon.com;
+    location / {
+        proxy_pass http://localhost:6060;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
 ```
 
 ## 6. CONFIGURAR Jenkins
@@ -286,7 +305,14 @@ Lanzamos el proceso de instalación
 ./bitnami-redmine-3.3.0-0-linux-x64-installer.run
 ´´´
 ##2. Instalar Jira para pruebas.
+´´´
 
+wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.9.1-x64.bin
+´´´
+
+´´´
+chmod +x atlassian-jira-software-7.9.1-x64.bin
+´´´
 
 
 ## FICHEROS DEL PROYECTO
