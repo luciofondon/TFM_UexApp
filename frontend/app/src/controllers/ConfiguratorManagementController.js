@@ -38,12 +38,16 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
         return $scope.tab === tabNum;
 	};
 
-	$scope.saveTemplate = function(){
+	//*************************************************************************/
+	//************************************TEMPLATE*****************************/
+	//*************************************************************************/
+
+	$scope.createTemplate = function(){
 		if(validateTemplate()){
-			TemplateService.saveTemplate($stateParams.projectId).then(function(response) {
-				$scope.topics = response.data;
+			TemplateService.createTemplate($stateParams.projectId, $scope.template).then(function(response) {
+				//$scope.topics = response.data;
 				$scope.template =  {};
-				$ngConfirm('Plantialla guardada correctamente.');
+				$ngConfirm('Plantilla guardada correctamente.');
 				$('#modal-template').modal('hide');
 			});
 		}
@@ -51,7 +55,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
 	function validateTemplate(){
         $scope.error = null;
-        if($scope.topic.name == undefined || $scope.topic.name == "")
+        if($scope.template.name == undefined || $scope.template.name == "")
              $scope.error = "El campo nombre del topic es obligatorio";
 		return $scope.error != null ? false : true;
 	}

@@ -190,7 +190,7 @@
 				<h4 class="modal-title" ng-show="mode == 2">Actualizar respuesta</h4>
 			</div>
 			<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
+					<div class="alert alert-danger alert-dismissible" ng-if="error!= null">
 					<div>
 						<strong>Error!</strong> {{error}}.
 					</div>
@@ -227,8 +227,7 @@
 				<h4 class="modal-title" >Guardar plantilla</h4>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<div class="alert alert-danger alert-dismissible" ng-if="error!= null">
 					<div>
 						<strong>Error!</strong> {{error}}.
 					</div>
@@ -241,7 +240,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" ng-click="saveTemplate();">Guardar plantilla</button>
+				<button type="button" class="btn btn-success" ng-click="createTemplate();">Guardar plantilla</button>
 			</div>
 		</div>
 	</div>

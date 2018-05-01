@@ -61,9 +61,9 @@
                   <h4 ng-show="vm.mode == 2" class="modal-title">Actualizar usuario </h4>
               </div>
               <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible" ng-repeat="error in vm.errores">
+				<div class="alert alert-danger alert-dismissible" ng-if="vm.error != null">
 					<div>
-						<strong>Error!</strong> {{error}}.
+						<strong>Error!</strong> {{vm.error}}.
 					</div>
 				</div>
 
@@ -84,7 +84,7 @@
 				<div class="form-group row">
 					<label  class="col-md-4 control-label">Rol (*)</label>
 					<div class="col-md-7">
-						<select ng-model="vm.user.rol" style="width:100%" ng-options="rol._id as rol.name for rol in vm.roles">
+						<select ng-model="vm.user.rol._id" style="width:100%" ng-options="rol._id as rol.name for rol in vm.roles">
 							<option value="" disabled>-- Selecciona rol --</option>
 						</select>
 					</div>

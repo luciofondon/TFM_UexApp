@@ -19,20 +19,18 @@ exports.readAllTemplate = function(req, res) {
 };
 
 function createTemplate(req, res){
-	console.log(req.project)
-
-	var projectCopy = JSON.parse(JSON.stringify(req.project));
-
-	var projectTemplate = new Project(projectCopy);
+	let template = req.body;
+	let projectCopy = JSON.parse(JSON.stringify(req.project));
+	let projectTemplate = new Project(projectCopy);
 	projectTemplate.isTemplate = true;
-	projectTemplate._id = mongoose.Types.ObjectId();;
+	projectTemplate.nameTemplate = template.name;
+	projectTemplate._id = mongoose.Types.ObjectId();
 	projectTemplate.save(function(err) {
 		if (err) {
-			return res.status(500).json({error: 'Cannot save the project'});
+			return res.status(500).json({error: 'Cannot save the template'});
 		}
 		res.json(projectTemplate);
 	});
-
 }
 
 function readAllTemplate(req, res){

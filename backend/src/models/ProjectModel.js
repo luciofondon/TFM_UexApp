@@ -3,20 +3,23 @@ var mongoose = require('mongoose'),
 
 var projectSchema = new Schema({
 	name: {
-		type: String, 
+		type: String,
 		required: true
 	},
 	key: { // Codigo del proyecto utilizado para exportar en Jira, redmine...
 		type: String,
-		required: true    
+		required: true
 	},
 	isTemplate: { // Indica si el proyecto es es una plantilla
 		type: Boolean,
-		default: false    
+		default: false
+	},
+	nameTemplate: {
+		type: String
 	},
 	lead: {
 		type: String
-	}, 
+	},
 	type: {
 		type: String
 	},
@@ -32,7 +35,7 @@ var projectSchema = new Schema({
 		type: Date,
 		default: Date.now,
 		required:true
-	} 
+	}
 });
 
 projectSchema.statics.load = function(projectId, callback) {

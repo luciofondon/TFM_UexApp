@@ -2,88 +2,157 @@
 <section class="content-header" ng-init="">
     <h1>
         Usuario
-        <small>Mantenimiento y gestión de proyectos</small>
+        <small>Perfil de usuario</small>
     </h1>
     <ol class="breadcrumb">
         <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Proyectos</li>
+        <li class="active">Perfil de usuario</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content" >
 
-    <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-        	<h3 class="box-title">Configuración de proyectos</h3>
-        </div>
-        <div class="box-body">
+	<div class="row">
+		<div class="col-md-3">
 
-			<div class="form-group row">
-				<label for="name" class="col-md-4 control-label">Nombre (*)</label>
-				<div class="col-md-7">
-					<input required type="text" id="name" ng-model="vm.user.name" class="form-control"/>
+				<!-- Profile Image -->
+				<div class="box box-primary">
+					<div class="box-body box-profile">
+						<img class="profile-user-img img-responsive img-circle" src="images/user2-160x160.jpg" alt="User profile picture">
+						<h3 class="profile-username text-center">{{LoginUser.name}}</h3>
+						<p class="text-muted text-center">{{LoginUser.email}}</p>
+						<ul class="list-group list-group-unbordered">
+							<li class="list-group-item">
+								<b>Proyectos</b> <a class="pull-right">4</a>
+							</li>
+							<li class="list-group-item">
+								<b>Plantillas generadas</b> <a class="pull-right">543</a>
+							</li>
+							<li class="list-group-item">
+								<b>Preguntas totales</b> <a class="pull-right">30</a>
+							</li>
+							<li class="list-group-item">
+								<b>Respuesta totales</b> <a class="pull-right">30</a>
+							</li>
+						</ul>
+						<a href ng-if="vm.disabled==true"ng-click="vm.disabled=false;" class="btn btn-primary btn-block"><b>Editar</b></a>
+						<a href ng-if="vm.disabled==false" ng-click="vm.disabled=true;" class="btn btn-primary btn-block"><b>Guardar</b></a>
+
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+
+				  <!-- About Me Box -->
+				  <div class="box box-primary">
+					<div class="box-header with-border">
+					  <h3 class="box-title">About Me</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+					  <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+					  <p class="text-muted">
+						B.S. in Computer Science from the University of Tennessee at Knoxville
+					  </p>
+
+					  <hr>
+
+					  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+					  <p class="text-muted">Malibu, California</p>
+
+					  <hr>
+
+					  <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+					  <p>
+						<span class="label label-danger">UI Design</span>
+						<span class="label label-success">Coding</span>
+						<span class="label label-info">Javascript</span>
+						<span class="label label-warning">PHP</span>
+						<span class="label label-primary">Node.js</span>
+					  </p>
+
+					  <hr>
+
+					  <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+					  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+					</div>
+					<!-- /.box-body -->
+				  </div>
+				  <!-- /.box -->
+		</div><!-- /.col 3 izquierda-->
+		<div class="col-md-9">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Datos personales</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<div class="form-group row">
+						<label for="name" class="col-md-4 control-label">Nombre (*)</label>
+						<div class="col-md-7">
+							<input ng-disabled="vm.disabled" required type="text" id="name" ng-model="vm.user.name" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="lastName" class="col-md-4 control-label">Apellidos (*)</label>
+						<div class="col-md-7">
+							<input ng-disabled="vm.disabled" required type="text" id="lastName" ng-model="vm.user.lastName" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="userName" class="col-md-4 control-label">Usuario (*)</label>
+						<div class="col-md-7">
+							<input ng-disabled="vm.disabled" required type="text" id="userName" ng-model="vm.user.userName" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="email" class="col-md-4 control-label">Email (*)</label>
+						<div class="col-md-7">
+							<input ng-disabled="vm.disabled" required type="text" id="email" ng-model="vm.user.email" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="phoneNumber" class="col-md-4 control-label">Teléfono </label>
+						<div class="col-md-7">
+							<input ng-disabled="vm.disabled" required type="text" id="phoneNumber" ng-model="vm.user.phoneNumber" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
+						<div class="col-md-7">
+							<input type="file"/>
+						</div>
+					</div>
+
+					<div class="form-group row" ng-show="mode == 1">
+						<label for="password" class="col-md-4 control-label">Constraseña (*) </label>
+						<div class="col-md-7">
+							<input required type="password" id="password"  ng-model="user.password" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="form-group row" ng-show="mode == 1">
+						<label for="confirmPassword" class="col-md-4 control-label">Repetir contraseña (*) </label>
+						<div class="col-md-7">
+							<input required type="password" id="confirmPassword"  ng-model="user.confirmPassword" class="form-control"/>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label for="lastName" class="col-md-4 control-label">Apellidos (*)</label>
-				<div class="col-md-7">
-					<input required type="text" id="lastName" ng-model="vm.user.lastName" class="form-control"/>
-				</div>
-			</div>
+	</div>
 
-			<div class="form-group row">
-				<label for="userName" class="col-md-4 control-label">Usuario (*)</label>
-				<div class="col-md-7">
-					<input required type="text" id="userName" ng-model="vm.user.userName" class="form-control"/>
-				</div>
-			</div>
 
-			<div class="form-group row">
-				<label for="email" class="col-md-4 control-label">Email (*)</label>
-				<div class="col-md-7">
-					<input required type="text" id="email" ng-model="vm.user.email" class="form-control"/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="phoneNumber" class="col-md-4 control-label">Teléfono </label>
-				<div class="col-md-7">
-					<input required type="text" id="phoneNumber" ng-model="vm.user.phoneNumber" class="form-control"/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
-				<div class="col-md-7">
-					<input type="file"/>
-				</div>
-			</div>
-
-			<div class="form-group row" ng-show="mode == 1">
-				<label for="password" class="col-md-4 control-label">Constraseña (*) </label>
-				<div class="col-md-7">
-					<input required type="password" id="password"  ng-model="user.password" class="form-control"/>
-				</div>
-			</div>
-
-			<div class="form-group row" ng-show="mode == 1">
-				<label for="confirmPassword" class="col-md-4 control-label">Repetir contraseña (*) </label>
-				<div class="col-md-7">
-					<input required type="password" id="confirmPassword"  ng-model="user.confirmPassword" class="form-control"/>
-				</div>
-			</div>
-
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-        Mantenimiento y gestión de proyectos
-        </div>
-        <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
 
 </section>
 <!-- /.content -->

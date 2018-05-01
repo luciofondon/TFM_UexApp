@@ -4,7 +4,11 @@ angular.module('tfm.uex').controller('UserDetailController',
 
 	var vm = this;
 	vm.user = {};
+	vm.disabled = true;
 
+	vm.editUser = function(){
+
+	}
 	UserService.getMe().then(function(response) {
 		vm.user  = response.data;
 	}).catch(function (error){
@@ -12,6 +16,10 @@ angular.module('tfm.uex').controller('UserDetailController',
 	});
 
 	vm.updateUser = function(){
+
+	}
+
+	function validateUser(){
 
 	}
 

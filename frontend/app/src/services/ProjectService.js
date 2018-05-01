@@ -18,18 +18,15 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		getTopics: function(projectId){
 			return getTopics(projectId);
 		},
-		addTopic: function(projectId, topic){
+		/*addTopic: function(projectId, topic){
 			return addTopic(projectId, topic);
-		},
-		getTopics: function(projectId){
-			return getTopics(projectId);
 		},
 		addQuestion: function(topicId, question){
 			return addQuestion(topicId, question);
 		},
 		addAnswer: function(questionId, answer){
 			return addAnswer(questionId, answer);
-		}
+		}*/
 	};
 
 	function getProjects(){
@@ -52,15 +49,18 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		return $http.put('/api/project/' + project._id, project);
 	}
 
-	function addTopic(projectId, topic){
+
+
+
+	/*function addTopic(projectId, topic){
 		return $http.post('/api/topics/project/' + projectId, topic);
-	}
+	}*/
 
 	function getTopics(projectId){
 		return $http.get('/api/project/topics/' + projectId);
 	}
 
-	function addQuestion(topicId, question){
+	/*function addQuestion(topicId, question){
 		return $http.post('/api/questions/topic/' + topicId, question);
 	}
 
@@ -74,6 +74,6 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 			question.answers.push(answer);
 			$http.put('/api/question/' + questionId, question);
 		});
-	}
+	}*/
 
 }]);

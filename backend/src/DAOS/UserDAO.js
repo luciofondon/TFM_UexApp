@@ -108,7 +108,7 @@ function signupUser(req, res){
 
 function readAllUser(req, res){
     let usersFormat = [];
-    User.find({}).sort({name:1}).populate("rol").exec(function(err, users){
+    User.find({},{"__v" : 0}).sort({name:1}).populate("rol").exec(function(err, users){
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the users' });
         }
@@ -154,10 +154,12 @@ function createUser(req, res){
 
 
 function updateUser(req, res){
-    let user = _.extend(req.user, req.body);
+	let user = _.extend(req.user, req.body);
+	console.log(user)
     if(validateUser()){
         User.findOneAndUpdate({_id: user._id}, req.body, {upsert:true}, function(err, user){
             if (err){
+				console.log(err)
                 return res.status(500).json({ error: 'Cannot list all the users' });
             }
             return res.send("succesfully saved");

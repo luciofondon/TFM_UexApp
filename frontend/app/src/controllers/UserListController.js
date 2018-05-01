@@ -6,7 +6,7 @@ angular.module('tfm.uex').controller('UserListController',
 	vm.mode = 1;
 	vm.user = {};
 	vm.alerts = [];
-    vm.errores = [];
+    vm.error = null;
     vm.resetPassword = {};
     vm.projects = [];
     vm.bsTableUsers = {};
@@ -14,7 +14,7 @@ angular.module('tfm.uex').controller('UserListController',
 	vm.reset = function(){
 		vm.mode = 1;
 		vm.user = {};
-		vm.errores = [];
+		vm.error = null;
 		vm.alertas = [];
 	}
 
@@ -61,7 +61,7 @@ angular.module('tfm.uex').controller('UserListController',
             vm.bsTableUsers = BootstrapTableService.createTableSimple(users, "UsuariosTFM-Uex", columns);
 
             window.actionEventsUsers = {'click .edit': function (e, value, row, index) {
-				vm.errores = [];
+				vm.error = null;
 				vm.user = row;
 				vm.mode = 2;
 				$scope.$apply();
@@ -79,7 +79,6 @@ angular.module('tfm.uex').controller('UserListController',
 										for(var i = vm.bsTableUsers.options.data.length; i--;){
 											if(vm.bsTableUsers.options.data[i]._id == row._id){
 												vm.bsTableUsers.options.data.splice(i, 1);
-												//vm.alerts.push("Usuario eliminado correctamente")
 												$ngConfirm('El usuario ha sido eliminado correctamente');
 											}
 										}
@@ -105,7 +104,7 @@ angular.module('tfm.uex').controller('UserListController',
         vm.alerts = [];
         if(validatePassword()){
             UserService.resetPassword(vm.user._id, vm.resetPassword).then(function() {
-                vm.alerts.push("La contraseña ha sido actualizada correctamente");
+				$ngConfirm("La contraseña ha sido actualizada correctamente");
                 $('#modal-password').modal('hide');
             }).catch(function(data) {
                 alert(data[0].msg);
@@ -114,43 +113,39 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
     function validatePassword(){
-        vm.errores = [];
+		vm.error = null;
         if((vm.resetPassword.password == undefined || vm.resetPassword.password == ""))
-			vm.errores.push("Se debe especificar una contraseña");
+			vm.error = "Se debe especificar una contraseña";
         else if((vm.resetPassword.confirmPassword == undefined || vm.resetPassword.confirmPassword == ""))
-			vm.errores.push("Se debe completar el campo repetir contraseña");
+			vm.error = "Se debe completar el campo repetir contraseña";
         else if((vm.resetPassword.password != vm.resetPassword.confirmPassword))
-			vm.errores.push("Las dos contraseñas especificadas no coinciden");
+			vm.error = "Las dos contraseñas especificadas no coinciden";
 
-        if(vm.errores.length > 0)
-            return false
-        return true;
-    }
+			return $scope.error != null ? true : false;
+	}
 
     function validateUser(){
-        vm.errores = [];
+		vm.error = null;
         var patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
         if(vm.user.email == undefined || vm.user.email == "")
-			vm.errores.push("Se debe indicar un email");
+			vm.error ="Se debe indicar un email";
         else if(vm.user.email.search(patronEmail) != 0)
-			vm.errores.push("Debe introducirse un email válido");
+			vm.error ="Debe introducirse un email válido";
         else if(vm.user.name == undefined || vm.user.name == "")
-			vm.errores.push("Se debe indicar un nombre para el usuario");
+			vm.error ="Se debe indicar un nombre para el usuario";
         else if(vm.user.userName == undefined || vm.user.userName == "")
-			vm.errores.push("Se debe indicar un nombre de usuario");
+			vm.error ="Se debe indicar un nombre de usuario";
         else if((vm.user.phoneNumber != undefined && vm.user.phoneNumber != "") && (vm.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(vm.user.phone))))
-			vm.errores.push("El teléfono facilitado no es válido");
+			vm.error ="El teléfono facilitado no es válido";
         else if((vm.user.password == undefined || vm.user.password == "") && vm.mode == 1)
-			vm.errores.push("Se debe especificar una contraseña");
+			vm.error ="Se debe especificar una contraseña";
         else if((vm.user.confirmPassword == undefined || vm.user.confirmPassword == "") && vm.mode == 1)
-			vm.errores.push("Se debe completar el campo repetir contraseña");
+			vm.error ="Se debe completar el campo repetir contraseña";
         else if((vm.user.password != vm.user.confirmPassword) && vm.mode == 1)
-			vm.errores.push("Las dos contraseñas especificadas no coinciden");
+			vm.error ="Las dos contraseñas especificadas no coinciden";
 
-        if(vm.errores.length > 0)
-            return false
-        return true;
+		return $scope.error != null ? true : false;
     }
 
     vm.createUser = function() {
@@ -166,11 +161,10 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
     vm.updateUser = function() {
-        vm.alertas = [];
         if(validateUser()){
             UserService.updateUser(vm.user).then(function(){
                 vm.loadUserList();
-                vm.alertas.push("Usuario actualizado correctamente");
+				$ngConfirm("Usuario actualizado correctamente");
                 $('#modal-user').modal('hide')
             });
         }

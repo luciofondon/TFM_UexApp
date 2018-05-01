@@ -5,10 +5,10 @@ var templateMiddleware = require('../middlewares/TemplateMiddleware'),
 module.exports = function(){
 
     return {
-        create: function(req, res) {
+        createTemplate: function(req, res) {
             templateDAO.createTemplate(req,res);
 		},
-		readAll: function(req, res) {
+		readAllTemplate: function(req, res) {
             templateDAO.readAllTemplate(req,res);
 		}
     }

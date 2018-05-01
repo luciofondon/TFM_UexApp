@@ -13,8 +13,8 @@ CONFIGURACION (90%)
 - Directiva
 - Eliminar codigo HTML (ng-init)
 - Mensaje error validacion (1 hora)
->>6 MARTES *- Exportar tabla (30 MIN)
->>7 MARTES *- Grunt indexPro (30 MIN)
+>>5 MARTES *- Exportar tabla (30 MIN)
+>>3 MARTES *- Grunt indexPro (30 MIN)
 
 MODULO USUARIO (95%)
 - Selenium
@@ -26,7 +26,8 @@ VIERNES*- Subir foto (1 HORA)
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
 >>4 MARTES- Perfil usuario (30 MIN)
->>3 MARTES- Jasmine 30 min
+>>6 MARTES- Jasmine 30 min
+>> MARTE ACTUALIZAR USUARIO
 
 MODULO CONFIGURADOR (90%)
 - Selenium
@@ -37,14 +38,14 @@ MODULO CONFIGURADOR (90%)
 *- Preguntas asociadas(CRUD) 1 hora
 *- Editar /Eliminar topic (30 min)
 
-MODULO GENERADOR (70%)
+MODULO GENERADOR (75%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
 - Logica comparacion
-SABADO - Validaciones (30 min)
-SABADO - Almacenar respuestas (actualizar contador) 1 HORA
+>>MARTES - Validaciones (30 min)
+>>MARTES - Almacenar respuestas (actualizar contador) 1 HORA
 
 MODULO TEMPLATE (60%)
 - Selenium
@@ -53,7 +54,8 @@ MODULO TEMPLATE (60%)
 - Jasmine
 - Importar CSV
 - Exprotar CSV
-DOMINGO *- Ver plantilla (1 hora)
+VIERNES - Eliminar template administrador
+>>MARTES *- Ver plantilla (1 hora)
 >>2 MARTES*- Importar al crear proyecto (30 min)
 >>1 MARTES*- Guardar (30 min)
 
@@ -68,8 +70,8 @@ MODULO MEDIATORY (50%)
 - Desplegar Jira
 *- Get issues
 *- Get project (20 min)
-DOMINGO- Integrar app.config.js (30 min)
-DOMINGO*- Get apps (30 min)
+SABADO- Integrar app.config.js (30 min)
+SABADO*- Get apps (30 min)
 
 DASHBOARD (40%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
