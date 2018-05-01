@@ -67,7 +67,6 @@ angular.module('tfm.uex').controller('UserListController',
 				$scope.$apply();
 
                 },'click .remove': function (e, value, row, index) {
-
 					$ngConfirm({
 						title: 'Usuario',
 						content: '¿Deseas eliminar el usuario?',
@@ -93,18 +92,6 @@ angular.module('tfm.uex').controller('UserListController',
 							}
 						}
 					});
-
-					/*
-                    if(confirm("¿Estás seguro de borrar el usuario?")){
-                        UserService.removeUser(row._id).then(function(user) {
-                            for(var i = vm.bsTableUsers.options.data.length; i--;){
-                                if(vm.bsTableUsers.options.data[i]._id == row._id){
-                                    vm.bsTableUsers.options.data.splice(i, 1);
-                                    vm.alerts.push("Usuario eliminado correctamente")
-                                }
-                            }
-                        });
-                    }*/
                 },'click .password': function (e, value, row, index) {
                     vm.user = row;
                     vm.resetPassword = {};

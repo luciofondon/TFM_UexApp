@@ -32,7 +32,7 @@ function readAllProject(req, res){
 	if(req.authUser.rol.level == 1)
 	   	filter = {isTemplate: false};
 	else
-		filter = {isTemplate: false, creator: req.user._id}
+		filter = {isTemplate: false, creator: req.authUser._id}
 
     Project.find(filter).sort({name:1}).exec(function(err, projects) {
         if (err) {

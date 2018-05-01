@@ -16,6 +16,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
     $scope.questions = [];
 	$scope.errores  = [];
 	$scope.templates = [];
+	$scope.error = null;
 
     $scope.init = function(){
         ProjectService.getTopics($stateParams.projectId).then(function(response) {
@@ -38,14 +39,22 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	};
 
 	$scope.saveTemplate = function(){
-		TemplateService.saveTemplate($stateParams.projectId).then(function(response) {
-			$scope.topics = response.data;
-			$scope.template =  {};
-			$scope.alerts = [];
-			$scope.alerts.push("Plantialla guardada correctamente.")
-			$('#modal-template').modal('hide');
-        });
+		if(validateTemplate()){
+			TemplateService.saveTemplate($stateParams.projectId).then(function(response) {
+				$scope.topics = response.data;
+				$scope.template =  {};
+				$ngConfirm('Plantialla guardada correctamente.');
+				$('#modal-template').modal('hide');
+			});
+		}
 	};
+
+	function validateTemplate(){
+        $scope.error = null;
+        if($scope.topic.name == undefined || $scope.topic.name == "")
+             $scope.error = "El campo nombre del topic es obligatorio";
+		return $scope.error != null ? false : true;
+	}
 
 	//*************************************************************************/
 	//************************************TOPIC********************************/
@@ -60,8 +69,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
         if(validateTopic()){
             TopicService.createTopic($stateParams.projectId, $scope.topic).then(function(response) {
                 $scope.topic =  {};
-                $scope.alerts = [];
-                $scope.alerts.push("Topic creado correctamente.")
+				$ngConfirm('Topic creado correctamente.');
                 $scope.init();
                 $('#modal-topic').modal('hide');
             });
@@ -69,13 +77,10 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
     }
 
     function validateTopic(){
-        $scope.errores = [];
+        $scope.error = null;
         if($scope.topic.name == undefined || $scope.topic.name == "")
-             $scope.errores.push("El campo nombre del topic es obligatorio");
-
-        if($scope.errores.length > 0)
-            return false;
-        return true;
+             $scope.error = "El campo nombre del topic es obligatorio";
+		return $scope.error != null ? false : true;
 	}
 
 	//*************************************************************************/
@@ -83,16 +88,15 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	//*************************************************************************/
 
 	// Seleccionar el topic cuando se cambia de pestana
-	/*$scope.selectQuestion = function(questionId){
+	$scope.selectQuestion = function(questionId){
         $scope.questionId = questionId;
-	};*/
+	};
 
     $scope.createQuestion = function(){
         if(validateQuestion()){
             QuestionService.createQuestion($scope.topicId, $scope.question).then(function(response) {
                 $scope.question =  {};
-                $scope.alerts = [];
-                $scope.alerts.push("Pregunta creada correctamente.")
+				$ngConfirm('La pregunta se ha creadp correctamente');
                 $scope.init();
                 $('#modal-question').modal('hide');
             });
@@ -108,27 +112,41 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
 	$scope.updateQuestion = function(){
 		QuestionService.updateQuestion($scope.question).then(function(response){
-			alert("Actualizado correctamente")
+			$ngConfirm('La pregunta se ha actualizado correctamente');
 			$('#modal-question').modal('hide');
 			$scope.init();
 		});
 	}
 
 	$scope.deleteQuestion = function(questionId){
-		QuestionService.deleteQuestion(questionId).then(function(response){
-			alert("Elimando correctamente")
-			$scope.init();
+		$ngConfirm({
+			title: 'Pregunta',
+			content: '¿Deseas eliminar la pregunta?',
+			buttons: {
+				aceptar: {
+					text: 'Eliminar',
+					btnClass: 'btn-blue',
+					action: function(scope, button){
+						QuestionService.deleteQuestion(questionId).then(function(response){
+							$ngConfirm('La pregunta se ha eliminado correctamente');
+							$scope.init();
+						});
+					}
+				},
+				cerrar: {
+					text: 'Cancelar',
+					btnClass: 'btn-orange',
+				}
+			}
 		});
 	}
 
 	function validateQuestion (){
-        $scope.errores = [];
+        $scope.error = null;
         if($scope.question.description == undefined || $scope.question.description == "")
-             $scope.errores.push("El campo nombre de la pregunta es obligatorio");
-        if( $scope.errores.length > 0)
-            return false
-        return true;
-    }
+			 $scope.error = "El campo nombre de la pregunta es obligatorio";
+		return $scope.error != null ? false : true;
+	}
 
 	//*************************************************************************/
 	//************************************ANSWER*******************************/
@@ -143,27 +161,54 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	}
 
 	$scope.updateAnswer = function(){
-		AnswerService.updateAnswer($scope.questionId, $scope.answer).then(function(response){
-			alert("Actualizado correctamente")
-			$('#modal-answer').modal('hide');
-			$scope.init();
-		});
+		if(validateAnswer()){
+			AnswerService.updateAnswer($scope.questionId, $scope.answer).then(function(response){
+				alert("Actualizado correctamente")
+				$('#modal-answer').modal('hide');
+				$scope.init();
+			});
+		}
 	}
 
 	$scope.deleteAnswer = function(questionId, answerId){
-		console.log(answerId)
-		AnswerService.deleteAnswer(questionId, answerId).then(function(response){
-			$scope.init();
-v
-			alert("Respuesta eliminada correctamente")
+		$ngConfirm({
+			title: 'Respuesta',
+			content: '¿Deseas eliminar la respuesta?',
+			buttons: {
+				aceptar: {
+					text: 'Eliminar',
+					btnClass: 'btn-blue',
+					action: function(scope, button){
+						AnswerService.deleteAnswer(questionId, answerId).then(function(response){
+							$scope.init();
+							$ngConfirm('La respuesta se ha eliminado correctamente');
+						});
+					}
+				},
+				cerrar: {
+					text: 'Cancelar',
+					btnClass: 'btn-orange',
+				}
+			}
 		});
 	}
 
     $scope.createAnswer = function(){
-		AnswerService.createAnswer($scope.questionId, $scope.answer).then(function(question) {
-            $scope.init();
-            $('#modal-answer').modal('hide');
-        });
-    };
+		if(validateAnswer()){
+			AnswerService.createAnswer($scope.questionId, $scope.answer).then(function(question) {
+				$scope.init();
+				$('#modal-answer').modal('hide');
+			});
+		}
+	};
+
+	function validateAnswer (){
+        $scope.error = null;
+        if($scope.answer.description == undefined || $scope.answer.description == "")
+			 $scope.error = "El campo nombre de la pregunta es obligatorio";
+		else if($scope.answer.requirement == undefined || $scope.answer.requirement == "")
+             $scope.error = "El campo requistio de la pregunta es obligatorio";
+		return $scope.error != null ? false : true;
+	}
 
 }]);

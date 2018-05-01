@@ -41,7 +41,6 @@
 							</li>
 						</ul>
 
-
 						<div class="tab-content" ng-repeat="topic in topics" ng-if="isSet($index)">
 							<div class="container">
 								<div class="row" ng-repeat="question in topic.questions">
@@ -121,7 +120,7 @@
 </section>
 <!-- /.content -->
 
-<!-- Inicio: Popup para creat/actualizar un proyecto-->
+<!-- Inicio: Popup para creat/actualizar un topic-->
 <div id="modal-topic" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -130,8 +129,7 @@
                 <h4 class="modal-title" >Crear topic</h4>
             </div>
             <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
 					<div>
 						<strong>Error!</strong> {{error}}.
 					</div>
@@ -149,7 +147,7 @@
         </div>
     </div>
 </div>
-<!-- Fin: Popup para crear/actualizar un proyecto-->
+<!-- Fin: Popup para crear/actualizar un topic-->
 
 <!-- Inicio: Popup para creat/actualizar una pregunta-->
 <div id="modal-question" class="modal fade" role="dialog">
@@ -161,8 +159,7 @@
 				<h4 class="modal-title" ng-show="mode == 2">Actualizar pregunta</h4>
             </div>
             <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
 					<div>
 						<strong>Error!</strong> {{error}}.
 					</div>
@@ -193,8 +190,7 @@
 				<h4 class="modal-title" ng-show="mode == 2">Actualizar respuesta</h4>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
 					<div>
 						<strong>Error!</strong> {{error}}.
 					</div>
@@ -222,145 +218,7 @@
 </div>
 <!-- Fin: Popup para crear/actualizar una respuestas-->
 
-<!-- Inicio: Popup para exportar a Jira-->
-<div id="modal-jira" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" >Exportar proyecto a Jira</h4>
-            </div>
-            <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<div>
-						<strong>Error!</strong> {{error}}.
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectName" class="col-md-4 control-label">Proyecto (*)</label>
-					<div class="col-md-7">
-						<input type="text"  id="projectName" ng-model="project.name" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
-					<div class="col-md-7">
-						<input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
-					<div class="col-md-7">
-						<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectIpJira" class="col-md-4 control-label">IP Jira (*)</label>
-					<div class="col-md-7">
-						<input type="text" id="projectIpJira" ng-model="project.ip" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectPortJira" class="col-md-4 control-label">Puerto Jira (*)</label>
-					<div class="col-md-7">
-						<input type="number" id="projectPortJira" ng-model="project.port" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectUser" class="col-md-4 control-label">Usuario (*)</label>
-					<div class="col-md-7">
-						<input type="text" id="projectUser" ng-model="project.user" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectPassword" class="col-md-4 control-label">Contraseña (*)</label>
-					<div class="col-md-7">
-						<input type="password" id="projectPassword" ng-model="project.password" class="form-control"/>
-					</div>
-				</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="exportJira();">Exportar proyecto</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin: Popup para exportar a Jira-->
-
-<!-- Inicio: Popup para exportar a Redmine-->
-<div id="modal-redmine" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" >Exportar proyecto a Redmine</h4>
-            </div>
-            <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-repeat="error in errores">
-					<a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<div>
-						<strong>Error!</strong> {{error}}.
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="projectNameRedmine" class="col-md-4 control-label">Proyecto (*)</label>
-					<div class="col-md-7">
-						<input type="text"  id="projectNameRedmine" ng-model="project.name" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="key" class="col-md-4 control-label">KEY (*)</label>
-					<div class="col-md-7">
-						<input type="text"  id="key" ng-model="project.key" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
-					<div class="col-md-7">
-						<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectIp" class="col-md-4 control-label">IP Redmine (*)</label>
-					<div class="col-md-7">
-						<input type="text" id="projectIp" ng-model="project.ip" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="projectPort" class="col-md-4 control-label">Puerto Redmine (*)</label>
-					<div class="col-md-7">
-						<input type="number" id="projectPort" ng-model="project.port" class="form-control"/>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="token" class="col-md-4 control-label">Token (*)</label>
-					<div class="col-md-7">
-						<textarea style="resize:none" id="token" ng-model="project.token" class="form-control"/>
-					</div>
-				</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="exportRedmine();">Exportar proyecto</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin: Popup para exportar a Redmine-->
-
-<!-- Inicio: Popup para exportar a Redmine-->
+<!-- Inicio: Popup para crear una plantilla-->
 <div id="modal-template" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -388,4 +246,4 @@
 		</div>
 	</div>
 </div>
-<!-- Fin: Popup para exportar a Redmine-->
+<!-- Fin: Popup para crear una plantilla-->

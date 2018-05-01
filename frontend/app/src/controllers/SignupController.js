@@ -32,7 +32,7 @@ angular.module('tfm.uex').controller('SignupController',
 			signup.error = "Se debe indicar un nombre para el usuario";
         else if(signup.user.userName == undefined || signup.user.userName == "")
 			signup.error = "Se debe indicar un nombre de usuario";
-        else if((signup.user.phoneNumber != undefined && signup.user.phoneNumber != "") && (signup.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(signup.user.phone))))
+        else if((signup.user.phoneNumber != undefined && signup.user.phoneNumber != "") && (signup.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(signup.user.phoneNumber))))
 			signup.error = "El teléfono facilitado no es válido";
         else if(signup.user.password == undefined || signup.user.password == "")
 			signup.error = "Se debe especificar una contraseña";
