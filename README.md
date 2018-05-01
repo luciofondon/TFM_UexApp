@@ -170,7 +170,6 @@ npm -v
 grunt -version
 ```
 
-
 ## 4. GENERAR DOCUMENTACIÓN INTERNA
 El proyecto permite generar una página HTML con la documentación interna de la aplicación. El siguiente comando lo generará autoḿaticamente y bastará con abrir el fichero "doc/index.html" generado.
 ```
@@ -287,3 +286,32 @@ Lanzamos el proceso de instalación
 ./bitnami-redmine-3.3.0-0-linux-x64-installer.run
 ´´´
 ##2. Instalar Jira para pruebas.
+
+
+
+## FICHEROS DEL PROYECTO
+
+| DIRECTORIO | DESCRIPCIÓN |
+| ------ | ------ |
+|API_Postman | Entornos y llamadas para importar en Postman |
+|config/config.js.dist | Variables de configuración de la aplición|
+|node_modules| Dependencias descargadas del fichero "package.json" mediante ```npm install```
+|src/controllers | Llamadas a los servicios que atenderán las peticiones de las diferentes rutas de la API establecidas|
+|src/DAOS | Diferentes rutas de la API definidas|
+|src/middlewares | Middlewares que se ejecutarán antes de atender un controlador cada petición|
+|src/models | Modelos definidos con Mongoose para mantener consistencia en MongoDB|
+|src/resources | Diferentes rutas de la API definidas|
+|src/routes | Diferentes rutas de la API definidas|
+|src/services | Implementación de los servicios que utilizaran los controladores y los scheduclers|
+|test |Test|
+|var/tmp |Recursos temporales que genera la aplicación (Excel, PDF...)|
+|var/* |Recursos subidos por los usuarios a la aplciación|
+|.bowerrc| Directorio en el que se debe descargar las dependencias del fichero "bower.json" con el comando ```bower install```.|
+|.gitignore| Sirve para indicar a git qué archivos no se desean que se suban al repositorio.|
+|.editorconfig| Permite configurar el editor de texto para que todos los desarrolladores engan el mismo espaciado, tabulación...|
+|.jshintrc| Permite comproabar errores tanto de código como de sintaxis, uso de variables, o estilo en en el código JavaScript. Condiciones que queremos que JSHint verifique en nuestro código|
+|bower.json| Es similiar a "package.json" para manejar las dependencias que se usan en el Frontend. Añadir nuevas dependencias mediante ```bower install --save dependencia```|
+|package.json| Dependencias de NPM para el backend que se necesitan instalar para desplegar la aplicación. Añadir nuevas dependencias mediante ```npm install --save dependencia```|
+|README.md| Fichero actual para dar información acerca de la aplicación que se está desarrollando y documentarla|
+|server.js|Fichero que lanza la aplicación con la configuración indicada en "config/config.js"|
+

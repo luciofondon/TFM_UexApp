@@ -70,12 +70,11 @@
                       <h4 class="modal-title" ng-show="vm.mode == 2">Actualizar proyecto</h4>
                   </div>
                   <div class="modal-body">
-                          <div class="alert alert-danger alert-dismissible"  ng-repeat="error in vm.errores">
-                              <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                              <div>
-                                  <strong>Error!</strong> {{error}}.
-                              </div>
-                          </div>
+						<div class="alert alert-danger alert-dismissible"  ng-if="vm.error != null">
+							<div>
+								<strong>Error!</strong> {{vm.error}}.
+							</div>
+						</div>
                        	<div class="form-group row">
                               <label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
                               <div class="col-md-7">

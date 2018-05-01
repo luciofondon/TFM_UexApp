@@ -1,11 +1,11 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm){
 	var vm = this;
 
     vm.bsTableProject = {};
     vm.alerts = [];
-    vm.errores = [];
+    vm.error = null;
     vm.project = {};
     vm.mode = 1;
 	vm.templates = [];
@@ -36,13 +36,10 @@ angular.module('tfm.uex').controller('ProjectListController',
     }
 
     function validate(){
-        vm.errores = [];
+		vm.error = null;
         if(vm.project.name == undefined || vm.project.name == "")
-			vm.errores.push("El campo nombre de proyecto es obligatorio");
-
-        if(vm.errores.length > 0)
-            return false
-        return true;
+			vm.error = "El campo nombre de proyecto es obligatorio";
+		return vm.error != null ? false : true;
     }
 
     vm.updateProject = function() {
