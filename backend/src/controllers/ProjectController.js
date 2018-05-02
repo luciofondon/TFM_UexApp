@@ -27,8 +27,7 @@ module.exports = function() {
         },
 
         deleteProject: function(req, res) {
-            //No permitir esta opcion porque los municipios pertenencen al proyecto
-            return res.status(500).json({ error: "API no disponible"});
+        	projectDAO.deleteProject(req,res);
         },
 
         exportData: function(req, res) {
