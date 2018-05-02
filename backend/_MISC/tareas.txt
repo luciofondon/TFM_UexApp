@@ -19,8 +19,8 @@ MODULO USUARIO (95%)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
-**VIERNES**- Perfil usuario (30 MIN)
 5 >>TRABAJO- Jasmine 30 min
+**VIERNES**- Perfil usuario (30 MIN)
 
 MODULO CONFIGURADOR (90%)
 - Selenium
@@ -28,8 +28,9 @@ MODULO CONFIGURADOR (90%)
 - Mocha
 - Jasmine
 - controllerAs
-*- Preguntas asociadas(CRUD) 1 hora
-*- Editar /Eliminar topic (30 min)
+**VIERNES**- Preguntas asociadas(CRUD) 1 hora
+**VIERNES**- Editar /Eliminar topic (30 min)
+**VIERNES**- Eliminar proyecto (20 min)
 
 MODULO GENERADOR (85%)
 - Selenium
@@ -37,8 +38,8 @@ MODULO GENERADOR (85%)
 - Mocha
 - Jasmine
 - Logica comparacion
-**VIERNES** - Validaciones (30 min)
-**VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
+** - Validaciones (30 min)
+** - Almacenar respuestas (actualizar contador) 1 HORA
 
 MODULO TEMPLATE (85%)
 - Selenium
