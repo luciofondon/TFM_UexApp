@@ -7,7 +7,7 @@ CONFIGURACION (90%)
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
->>VIERNES*- Exportar tabla (30 MIN)
+>>TRABAJO*- Exportar tabla (30 MIN)
 >>TRABAJO*- Grunt indexPro (30 MIN)
 
 MODULO USUARIO (95%)
@@ -15,11 +15,11 @@ MODULO USUARIO (95%)
 - JSDoc (readme)
 - Captcha key importar
 >>TRABAJO- Mocha
->>VIERNES*- Subir foto (1 HORA)
+>>TRABAJO*- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
->>VIERNES- Perfil usuario (30 MIN)
+**VIERNES**- Perfil usuario (30 MIN)
 >>TRABAJO- Jasmine 30 min
 
 MODULO CONFIGURADOR (90%)
@@ -37,8 +37,8 @@ MODULO GENERADOR (85%)
 - Mocha
 - Jasmine
 - Logica comparacion
->>3 MARTES - Validaciones (30 min)
->>6 MARTES - Almacenar respuestas (actualizar contador) 1 HORA
+**VIERNES** - Validaciones (30 min)
+**VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
 
 MODULO TEMPLATE (85%)
 - Selenium
@@ -52,15 +52,15 @@ MODULO MEDIATORY (60%)
 - Selenium
 - JSDoc (readme)
 - Mocha
-- SOAP
 - Autenticacion 2 servicios
-- Exportar tareas
-*- Desplegar redmine
-*- Desplegar Jira
-*- Get issues
-SABADO- Get project (20 min)
-SABADO- Integrar app.config.js (30 min)
-SABADO- Get apps (30 min)
+**- Exportar tareas
+**- Get issues por proyecto
+>>TRABAJO- Desplegar redmine
+>>TRABAJO- Desplegar Jira
+**VIERNES** Check comunicación (30 min)
+**VIERNES** Get project (30 min)
+**VIERNES** Integrar app.config.js (1 HORA)
+**VIERNES** Get apps (30 min)
 
 DASHBOARD (40%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
