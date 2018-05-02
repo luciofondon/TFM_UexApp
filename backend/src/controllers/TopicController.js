@@ -10,6 +10,14 @@ module.exports = function() {
 
         createTopicByProject: function(req, res) {
             topicDAO.createTopicByProject(req, res);
+        },
+		
+        deleteTopic: function(req, res) {
+            topicDAO.deleteTopic(req, res);
+        },
+		
+        updateTopic: function(req, res) {
+            topicDAO.updateTopic(req, res);
         }
 
     }
