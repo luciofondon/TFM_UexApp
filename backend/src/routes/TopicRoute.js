@@ -11,5 +11,11 @@ module.exports = function(app){
 	app.route('/topics/project/:projectId')
 		.post(systemMiddleware.rolOperador, topicController.createTopicByProject)
         .get(systemMiddleware.rolOperador, topicController.readAllByProject);
+	
+	app.route('/topic/:topicId')
+		.put(systemMiddleware.rolOperador, topicController.updateTopic)
+        .get(systemMiddleware.rolOperador, topicController.deleteTopic);
+	
+	app.param('topicId', topicController.loadTopic);
 
 }
