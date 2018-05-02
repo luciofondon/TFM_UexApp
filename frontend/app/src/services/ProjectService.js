@@ -9,7 +9,7 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		createProject: function(project){
 			return createProject(project);
 		},
-		removeProject: function(projectId){
+		deleteProject: function(projectId){
 			return deleteProject(projectId);
 		},
 		updateProject: function(project){
