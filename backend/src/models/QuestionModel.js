@@ -12,7 +12,11 @@ var questionSchema = new Schema({
 		},
 		requirement: {
 			type: String
-		}
+		},
+		questions: {
+			type: Schema.ObjectId,
+			ref: 'Question',
+  		},
 	}],
   	topic: {
 		type: Schema.ObjectId,
