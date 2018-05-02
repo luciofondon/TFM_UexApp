@@ -85,6 +85,9 @@ angular.module('tfm.uex').controller('ProjectListController',
                     '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
                     	'<i class="glyphicon glyphicon-edit"></i>',
                     '</a>',
+					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
+                        '<i class="glyphicon glyphicon-remove"></i>',
+                    '</a>'
                     '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador">',
                         '<i class="fa fa-cogs"></i>',
                     '</a>',
@@ -114,7 +117,34 @@ angular.module('tfm.uex').controller('ProjectListController',
             },'click .configurator': function (e, value, row, index) {
               	//Cambiar de estado
 			    $state.go('configuratorManagement', {projectId:row._id});
-            },'click .generator': function (e, value, row, index) {
+			},'click .remove': function (e, value, row, index) {
+				$ngConfirm({
+					title: 'Plantilla',
+					content: '¿Deseas eliminar la plantilla?',
+					buttons: {
+						aceptar: {
+							text: 'Eliminar',
+							btnClass: 'btn-blue',
+							action: function(scope, button){
+								ProjectService.deleteProject(row._id).then(function(response) {
+                   					for(var i = vm.bsTableProject.options.data.length; i--;){
+										if(vm.bsTableProject.options.data[i]._id == row._id){
+											vm.bsTableProject.options.data.splice(i, 1);
+											$ngConfirm('El proyecto se ha sido eliminado correctamente');
+										}
+									}
+                				});
+							}
+						},
+						cerrar: {
+							text: 'Cancelar',
+							btnClass: 'btn-orange',
+						}
+					}
+				});
+     		
+				
+			},'click .generator': function (e, value, row, index) {
                 //Cambiar de estado
               $state.go('generatorManagement', {projectId:row._id});
           }
