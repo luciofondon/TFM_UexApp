@@ -10,6 +10,7 @@ angular.module('tfm.uex').controller('UserListController',
     vm.resetPassword = {};
     vm.projects = [];
     vm.bsTableUsers = {};
+	vm.imageUpload;
 
 	vm.reset = function(){
 		vm.mode = 1;
@@ -169,7 +170,7 @@ angular.module('tfm.uex').controller('UserListController',
             });
         }
     }
-	
+
 	function upload(file){
         Upload.upload({
             url: 'upload/url',

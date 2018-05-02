@@ -46,7 +46,11 @@ module.exports = function() {
 
 		updateMeUser: function(req, res) {
             userDAO.updateMeUser(req, res);
-        }
+		},
+
+		uploadImageUser: function(req, res){
+			userDAO.uploadImageUser(req, res);
+		}
     }
 }
 

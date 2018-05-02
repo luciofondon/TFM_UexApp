@@ -1,45 +1,48 @@
+VIERNES 6:30
+SABADO 3
 
 CONFIGURACION (90%)
 - Loading (fixed cabecera)
 - Menu lateral
 - Google analytic
-- DAO -> Model
 - Script DB
 - Directiva
+- DAO -> Model
 - Eliminar codigo HTML (ng-init)
->>TRABAJO*- Exportar tabla (30 MIN)
-1 >>TRABAJO*- Grunt indexPro (30 MIN)
+
+* 10 **VIERNES**- Grunt indexPro (30 MIN)
 
 MODULO USUARIO (95%)
 - Selenium
 - JSDoc (readme)
 - Captcha key importar
-6 >>TRABAJO- Mocha
-2 >>TRABAJO*- Subir foto (1 HORA)
+>>TRABAJO- Mocha
+>>TRABAJO- Jasmine
+* 8 **VIERNES**- Perfil usuario (30 MIN)
+* 7 **VIERNES** - Subir foto (30 MIN)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
-5 >>TRABAJO- Jasmine 30 min
-**VIERNES**- Perfil usuario (30 MIN)
+	https://gist.github.com/aksakalli/1a56072f066d65248885
 
-MODULO CONFIGURADOR (90%)
+MODULO CONFIGURADOR (95%)
 - Selenium
 - JSDoc (readme)
 - Mocha
 - Jasmine
 - controllerAs
-**VIERNES**- Preguntas asociadas(CRUD) 1 hora
-**VIERNES**- Editar /Eliminar topic (30 min)
-**VIERNES**- Eliminar proyecto (20 min)
+  9 **VIERNES**- Preguntas asociadas(CRUD) 1 hora
+* 2 **VIERNES**- Editar /Eliminar topic (20 min)
+* 1 **VIERNES**- Eliminar proyecto (10 min)
 
-MODULO GENERADOR (85%)
+MODULO GENERADOR (90%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
-- Logica comparacion
-** - Validaciones (30 min)
-** - Almacenar respuestas (actualizar contador) 1 HORA
+   **SABADO** Logica comparacion 2 hora
+   **VIERNES** - Validaciones (30 min)
+11 **VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
 
 MODULO TEMPLATE (85%)
 - Selenium
@@ -49,21 +52,21 @@ MODULO TEMPLATE (85%)
 - Importar CSV
 - Exprotar CSV
 
-MODULO MEDIATORY (60%)
+MODULO MEDIATORY (70%)
 - Selenium
 - JSDoc (readme)
 - Mocha
 - Autenticacion 2 servicios
-**- Exportar tareas
-**- Get issues por proyecto
-3 >>TRABAJO- Desplegar redmine
-4 >>TRABAJO- Desplegar Jira
-**VIERNES** Check comunicación (30 min)
-**VIERNES** Get project (30 min)
-**VIERNES** Integrar app.config.js (1 HORA)
-**VIERNES** Get apps (30 min)
+  **SABADO** - Exportar tareas 30 min
+  **SABADO**- Get issues por proyecto 30 min
+>>TRABAJO- Desplegar redmine
+>>TRABAJO- Desplegar Jira
+* 6 **VIERNES** Check comunicación (30 min)
+* 5 **VIERNES** Crear project (30 min)
+* 4 **VIERNES** Get project (30 min)
+* 3 **VIERNES** Get apps (20 min)
 
-DASHBOARD (40%)
+DASHBOARD (50%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
 DIARIO - Plantillas generadas
 DIARIO - Donut estilo (20 min)

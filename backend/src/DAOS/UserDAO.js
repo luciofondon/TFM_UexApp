@@ -47,15 +47,15 @@ exports.loginUser = function(req, res) {
     loginUser(req, res);
 };
 
-exports.upload = function(req, res) {
-    upload(req, res);
+exports.uploadImageUser = function(req, res) {
+    uploadImageUser(req, res);
 };
 
 exports.updateMeUser = function(req, res) {
     updateMeUser(req, res);
 };
 
-function upload(req, res) {
+function uploadImageUser(req, res) {
     console.log(req.files);
     var tmp_path = req.files.photo.path;
     // Ruta donde colocaremos las imagenes

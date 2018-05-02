@@ -1,4 +1,7 @@
 
+
+var request = require('request');
+
 exports.checkComunications = function(req, res) {
     checkComunications(req, res);
 };

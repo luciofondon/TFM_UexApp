@@ -87,7 +87,7 @@ angular.module('tfm.uex').controller('ProjectListController',
                     '</a>',
 					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
                         '<i class="glyphicon glyphicon-remove"></i>',
-                    '</a>'
+                    '</a>',
                     '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador">',
                         '<i class="fa fa-cogs"></i>',
                     '</a>',
@@ -142,8 +142,8 @@ angular.module('tfm.uex').controller('ProjectListController',
 						}
 					}
 				});
-     		
-				
+
+
 			},'click .generator': function (e, value, row, index) {
                 //Cambiar de estado
               $state.go('generatorManagement', {projectId:row._id});

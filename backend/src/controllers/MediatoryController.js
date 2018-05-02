@@ -1,6 +1,5 @@
 var mediatoryDAO = require('../DAOS/MediatoryDAO');
 
-
 module.exports = function() {
 
     return {
@@ -13,8 +12,8 @@ module.exports = function() {
             mediatoryDAO.getApps(req,res);
         },
 
-        checkComunications: function(req, res) {
-            mediatoryDAO.checkComunications(req,res);
+        checkComunication: function(req, res) {
+            mediatoryDAO.checkComunication(req,res);
         }
     }
 }

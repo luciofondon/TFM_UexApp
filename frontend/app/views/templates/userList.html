@@ -114,7 +114,8 @@
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
 					<div class="col-md-7">
-						<img ngf-thumbnail="file || '/thumb.jpg'">
+						<img ngf-thumbnail="vm.imageUpload" height="100">
+						<button type="button" class="btn btn-default" ngf-select ng-model="vm.imageUpload">Adjuntar fotografía</button>
 					</div>
 				</div>
 

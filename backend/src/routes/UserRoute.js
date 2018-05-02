@@ -10,26 +10,26 @@ module.exports = function(app){
 
     // CRUD usuario
     app.route('/users')
-      .get(systemMiddleware.rolAdmin, userController.readAll)
-      .post(systemMiddleware.rolAdmin, userController.create);
+		.get(systemMiddleware.rolAdmin, userController.readAll)
+		.post(systemMiddleware.rolAdmin, userController.create);
 
     // CRUD usuario
     app.route('/user/:userId')
-      .get(systemMiddleware.rolAdmin, userController.read)
-      .put(systemMiddleware.rolAdmin, userController.update)
-      .delete(systemMiddleware.rolAdmin, userController.delete);
+		.get(systemMiddleware.rolAdmin, userController.read)
+		.put(systemMiddleware.rolAdmin, userController.update)
+		.delete(systemMiddleware.rolAdmin, userController.delete);
 
     app.route('/user/cfg/me')
-	  .get(systemMiddleware.rolConsultor, userController.me)
-	  .put(systemMiddleware.rolConsultor, userController.updateMeUser);
+	  	.get(systemMiddleware.rolConsultor, userController.me)
+	  	.put(systemMiddleware.rolConsultor, userController.updateMeUser);
 
 
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
-      .put(systemMiddleware.rolAdmin, userController.resetPassword);
+      	.put(systemMiddleware.rolAdmin, userController.resetPassword);
 
-   /* app.route('/auth/login')
-      .post(userController.login);
-   */
+    app.route('/user/upload')
+    	.post(userController.uploadImageUser);
+
     app.param('userId', userController.loadUser);
   }
