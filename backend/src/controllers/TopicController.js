@@ -1,9 +1,14 @@
-var topicDAO = require('../DAOS/TopicDAO');
+var topicMiddleware = require('../middlewares/TopicMiddleware'),
+	topicDAO = require('../DAOS/TopicDAO');
 
 
 module.exports = function() {
 
     return {
+		loadTopic: function(req, res, next, topicId) {
+            topicMiddleware.loadTopic(req, res, next, topicId);
+        },
+		
         readAllByProject: function(req, res) {
             topicDAO.readAllByProject(req,res);
         },
