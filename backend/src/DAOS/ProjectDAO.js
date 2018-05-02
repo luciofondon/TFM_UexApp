@@ -36,6 +36,14 @@ exports.generateProject = function(req, res) {
     generateProject(req, res);
 }
 
+exports.deleteProject = function(req, res) {
+    deleteProject(req, res);
+}
+
+function deleteProject(req, res){
+	
+}
+
 function generateProject(req, res){
 	let template = req.body;
 	let project = req.project;
