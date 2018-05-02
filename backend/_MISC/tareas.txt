@@ -8,19 +8,19 @@ CONFIGURACION (90%)
 - Directiva
 - Eliminar codigo HTML (ng-init)
 >>TRABAJO*- Exportar tabla (30 MIN)
->>TRABAJO*- Grunt indexPro (30 MIN)
+1 >>TRABAJO*- Grunt indexPro (30 MIN)
 
 MODULO USUARIO (95%)
 - Selenium
 - JSDoc (readme)
 - Captcha key importar
->>TRABAJO- Mocha
->>TRABAJO*- Subir foto (1 HORA)
+6 >>TRABAJO- Mocha
+2 >>TRABAJO*- Subir foto (1 HORA)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
 **VIERNES**- Perfil usuario (30 MIN)
->>TRABAJO- Jasmine 30 min
+5 >>TRABAJO- Jasmine 30 min
 
 MODULO CONFIGURADOR (90%)
 - Selenium
@@ -55,8 +55,8 @@ MODULO MEDIATORY (60%)
 - Autenticacion 2 servicios
 **- Exportar tareas
 **- Get issues por proyecto
->>TRABAJO- Desplegar redmine
->>TRABAJO- Desplegar Jira
+3 >>TRABAJO- Desplegar redmine
+4 >>TRABAJO- Desplegar Jira
 **VIERNES** Check comunicación (30 min)
 **VIERNES** Get project (30 min)
 **VIERNES** Integrar app.config.js (1 HORA)
