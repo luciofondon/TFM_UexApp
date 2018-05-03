@@ -1,4 +1,4 @@
-VIERNES 6:30
+VIERNES 5:20
 SABADO 3
 
 CONFIGURACION (90%)
@@ -32,8 +32,8 @@ MODULO CONFIGURADOR (95%)
 - Jasmine
 - controllerAs
   9 **VIERNES**- Preguntas asociadas(CRUD) 1 hora
-* 2 **VIERNES**- Editar /Eliminar topic (20 min)
-* 1 **VIERNES**- Eliminar proyecto (10 min)
+* 2 **VIERNES**- Editar /Eliminar topic (0 min)
+* 1 **VIERNES**- Eliminar proyecto (0 min)
 
 MODULO GENERADOR (90%)
 - Selenium
@@ -61,9 +61,9 @@ MODULO MEDIATORY (70%)
   **SABADO**- Get issues por proyecto 30 min
 >>TRABAJO- Desplegar redmine
 >>TRABAJO- Desplegar Jira
-* 6 **VIERNES** Check comunicación (30 min)
-* 5 **VIERNES** Crear project (30 min)
-* 4 **VIERNES** Get project (30 min)
+* 6 **VIERNES** Check comunicación (20 min)
+* 5 **VIERNES** Crear project (20 min)
+* 4 **VIERNES** Get projects (20 min)
 * 3 **VIERNES** Get apps (20 min)
 
 DASHBOARD (50%)
