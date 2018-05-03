@@ -74,7 +74,7 @@ module.exports = function(grunt){
                 + '*\n'
                 + '\n\n'
             },
-            pro   : {
+            proLib   : {
                 src : [
                     'bower_components/jquery/dist/jquery.min.js',
 					'bower_components/angular/angular.min.js',
@@ -91,8 +91,8 @@ module.exports = function(grunt){
                     'bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js',
                     'bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js',
                     'bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js',
-                    'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js'
-
+                    'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js',
+					'bower_components/tableexport.jquery.plugin/tableExport.min.js'
 				],
                 dest: 'public/dist/js/assets.min.js'
             }
@@ -131,6 +131,8 @@ module.exports = function(grunt){
 			pro: {
 				files: [
 		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
+					{expand: true, src:['app/views/**/*.html'], dest: 'public/dist/view/', filter: 'isFile'},
+					{expand: true, src:['app/src/app.js', 'app/src/**/*.js'], dest: 'public/dist/js/', filter: 'isFile'},
 		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return dest + 'index.html';}},
 				]
 			},
