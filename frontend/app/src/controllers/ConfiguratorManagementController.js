@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ConfiguratorManagementController',
-	['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', '$ngConfirm',
-		function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, $ngConfirm){
+	['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', 'MediatoryService', '$ngConfirm',
+		function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, MediatoryService, $ngConfirm){
 	var conf = this;
 
 	$scope.tab = 0; //Tab que se mostrara en la vistas
