@@ -69,6 +69,13 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
         $scope.topicId = topicId;
 	};
 
+	$scope.readTopic = function(topicId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
+		TopicService.readTopic(topicId).then(function(response){
+			$scope.topic = response.data;
+		});
+	}
+				
     $scope.createTopic = function(){
         if(validateTopic()){
             TopicService.createTopic($stateParams.projectId, $scope.topic).then(function(response) {
