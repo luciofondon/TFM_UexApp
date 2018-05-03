@@ -1,4 +1,4 @@
-VIERNES 5:20
+VIERNES 5
 SABADO 3
 
 CONFIGURACION (90%)
@@ -9,8 +9,7 @@ CONFIGURACION (90%)
 - Directiva
 - DAO -> Model
 - Eliminar codigo HTML (ng-init)
-
-* 10 **VIERNES**- Grunt indexPro (30 MIN)
+* 10 **VIERNES**- Grunt indexPro (20 MIN)
 
 MODULO USUARIO (95%)
 - Selenium
@@ -18,8 +17,8 @@ MODULO USUARIO (95%)
 - Captcha key importar
 >>TRABAJO- Mocha
 >>TRABAJO- Jasmine
-* 8 **VIERNES**- Perfil usuario (30 MIN)
-* 7 **VIERNES** - Subir foto (30 MIN)
+* 8 **VIERNES**- Perfil usuario (20 MIN)
+* 7 **VIERNES** - Subir foto (20 MIN)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
