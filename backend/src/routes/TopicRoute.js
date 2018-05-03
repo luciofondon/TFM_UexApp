@@ -14,7 +14,7 @@ module.exports = function(app){
 	
 	app.route('/topic/:topicId')
 		.put(systemMiddleware.rolOperador, topicController.updateTopic)
-        .get(systemMiddleware.rolOperador, topicController.deleteTopic);
+        .delete(systemMiddleware.rolOperador, topicController.deleteTopic);
 	
 	app.param('topicId', topicController.loadTopic);
 
