@@ -41,7 +41,22 @@ exports.deleteProject = function(req, res) {
 }
 
 function deleteProject(req, res){
-	
+	let project = req.project;
+	Topic.find({project: project._id}, {"__v":0}).exec(function(err, topics){
+		topics.forEach(function(topic){
+			Question.remove({topic: topic._id}, function(err){
+
+			});
+		});
+		Topic.remove({project: project._id}, function(err){
+			project.remove(function(err){
+				if (err) {
+					return res.status(500).json({error: 'Cannot delete the user'});
+				}
+				res.json(project);
+			});
+		});
+	});
 }
 
 function generateProject(req, res){
