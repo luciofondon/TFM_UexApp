@@ -1,12 +1,13 @@
 angular.module('tfm.uex').controller('GeneratorManagementController',
-    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm', 'TopicService',
-        function($stateParams, ProjectService, projectData, $ngConfirm, TopicService){
+    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm', 'TopicService', 'MediatoryService',
+        function($stateParams, ProjectService, projectData, $ngConfirm, TopicService, MediatoryService){
 	var gm = this;
 
     gm.tab = 0; //Tab que se mostrara en la vista
     gm.topics = [];
 	gm.project = projectData.data;
     gm.topicId = ""; //Pestana de topic seleccionada
+	gm.apps = [];
 
     TopicService.getTopics($stateParams.projectId).then(function(response) {
         gm.topics = response.data;
@@ -24,8 +25,11 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
         TopicService.getTopics($stateParams.projectId).then(function(response) {
 			gm.topics = response.data;
 			if(gm.topics.length > 0)
-			gm.topicId = $scope.topics[0]._id;
+				gm.topicId = $scope.topics[0]._id;
         });
+		MediatoryService.getApps().then(function(response){
+			gm.apps = response.data;
+		});
 	}
 
 	gm.checkUpload = function(){
