@@ -6,15 +6,19 @@ angular.module('tfm.uex').controller('UserDetailController',
 	vm.user = {};
 	vm.disabled = true;
 	vm.error = null;
-
+	vm.reset();
+			
 	vm.editUser = function(){
 
 	}
-	UserService.getMe().then(function(response) {
-		vm.user  = response.data;
-	}).catch(function (error){
-		console.log(error);
-	});
+	
+	vm.reset = function(){
+		UserService.getMe().then(function(response) {
+			vm.user  = response.data;
+		}).catch(function (error){
+			console.log(error);
+		});
+	}
 
 	vm.updateUser = function(){
 		if(validateUser()){
