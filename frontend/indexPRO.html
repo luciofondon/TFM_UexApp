@@ -8,18 +8,9 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-		<link rel="stylesheet" href="app/styles/css/app.css">
-		<link rel="stylesheet" href="app/styles/css/bootstrap-nav-wizard.css">
-
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
-		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
-		<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
-		<link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
-		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/bootstrap-table.min.css" />
-
+		<link rel="stylesheet" href="css/app.min.css">
+		<link rel="stylesheet" href="css/bootstrap-nav-wizard.css">
+		<link rel="stylesheet" href="css/assets.css">
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 		<div class="wrapper">
@@ -34,7 +25,7 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
 					<div class="pull-left image">
-					<img src="images/userDefault.png" class="img-circle" alt="User Image">
+					<img src="image/userDefault.png" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 					<p>{{LoginUser.name}}</p>
@@ -124,7 +115,6 @@
 
 		<ng-include src="'app/views/layouts/_footer.html'"></ng-include>
 
-		<!--<div class="control-sidebar-bg"></div>-->
 
 
 		</div>
@@ -136,71 +126,35 @@
 		<!-- Inicio: Incluir librerias y css                 -->
 		<!-- =============================================== -->
 
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-recaptcha/release/angular-recaptcha.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="bower_components/admin-lte/dist/js/adminlte.min.js"></script>
-		<script type="text/javascript" src="bower_components/satellizer/dist/satellizer.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-		<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
-		<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-table/dist/bootstrap-table.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-table/dist/locale/bootstrap-table-es-ES.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js"></script>
-		<script type="text/javascript" src="bower_components/tableexport.jquery.plugin/tableExport.min.js"></script>
-
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.28/jspdf.plugin.autotable.js"></script>
-		<script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>-->
-
-
-		<!-- Inicio: AmChart -->
-		<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/amcharts.js"></script>
-		<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/pie.js"></script>
-		<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/serial.js"></script>
-		<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/lang/es.js"></script>
-		<!--<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/plugins/export/export.min.js"></script>
-		<link rel="stylesheet" src="bower_components/amcharts/dist/amcharts/plugins/export/export.css" type="text/css" media="all" />-->
-		<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-		<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-		<script type="text/javascript" src="bower_components/amcharts/dist/amcharts/themes/light.js"></script>
-		<script src="bower_components/amcharts/dist/amcharts/plugins/responsive/responsive.min.js" type="text/javascript"></script>
-		<!-- Fin: AmChart -->
-
-
-
+		<script type="text/javascript" src="js/assets.min.js"></script>
+		
 		<!-- Inicio: Controladores angular -->
-		<script src="app/src/app.js"></script>
-		<script src="app/src/constants/SystemConstant.js"></script>
-		<script src="app/src/controllers/ProjectListController.js"></script>
-		<script src="app/src/controllers/ConfiguratorManagementController.js"></script>
-		<script src="app/src/controllers/GeneratorManagementController.js"></script>
-		<script src="app/src/controllers/RolListController.js"></script>
-		<script src="app/src/controllers/UserListController.js"></script>
-		<script src="app/src/controllers/UserDetailController.js"></script>
-		<script src="app/src/controllers/TemplateDetailController.js"></script>
-		<script src="app/src/controllers/TemplateListController.js"></script>
-		<script src="app/src/controllers/LoginController.js"></script>
-		<script src="app/src/controllers/MainController.js"></script>
-		<script src="app/src/controllers/HttpErrorController.js"></script>
-		<script src="app/src/controllers/DashboardController.js"></script>
-		<script src="app/src/controllers/SignupController.js"></script>
-		<script src="app/src/services/AmChartService.js"></script>
-		<script src="app/src/services/UserService.js"></script>
-		<script src="app/src/services/RolService.js"></script>
-		<script src="app/src/services/ProjectService.js"></script>
-		<script src="app/src/services/QuestionService.js"></script>
-		<script src="app/src/services/TopicService.js"></script>
-		<script src="app/src/services/AnswerService.js"></script>
-		<script src="app/src/services/BootstrapTableService.js"></script>
-		<script src="app/src/services/DashboardService.js"></script>
-		<script src="app/src/services/TemplateService.js"></script>
-		<script src="app/src/services/MediatoryService.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/SystemConstant.js"></script>
+		<script src="js/ProjectListController.js"></script>
+		<script src="js/ConfiguratorManagementController.js"></script>
+		<script src="js/GeneratorManagementController.js"></script>
+		<script src="js/RolListController.js"></script>
+		<script src="js/UserListController.js"></script>
+		<script src="js/UserDetailController.js"></script>
+		<script src="js/TemplateDetailController.js"></script>
+		<script src="js/TemplateListController.js"></script>
+		<script src="js/LoginController.js"></script>
+		<script src="js/MainController.js"></script>
+		<script src="js/HttpErrorController.js"></script>
+		<script src="js/DashboardController.js"></script>
+		<script src="js/SignupController.js"></script>
+		<script src="js/AmChartService.js"></script>
+		<script src="js/UserService.js"></script>
+		<script src="js/RolService.js"></script>
+		<script src="js/ProjectService.js"></script>
+		<script src="js/QuestionService.js"></script>
+		<script src="js/TopicService.js"></script>
+		<script src="js/AnswerService.js"></script>
+		<script src="js/BootstrapTableService.js"></script>
+		<script src="js/DashboardService.js"></script>
+		<script src="js/TemplateService.js"></script>
+		<script src="js/MediatoryService.js"></script>
 		<!-- Fin: Controladores angular -->
 
 		<script>
