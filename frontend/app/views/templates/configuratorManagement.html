@@ -28,9 +28,9 @@
 							<li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
 								<a href ng-click="setTab($index); selectTopic(topic._id);">{{$index + 1}}. {{topic.name}}
 									&nbsp;
-									<span class="fa fa-pencil"></span>
+									<span class="fa fa-pencil" ng-click="readTopic(topic._id)"  data-toggle="modal" data-target="#modal-topic"></span>
 									&nbsp;
-									<span class="fa fa-trash"></span>
+									<span class="fa fa-trash" ng-click="deleteTopic(topic._id)"></span>
 								</a>
 							</li>
 							<li class="dropdown">
