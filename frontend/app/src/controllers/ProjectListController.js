@@ -100,7 +100,8 @@ angular.module('tfm.uex').controller('ProjectListController',
             var columns = [
                 {align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
                 {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-                {field: "name", title: "Nombre", align: 'center', valign: 'middle', sortable: true},
+                {field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
+				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
                 {field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
                 {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
             ];
