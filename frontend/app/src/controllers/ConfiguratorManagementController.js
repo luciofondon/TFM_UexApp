@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ConfiguratorManagementController',
-	['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', 'MediatoryService', '$ngConfirm',
-		function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, MediatoryService, $ngConfirm){
+	['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', '$ngConfirm',
+		function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, $ngConfirm){
 	var conf = this;
 
 	$scope.tab = 0; //Tab que se mostrara en la vistas
@@ -17,7 +17,6 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.errores  = [];
 	$scope.templates = [];
 	$scope.error = null;
-	conf.apps = [];
 
     $scope.init = function(){
         TopicService.getTopics($stateParams.projectId).then(function(response) {
@@ -25,9 +24,6 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
         });
-		MediatoryService.getApps().then(function(response){
-			conf.apps = response.data;
-		});
     }
 
 	$scope.marcarPregunta = function(questionId){
