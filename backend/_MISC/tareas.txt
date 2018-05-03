@@ -33,6 +33,7 @@ MODULO CONFIGURADOR (95%)
   9 **VIERNES**- Preguntas asociadas(CRUD) 1 hora
 * 2 **VIERNES**- Editar /Eliminar topic (0 min)
 * 1 **VIERNES**- Eliminar proyecto (0 min)
+*   **VIERNES**- Crear entidad aplicacion (40 min)
 
 MODULO GENERADOR (90%)
 - Selenium
