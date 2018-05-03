@@ -8,6 +8,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	gm.project = projectData.data;
     gm.topicId = ""; //Pestana de topic seleccionada
 	gm.apps = [];
+	gm.projects = [];
 
     TopicService.getTopics($stateParams.projectId).then(function(response) {
         gm.topics = response.data;
@@ -34,10 +35,26 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 
 	gm.checkUpload = function(){
 		if(validateServidor()){
-			$ngConfirm("La conexión se ha podido establecer correctamente")
+			var config = {}
+			MediatoryService.checkComunication(config).then(function(response){
+				$ngConfirm("La conexión se ha podido establecer correctamente")
+			});
 		}else
 			$ngConfirm(gm.error)
-
+	}
+	
+	gm.getProjects = function(){
+		var config = {}
+		MediatoryService.getProjects(config).then(function(response){
+			gm.projects = response.data;
+		});
+	}
+	
+	gm.getProjects = function(){
+		var config = {}
+		MediatoryService.createProject(config, project).then(function(response){
+			$ngConfirm("Proyecto creado correctamente");
+		});
 	}
 
 	function validateServidor(){
@@ -46,7 +63,6 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 			gm.error = "Se debe especificar la aplicación seleccionada";
         else if((gm.export.ip == undefined || gm.export.ip == ""))
 			gm.error = "Se debe indicar la la dirección IP del servidor";
-
 
 		return gm.error != null ? true : false;
 	}
