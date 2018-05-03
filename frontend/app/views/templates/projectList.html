@@ -20,16 +20,16 @@
 		</div>
 		<div class="box-body" ng-init="vm.loadProjectList();">
 
-
 			<button id="crear" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear proyecto
 			</button>
-
+			<button id="crear" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear aplicación
+			</button>
 
 			<div class="table-responsive my-table">
 				<table id="table" bs-table-control="vm.bsTableProject"></table>
 			</div>
-
 
 		</div>
 		<!-- /.box-body -->
