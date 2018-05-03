@@ -64,8 +64,8 @@
 											<div class="row" ng-repeat="answer in question.answers">
 												<div class="col-xs-12  content-quest ">
 													<div class="box-mobil box-mobil-btn btn-block">
-														<input type="radio" name="{{question._id}}" id="radio_9558915">
-														<label for="radio_9558915">
+														<input type="radio" ng-model="question.radio" name="{{question._id}}" id="{{question._id}}">
+														<label for="{{question._id}}">
 															&nbsp;&nbsp;{{answer.description}}
 														</label>
 													</div>
