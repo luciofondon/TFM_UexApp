@@ -114,11 +114,10 @@
 								<div class="form-group row">
 									<label for="app" class="col-md-4 control-label">Apliación (*)</label>
 									<div class="col-md-7">
-										<select class="form-control" ng-model="gm.export.app">
+										<select class="form-control" ng-model="gm.export.app" ng-opction="app.id as app.name for app in gm.apps">
 											<option value="" disabled="disabled">Seleccione una aplicación</option>
-											<option value="jira">Jira</option>
-											<option value="redmine">Redmine</option>
-											<option value="trello">Trello</option>
+											<option value="">-- No indicar plantilla previa --</option>
+
 										</select>
 									</div>
 								</div>
