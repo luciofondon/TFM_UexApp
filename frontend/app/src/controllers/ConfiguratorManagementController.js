@@ -79,7 +79,41 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
             });
         }
     }
-
+	
+    $scope.deleteTopic = function(){
+		$ngConfirm({
+			title: 'Topic',
+			content: '¿Deseas eliminar el topic?',
+			buttons: {
+				aceptar: {
+					text: 'Eliminar',
+					btnClass: 'btn-blue',
+					action: function(scope, button){
+						TopicService.deleteTopic($scope.topicId).then(function(response) {
+							$scope.init();
+							$ngConfirm('Topic eliminado correctamente.');
+						});
+					}
+				},
+				cerrar: {
+					text: 'Cancelar',
+					btnClass: 'btn-orange',
+				}
+			}
+		});
+    }
+	
+	$scope.updateTopic = function(){
+        if(validateTopic()){
+            TopicService.updateTopic($stateParams.projectId, $scope.topic).then(function(response) {
+                $scope.topic =  {};
+				$ngConfirm('Topic actualizado correctamente.');
+                $scope.init();
+                $('#modal-topic').modal('hide');
+            });
+        }
+    }
+	
     function validateTopic(){
         $scope.error = null;
         if($scope.topic.name == undefined || $scope.topic.name == "")
