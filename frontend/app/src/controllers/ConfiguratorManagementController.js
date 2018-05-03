@@ -17,6 +17,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.errores  = [];
 	$scope.templates = [];
 	$scope.error = null;
+	conf.apps = [];
 
     $scope.init = function(){
         TopicService.getTopics($stateParams.projectId).then(function(response) {
@@ -24,6 +25,9 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
         });
+		MediatoryService.getApps().then(function(response){
+			conf.apps = response.data;
+		});
     }
 
 	$scope.marcarPregunta = function(questionId){
