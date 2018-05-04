@@ -35,7 +35,21 @@ var projectSchema = new Schema({
 		type: Date,
 		default: Date.now,
 		required:true
-	}
+	},
+	apps: [{
+		name: {
+			type: String,
+			required: true
+		},
+		description: {
+			type: String
+		},
+		created: {
+			type: Date,
+			default: Date.now,
+			required:true
+		}
+	}]
 });
 
 projectSchema.statics.load = function(projectId, callback){
