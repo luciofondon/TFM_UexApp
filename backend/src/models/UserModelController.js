@@ -1,5 +1,5 @@
 
-var UserSchema = require('mongoose').model('User').schema;
+//var UserSchema = require('mongoose').model('User').schema;
 /*
 animalSchema.query.byName = function(name) {
    return this.find({ name: new RegExp(name, 'i') });
@@ -10,7 +10,7 @@ animalSchema.query.byName = function(name) {
    console.log(animals);
  });*/
 
- UserSchema.methods = {
+module.exports = {
 	// Codificar contrasena
 	encodePassword: function(password) {
 		let saltGenerate = crypto.randomBytes(16).toString('base64');
