@@ -75,7 +75,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			$scope.topic = response.data;
 		});
 	}
-				
+
     $scope.createTopic = function(){
         if(validateTopic()){
             TopicService.createTopic($stateParams.projectId, $scope.topic).then(function(response) {
@@ -86,7 +86,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
             });
         }
     }
-	
+
     $scope.deleteTopic = function(){
 		$ngConfirm({
 			title: 'Topic',
@@ -109,10 +109,10 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			}
 		});
     }
-	
+
 	$scope.updateTopic = function(){
         if(validateTopic()){
-            TopicService.updateTopic($stateParams.projectId, $scope.topic).then(function(response) {
+            TopicService.updateTopic($scope.topic).then(function(response) {
                 $scope.topic =  {};
 				$ngConfirm('Topic actualizado correctamente.');
                 $scope.init();
@@ -120,7 +120,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
             });
         }
     }
-	
+
     function validateTopic(){
         $scope.error = null;
         if($scope.topic.name == undefined || $scope.topic.name == "")

@@ -1,5 +1,4 @@
-VIERNES 5
-SABADO 3
+
 
 CONFIGURACION (90%)
 - Loading (fixed cabecera)
@@ -8,7 +7,6 @@ CONFIGURACION (90%)
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
-3 **VIERNES** DAO -> Model (1 hora)
 10 **VIERNES**- Grunt indexPro (20 MIN)
 
 MODULO USUARIO (95%)
@@ -30,10 +28,7 @@ MODULO CONFIGURADOR (95%)
 - Mocha
 - Jasmine
 - controllerAs
-13**VIERNES**- Preguntas asociadas(CRUD) 1 hora
-2 **VIERNES**- Editar /Eliminar topic (20 min)
-1 **VIERNES**- Eliminar proyecto (20 min)
-10**VIERNES**- Crear entidad aplicacion (40 min)
+3 **VIERNES** DAO -> Model (1 hora)
 
 MODULO GENERADOR (90%)
 - Selenium
@@ -42,7 +37,6 @@ MODULO GENERADOR (90%)
 - Jasmine
   **SABADO** Logica comparacion 2 hora
 5 **VIERNES** - Validaciones (30 min)
-4 **VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
 
 MODULO TEMPLATE (85%)
 - Selenium
@@ -58,15 +52,30 @@ MODULO MEDIATORY (70%)
 - Mocha
 - Autenticacion entre servicios
 >>TRABAJO- Desplegar Jira
+14**VIERNES**- Desplegar redmine (dominio)
   **SABADO** - Exportar tareas 30 min
   **SABADO**- Get issues por proyecto 30 min
-14**VIERNES**- Desplegar redmine (dominio)
-7 **VIERNES** Check comunicación (20 min)
-8 **VIERNES** Crear project (20 min)
-9 **VIERNES** Get projects (20 min)
-6 **VIERNES** Get apps (20 min)
+
 
 DASHBOARD (50%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
 DIARIO - Plantillas generadas
 DIARIO - Donut estilo (20 min)
+
+
+
+
+4 **VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
+13**VIERNES**- Preguntas asociadas(CRUD) 1 hora
+10**VIERNES**- Crear entidad aplicacion (40 min)
+	Crear
+	actualizar
+	Eliminar
+	Asociar elemento a app
+
+
+
+9 **VIERNES** Get projects (20 min)
+8 **VIERNES** Crear project (20 min)
+7 **VIERNES** Check comunicación (20 min)
+

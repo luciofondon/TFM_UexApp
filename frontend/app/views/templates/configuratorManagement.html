@@ -28,7 +28,7 @@
 							<li ng-class="{ active: isSet($index)}" ng-repeat="topic in topics">
 								<a href ng-click="setTab($index); selectTopic(topic._id);">{{$index + 1}}. {{topic.name}}
 									&nbsp;
-									<span class="fa fa-pencil" ng-click="readTopic(topic._id)"  data-toggle="modal" data-target="#modal-topic"></span>
+									<span class="fa fa-pencil" ng-click="readTopic(topic._id, 2)"  data-toggle="modal" data-target="#modal-topic"></span>
 									&nbsp;
 									<span class="fa fa-trash" ng-click="deleteTopic(topic._id)"></span>
 								</a>
@@ -131,7 +131,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" >Crear topic</h4>
+				<h4 class="modal-title" ng-show="mode == 1">Crear topic</h4>
+				<h4 class="modal-title" ng-show="mode == 2">Actualizar topic</h4>
             </div>
             <div class="modal-body">
 				<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
@@ -147,7 +148,8 @@
 				</div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="createTopic();">Crear topic</button>
+				<button type="button" class="btn btn-success" ng-show="mode == 1" ng-click="createTopic();">Crear topic</button>
+				<button type="button" class="btn btn-success" ng-show="mode == 2" ng-click="updateTopic();">Actualizar topic</button>
             </div>
         </div>
     </div>

@@ -120,8 +120,8 @@ angular.module('tfm.uex').controller('ProjectListController',
 			    $state.go('configuratorManagement', {projectId:row._id});
 			},'click .remove': function (e, value, row, index) {
 				$ngConfirm({
-					title: 'Plantilla',
-					content: '¿Deseas eliminar la plantilla?',
+					title: 'Proyecto',
+					content: '¿Deseas eliminar el proyecto?',
 					buttons: {
 						aceptar: {
 							text: 'Eliminar',

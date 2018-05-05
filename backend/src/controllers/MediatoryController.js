@@ -1,11 +1,13 @@
+
 var mediatoryDAO = require('../DAOS/MediatoryDAO');
+
 
 module.exports = function() {
 
     return {
 
         getProjects: function(req, res) {
-            mediatoryDAO.getApps(req,res);
+            mediatoryDAO.getProjects(req,res);
         },
 
         getApps: function(req, res) {

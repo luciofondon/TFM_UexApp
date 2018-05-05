@@ -26,8 +26,9 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
         TopicService.getTopics($stateParams.projectId).then(function(response) {
 			gm.topics = response.data;
 			if(gm.topics.length > 0)
-				gm.topicId = $scope.topics[0]._id;
-        });
+				gm.topicId = gm.topics[0]._id;
+		});
+
 		MediatoryService.getApps().then(function(response){
 			gm.apps = response.data;
 		});
@@ -42,18 +43,10 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 		}else
 			$ngConfirm(gm.error)
 	}
-	
+
 	gm.getProjects = function(){
-		var config = {}
-		MediatoryService.getProjects(config).then(function(response){
+		MediatoryService.getProjects(gm.export).then(function(response){
 			gm.projects = response.data;
-		});
-	}
-	
-	gm.getProjects = function(){
-		var config = {}
-		MediatoryService.createProject(config, project).then(function(response){
-			$ngConfirm("Proyecto creado correctamente");
 		});
 	}
 

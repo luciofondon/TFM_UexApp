@@ -17,13 +17,12 @@ module.exports = {
 		this.salt = saltGenerate;
 		if (!password || !this.salt)
 			return '';
-
 		this.hashedPassword = crypto.pbkdf2Sync(password, saltGenerate, 10000, 64, 'sha512').toString('base64');
 	},
 
 	// Comparar la contrasena con la de BD
 	equalPassword: function(password){
-		console.log("Entra dpm")
+		console.log("jejej")
 	  return (crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64') == this.hashedPassword);
 	}
 };

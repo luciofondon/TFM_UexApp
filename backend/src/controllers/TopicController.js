@@ -8,7 +8,7 @@ module.exports = function() {
 		loadTopic: function(req, res, next, topicId) {
             topicMiddleware.loadTopic(req, res, next, topicId);
         },
-		
+
         readAllByProject: function(req, res) {
             topicDAO.readAllByProject(req,res);
         },
@@ -16,14 +16,17 @@ module.exports = function() {
         createTopicByProject: function(req, res) {
             topicDAO.createTopicByProject(req, res);
         },
-		
+
         deleteTopic: function(req, res) {
             topicDAO.deleteTopic(req, res);
         },
-		
+
         updateTopic: function(req, res) {
             topicDAO.updateTopic(req, res);
-        }
+		},
+		getTopic: function(req, res) {
+			res.json(req.topic);
+		}
 
     }
 }

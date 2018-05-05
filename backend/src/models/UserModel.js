@@ -34,7 +34,7 @@ var UserSchema = new Schema({
 		required:true
 	}
 });
-
+//UserSchema.methods = require("./UserModelController");
 UserSchema.methods = {
   // Codificar contrasena
   encodePassword: function(password) {

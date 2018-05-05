@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="vm.init();">
+<section class="content-header" ng-init="vm.init(); vm.loadProjectList();">
 	<h1>
 		Proyectos
 		<small>Mantenimiento y gestión de proyectos</small>
@@ -18,14 +18,15 @@
 		<div class="box-header with-border">
 			<h3 class="box-title">Configuración de proyectos</h3>
 		</div>
-		<div class="box-body" ng-init="vm.loadProjectList();">
-
-			<button id="crear" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear proyecto
-			</button>
-			<button id="crear" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear aplicación
-			</button>
+		<div class="box-body" >
+			<div id="crear"  class="columns columns-right btn-group pull-right">
+				<button id="crear-project" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear proyecto
+				</button>
+				<button id="crear-app" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1; vm.errores = []; vm.alerts=[]; vm.loadMapProject(); vm.project = {};"  >
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear aplicación
+				</button>
+			</div>
 
 			<div class="table-responsive my-table">
 				<table id="table" bs-table-control="vm.bsTableProject"></table>

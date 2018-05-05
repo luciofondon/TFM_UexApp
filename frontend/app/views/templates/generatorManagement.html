@@ -1,6 +1,6 @@
 
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="init();">
+<section class="content-header" ng-init="gm.init();">
     <h1>
         Generador
         <small>{{gm.project.name}}</small>
@@ -114,10 +114,8 @@
 								<div class="form-group row">
 									<label for="app" class="col-md-4 control-label">Apliación (*)</label>
 									<div class="col-md-7">
-										<select class="form-control" ng-model="gm.export.app" ng-opction="app.id as app.name for app in gm.apps">
+										<select class="form-control" ng-model="gm.export.app" ng-options="app.id as app.name for app in gm.apps">
 											<option value="" disabled="disabled">Seleccione una aplicación</option>
-											<option value="">-- No indicar plantilla previa --</option>
-
 										</select>
 									</div>
 								</div>
@@ -167,7 +165,7 @@
 										<span class="badge bg-yellow">3</span>
 										<i class="fa fa-arrow-circle-left"></i> Atras
 									</a>
-									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1)">
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1); gm.getProjects();">
 										<span class="badge bg-yellow">3</span>
 										<i class="fa fa-arrow-circle-right"></i> Siguiente
 									</a>
@@ -247,12 +245,17 @@
 											<div class="box">
 												<div class="box-header with-border">
 													<i class="fa fa-clone"></i>
-													<h3 class="box-title">Tareas en Jira</h3>
+													<h3 class="box-title">Tareas en {{gm.export.app}}</h3>
 													<div class="pull-right box-tools">
-														<select class="form-control">
-															<option>Nuevo proyecto</option>
-															<option>Proyecto demo</option>
-															<option>Proyecto prueba</option>
+														<a href class="text-success infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
+															<span class="fa fa-plus fa-lg"></span>
+														</a>
+													</div>
+													<br>
+													<br>
+													<div>
+														<select class="form-control" ng-model="gm.export.project" ng-options="project.id as project.name for project in gm.projects">
+															<option value="" disabled="disabled">Seleccione una proyecto</option>
 														</select>
 													</div>
 												</div>
@@ -333,7 +336,6 @@
 
 </section>
 <!-- /.content -->
-
 
 
 

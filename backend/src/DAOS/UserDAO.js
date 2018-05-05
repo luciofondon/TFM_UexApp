@@ -9,7 +9,6 @@ var mongoose = require('mongoose'),
     systemService = require('../services/SystemService'),
 	fs = require('fs');
 
-
 var User = require('../models/UserModel');
     User = mongoose.model('User');
 
