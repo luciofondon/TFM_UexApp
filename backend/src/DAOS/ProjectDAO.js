@@ -40,6 +40,38 @@ exports.deleteProject = function(req, res) {
     deleteProject(req, res);
 }
 
+
+exports.readAppProject = function(req, res) {
+    readAppProject(req, res);
+};
+exports.deleteAppProject = function(req, res) {
+    deleteAppProject(req, res);
+};
+exports.updateAppProject = function(req, res) {
+    updateAppProject(req, res);
+};
+exports.createAppProject = function(req, res) {
+    createAppProject(req, res);
+};
+
+function readAppProject(req, res){
+
+}
+
+function deleteAppProject(req, res){
+
+}
+
+function updateAppProject(req, res){
+
+}
+
+function createAppProject(req, res){
+	let project = req.project;
+	let app = req.body;
+}
+
+
 function deleteProject(req, res){
 	let project = req.project;
 	Topic.find({project: project._id}, {"__v":0}).exec(function(err, topics){

@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
-var UserSchema = new Schema({
+var userSchema = new Schema({
 	name: {
 		type: String
 	},
@@ -34,8 +34,9 @@ var UserSchema = new Schema({
 		required:true
 	}
 });
-//UserSchema.methods = require("./UserModelController");
-UserSchema.methods = {
+
+userSchema.methods = require("./UserModelController");
+/*UserSchema.methods = {
   // Codificar contrasena
   encodePassword: function(password) {
     let saltGenerate = crypto.randomBytes(16).toString('base64');
@@ -49,12 +50,12 @@ UserSchema.methods = {
   equalPassword: function(password){
     return (crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64') == this.hashedPassword);
   }
-};
+};*/
 
-UserSchema.statics.load = function(userId, callback) {
+userSchema.statics.load = function(userId, callback) {
   this.findOne({ _id: userId})
     .populate("rol")
     .exec(callback);
 };
 
-mongoose.model('User', UserSchema);
+mongoose.model('User', userSchema);

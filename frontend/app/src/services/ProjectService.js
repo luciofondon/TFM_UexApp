@@ -17,8 +17,15 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		},
 		generateProject: function(templateId, project){
 			return generateProject(templateId, project);
+		},
+		createAppProject: function(projectId, app){
+			return createAppProject(projectId, app);
 		}
 	};
+
+	function createAppProject(projectId, app){
+		return $http.post('/api/project/app/' + projectId, app);
+	}
 
 	function generateProject(templateId, project){
 		return $http.post('/api/project/template/' + templateId, project);

@@ -133,13 +133,25 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	//*************************************************************************/
 
 	// Seleccionar el topic cuando se cambia de pestana
-	$scope.selectQuestion = function(questionId){
+	$scope.selectQuestion = function(questionId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
         $scope.questionId = questionId;
 	};
 
     $scope.createQuestion = function(){
         if(validateQuestion()){
             QuestionService.createQuestion($scope.topicId, $scope.question).then(function(response) {
+                $scope.question =  {};
+				$ngConfirm('La pregunta se ha creado correctamente');
+                $scope.init();
+                $('#modal-question').modal('hide');
+            });
+        }
+	}
+
+	$scope.createQuestionAsociate = function(){
+        if(validateQuestion()){
+            QuestionService.createQuestionAsociate($scope.topicId, $scope.questionId, $scope.answerId, $scope.question).then(function(response) {
                 $scope.question =  {};
 				$ngConfirm('La pregunta se ha creado correctamente');
                 $scope.init();

@@ -6,30 +6,31 @@ angular.module('tfm.uex').controller('UserDetailController',
 	vm.user = {};
 	vm.disabled = true;
 	vm.error = null;
-	vm.reset();
-			
-	vm.editUser = function(){
+	reset();
 
-	}
-	
 	vm.reset = function(){
+		vm.disabled = true;
+		reset();
+	}
+
+	function reset(){
 		UserService.getMe().then(function(response) {
 			vm.user  = response.data;
-		}).catch(function (error){
-			console.log(error);
+		}).catch(function (response){
+			$ngConfirm(response.data);
 		});
 	}
 
 	vm.updateUser = function(){
 		if(validateUser()){
-			UserService.updateMeUser().then(function(projects){
+			UserService.updateMeUser(vm.user).then(function(projects){
 				vm.disabled = true;
 				UserService.getMe().then(function(response) {
 					vm.user  = response.data;
-				}).catch(function (error){
-					console.log(error);
+					$ngConfirm("Usuario actualizado correctamente")
+				}).catch(function (response){
+					$ngConfirm(response.data.error)
 				});
-				$ngConfirm("Usuario actualizado correctamente")
 			});
 		}else
 			$ngConfirm(vm.error)
@@ -48,12 +49,7 @@ angular.module('tfm.uex').controller('UserDetailController',
 			vm.error ="Se debe indicar un nombre de usuario";
         else if((vm.user.phoneNumber != undefined && vm.user.phoneNumber != "") && (vm.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(vm.user.phone))))
 			vm.error ="El teléfono facilitado no es válido";
-		console.log(vm.error != null ? true : false)
-		console.log(vm.error )
-
-		return vm.error != null ? true : false;
-
+		return vm.error == null ? true : false;
 	}
-
 
 }]);

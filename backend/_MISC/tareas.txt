@@ -3,11 +3,11 @@
 CONFIGURACION (90%)
 - Loading (fixed cabecera)
 - Menu lateral
-- Google analytic
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
-10 **VIERNES**- Grunt indexPro (20 MIN)
+>>TRABAJO- Google analytic
+>>TRABAJO-- Desplegar redmine (dominio)
 
 MODULO USUARIO (95%)
 - Selenium
@@ -15,12 +15,6 @@ MODULO USUARIO (95%)
 - Captcha key importar
 >>TRABAJO- Mocha
 >>TRABAJO- Jasmine
-11**VIERNES**- Perfil usuario (20 MIN)
-12**VIERNES** - Subir foto (20 MIN)
-	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
-	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
-	https://github.com/danialfarid/ng-file-upload
-	https://gist.github.com/aksakalli/1a56072f066d65248885
 
 MODULO CONFIGURADOR (95%)
 - Selenium
@@ -28,15 +22,16 @@ MODULO CONFIGURADOR (95%)
 - Mocha
 - Jasmine
 - controllerAs
-3 **VIERNES** DAO -> Model (1 hora)
+**SIN PRISA**-	Asociar elemento a entidad app
+**SIN PRISA**-	actualizar
+**SIN PRISA**-	Eliminar
+**SIN PRISA**- Crear entidad
 
 MODULO GENERADOR (90%)
 - Selenium
 - JSDoc
 - Mocha
 - Jasmine
-  **SABADO** Logica comparacion 2 hora
-5 **VIERNES** - Validaciones (30 min)
 
 MODULO TEMPLATE (85%)
 - Selenium
@@ -52,10 +47,6 @@ MODULO MEDIATORY (70%)
 - Mocha
 - Autenticacion entre servicios
 >>TRABAJO- Desplegar Jira
-14**VIERNES**- Desplegar redmine (dominio)
-  **SABADO** - Exportar tareas 30 min
-  **SABADO**- Get issues por proyecto 30 min
-
 
 DASHBOARD (50%)
 DIARIO - Grafico https://github.com/GrantMStevens/amCharts-Angular
@@ -65,17 +56,21 @@ DIARIO - Donut estilo (20 min)
 
 
 
-4 **VIERNES** - Almacenar respuestas (actualizar contador) 1 HORA
-13**VIERNES**- Preguntas asociadas(CRUD) 1 hora
-10**VIERNES**- Crear entidad aplicacion (40 min)
-	Crear
-	actualizar
-	Eliminar
-	Asociar elemento a app
 
 
 
-9 **VIERNES** Get projects (20 min)
-8 **VIERNES** Crear project (20 min)
-7 **VIERNES** Check comunicación (20 min)
+
+4 **DOMINGO** DAO -> Model (1 hora) validate
+
+3 **DOMINGO**- Preguntas asociadas(CRUD) 1 horA
+
+2 **DOMINGO**- Grunt indexPro (20 MIN)
+
+1 **DOMINGO** - Subir foto (20 MIN)
+	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
+	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
+	https://github.com/danialfarid/ng-file-upload
+	https://gist.github.com/aksakalli/1a56072f066d65248885
+
+
 

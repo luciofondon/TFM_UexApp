@@ -12,7 +12,7 @@ var Rol = require('../models/RolModel');
 exports.readAllRol = function(req, res) {
     readAllRol(req, res);
 }
- 
+
 
 function readAllRol(req, res){
     Rol.find({}).exec(function(err, roles) {

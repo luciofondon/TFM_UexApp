@@ -12,6 +12,9 @@ module.exports = function(grunt){
             ]
         },
 		// Pasar de less a css
+		//'public/dist/css/app.css': 'app/styles/less/app.less',
+		//'public/dist/css/bootstrap-nav-wizard.css': 'app/styles/less/bootstrap-nav-wizard.less',
+
         less: {
             dev: {
                 files: {
@@ -21,8 +24,8 @@ module.exports = function(grunt){
 			},
 			pro: {
                 files: {
-				  'public/dist/css/app.css': 'app/styles/less/app.less',
-				  'public/dist/css/bootstrap-nav-wizard.css': 'app/styles/less/bootstrap-nav-wizard.less',
+				  'app/styles/css/app.css': 'app/styles/less/app.less',
+				  'app/styles/css/bootstrap-nav-wizard.css': 'app/styles/less/bootstrap-nav-wizard.less',
                 }
             },
         },
@@ -74,7 +77,7 @@ module.exports = function(grunt){
                 + '*\n'
                 + '\n\n'
             },
-            proLib   : {
+            pro   : {
                 src : [
                     'bower_components/jquery/dist/jquery.min.js',
 					'bower_components/angular/angular.min.js',
@@ -104,17 +107,20 @@ module.exports = function(grunt){
 		//*******************************************************************CONFIGURACIONES IMG
 		// Mimificar imagenes y ajustar
         imagemin: {
-            static: {
-                files: {
-                    'public/dist/image/img.png': 'src/img.png',
-                }
-            },
-            dynamic: {
+			dev: {
                 files: [{
                     expand: true,
-                    cwd: 'src/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: 'public/dist/image'
+                    cwd: 'images/',
+                    src: ['*.{png,jpg}'],
+                    dest: 'public/dist/images'
+                }]
+            },
+            pro: {
+                files: [{
+                    expand: true,
+                    cwd: 'images/',
+                    src: ['*.{png,jpg}'],
+                    dest: 'public/dist/images'
                 }]
             }
         },
@@ -187,9 +193,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-jsdoc');
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
-	grunt.registerTask("default", 	["less:pro", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt"
-	grunt.registerTask("pro", 		["less:pro", "copy:pro", "rename:pro", "concat:pro"]); // "$grunt pro"
-    grunt.registerTask("dev", 		["less:dev", "copy:dev", "rename:dev", "watch"]); // "$grunt dev"
+	grunt.registerTask("default", 	["less:pro", "copy:pro", "rename:pro", "concat:pro", "imagemin:pro"]); // "$grunt"
+	grunt.registerTask("pro", 		["less:pro", "copy:pro", "rename:pro", "concat:pro", "imagemin:pro"]); // "$grunt pro"
+    grunt.registerTask("dev", 		["less:dev", "copy:dev", "rename:dev", "watch", "imagemin:dev"]); // "$grunt dev"
     grunt.registerTask("lint", 		["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", 		["jsdoc"]); // "$grunt doc"
 };

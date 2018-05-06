@@ -36,7 +36,23 @@ module.exports = function() {
 
 		generateProject: function(req, res){
             projectDAO.generateProject(req,res);
-		}
+		},
+
+		readAppProject: function(req, res) {
+            projectDAO.readAppProject(req,res);
+        },
+
+        createAppProject: function(req, res) {
+            projectDAO.createAppProject(req,res);
+        },
+
+        updateAppProject: function(req, res) {
+            projectDAO.updateProject(req,res);
+        },
+
+        deleteAppProject: function(req, res) {
+        	projectDAO.deleteAppProject(req,res);
+        }
 
     }
 }

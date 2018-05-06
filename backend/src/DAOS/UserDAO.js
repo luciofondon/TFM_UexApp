@@ -76,8 +76,16 @@ function uploadImageUser(req, res) {
 }
 
 function updateMeUser(req, res){
-
-	console.log("Actualizando")
+	let user = req.authUser;
+	user.name = req.body.name;
+	user.lastName = req.body.lastName;
+	user.phoneNumber = req.body.phoneNumber;
+	user.save(function(err) {
+		if (err) {
+			return res.status(500).json({error: 'Cannot save the user'});
+		}
+		res.json(user);
+	});
 }
 
 function loginUser(req, res){

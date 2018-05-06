@@ -52,6 +52,9 @@ var projectSchema = new Schema({
 	}]
 });
 
+projectSchema.methods = require("./ProjectModelController");
+
+
 projectSchema.statics.load = function(projectId, callback){
 	this.findOne({_id: projectId}).exec(callback);
 };

@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
-						<ul class="nav nav-wizard">
+						<ul class="nav nav-wizard not-active">
 							<li ng-class="{active: gm.isSet($index)}" ng-repeat="topic in gm.topics">
 								<a href ng-click="gm.setTab($index)" ng-click="gm.loadQuestions(topic._id)">{{$index + 1}}. {{topic.name}}</a>
 							</li>
@@ -32,15 +32,14 @@
 								<a href ng-click="gm.setTab(gm.topics.length)" ><strong>{{gm.topics.length + 1}}. Servidor</strong></a>
 							</li>
 							<li ng-class="{active: gm.isSet(gm.topics.length + 1)}">
-								<a href ng-click="gm.setTab(gm.topics.length + 1)"><strong>{{gm.topics.length + 2}}.Detalle</strong></a>
+								<a href ng-click="gm.setTab(gm.topics.length + 1)" ><strong>{{gm.topics.length + 2}}. Proyecto</strong></a>
+							</li>
+							<li ng-class="{active: gm.isSet(gm.topics.length + 2)}">
+								<a href ng-click="gm.setTab(gm.topics.length + 2)"><strong>{{gm.topics.length + 3}}.Detalle</strong></a>
 							</li>
 						</ul>
 
-
-
-
                         <div class="tab-content">
-
 							<div class="container" ng-repeat="topic in gm.topics" ng-if="gm.isSet($index)">
 								<div class="row" ng-repeat="question in topic.questions" >
 									<div class="panel panel-default">
@@ -64,7 +63,7 @@
 											<div class="row" ng-repeat="answer in question.answers">
 												<div class="col-xs-12  content-quest ">
 													<div class="box-mobil box-mobil-btn btn-block">
-														<input type="radio" ng-model="question.radio" name="{{question._id}}" id="{{question._id}}">
+														<input type="radio" ng-click="gm.refreshListRequirementExport();" ng-model="question.radio" ng-value="answer._id" name="{{question._id}}" id="{{question._id}}">
 														<label for="{{question._id}}">
 															&nbsp;&nbsp;{{answer.description}}
 														</label>
@@ -72,7 +71,19 @@
 												</div>
 											</div>
 										</div>
+
 									</div>
+								</div>
+
+								<br><br><br>
+								<div class="social-auth-links text-right">
+									<a class="btn btn-app" ng-click="gm.setTab($index - 1)" ng-hide="$index == 0">
+										<i class="fa fa-arrow-circle-left"></i> Atras
+									</a>
+									<a class="btn btn-app" ng-click="gm.setTab($index + 1)">
+										<span class="badge bg-yellow">{{gm.listRequirement.length}}</span>
+										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									</a>
 								</div>
 							</div>
 
@@ -112,7 +123,7 @@
 							<!--Inicio: Pestana servidor-->
 							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length)">
 								<div class="form-group row">
-									<label for="app" class="col-md-4 control-label">Apliación (*)</label>
+									<label for="app" class="col-md-4 control-label">Aplicación (*)</label>
 									<div class="col-md-7">
 										<select class="form-control" ng-model="gm.export.app" ng-options="app.id as app.name for app in gm.apps">
 											<option value="" disabled="disabled">Seleccione una aplicación</option>
@@ -128,12 +139,22 @@
 								</div>
 
 								<div class="form-group row">
-									<label for="projectPortJira" class="col-md-4 control-label">Puerto (*)</label>
+									<label for="port" class="col-md-4 control-label">Puerto (*)</label>
 									<div class="col-md-7">
-										<input type="number" id="projectPortJira" ng-model="gm.export.port" class="form-control"/>
+										<input type="number" id="port" ng-model="gm.export.port" class="form-control"/>
 									</div>
 								</div>
 
+								<span ng-repeat="app in gm.apps">
+									<div class="form-group row" ng-repeat="field in app.authentication" ng-if="app.id == gm.export.app" >
+										<label for="projectUser" class="col-md-4 control-label">{{field.name}} (*)</label>
+										<div class="col-md-7">
+											<input type="text" ng-model="gm.export[field.id]" id="projectUser" class="form-control"/>
+										</div>
+									</div>
+								</span>
+
+								<!--
 								<div class="form-group row" ng-if="gm.export.app == 'jira'">
 									<label for="projectUser" class="col-md-4 control-label">Usuario (*)</label>
 									<div class="col-md-7">
@@ -155,148 +176,63 @@
 									</div>
 								</div>
 
-
+							-->
 								<br><br><br>
 								<div class="social-auth-links text-right">
-									<a class="btn btn-app">
-										<i class="fa fa-cloud-upload" ng-click="gm.checkUpload();"></i> Comprobar conexión
-									</a>
 									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length - 1)">
-										<span class="badge bg-yellow">3</span>
 										<i class="fa fa-arrow-circle-left"></i> Atras
 									</a>
-									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1); gm.getProjects();">
-										<span class="badge bg-yellow">3</span>
-										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									<a class="btn btn-app" ng-click="gm.checkComunication();">
+										<i class="fa fa-cloud-upload" ></i> Comprobar conexión
 									</a>
+									<!--<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1); gm.getProjects();">
+										<span class="badge bg-yellow">{{gm.listRequirementExport.length}}</span>
+										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									</a>-->
 								</div>
 
 							</div>
 							<!--Fin: Pestana servidor-->
 
-							<!--Inicio: Pestana detalle-->
-							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length + 1)" >
-
-								<div class="container">
-									<div class="row">
-										<div class="col-md-3" >
-											<div class="box">
-												<div class="box-header with-border">
-													<i class="fa fa-sticky-note-o"></i>
-													<h3 class="box-title">Todas las tareas</h3>
-												</div>
-												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-1" style="height: 650px;">
-											<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
-										</div>
-										<div class="col-md-3">
-											<div class="box">
-												<div class="box-header with-border">
-													<i class="fa fa-object-ungroup"></i>
-													<h3 class="box-title">Tareas a exportar</h3>
-													<div class="pull-right box-tools">
-														<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
-															<span class="fa fa-trash fa-lg"></span>
-														</a>
-													</div>
-												</div>
-												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="col-md-1" style="height: 650px;">
-											<button type="button" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
-										</div>
-										<div class="col-md-4">
-											<div class="box">
-												<div class="box-header with-border">
-													<i class="fa fa-clone"></i>
-													<h3 class="box-title">Tareas en {{gm.export.app}}</h3>
-													<div class="pull-right box-tools">
-														<a href class="text-success infoBulle a_supp" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
-															<span class="fa fa-plus fa-lg"></span>
-														</a>
-													</div>
-													<br>
-													<br>
-													<div>
-														<select class="form-control" ng-model="gm.export.project" ng-options="project.id as project.name for project in gm.projects">
-															<option value="" disabled="disabled">Seleccione una proyecto</option>
-														</select>
-													</div>
-												</div>
-												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-													<div class="callout callout-info">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-														<h4>Titulo requisito</h4>
-														<p>Esto es la descripción del requisito...............</p>
-													</div>
-												</div>
-											</div>
-
-
-										</div>
-
-									</div>
-								</div>
+							<!--Inicio: Pestana proyecto-->
+							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length + 1)">
 								<div class="container">
 									<div class="row">
 										<div class="col-md-12" >
 											<div class="form-group row">
-												<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
+												<label for="app" class="col-md-4 control-label">Generar nuevo proyecto</label>
 												<div class="col-md-7">
-													<input type="text"  id="projectKey" ng-model="project.key" class="form-control"/>
+													<input type="checkbox" ng-model="gm.newProject"/>
 												</div>
 											</div>
 
-											<div class="form-group row">
+											<div class="form-group row" ng-if="gm.newProject == false">
+												<label for="app" class="col-md-4 control-label">Proyecto en {{gm.export.app}} (*)</label>
+												<div class="col-md-7">
+													<select class="form-control" ng-model="gm.export.project" ng-options="project.id as project.name for project in gm.projects">
+														<option value="" disabled="disabled">Seleccione una proyecto</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="form-group row" ng-if="gm.newProject == true">
+												<label for="projectKey" class="col-md-4 control-label">Nombre (*)</label>
+												<div class="col-md-7">
+													<input type="text"  id="projectKey" ng-model="gm.projectExport.name" class="form-control"/>
+												</div>
+											</div>
+
+											<div class="form-group row" ng-if="gm.newProject == true">
+												<label for="projectKey" class="col-md-4 control-label">KEY (*)</label>
+												<div class="col-md-7">
+													<input type="text"  id="projectKey" ng-model="gm.projectExport.key" class="form-control"/>
+												</div>
+											</div>
+
+											<div class="form-group row" ng-if="gm.newProject == true">
 												<label for="projectDescription" class="col-md-4 control-label">Descripción (*)</label>
 												<div class="col-md-7">
-													<textarea style="resize:none"  id="projectDescription" ng-model="project.description" class="form-control"/>
+													<textarea style="resize:none"  id="projectDescription" ng-model="gm.projectExport.description" class="form-control"/>
 												</div>
 											</div>
 
@@ -307,13 +243,104 @@
 								<br><br><br>
 								<div class="social-auth-links text-right">
 									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length)">
-										<span class="badge bg-yellow">3</span>
 										<i class="fa fa-arrow-circle-left"></i> Atras
 									</a>
-									<a class="btn btn-app">
-										<span class="badge bg-yellow">3</span>
-										<i class="fa fa-cloud-upload"></i> Exportar
+									<a class="btn btn-app" ng-click="gm.createProject();" ng-if="gm.newProject == true">
+										<i class="fa fa-cloud-upload" ></i> Generar proyecto
 									</a>
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 2);" ng-if="gm.newProject == false">
+										<span class="badge bg-yellow">{{gm.listRequirement.length}}</span>
+										<i class="fa fa-arrow-circle-right"></i> Siguiente
+									</a>
+								</div>
+
+							</div>
+							<!--Fin: Pestana proyecto-->
+
+
+							<!--Inicio: Pestana detalle-->
+							<div class="tab-pane active"  ng-show="gm.isSet(gm.topics.length + 2)" >
+
+								<div class="container">
+									<div class="row">
+										<div class="col-md-3" >
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-sticky-note-o"></i>
+													<h3 class="box-title">Todas las tareas</h3>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+													<div class="callout callout-info" ng-repeat="item in gm.listRequirement">
+														<h4>{{item.title}}</h4>
+														<p>{{item.description}}</p>
+													</div>
+
+												</div>
+											</div>
+										</div>
+										<div class="col-md-1" style="height: 650px;">
+											<button type="button" ng-click="gm.listRequirementExport = gm.listRequirement" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
+										</div>
+										<div class="col-md-3">
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-object-ungroup"></i>
+													<h3 class="box-title">Tareas a exportar</h3>
+													<div class="pull-right box-tools">
+														<a href class="text-danger infoBulle a_supp" ng-click="gm.listRequirementExport = [];" title="" data-placement="top" data-id="2885924" data-original-title="Eliminar">
+															<span class="fa fa-trash fa-lg"></span>
+														</a>
+													</div>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+
+													<div class="callout callout-info" ng-repeat="item in gm.listRequirementExport">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<h4>{{item.title}}</h4>
+														<p>{{item.description}}</p>
+													</div>
+
+												</div>
+											</div>
+
+										</div>
+										<div class="col-md-1" style="height: 650px;">
+											<button type="button" ng-click="gm.exportsIssues();" class="btn btn-block glyphicon glyphicon-forward btn-primary btn-lg" style="top:300px"></button>
+										</div>
+										<div class="col-md-4">
+											<div class="box">
+												<div class="box-header with-border">
+													<i class="fa fa-clone"></i>
+													<h3 class="box-title">Tareas en {{gm.export.app}}</h3>
+												</div>
+												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
+
+													<div class="callout callout-info" ng-repeat="item in gm.listRequirementTaskManager">
+														<h4>{{item.title}}</h4>
+														<p>{{item.description}}</p>
+													</div>
+
+												</div>
+											</div>
+
+
+										</div>
+
+									</div>
+								</div>
+
+								<br><br><br>
+								<div class="social-auth-links text-right">
+									<a class="btn btn-app" ng-click="gm.setTab(gm.topics.length + 1)">
+										<i class="fa fa-arrow-circle-left"></i> Atras
+									</a>
+									<a class="btn btn-app" ui-sref="dashboard">
+										<i class="fa  fa-home"></i> Finalizar
+									</a>
+									<!--<a class="btn btn-app">
+										<span class="badge bg-yellow">{{gm.listRequirementTaskManager.length}}</span>
+										<i class="fa fa-cloud-upload"></i> Exportar
+									</a>-->
 								</div>
 							</div>
 							<!--Fin: Pestana detalle-->
@@ -340,4 +367,15 @@
 
 
 
+<!--
+<style>
 
+
+	.not-active {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+</style>
+-->

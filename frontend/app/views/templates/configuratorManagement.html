@@ -92,7 +92,7 @@
 															<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(question._id, answer._id);" data-id="2885924" data-original-title="Eliminar">
 																<span class="fa fa-trash fa-lg"></span>
 															</a>
-															<a href class="text-success infoBulle a_dupli" data-id="2885924" data-placement="top" title="Nueva pregunta asociada" data-original-title="Nueva pregunta asociada">
+															<a href class="text-success infoBulle a_dupli"  data-id="2885924" data-placement="top" ng-click="selectQuestion(question._id, 3)" title="Nueva pregunta asociada" data-original-title="Nueva pregunta asociada" data-toggle="modal" data-target="#modal-question">
 																<span class="fa fa-plus fa-lg"></span>
 															</a>
 														</div>
@@ -164,6 +164,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title" ng-show="mode == 1">Crear pregunta</h4>
 				<h4 class="modal-title" ng-show="mode == 2">Actualizar pregunta</h4>
+				<h4 class="modal-title" ng-show="mode == 3">Crear pregunta asociada</h4>
             </div>
             <div class="modal-body">
 					<div class="alert alert-danger alert-dismissible"  ng-if="error!= null">
@@ -181,6 +182,7 @@
             <div class="modal-footer">
 				<button type="button" class="btn btn-success" ng-show="mode == 1" ng-click="createQuestion();">Crear pregunta</button>
 				<button type="button" class="btn btn-success" ng-show="mode == 2" ng-click="updateQuestion();">Actualizar pregunta</button>
+				<button type="button" class="btn btn-success" ng-show="mode == 3" ng-click="createQuestionAsociate();">Crear pregunta</button>
             </div>
         </div>
     </div>

@@ -8,6 +8,15 @@ module.exports = function(app) {
         .get(systemMiddleware.rolOperador, mediatoryController.getApps);
 
     app.route('/mediatory/projects')
-        .post(systemMiddleware.rolOperador, mediatoryController.getProjects);
+		.post(systemMiddleware.rolOperador, mediatoryController.getProjects);
+
+	app.route('/mediatory/create/projects')
+        .post(systemMiddleware.rolOperador, mediatoryController.createProject);
+
+	app.route('/mediatory/create/issues')
+        .post(systemMiddleware.rolOperador, mediatoryController.createIssues);
+
+	app.route('/mediatory/read/issues')
+		.post(systemMiddleware.rolOperador, mediatoryController.readAllIssues);
 
 }

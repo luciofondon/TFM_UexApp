@@ -16,6 +16,19 @@ module.exports = function() {
 
         checkComunication: function(req, res) {
             mediatoryDAO.checkComunication(req,res);
-        }
+		},
+
+		createProject: function(req, res) {
+            mediatoryDAO.createProject(req,res);
+		},
+
+		readAllIssues: function(req, res){
+            mediatoryDAO.readAllIssues(req,res);
+		},
+
+		createIssues: function(req, res){
+            mediatoryDAO.createIssues(req,res);
+		}
+
     }
 }

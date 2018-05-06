@@ -36,9 +36,9 @@
 								<b>Respuesta totales</b> <a class="pull-right">30</a>
 							</li>
 						</ul>
-						<a href ng-if="vm.disabled==true"ng-click="vm.disabled=false;" class="btn btn-primary btn-block"><b>Editar</b></a>
+						<a href ng-if="vm.disabled==true" ng-click="vm.disabled=false;" class="btn btn-primary btn-block"><b>Editar</b></a>
 						<a href ng-if="vm.disabled==false" ng-click="vm.updateUser();" class="btn btn-primary btn-block"><b>Guardar</b></a>
-						<a href ng-if="vm.disabled==false"ng-click="vm.reset();" class="btn btn-primary btn-block"><b>Cancelar</b></a>
+						<a href ng-if="vm.disabled==false" ng-click="vm.reset();" class="btn btn-primary btn-block"><b>Cancelar</b></a>
 					</div>
 					<!-- /.box-body -->
 				</div>
@@ -76,7 +76,7 @@
 					<div class="form-group row">
 						<label for="email" class="col-md-4 control-label">Email (*)</label>
 						<div class="col-md-7">
-							<input ng-disabled="vm.disabled" required type="text" id="email" ng-model="vm.user.email" class="form-control"/>
+							<input disabled="true" required type="text" id="email" ng-model="vm.user.email" class="form-control"/>
 						</div>
 					</div>
 

@@ -19,6 +19,11 @@ angular.module('tfm.uex').controller('ProjectListController',
 		});
 	};
 
+	vm.createAppProject = function (){
+
+
+	}
+
     vm.createProject = function (){
         if(validate()){
 			if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
