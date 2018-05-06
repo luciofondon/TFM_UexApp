@@ -6,7 +6,6 @@ CONFIGURACION (90%)
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
->>TRABAJO- Google analytic
 >>TRABAJO-- Desplegar redmine (dominio)
 
 MODULO USUARIO (95%)
@@ -59,6 +58,7 @@ DIARIO - Donut estilo (20 min)
 
 
 
+5 **DOMINGO** - Google analytic
 
 4 **DOMINGO** DAO -> Model (1 hora) validate
 

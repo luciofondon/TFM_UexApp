@@ -20,6 +20,21 @@
 		<link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
 		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/bootstrap-table.min.css" />
 
+		<script>
+				(function(i, s, o, g, r, a, m) {
+						  i['GoogleAnalyticsObject'] = r;
+						  i[r] = i[r] || function() {
+							  (i[r].q = i[r].q || []).push(arguments)
+						  }, i[r].l = 1 * new Date();
+						  a = s.createElement(o),
+							  m = s.getElementsByTagName(o)[0];
+						  a.async = 1;
+						  a.src = g;
+						  m.parentNode.insertBefore(a, m)
+					  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+			  ga('create', 'UA-118019427-1', 'auto');// add your tracking ID here.
+			  ga('send', 'pageview');
+		</script>
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 		<div class="wrapper">
