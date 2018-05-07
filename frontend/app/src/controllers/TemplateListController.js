@@ -23,7 +23,9 @@ angular.module('tfm.uex').controller('TemplateListController',
 
             var actionFormatterProjects= function(value, row, index) {
                 return [
-
+  					'<a class="download" disabled style="margin-right: 10px;cursor:pointer;" title="Ver" data-toggle="modal" data-target="#modal-project">',
+                    	'<i class="glyphicon glyphicon-download-alt"></i>',
+					'</a>',
                     '<a class="view" disabled style="margin-right: 10px;cursor:pointer;" title="Ver" data-toggle="modal" data-target="#modal-project">',
                     	'<i class="glyphicon glyphicon-search"></i>',
 					'</a>',
@@ -47,7 +49,6 @@ angular.module('tfm.uex').controller('TemplateListController',
         });
 
         window.actionEventsProjects = {'click .remove': function (e, value, row, index) {
-			console.log(row)
 				$ngConfirm({
 					title: 'Plantilla',
 					content: '¿Deseas eliminar la plantilla?',
@@ -75,6 +76,9 @@ angular.module('tfm.uex').controller('TemplateListController',
 			},'click .view': function (e, value, row, index) {
 				//Cambiar de estado
 				$state.go('templateDetail', {templateId: row._id});
+		  	}'download .view': function (e, value, row, index) {
+				//Cambiar de estado
+				console.log("Descarga");
 		  	}
 		};
     };
