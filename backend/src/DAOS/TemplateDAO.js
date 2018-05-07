@@ -29,6 +29,14 @@ exports.deleteTemplate = function(req, res) {
     deleteTemplate(req, res);
 };
 
+exports.downloadTemplate = function(req, res) {
+    downloadTemplate(req, res);
+};
+
+function downloadTemplate(req, res){
+	
+}
+
 function createTemplate(req, res){
 	let template = req.body;
 	let projectCopy = JSON.parse(JSON.stringify(req.project));
