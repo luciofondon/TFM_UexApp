@@ -11,20 +11,48 @@ var Question = require('../models/QuestionModel');
 
 exports.readAllByTopic = function(req, res) {
     readAllByTopic(req, res);
-}
+};
 
 exports.createByTopic = function(req, res) {
     createByTopic(req, res);
-}
-
+};
 
 exports.updateQuestion = function(req, res) {
     updateQuestion(req, res);
 };
 
+
 exports.deleteQuestion = function(req, res) {
     deleteQuestion(req, res);
 };
+
+exports.deleteQuestionAsociate = function(req, res) {
+    deleteQuestionAsociate(req, res);
+};
+
+exports.updateQuestionAsociate = function(req, res) {
+    updateQuestionAsociate(req, res);
+};
+
+exports.createQuestionAsociate = function(req, res) {
+    createQuestionAsociate(req, res);
+};
+
+exports.readQuestionAsociate = function(req, res) {
+    readQuestionAsociate(req, res);
+};
+
+function deleteQuestionAsociate(req, res){
+}
+
+function createQuestionAsociate(req, res){
+}
+
+function updateQuestionAsociate(req, res){
+}
+
+function readQuestionAsociate(req, res){
+}
 
 function deleteQuestion(req, res){
 	var question = req.question;
@@ -71,8 +99,6 @@ function createByTopic(req, res){
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
 }
-
-
 
 function validateQuestion(topic){
     return true;
