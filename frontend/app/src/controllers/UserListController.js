@@ -173,7 +173,7 @@ angular.module('tfm.uex').controller('UserListController',
 
 	function upload(file){
         Upload.upload({
-            url: 'upload/url',
+            url: '/api/user/upload',
             data: {file: file, 'username': "Lucio"}
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
