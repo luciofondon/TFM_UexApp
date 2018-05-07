@@ -59,7 +59,7 @@ module.exports = function(grunt){
                 mangle          : true,
                 preserveComments: 'some'
             },
-            production: {
+            pro: {
                 files: {
                   'public/dist/js/app.min.js':	['app/src/app.js', 'app/src/**/*.js'],
                 }
@@ -129,16 +129,16 @@ module.exports = function(grunt){
 		copy: {
 			dev: {
 				files: [
-		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
 					{expand: true, src:['app/src/app.js', 'app/src/**/*.js'], dest: 'public/dist/js/', filter: 'isFile'},
-		      		{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return dest + 'index.html';}},
+		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
+		      		{expand: true, src:['app/views/**/*.html'], dest: 'public/dist/view/', filter: 'isFile'},
+					{expand: true, src: 'indexDEV.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return dest + 'index.html';}},
 				]
 			},
 			pro: {
 				files: [
 		      		{expand: true, src: 'favicon.ico', dest: 'public/dist/', filter: 'isFile'},
 					{expand: true, src:['app/views/**/*.html'], dest: 'public/dist/view/', filter: 'isFile'},
-					{expand: true, src:['app/src/app.js', 'app/src/**/*.js'], dest: 'public/dist/js/', filter: 'isFile'},
 		      		{expand: true, src: 'indexPRO.html', dest: 'public/dist/', filter: 'isFile', rename: function(dest, src){return dest + 'index.html';}},
 				]
 			},
@@ -194,8 +194,8 @@ module.exports = function(grunt){
 
     //Tareas que se lanzaran cuando se introduzca por consola $grunt, $grunt dev, $grunt pro...
 	grunt.registerTask("default", 	["less:pro", "copy:pro", "rename:pro", "concat:pro", "imagemin:pro"]); // "$grunt"
-	grunt.registerTask("pro", 		["less:pro", "copy:pro", "rename:pro", "concat:pro", "imagemin:pro"]); // "$grunt pro"
-    grunt.registerTask("dev", 		["less:dev", "copy:dev", "rename:dev", "watch", "imagemin:dev"]); // "$grunt dev"
+	grunt.registerTask("pro", 		["less:pro", "copy:pro", "rename:pro", "concat:pro", "imagemin:pro", "uglify:pro"]); // "$grunt pro"
+    grunt.registerTask("dev", 		["less:dev", "copy:dev", "rename:dev", "imagemin:dev", "watch"]); // "$grunt dev"
     grunt.registerTask("lint", 		["jshint", "csslint"]); // "$grunt lint"
     grunt.registerTask("doc", 		["jsdoc"]); // "$grunt doc"
 };
