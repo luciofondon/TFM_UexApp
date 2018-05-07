@@ -76,7 +76,7 @@ angular.module('tfm.uex').controller('TemplateListController',
 			},'click .view': function (e, value, row, index) {
 				//Cambiar de estado
 				$state.go('templateDetail', {templateId: row._id});
-		  	}'download .view': function (e, value, row, index) {
+		  	},'click .download': function (e, value, row, index) {
 				//Cambiar de estado
 				console.log("Descarga");
 		  	}
