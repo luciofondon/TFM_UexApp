@@ -1,8 +1,5 @@
-
-
 CONFIGURACION (90%)
 - Loading (fixed cabecera)
-- Menu lateral
 - Script DB
 - Directiva
 - Eliminar codigo HTML (ng-init)
@@ -51,23 +48,23 @@ DIARIO - Donut estilo (20 min)
 
 
 
-7 **DOMINGO** -- redmine "dominio" (20 min)
 
-6 **DOMINGO** - Importar/Exprotar CSV (1 hora)
+8 **DOMINGO** -- redmine "dominio" (20 min)
 
-5 **DOMINGO** DAO -> Model, validate (1 hora) 
+7 **DOMINGO** - Importar/Exprotar CSV (1 hora)
 
-4 **MIERCOLES** - Google analytic (30 min)
+6 **DOMINGO** DAO -> Model, validate (1 hora)
 
-3 **MIERCOLES**- Preguntas asociadas(CRUD) 1 horA
+4 **VIERNES**- Preguntas asociadas(CRUD) 1 horA
 
-2 **LUNES**- Grunt indexPro (20 MIN)
-
-1 **LUNES** - Subir foto (20 MIN)
+3 **MIERCOLES** - Subir foto (20 MIN)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
 	https://gist.github.com/aksakalli/1a56072f066d65248885
 
+2 **MARTES**- Grunt indexPro (20 MIN) Copy no copiar los las carpetas
+
+1 **MARTES**- Menu lateral (30 min)
 
 

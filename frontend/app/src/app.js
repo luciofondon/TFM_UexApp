@@ -156,4 +156,21 @@ var app = angular.module('tfm.uex',
 		});
 		*/
 
-});
+}).run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+	$window.ga('create', 'UA-118019427-1', 'auto');
+	/*
+	$rootScope.$on('$stateChangeSuccess', function(event){
+		console.log("stateChangeSuccess")
+		if (!$window.ga)
+			return;
+		$window.ga('send', 'pageview', { page: $location.path() });
+	});*/
+	$rootScope.$on('$locationChangeSuccess', function(event) {
+		console.log('locationChangeSuccess');
+		if (!$window.ga)
+			return;
+		$window.ga('send', 'pageview', { page: $location.path() });
+	});
+
+
+}]);
