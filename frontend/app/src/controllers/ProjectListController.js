@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'Upload',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, Upload){
 	var vm = this;
 
     vm.bsTableProject = {};
@@ -155,6 +155,20 @@ angular.module('tfm.uex').controller('ProjectListController',
               $state.go('generatorManagement', {projectId:row._id});
           }
         };
+    };
+			
+	function upload(file){
+        Upload.upload({
+            url: '/api/user/upload',
+            data: {file: file, 'username': "Lucio"}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
     };
 
 }]);
