@@ -17,6 +17,9 @@ module.exports = function(app){
 
 	app.route('/templates')
 		.get(systemMiddleware.rolConsultor, templateController.readAllTemplate);
-
+	
+	app.route('/templates/download/:projectId')
+		.get(systemMiddleware.rolConsultor, templateController.downloadTemplate);
+	
 	app.param('projectId', projectController.loadProject);
 };
