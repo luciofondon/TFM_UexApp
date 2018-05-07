@@ -58,7 +58,7 @@ function uploadImageUser(req, res) {
     console.log(req.files);
     var tmp_path = req.files.photo.path;
     // Ruta donde colocaremos las imagenes
-    var target_path = './public/images/' + req.files.photo.name;
+    var target_path = '../../../frontend/images/' + req.files.photo.name;
    // Comprobamos que el fichero es de tipo imagen
     if (req.files.photo.type.indexOf('image')==-1){
     	res.send('El fichero que deseas subir no es una imagen');
