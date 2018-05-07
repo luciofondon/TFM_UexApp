@@ -12,7 +12,7 @@ var app = angular.module('tfm.uex',
 		backendUrl: '/api',
 		pathTemplates: 'app/views'
 	})
-	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg, cfpLoadingBarProvider) {
+	.config(function($stateProvider, $urlRouterProvider, $authProvider, cfg, cfpLoadingBarProvider, $location, $rootScope, $window) {
 		// Parametros de configuración
 		$authProvider.loginUrl = "auth/login";
 		$authProvider.signupUrl = "auth/signup";
@@ -140,6 +140,12 @@ var app = angular.module('tfm.uex',
 			}
 			return deferred.promise;
 		}
+
+		$rootScope.$on('$stateChangeSuccess', function(event){
+        	if (!$window.ga)
+            	return;
+          	$window.ga('send', 'pageview', { page: $location.path() });
+        });
 		/*
 
 			$window.ga('create', 'UA-118019427-1', 'auto');
