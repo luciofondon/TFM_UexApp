@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('UserDetailController',
-    ['$stateParams', 'UserService', '$ngConfirm',
-        function($stateParams, UserService, $ngConfirm){
+    ['$stateParams', 'UserService', '$ngConfirm', 'Upload',
+        function($stateParams, UserService, $ngConfirm, Upload){
 
 	var vm = this;
 	vm.user = {};
@@ -51,5 +51,19 @@ angular.module('tfm.uex').controller('UserDetailController',
 			vm.error ="El teléfono facilitado no es válido";
 		return vm.error == null ? true : false;
 	}
+			
+	function upload(file){
+        Upload.upload({
+            url: '/api/user/upload',
+            data: {file: file, 'username': "Lucio"}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
 
 }]);
