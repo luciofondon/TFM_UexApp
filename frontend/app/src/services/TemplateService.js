@@ -15,7 +15,7 @@ angular.module('tfm.uex').service('TemplateService', ['$http', function($http){
 	};
 
 	function downloadTemplate(projectId){
-		return $http.get('/api/template/download/' + projectId');
+		return $http.get('/api/template/download/' + projectId);
 	}
 	
 	function getTemplates(){
