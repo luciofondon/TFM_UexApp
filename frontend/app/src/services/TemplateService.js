@@ -9,8 +9,15 @@ angular.module('tfm.uex').service('TemplateService', ['$http', function($http){
 		deleteTemplate: function(projectId){
 			return deleteTemplate(projectId);
 		},
+		downloadTemplate: function(projectId){
+			return downloadTemplate(projectId);
+		},
 	};
 
+	function downloadTemplate(projectId){
+		return $http.get('/api/template/download/' + projectId');
+	}
+	
 	function getTemplates(){
 		return $http.get('/api/templates');
 	}
