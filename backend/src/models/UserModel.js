@@ -15,6 +15,9 @@ var userSchema = new Schema({
 	userName: {
 		type: String
 	},
+	image: {
+		type: String
+	},
 	hashedPassword: {
 		type: String,
 		required: true
