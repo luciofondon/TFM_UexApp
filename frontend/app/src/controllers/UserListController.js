@@ -151,6 +151,8 @@ angular.module('tfm.uex').controller('UserListController',
 
     vm.createUser = function() {
         if(validateUser()){
+			if(vm.imageUpload != undefine)
+				upload();
             UserService.addUser(vm.user).then(function(project) {
                 vm.user = {};
                 vm.loadUserList();
@@ -171,10 +173,10 @@ angular.module('tfm.uex').controller('UserListController',
         }
     }
 
-	function upload(file){
+	function upload(){
         Upload.upload({
             url: '/api/user/upload',
-            data: {file: file, 'username': "Lucio"}
+            data: {file: vm.imageUpload, 'username': "Lucio"}
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {
