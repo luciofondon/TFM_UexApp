@@ -78,7 +78,10 @@ angular.module('tfm.uex').controller('TemplateListController',
 				$state.go('templateDetail', {templateId: row._id});
 		  	},'click .download': function (e, value, row, index) {
 				//Cambiar de estado
-				console.log("Descarga");
+				TemplateService.downloadTemplate(row._id).then(function(response) {
+					console.log("Fichero descargado");
+				});
+
 		  	}
 		};
     };
