@@ -34,7 +34,7 @@ exports.downloadTemplate = function(req, res) {
 };
 
 function downloadTemplate(req, res){
-	
+	res.download('/report-12345.pdf', 'report.pdf');
 }
 
 function createTemplate(req, res){
