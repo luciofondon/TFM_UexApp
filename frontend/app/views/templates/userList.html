@@ -116,9 +116,11 @@
 					<div class="col-md-7">
 						<img ngf-thumbnail="vm.imageUpload" height="100">
 						<button type="button" class="btn btn-default" ngf-select ng-model="vm.imageUpload">Adjuntar fotografía</button>
-					</div>
-				</div>
+						<input type="file" ngf-select ng-model="vm.imageUpload" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
 
+					</div>
+
+				</div>
 				<div class="form-group row" ng-show="vm.mode == 1">
 					<label for="password" class="col-md-4 control-label">Constraseña (*) </label>
 					<div class="col-md-7">

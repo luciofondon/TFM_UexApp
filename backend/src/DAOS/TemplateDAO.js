@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     request = require('request'),
-	Promise = require('promise');
+	Promise = require('promise'),
+	path = require('path');
 
 var Project = require('../models/ProjectModel'),
 	Project = mongoose.model('Project');
@@ -34,7 +35,9 @@ exports.downloadTemplate = function(req, res) {
 };
 
 function downloadTemplate(req, res){
-	res.download('/report-12345.pdf', 'report.pdf');
+	let targetPath = path.join(__dirname,'../../tmp/demo.csv');
+console.log(targetPath)
+	res.download(targetPath, 'demo.csv');
 }
 
 function createTemplate(req, res){

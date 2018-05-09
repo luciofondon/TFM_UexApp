@@ -150,17 +150,17 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
     vm.createUser = function() {
-        if(validateUser()){
-			if(vm.imageUpload != undefine)
+       // if(validateUser()){
+			if(vm.imageUpload != undefined)
 				upload();
-            UserService.addUser(vm.user).then(function(project) {
+           /* UserService.addUser(vm.user).then(function(project) {
                 vm.user = {};
                 vm.loadUserList();
                 vm.alerts = [];
                 vm.alertas.push("Usuario creado correctamente");
                 $('#modal-user').modal('hide');
-            });
-        }
+            });*/
+       // }
     }
 
     vm.updateUser = function() {
@@ -174,9 +174,12 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
 	function upload(){
+		console.log(vm.imageUpload)
         Upload.upload({
             url: '/api/user/upload',
-            data: {file: vm.imageUpload, 'username': "Lucio"}
+			data: {prueba: "hola"},
+			file: vm.imageUpload
+
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {

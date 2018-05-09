@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('TemplateListController',
-	['$rootScope', '$http', 'BootstrapTableService', 'TemplateService', '$state', '$ngConfirm',
-		function($rootScope, $http, BootstrapTableService, TemplateService, $state, $ngConfirm){
+	['$rootScope', '$http', 'BootstrapTableService', 'TemplateService', '$state', '$ngConfirm', '$window',
+		function($rootScope, $http, BootstrapTableService, TemplateService, $state, $ngConfirm, $window){
 
 	var vm = this;
 
@@ -80,6 +80,8 @@ angular.module('tfm.uex').controller('TemplateListController',
 				//Cambiar de estado
 				TemplateService.downloadTemplate(row._id).then(function(response) {
 					console.log("Fichero descargado");
+					var nameFile = "image.jpg";
+					$window.open('file/' + nameFile)
 				});
 
 		  	}

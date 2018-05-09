@@ -13,4 +13,5 @@ angular.module('tfm.uex').controller('DashboardController',
 		vm.data = response.data;
 	});
 
+
 }]);

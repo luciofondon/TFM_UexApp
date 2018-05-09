@@ -18,9 +18,6 @@ MODULO CONFIGURADOR (95%)
 - Jasmine
 - controllerAs
 **SIN PRISA**-	Asociar elemento a entidad app
-**SIN PRISA**-	actualizar
-**SIN PRISA**-	Eliminar
-**SIN PRISA**- Crear entidad
 
 MODULO GENERADOR (95%)
 - Selenium
@@ -45,26 +42,26 @@ DASHBOARD (80%)
 
 
 
-9 **DOMINGO** Dashboard(Plantillas generadas, donut estilo, (1 hora)
+9 **SIN PRISA** -- redmine "dominio" (20 min)
+
+8 **SIN PRISA** Dashboard(Plantillas generadas, donut estilo, (1 hora)
 	https://github.com/GrantMStevens/amCharts-Angular
 	Conectar con google analytic
-	
-8 **DOMINGO** -- redmine "dominio" (20 min)
 
-7 **DOMINGO** - Importar/Exprotar CSV (1 hora)
+7 **SIN PRISA** DAO -> Model, validate (1 hora)
 
-6 **DOMINGO** DAO -> Model, validate (1 hora)
+6 **DOMINGO**- Menu lateral (30 min)
 
-4 **VIERNES**- Preguntas asociadas(CRUD) (1 hora)
+5 **DOMINGO**- Preguntas asociadas(CRUD) (1 hora)
 
-3 **MIERCOLES** - Subir foto (30 MIN)
+4 **VIERNES** - Importar/Exprotar CSV (1 hora)
+
+3 **VIERNES**- Grunt indexPro (30 MIN) Copy no copiar los las carpetas
+
+2 **VIERNES** - Crear app, actualizar, eliminar (1 hora)
+
+1 **VIERNES** - Subir foto (30 MIN)
 	https://www.dbigcloud.com/bigdata/63-como-subir-una-imagen-a-nuestro-servidor-con-node-js-y-express.html
 	https://github.com/uno-de-piera/fileupoad-angularjs/blob/master/index.html
 	https://github.com/danialfarid/ng-file-upload
 	https://gist.github.com/aksakalli/1a56072f066d65248885
-
-2 **MARTES**- Grunt indexPro (30 MIN) Copy no copiar los las carpetas
-
-1 **MARTES**- Menu lateral (30 min)
-
-

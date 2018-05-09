@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     mailService = require('../services/MailService'),
     systemService = require('../services/SystemService'),
-	fs = require('fs');
+	fs = require('fs'),
+	path = require('path');
 
 var User = require('../models/UserModel');
     User = mongoose.model('User');
@@ -55,21 +56,32 @@ exports.updateMeUser = function(req, res) {
 };
 
 function uploadImageUser(req, res) {
-    console.log(req.files);
-    var tmp_path = req.files.photo.path;
+	//console.log(req.authUser)
+
+
+	var file = req.files.file;
+
+	//Ruta temporal donde se ha almacenado el fichero
+	var tmpPath = file.path;
+
     // Ruta donde colocaremos las imagenes
-    var target_path = '../../../frontend/images/' + req.files.photo.name;
-   // Comprobamos que el fichero es de tipo imagen
-    if (req.files.photo.type.indexOf('image')==-1){
+	//let target_path = '../../../frontend/images/' + file.name;
+    let targetPath = path.join(__dirname,'../../../frontend/images/' + file.name);
+
+   	// Comprobamos que el fichero es de tipo imagen
+    if (file.type.indexOf('image')==-1){
     	res.send('El fichero que deseas subir no es una imagen');
     } else {
          // Movemos el fichero temporal tmp_path al directorio que hemos elegido en target_path
-        fs.rename(tmp_path, target_path, function(err) {
-            if (err) throw err;
+        fs.rename(tmpPath, targetPath, function(err) {
+			if (err)
+				res.status(500).json({error: "Se ha producido un error al subir la imagen"});
+
             // Eliminamos el fichero temporal
-            fs.unlink(tmp_path, function() {
-                if (err) throw err;
-                res.render('upload',{message: '/images/' + req.files.photo.name,title: 'ejemplo de subida de imagen'});
+            fs.unlink(tmpPath, function() {
+				if (err)
+					res.status(500).json({error: "Se ha producido un error al subir la imagen"});
+                res.json({info: "Imagen subida correctamente"});
             });
          });
      }

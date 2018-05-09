@@ -4,6 +4,8 @@
 */
 
 module.exports = function(app){
+	var multiparty = require('connect-multiparty'),
+		multipartyMiddleware = multiparty();
 
     var userController = require('../controllers/UserController')(),
   		systemMiddleware = require('../middlewares/SystemMiddleware');
@@ -29,7 +31,7 @@ module.exports = function(app){
       	.put(systemMiddleware.rolAdmin, userController.resetPassword);
 
     app.route('/user/upload')
-    	.post(userController.uploadImageUser);
+    	.post(multipartyMiddleware, userController.uploadImageUser);
 
     app.param('userId', userController.loadUser);
   }
