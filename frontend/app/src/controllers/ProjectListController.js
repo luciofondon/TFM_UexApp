@@ -4,12 +4,15 @@ angular.module('tfm.uex').controller('ProjectListController',
 	var vm = this;
 
     vm.bsTableProject = {};
+	vm.bsTableApp = {};
     vm.error = null;
     vm.project = {};
+	vm.app = {};
     vm.mode = 1;
 	vm.templates = [];
 	vm.projects = [];
 	vm.templateId = ""; //Plantilla seleccionada
+			
 	vm.init = function(){
         ProjectService.getProjects().then(function(response){
             vm.projects = response.data;
@@ -75,6 +78,11 @@ angular.module('tfm.uex').controller('ProjectListController',
             });
         }
     };
+	vm.loadProjectAppList = function(){
+		ProjectService.getProjectsApps().then(function(response) {
+			
+		});
+	}
 
 	vm.loadProjectList = function(){
         ProjectService.getProjects().then(function(response) {
@@ -157,7 +165,7 @@ angular.module('tfm.uex').controller('ProjectListController',
         };
     };
 			
-	function upload(file){
+	function upload(){
         Upload.upload({
             url: '/api/user/upload',
             data: {file: file, 'username': "Lucio"}
