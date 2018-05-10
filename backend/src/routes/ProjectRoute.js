@@ -19,12 +19,15 @@ module.exports = function(app){
 		.put(systemMiddleware.rolOperador, projectController.updateProject)
 		.delete(systemMiddleware.rolOperador, projectController.deleteProject);
 
-	app.route('/project/app/:projectId')
-		.get(systemMiddleware.rolOperador, projectController.readAppProject)
-		.put(systemMiddleware.rolOperador, projectController.updateAppProject)
-		.delete(systemMiddleware.rolOperador, projectController.deleteAppProject)
-		.post(systemMiddleware.rolOperador, projectController.createAppProject);
+	app.route('/project/aplication/:projectId:/:aplicationId')
+		.get(systemMiddleware.rolOperador, projectController.readAplicationFromProject)
+		.put(systemMiddleware.rolOperador, projectController.updateAplicationFromProject)
+		.delete(systemMiddleware.rolOperador, projectController.deleteAplicationFromProject)
+		.post(systemMiddleware.rolOperador, projectController.createAplicationFromProject);
 
+
+	app.route('/projects/aplications')
+		.get(systemMiddleware.rolOperador, projectController.readAplicationsFromProjects);
 
 	//Generar proyecto a partir de una plantilla (proyecto)
 	app.route('/project/template/:projectId')
