@@ -21,38 +21,38 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 		createAppProject: function(projectId, app){
 			return createAppProject(projectId, app);
 		},
-		getAppsProject: function(){
-			return getAppsProject();
+		getAplicationsFromProjects: function(){
+			return getAplicationsFromProjects();
 		},
-		getAppProject: function(projectId, appId){
-			return getAppProject(projectId, appId);
+		getAplicationFromProject: function(projectId, aplicationId){
+			return getAplicationFromProject(projectId, aplicationId);
 		},
-		deleteAppProject: function(projectId, appId){
-			return getAppProject(projectId, appId);
+		deleteAplicationFromProject: function(projectId, aplicationId){
+			return deleteAplicationFromProject(projectId, aplicationId);
 		},
-		updateAppProject: function(projectId, app){
-			return createAppProject(projectId, app);
+		updateAplicationFromProject: function(projectId, aplication){
+			return updateAplicationFromProject(projectId, aplication);
 		},
 	};
 	
-	function getAppsProject(){
-		return $http.get('/api/projects/apps');
+	function getAplicationsFromProjects(){
+		return $http.get('/api/projects/aplications');
 	}
 	
-	function getAppProject(projectId, appId){
-		return $http.get('/api/projects/apps' +projectId + '/' + appId);
+	function getAplicationFromProject(projectId, aplicationId){
+		return $http.get('/api/projects/apps' + projectId + '/' + aplicationId);
 	}
 	
-	function deleteAppProject(projectId, appId){
-		return $http.get('/api/projects/apps' +projectId + '/' + appId);
+	function deleteAplicationProject(projectId, aplicationId){
+		return $http.delete('/api/projects/apps' +projectId + '/' + aplicationId);
 	}
 	
-	function updateAppProject(projectId, app){
-		return $http.put('/api/project/app/' + projectId + '/' + app._id, app);
+	function updateAppProject(projectId, aplication){
+		return $http.put('/api/project/aplication/' + projectId + '/' + aplication._id, aplication);
 	}
 
-	function createAppProject(projectId, app){
-		return $http.post('/api/project/apps/' + projectId, app);
+	function createAppProject(projectId, aplication){
+		return $http.post('/api/project/aplications/' + projectId, aplication);
 	}
 
 	function generateProject(templateId, project){
