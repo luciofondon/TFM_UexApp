@@ -22,9 +22,10 @@ module.exports = function(app){
 	app.route('/project/aplication/:projectId:/:aplicationId')
 		.get(systemMiddleware.rolOperador, projectController.readAplicationFromProject)
 		.put(systemMiddleware.rolOperador, projectController.updateAplicationFromProject)
-		.delete(systemMiddleware.rolOperador, projectController.deleteAplicationFromProject)
+		.delete(systemMiddleware.rolOperador, projectController.deleteAplicationFromProject);
+	
+	app.route('/project/aplications/:projectId')
 		.post(systemMiddleware.rolOperador, projectController.createAplicationFromProject);
-
 
 	app.route('/projects/aplications')
 		.get(systemMiddleware.rolOperador, projectController.readAplicationsFromProjects);
