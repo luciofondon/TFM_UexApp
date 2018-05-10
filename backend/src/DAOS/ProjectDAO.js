@@ -41,32 +41,39 @@ exports.deleteProject = function(req, res) {
 }
 
 
-exports.readAppProject = function(req, res) {
-    readAppProject(req, res);
+exports.readAplicationFromProject = function(req, res) {
+    readAplicationFromProject(req, res);
 };
-exports.deleteAppProject = function(req, res) {
-    deleteAppProject(req, res);
+exports.deleteAplicationFromProject = function(req, res) {
+    deleteAplicationFromProject(req, res);
 };
-exports.updateAppProject = function(req, res) {
-    updateAppProject(req, res);
+exports.updateAplicationFromProject = function(req, res) {
+    updateAplicationFromProject(req, res);
 };
-exports.createAppProject = function(req, res) {
-    createAppProject(req, res);
+exports.createAplicationFromProject = function(req, res) {
+    createAplicationFromProject(req, res);
+};
+exports.readAplicationsFromProjects = function(req, res) {
+    readAplicationsFromProjects(req, res);
 };
 
-function readAppProject(req, res){
+function readAplicationFromProject(req, res){
 
 }
 
-function deleteAppProject(req, res){
+function deleteAplicationFromProject(req, res){
 
 }
 
-function updateAppProject(req, res){
+function updateAplicationFromProject(req, res){
 
 }
 
-function createAppProject(req, res){
+function createAplicationFromProject(req, res){
+
+}
+
+function readAplicationsFromProjects(req, res){
 	let project = req.project;
 	let app = req.body;
 }
