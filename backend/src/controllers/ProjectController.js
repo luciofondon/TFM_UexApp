@@ -38,20 +38,24 @@ module.exports = function() {
             projectDAO.generateProject(req,res);
 		},
 
-		readAppProject: function(req, res) {
-            projectDAO.readAppProject(req,res);
+		readAplicationFromProject: function(req, res) {
+            projectDAO.readAplicationFromProject(req,res);
         },
 
-        createAppProject: function(req, res) {
-            projectDAO.createAppProject(req,res);
+        createAplicationFromProject: function(req, res) {
+            projectDAO.createAplicationFromProject(req,res);
         },
 
-        updateAppProject: function(req, res) {
-            projectDAO.updateProject(req,res);
+        updateAplicationFromProject: function(req, res) {
+            projectDAO.updateAplicationFromProject(req,res);
         },
 
-        deleteAppProject: function(req, res) {
-        	projectDAO.deleteAppProject(req,res);
+        deleteAplicationFromProject: function(req, res) {
+        	projectDAO.deleteAplicationFromProject(req,res);
+        },
+		
+		readAplicationsFromProjects: function(req, res) {
+        	projectDAO.readAplicationsFromProjects(req,res);
         }
 
     }
