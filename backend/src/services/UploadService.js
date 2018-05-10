@@ -1,11 +1,15 @@
 
 var fs = require('fs');
 
-exports.upload = function(isImg, isPdf){
-	upload(isImg, isPdf);
+exports.uploadCSV = function(tmpPath, targetPath){
+	uploadCSV(true, false tmpPath, targetPath);
 };
 
-function upload(isImg, isPdf){
+exports.uploadImage = function(tmpPath, targetPath){
+	upload(false, true, tmpPath, targetPath);
+};
+
+function upload(isImg, isCSV, tmpPath, targetPath){
 	var tmp_path = req.files.photo.path;
 
     // Ruta donde colocaremos las imagenes
