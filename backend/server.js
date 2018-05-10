@@ -10,7 +10,8 @@ var express = require("express"),
 	logger = require('morgan'),
 	config = require('./config/config'),
 	systemMiddleware = require('./src/middlewares/SystemMiddleware'),
-	userController = require('./src/controllers/UserController')();
+	userController = require('./src/controllers/UserController')(),
+	downloadController = require('./src/controllers/DownloadController')();
 
 
 var app = express();
@@ -36,7 +37,7 @@ require('./src/routes/MediatoryRoute')(api);
 //Control de token
 app.route('/auth/login').post(userController.login);
 app.route('/auth/signup').post(userController.signup);
-app.route('/file/csv').get(systemController.downloadCSV);
+app.route('/file/csv').get(downloadController.downloadCSV);
 
 app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
