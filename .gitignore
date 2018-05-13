@@ -41,3 +41,5 @@ frontend/package-lock.json
 
 backend/config/config.js
 backend/tmp/*
+backend/package-lock.json
+

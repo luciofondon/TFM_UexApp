@@ -1,63 +1,47 @@
 CONFIGURACION (95%)
 - Loading (fixed cabecera)
-- Script DB
 - Directiva
-- Eliminar codigo HTML (ng-init)
-
-MODULO USUARIO (95%)
-- Selenium
-- JSDoc (readme)
-- Captcha key importar
->>TRABAJO- Mocha
->>TRABAJO- Jasmine
-
-MODULO CONFIGURADOR (95%)
-- Selenium
-- JSDoc (readme)
-- Mocha
-- Jasmine
-- controllerAs
-**SIN PRISA**-	Asociar elemento a entidad app
-
-MODULO GENERADOR (95%)
-- Selenium
-- JSDoc
-- Mocha
-- Jasmine
-
-MODULO TEMPLATE (85%)
-- Selenium
-- JSDoc (readme)
-- Mocha
-- Jasmine
-
-MODULO MEDIATORY (85%)
-- Selenium
-- JSDoc (readme)
-- Mocha
-- Autenticacion entre servicios
+Selenium
 >>TRABAJO- Desplegar Jira
 
+MODULO USUARIO (95%)
+MODULO CONFIGURADOR (95%)
+MODULO GENERADOR (95%)
+MODULO TEMPLATE (85%)
+MODULO MEDIATORY (85%)
 DASHBOARD (80%)
 
 
 
-7 **SIN PRISA** -- redmine "dominio" (20 min)
 
-6 **SIN PRISA** Dashboard(Plantillas generadas, donut estilo, (1 hora)
-	https://github.com/GrantMStevens/amCharts-Angular
-	Conectar con google analytic
-
-5 **SIN PRISA** DAO -> Model, validate (1 hora)
-
-4 **DOMINGO**- Menu lateral (30 min)
+->SEMANA 28 - 3
+** JSDOC y readme
+** Autenticacion entre servicios
+** DAO -> Model, validate (1 hora)
+** Jasmine
 
 
-2 **VIERNES**- Grunt indexPro (30 MIN) Copy no copiar los las carpetas
+->SEMANA 21 - 27
+**MIERCOLES** Mocha
+**VIERNES** Dashboard(Plantillas generadas, donut estilo, (1 hora)
+**VIERNES *Asociar elemento a entidad app
+**VIERNES**- Menu lateral (30 min)
+
+**MIERCOLES** controllerAs
+**MIERCOLES** Eliminar codigo HTML (ng-init)
+**MIERCOLES** Script DB
 
 
-
+->SEMANA 14 - 20
  **VIERNES**- Preguntas asociadas(CRUD) (1 hora)
- **VIERNES** - Crear app, actualizar, eliminar (1 hora)
- **VIERNES** - Foto usuario
- **VIERNES** - Importar/Exprotar CSV (1 hora)
+ **VIERNES** - App: actualizar, eliminar (1 hora)
+ **VIERNES** - Importar plantilla
+
+ **HACIENDO** Crear app
+ **HACIENDO** Pintar apps (poner filtro proyecto)
+ **HACIENDO** Crear pregunta relaciona
+ **HACIENDO** Subir plantilla al proyecto
+
+ **MIERCOLES** - Grunt indexPro (30 MIN)
+ **MIERCOLES** - Foto usuario
+ **MIERCOLES** - Exportar plantilla

@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
 	path = require('path');
 const fs = require('fs');
 
-const {toXml, toJson} = require('json-xml');
+var jsonxml = require('jsontoxml');
+var format = require('xml-formatter');
 
 var Project = require('../models/ProjectModel'),
 	Project = mongoose.model('Project');
@@ -39,10 +40,15 @@ exports.generateTemplateCSV = function(req, res) {
 
 function generateTemplateCSV(req, res){
 	let project = req.project
-	const xml = toXml(JSON.stringify(project));
+	var xml = jsonxml({
+		template:'Nombre plantilla'
+	})
+	var formattedXml = format(xml);
+	console.log(formattedXml)
+
 	let timeStamp = new Date().getTime();
 	let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
-	fs.writeFile(targetPath, xml, function (err) {
+	fs.writeFile(targetPath, formattedXml, function (err) {
 		console.log(targetPath)
 		res.json({nameFile: timeStamp + ".xml"});
 	});

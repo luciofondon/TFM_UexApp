@@ -37,7 +37,7 @@ require('./src/routes/MediatoryRoute')(api);
 //Control de token
 app.route('/auth/login').post(userController.login);
 app.route('/auth/signup').post(userController.signup);
-app.route('/download/file//:nameFile').get(downloadController.downloadFile);
+app.route('/download/file/:nameFile').get(downloadController.downloadFile);
 
 app.use("/api", systemMiddleware.ensureAuthenticated, api);
 
