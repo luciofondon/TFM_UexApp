@@ -10,7 +10,6 @@ angular.module('tfm.uex').controller('UserListController',
     vm.resetPassword = {};
     vm.projects = [];
     vm.bsTableUsers = {};
-	vm.imageUpload;
 
 	vm.reset = function(){
 		vm.mode = 1;
@@ -146,21 +145,26 @@ angular.module('tfm.uex').controller('UserListController',
         else if((vm.user.password != vm.user.confirmPassword) && vm.mode == 1)
 			vm.error ="Las dos contraseñas especificadas no coinciden";
 
-		return vm.error != null ? true : false;
+		return vm.error == null ? true : false;
     }
 
     vm.createUser = function() {
-       // if(validateUser()){
-			if(vm.imageUpload != undefined)
-				upload();
-           /* UserService.addUser(vm.user).then(function(project) {
-                vm.user = {};
-                vm.loadUserList();
-                vm.alerts = [];
-                vm.alertas.push("Usuario creado correctamente");
-                $('#modal-user').modal('hide');
-            });*/
-       // }
+        if(validateUser()){
+			upload(function(status, nameImage){
+				debugger
+				console.log(status == 200 && nameImage != undefined)
+				if(status == 200 && nameImage != undefined)
+					vm.user.image == nameImage;
+				UserService.addUser(vm.user).then(function(project) {
+					vm.user = {};
+					vm.loadUserList();
+					vm.alerts = [];
+					vm.alertas.push("Usuario creado correctamente");
+					$('#modal-user').modal('hide');
+				});
+
+			});
+        }
     }
 
     vm.updateUser = function() {
@@ -173,21 +177,21 @@ angular.module('tfm.uex').controller('UserListController',
         }
     }
 
-	function upload(){
-		console.log(vm.imageUpload)
-        Upload.upload({
-            url: '/api/user/upload',
-			data: {prueba: "hola"},
-			file: vm.imageUpload
-
-        }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
+	function upload(callback){
+		if(vm.user.image != undefined){
+			Upload.upload({
+				url: '/api/user/upload',
+				file: vm.user.image
+			}).then(function (response) {
+				callback(response.status, response.data.name);
+			}, function (response) { // Error
+				callback(response.status);
+			}, function (evt) {
+				var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+			});
+		}else{
+			callback(200, "");
+		}
     };
 
 }]);

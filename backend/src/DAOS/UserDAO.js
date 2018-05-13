@@ -56,9 +56,6 @@ exports.updateMeUser = function(req, res) {
 };
 
 function uploadImageUser(req, res) {
-	//console.log(req.authUser)
-
-
 	var file = req.files.file;
 
 	//Ruta temporal donde se ha almacenado el fichero
@@ -81,7 +78,7 @@ function uploadImageUser(req, res) {
             fs.unlink(tmpPath, function() {
 				if (err)
 					res.status(500).json({error: "Se ha producido un error al subir la imagen"});
-                res.json({info: "Imagen subida correctamente"});
+                res.json({name: file.name});
             });
          });
      }

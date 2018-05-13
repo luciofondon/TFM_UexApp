@@ -38,7 +38,8 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 	}
 
 	function addUser(user){
-		return $http.post('/api/user', user);
+		console.log(user)
+		return $http.post('/api/users', user);
 	}
 
 	function removeUser(userId){

@@ -12,8 +12,8 @@ module.exports = function(){
 		deleteTemplate: function(req, res) {
             templateDAO.deleteTemplate(req,res);
 		},
-		downloadTemplate: function(req, res){
-			templateDAO.downloadTemplate(req,res);
+		generateTemplateCSV: function(req, res){
+			templateDAO.generateTemplateCSV(req,res);
 		}
     }
 }

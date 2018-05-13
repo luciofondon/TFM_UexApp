@@ -115,9 +115,7 @@
 					<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
 					<div class="col-md-7">
 						<img ngf-thumbnail="vm.imageUpload" height="100">
-						<button type="button" class="btn btn-default" ngf-select ng-model="vm.imageUpload">Adjuntar fotografía</button>
-						<input type="file" ngf-select ng-model="vm.imageUpload" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
-
+						<input type="file" ngf-select ng-model="vm.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
 					</div>
 
 				</div>

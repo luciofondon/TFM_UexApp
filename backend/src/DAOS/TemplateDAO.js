@@ -8,6 +8,9 @@ var mongoose = require('mongoose'),
     request = require('request'),
 	Promise = require('promise'),
 	path = require('path');
+const fs = require('fs');
+
+const {toXml, toJson} = require('json-xml');
 
 var Project = require('../models/ProjectModel'),
 	Project = mongoose.model('Project');
@@ -30,14 +33,19 @@ exports.deleteTemplate = function(req, res) {
     deleteTemplate(req, res);
 };
 
-exports.downloadTemplate = function(req, res) {
-    downloadTemplate(req, res);
+exports.generateTemplateCSV = function(req, res) {
+    generateTemplateCSV(req, res);
 };
 
-function downloadTemplate(req, res){
-	let targetPath = path.join(__dirname,'../../tmp/demo.csv');
-console.log(targetPath)
-	res.download(targetPath, 'demo.csv');
+function generateTemplateCSV(req, res){
+	let project = req.project
+	const xml = toXml(JSON.stringify(project));
+	let timeStamp = new Date().getTime();
+	let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
+	fs.writeFile(targetPath, xml, function (err) {
+		console.log(targetPath)
+		res.json({nameFile: timeStamp + ".xml"});
+	});
 }
 
 function createTemplate(req, res){

@@ -4,8 +4,8 @@ module.exports = function() {
 
     return {
 
-        downloadCSV: function(req, res) {
-           downloadService.downloadCSV();
+        downloadFile: function(req, res) {
+           downloadService.downloadFile(req, res);
         }
 
     }

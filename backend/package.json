@@ -25,6 +25,7 @@
     "express": "^4.16.2",
     "fs": "0.0.1-security",
     "json-2-csv": "^2.2.0",
+    "json-xml": "^1.0.9",
     "jwt-simple": "^0.5.1",
     "method-override": "^2.3.10",
     "middleware": "^1.0.0",

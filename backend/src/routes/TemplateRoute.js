@@ -18,8 +18,8 @@ module.exports = function(app){
 	app.route('/templates')
 		.get(systemMiddleware.rolConsultor, templateController.readAllTemplate);
 
-	app.route('/template/download/:projectId')
-		.get(systemMiddleware.rolConsultor, templateController.downloadTemplate);
-	
+	app.route('/template/generate/:projectId')
+		.get(systemMiddleware.rolConsultor, templateController.generateTemplateCSV);
+
 	app.param('projectId', projectController.loadProject);
 };

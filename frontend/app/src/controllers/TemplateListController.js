@@ -77,11 +77,8 @@ angular.module('tfm.uex').controller('TemplateListController',
 				//Cambiar de estado
 				$state.go('templateDetail', {templateId: row._id});
 		  	},'click .download': function (e, value, row, index) {
-				//Cambiar de estado
-				TemplateService.downloadTemplate(row._id).then(function(response) {
-					console.log("Fichero descargado");
-					var nameFile = "image.jpg";
-					$window.open('file/' + nameFile)
+				TemplateService.generateTemplateCSV(row._id).then(function(response) {
+					window.location = '/download/file/' + response.data.nameFile;
 				});
 
 		  	}
