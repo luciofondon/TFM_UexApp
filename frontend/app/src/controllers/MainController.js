@@ -78,6 +78,7 @@ app.controller('MainController',
 	function getUser(){
 		if ($auth.isAuthenticated()){
 			UserService.getMe().then(function(response) {
+				console.log(response.data)
 				$rootScope.LoginUser = response.data;
 			}).catch(function (error){
 				console.log(error);

@@ -37,11 +37,11 @@ DASHBOARD (80%)
  **VIERNES** - App: actualizar, eliminar (1 hora)
  **VIERNES** - Importar plantilla
 
- **HACIENDO** Crear app
- **HACIENDO** Pintar apps (poner filtro proyecto)
  **HACIENDO** Crear pregunta relaciona
  **HACIENDO** Subir plantilla al proyecto
 
  **MIERCOLES** - Grunt indexPro (30 MIN)
- **MIERCOLES** - Foto usuario
- **MIERCOLES** - Exportar plantilla
+ ->**MIERCOLES** - Foto usuario
+ ->**MIERCOLES** - Exportar plantilla
+ ->**HACIENDO** Pintar apps (poner filtro proyecto)
+

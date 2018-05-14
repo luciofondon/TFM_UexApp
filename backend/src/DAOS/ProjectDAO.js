@@ -70,12 +70,33 @@ function updateAplicationFromProject(req, res){
 }
 
 function createAplicationFromProject(req, res){
-
+	let project = req.project;
+	let app = req.body;
+	project.apps.push(app);
+	project.save(function(err) {
+		if (err) {
+			return res.status(500).json({error: 'Cannot update the project'});
+		}
+		res.json(project);
+	});
 }
 
 function readAplicationsFromProjects(req, res){
-	let project = req.project;
-	let app = req.body;
+	 // Comprobar los proyectos a los que el usuario tiene permisos
+	 var filter = {};
+	 if(req.authUser.rol.level == 1)
+			filter = {isTemplate: false};
+	 else
+		 filter = {isTemplate: false, creator: req.authUser._id}
+	let apps = [];
+	Project.find(filter).sort({name:1}).exec(function(err, projects) {
+		 if (err) {
+			 return res.status(500).json({ error: 'Cannot list all the projects' });
+		 }
+		apps = projects.apps;
+		res.json(apps);
+	 });
+
 }
 
 

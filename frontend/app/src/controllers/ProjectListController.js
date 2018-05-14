@@ -12,19 +12,24 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.templates = [];
 	vm.projects = [];
 	vm.templateId = ""; //Plantilla seleccionada
-			
+
 	vm.init = function(){
+		vm.loadProjectList();
+		vm.loadProjectAppList();
         ProjectService.getProjects().then(function(response){
             vm.projects = response.data;
         });
 		TemplateService.getTemplates().then(function(response){
 			vm.templates = response.data;
+			vm.templates.push({nameTemplate: "Adjuntar plantila", _id: "upload" })
 		});
 	};
 
 	vm.createAppProject = function (){
-
-
+		ProjectService.createAppProject(vm.projectId, vm.app).then(function(response){
+			$('#modal-app').modal('hide');
+			$ngConfirm("Aplicación creada correctamente");
+        });
 	}
 
     vm.createProject = function (){
@@ -79,8 +84,17 @@ angular.module('tfm.uex').controller('ProjectListController',
         }
     };
 	vm.loadProjectAppList = function(){
-		ProjectService.getProjectsApps().then(function(response) {
-			
+		ProjectService.getAplicationsFromProjects().then(function(response) {
+			var apps = response.data;
+			var columns = [
+                {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
+                {field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
+				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
+                {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
+            ];
+
+            vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns);
+
 		});
 	}
 
@@ -164,7 +178,7 @@ angular.module('tfm.uex').controller('ProjectListController',
           }
         };
     };
-			
+
 	function upload(){
         Upload.upload({
             url: '/api/user/upload',

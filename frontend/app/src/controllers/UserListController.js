@@ -121,7 +121,7 @@ angular.module('tfm.uex').controller('UserListController',
         else if((vm.resetPassword.password != vm.resetPassword.confirmPassword))
 			vm.error = "Las dos contraseñas especificadas no coinciden";
 
-			return vm.error != null ? true : false;
+		return vm.error != null ? true : false;
 	}
 
     function validateUser(){
@@ -150,11 +150,16 @@ angular.module('tfm.uex').controller('UserListController',
 
     vm.createUser = function() {
         if(validateUser()){
+			console.log(vm.user)
 			upload(function(status, nameImage){
+				console.log(vm.user)
+
 				debugger
 				console.log(status == 200 && nameImage != undefined)
 				if(status == 200 && nameImage != undefined)
-					vm.user.image == nameImage;
+					vm.user.image = nameImage;
+				console.log(vm.user)
+
 				UserService.addUser(vm.user).then(function(project) {
 					vm.user = {};
 					vm.loadUserList();
