@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'Upload',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, Upload){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'UploadService',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, UploadService){
 	var vm = this;
 
     vm.bsTableProject = {};
@@ -34,7 +34,11 @@ angular.module('tfm.uex').controller('ProjectListController',
 
     vm.createProject = function (){
         if(validate()){
-			if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
+			if(vm.templateId == 'upload'){
+				UploadService.uploadXML(vm.templateUpload).then(function(response){
+					vm.project.templateUpload = response.name;
+				});
+			}else if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
 				ProjectService.generateProject(vm.templateId, vm.project).then(function(response) {
 					vm.templateId = "";
 					vm.project =  {};
@@ -44,7 +48,6 @@ angular.module('tfm.uex').controller('ProjectListController',
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
 					});
 					$ngConfirm("Proyecto creado correctamente con plantilla importada");
-
 				});
 			}else{
 				ProjectService.createProject(vm.project).then(function(response) {
@@ -179,18 +182,6 @@ angular.module('tfm.uex').controller('ProjectListController',
         };
     };
 
-	function upload(){
-        Upload.upload({
-            url: '/api/user/upload',
-            data: {file: file, 'username': "Lucio"}
-        }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
-    };
+
 
 }]);
