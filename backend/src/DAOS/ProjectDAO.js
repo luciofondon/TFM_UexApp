@@ -83,17 +83,25 @@ function createAplicationFromProject(req, res){
 
 function readAplicationsFromProjects(req, res){
 	 // Comprobar los proyectos a los que el usuario tiene permisos
-	 var filter = {};
-	 if(req.authUser.rol.level == 1)
-			filter = {isTemplate: false};
-	 else
+	var filter = {};
+	if(req.authUser.rol.level == 1)
+		filter = {isTemplate: false};
+	else
 		 filter = {isTemplate: false, creator: req.authUser._id}
 	let apps = [];
+
 	Project.find(filter).sort({name:1}).exec(function(err, projects) {
 		 if (err) {
 			 return res.status(500).json({ error: 'Cannot list all the projects' });
 		 }
-		apps = projects.apps;
+		projects.forEach(function(project){
+			project.apps.forEach(function(app){
+				let appCopy = JSON.parse(JSON.stringify(app));
+				appCopy.projectName = project.name
+				apps.push(appCopy);
+			});
+
+		});
 		res.json(apps);
 	 });
 

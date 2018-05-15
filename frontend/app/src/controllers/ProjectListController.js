@@ -14,10 +14,11 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.templateId = ""; //Plantilla seleccionada
 
 	vm.init = function(){
-		vm.loadProjectList();
-		vm.loadProjectAppList();
+
         ProjectService.getProjects().then(function(response){
-            vm.projects = response.data;
+			vm.projects = response.data;
+			vm.loadProjectList();
+			vm.loadProjectAppList();
         });
 		TemplateService.getTemplates().then(function(response){
 			vm.templates = response.data;
@@ -89,16 +90,77 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.loadProjectAppList = function(){
 		ProjectService.getAplicationsFromProjects().then(function(response) {
 			var apps = response.data;
+
+			var projectsFilter = [];
+            vm.projects.forEach(function(project){
+				projectsFilter.push(project.name)
+			});
+			console.log(projectsFilter)
+
+
+			var actionFormatterProjects= function(value, row, index) {
+                return [
+                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
+                    	'<i class="glyphicon glyphicon-edit"></i>',
+                    '</a>',
+					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
+                        '<i class="glyphicon glyphicon-remove"></i>',
+                    '</a>'
+                ].join('');
+			}
+
 			var columns = [
+				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
                 {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-                {field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
+                {field: "projectName", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
 				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
                 {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
             ];
 
-            vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns);
+            vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
 
 		});
+		window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
+			vm.mode = 2;
+			vm.errores = [];
+                ProjectService.getProject(row._id).then(function(response) {
+                    vm.project = response.data;
+                });
+            },'click .configurator': function (e, value, row, index) {
+              	//Cambiar de estado
+			    $state.go('configuratorManagement', {projectId:row._id});
+			},'click .remove': function (e, value, row, index) {
+				$ngConfirm({
+					title: 'Proyecto',
+					content: '¿Deseas eliminar el proyecto?',
+					buttons: {
+						aceptar: {
+							text: 'Eliminar',
+							btnClass: 'btn-blue',
+							action: function(scope, button){
+								ProjectService.deleteProject(row._id).then(function(response) {
+                   					for(var i = vm.bsTableProject.options.data.length; i--;){
+										if(vm.bsTableProject.options.data[i]._id == row._id){
+											vm.bsTableProject.options.data.splice(i, 1);
+											$ngConfirm('El proyecto se ha sido eliminado correctamente');
+										}
+									}
+                				});
+							}
+						},
+						cerrar: {
+							text: 'Cancelar',
+							btnClass: 'btn-orange',
+						}
+					}
+				});
+
+
+			},'click .generator': function (e, value, row, index) {
+                //Cambiar de estado
+              $state.go('generatorManagement', {projectId:row._id});
+          }
+        };
 	}
 
 	vm.loadProjectList = function(){

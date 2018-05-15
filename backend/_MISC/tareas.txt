@@ -28,14 +28,15 @@ DASHBOARD (80%)
 
 
 ->SEMANA 14 - 20
- **VIERNES**- Preguntas asociadas: Mostrar, contestar, actualizar, eliminar (1 hora)
+ **VIERNES**- Preguntas asociadas: contestar, actualizar, eliminar (1 hora)
  **VIERNES** - App: actualizar, eliminar (30 min)
  **VIERNES** - Importar plantilla (30 min)
 
- 6 ->**MIERCOLES** Subir plantilla al proyecto
+
+ 6 ->**MIERCOLES** Pintar pregunta asociada
+ 5 ->**MIERCOLES** Subir plantilla al proyecto
  4 ->**MIERCOLES** Grunt indexPro
- 5 ->**MIERCOLES** Foto usuario
- 3 ->**MIERCOLES** Crear pregunta asociada
+ 3 ->**MIERCOLES** Foto usuario
  2 ->**MIERCOLES** Exportar plantilla
  1 ->**MIERCOLES** Pintar apps (poner filtro proyecto)
 

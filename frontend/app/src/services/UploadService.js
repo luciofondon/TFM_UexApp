@@ -1,11 +1,11 @@
-angular.module('tfm.uex').service('UplodadService', ['Upload', function(Upload) {
+angular.module('tfm.uex').service('UploadService', ['Upload', function(Upload) {
 
 	return {
 		uploadFile: function(file){
 			return uploadFile(file);
 		}
 	};
-  
+
   function upload(callback){
 		if(vm.user.image != undefined){
 			Upload.upload({
@@ -22,6 +22,6 @@ angular.module('tfm.uex').service('UplodadService', ['Upload', function(Upload) 
 			callback(200, "");
 		}
   }
-  
+
 }]);
-  
+

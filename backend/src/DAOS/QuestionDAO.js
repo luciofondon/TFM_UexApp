@@ -46,6 +46,29 @@ function deleteQuestionAsociate(req, res){
 }
 
 function createQuestionAsociate(req, res){
+	var question = req.question;
+	let questionAsociate = new Question(req.body);
+	questionAsociate.topic = question.topic;
+	question.answers.forEach(function(answer){
+		if(answer._id.toString() == req.params.answerId.toString()){
+			console.log("Igual")
+			answer.questions.push(questionAsociate);
+		}
+	});
+
+	questionAsociate.save(function(err) {
+		if (err) {
+			return res.status(500).json({error: 'Cannot update the question'});
+		}
+		question.save(function(err) {
+			console.log(err)
+
+			if (err) {
+				return res.status(500).json({error: 'Cannot update the question'});
+			}
+			res.json(question);
+		});
+	});
 }
 
 function updateQuestionAsociate(req, res){

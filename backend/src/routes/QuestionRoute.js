@@ -17,12 +17,12 @@ module.exports = function(app){
     app.route('/questions/topic/:topicId')
         .get(systemMiddleware.rolOperador, questionController.readAllByTopic)
 		.post(systemMiddleware.rolOperador, questionController.createByTopic);
-	
-	app.route('/question/answer/:questionId:/answerId')
+
+	app.route('/question/topic/:topicId/question/:questionId/answer/:answerId')
 		.post(systemMiddleware.rolOperador, questionController.createQuestionAsociate)
 		.put(systemMiddleware.rolOperador, questionController.updateQuestionAsociate)
         .delete(systemMiddleware.rolOperador, questionController.deleteQuestionAsociate)
-	
+
 	app.route('/question/answer/:questionId:/answerId/:questionAsociateId')
 		.post(systemMiddleware.rolOperador, questionController.readQuestionAsociate)
 

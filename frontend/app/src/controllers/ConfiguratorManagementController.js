@@ -17,6 +17,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.errores  = [];
 	$scope.templates = [];
 	$scope.error = null;
+	$scope.answerId = "";
 
     $scope.init = function(){
         TopicService.getTopics($stateParams.projectId).then(function(response) {
@@ -208,6 +209,11 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	//*************************************************************************/
 	//************************************ANSWER*******************************/
 	//*************************************************************************/
+
+	$scope.selectAnswer = function(answerId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
+		$scope.answerId = answerId;
+	};
 
 	$scope.readAnswer = function(questionId, answerId, mode){
 		$scope.mode = mode != undefined ? mode : 1;

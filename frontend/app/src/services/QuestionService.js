@@ -27,7 +27,7 @@ angular.module('tfm.uex').factory('QuestionService', ['$http', function($http){
 	};
 
 	function createQuestionAsociate(topicId, questionId, answerId, question){
-		return $http.post('/api/questions/topic/' + topicId +  '/' + questionId + '/' + answerId , question);
+		return $http.post('/api/question/topic/' + topicId +  '/question/' + questionId + '/answer/' + answerId , question);
 	}
 
 	function updateQuestionAsociate(question){
@@ -41,7 +41,7 @@ angular.module('tfm.uex').factory('QuestionService', ['$http', function($http){
 	function readQuestionAsociate(questionId){
 		return $http.get('/api/question/' + questionId);
 	}
-	
+
 	function createQuestion(topicId, question){
 		return $http.post('/api/questions/topic/' + topicId, question);
 	}

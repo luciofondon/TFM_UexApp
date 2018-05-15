@@ -42,16 +42,14 @@ function generateTemplateCSV(req, res){
 	let project = req.project
 	var xml = jsonxml({
 		template:
-			{ 	name:'Nombre Plantilla', 
-			 	description:'Descripcion', 
+			{ 	name:'Nombre Plantilla',
+			 	description:'Descripcion',
 			 	topics:[ 	{name:'Topic1', questions: [{description: "Pregunta"}, {description: "Pregunta"}]},
 							{name:'Topic2', questions: [{description: "Pregunta"}]},
 							{name:'Topic3', questions: []}
 					   ]
-			},
-
-    	]
-	})
+			}
+	});
 	var formattedXml = format(xml);
 	console.log(formattedXml)
 
