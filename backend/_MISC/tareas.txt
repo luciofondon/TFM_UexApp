@@ -1,5 +1,4 @@
 CONFIGURACION (95%)
-- Loading (fixed cabecera)
 - Directiva
 Selenium
 >>TRABAJO- Desplegar Jira
@@ -11,37 +10,32 @@ MODULO TEMPLATE (85%)
 MODULO MEDIATORY (85%)
 DASHBOARD (80%)
 
-
-
-
 ->SEMANA 28 - 3
 ** JSDOC y readme
 ** Autenticacion entre servicios
-** DAO -> Model, validate (1 hora)
 ** Jasmine
-
 
 ->SEMANA 21 - 27
 **MIERCOLES** Mocha
 **VIERNES** Dashboard(Plantillas generadas, donut estilo, (1 hora)
-**VIERNES *Asociar elemento a entidad app
-**VIERNES**- Menu lateral (30 min)
+**VIERNES** Asociar elemento a entidad app
+** DAO -> Model, validate (1 hora)
 
-**MIERCOLES** controllerAs
-**MIERCOLES** Eliminar codigo HTML (ng-init)
-**MIERCOLES** Script DB
+4 **MIERCOLES** controllerAs
+3 **MIERCOLES** Eliminar codigo HTML (ng-init)
+2 **MIERCOLES** Script DB
+1 **MIERCOLES**- Menu lateral (Loading (fixed cabecera))
 
 
 ->SEMANA 14 - 20
- **VIERNES**- Preguntas asociadas(CRUD) (1 hora)
- **VIERNES** - App: actualizar, eliminar (1 hora)
- **VIERNES** - Importar plantilla
+ **VIERNES**- Preguntas asociadas: Mostrar, contestar, actualizar, eliminar (1 hora)
+ **VIERNES** - App: actualizar, eliminar (30 min)
+ **VIERNES** - Importar plantilla (30 min)
 
- **HACIENDO** Crear pregunta relaciona
- **HACIENDO** Subir plantilla al proyecto
-
- **MIERCOLES** - Grunt indexPro (30 MIN)
- ->**MIERCOLES** - Foto usuario
- ->**MIERCOLES** - Exportar plantilla
- ->**HACIENDO** Pintar apps (poner filtro proyecto)
+ 6 ->**MIERCOLES** Subir plantilla al proyecto
+ 4 ->**MIERCOLES** Grunt indexPro
+ 5 ->**MIERCOLES** Foto usuario
+ 3 ->**MIERCOLES** Crear pregunta asociada
+ 2 ->**MIERCOLES** Exportar plantilla
+ 1 ->**MIERCOLES** Pintar apps (poner filtro proyecto)
 
