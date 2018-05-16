@@ -58,15 +58,46 @@ exports.readAplicationsFromProjects = function(req, res) {
 };
 
 function readAplicationFromProject(req, res){
-
+	console.log("readAplicationFromProject")
+	let project = req.project;
+	project.aplications.forEach(function(aplication){
+		if(aplication._id.toString() == req.params.aplicationId)
+			return res.json(aplication);
+	});
+	return res.json({error: "No existe la aplicacion con el identificador indicado"});
 }
 
 function deleteAplicationFromProject(req, res){
-
+	let project = req.project;
+	console.log("eliminando")
+	for(let i = 0; i < project.aplications.length; i++){
+		if(project.aplications[i]._id.toString() == req.params.aplicationId.toString()){
+			project.aplications.splice(i, 1);
+		}
+	}
+	project.save(function(err) {
+		if (err) {
+			return res.status(500).json({error: 'No se ha podido eliminar la aplicación'});
+		}
+		return res.json(project);
+	});
 }
 
 function updateAplicationFromProject(req, res){
-
+	let project = req.project;
+	let aplicationAux = req.body;
+	console.log("eliminando")
+	let project = req.project;
+	project.aplications.forEach(function(aplication){
+		if(aplication._id.toString() == req.params.aplicationId)
+			aplcation.description = aplicationAux.description;
+	});
+	project.save(function(err) {
+		if (err) {
+			return res.status(500).json({error: 'Cannot update the project'});
+		}
+		res.json(project);
+	});
 }
 
 function createAplicationFromProject(req, res){
@@ -104,7 +135,6 @@ function readAplicationsFromProjects(req, res){
 		});
 		res.json(apps);
 	 });
-
 }
 
 
