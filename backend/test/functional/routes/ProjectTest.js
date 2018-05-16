@@ -1,15 +1,21 @@
 "use strict"
 
  var assert = require('assert');
- var request = require('supertest')
- var app = require('../app.js')
+var request = require('supertest');
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let server = require('../bin/www');
+let should = chai.should();
+let expect = chai.expect;
+      
+ const config = require('../../../config/config.js')
 
- var request = request("http://localhost:8080")
+ var request = request("http://localhost:" + config.PORT)
 
  describe('products', function() {
      describe('GET', function(){
          it('Should return json as default data format', function(done){
-             request.get('/api/products')
+             request.get('/api/users')
                  .expect('Content-Type', /json/)
                  .expect(200, done);
          });

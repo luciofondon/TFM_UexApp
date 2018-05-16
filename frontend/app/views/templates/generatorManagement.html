@@ -295,7 +295,7 @@
 												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
 
 													<div class="callout callout-info" ng-repeat="item in gm.listRequirementExport">
-														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<button ng-click="deleteRequirement(item.id)" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 														<h4>{{item.title}}</h4>
 														<p>{{item.description}}</p>
 													</div>

@@ -63,7 +63,9 @@ function uploadImageUser(req, res) {
 
     // Ruta donde colocaremos las imagenes
 	//let target_path = '../../../frontend/images/' + file.name;
-    let targetPath = path.join(__dirname,'../../../frontend/images/' + file.name);
+	let timeStamp = new Date().getTime();
+
+    let targetPath = path.join(__dirname,'../../../frontend/images/' + timeStamp + "." + file.name.split(".")[2]);
 
    	// Comprobamos que el fichero es de tipo imagen
     if (file.type.indexOf('image')==-1){

@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('UserDetailController',
-    ['$stateParams', 'UserService', '$ngConfirm', 'Upload',
-        function($stateParams, UserService, $ngConfirm, Upload){
+    ['$stateParams', 'UserService', '$ngConfirm', 'UploadService',
+        function($stateParams, UserService, $ngConfirm, UploadService){
 
 	var vm = this;
 	vm.user = {};
@@ -23,6 +23,12 @@ angular.module('tfm.uex').controller('UserDetailController',
 
 	vm.updateUser = function(){
 		if(validateUser()){
+			if(vm.user.image != undefined)
+				UploadService.uploadImage.then(function(response){
+				
+				});
+			}
+
 			UserService.updateMeUser(vm.user).then(function(projects){
 				vm.disabled = true;
 				UserService.getMe().then(function(response) {
@@ -52,18 +58,4 @@ angular.module('tfm.uex').controller('UserDetailController',
 		return vm.error == null ? true : false;
 	}
 			
-	function upload(file){
-        Upload.upload({
-            url: '/api/user/upload',
-            data: {file: file, 'username': "Lucio"}
-        }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
-    };
-
 }]);
