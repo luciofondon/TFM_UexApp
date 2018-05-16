@@ -100,7 +100,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 
 			var actionFormatterProjects= function(value, row, index) {
                 return [
-                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
+                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-app">',
                     	'<i class="glyphicon glyphicon-edit"></i>',
                     '</a>',
 					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
@@ -131,18 +131,18 @@ angular.module('tfm.uex').controller('ProjectListController',
 			    $state.go('configuratorManagement', {projectId:row._id});
 			},'click .remove': function (e, value, row, index) {
 				$ngConfirm({
-					title: 'Proyecto',
-					content: '¿Deseas eliminar el proyecto?',
+					title: 'Aplicación',
+					content: '¿Deseas eliminar la aplicación del proyecto?',
 					buttons: {
 						aceptar: {
 							text: 'Eliminar',
 							btnClass: 'btn-blue',
 							action: function(scope, button){
-								ProjectService.deleteProject(row._id).then(function(response) {
+								ProjectService.deleteAplicationFromProject(row.projectId, row._id).then(function(response) {
                    					for(var i = vm.bsTableProject.options.data.length; i--;){
-										if(vm.bsTableProject.options.data[i]._id == row._id){
-											vm.bsTableProject.options.data.splice(i, 1);
-											$ngConfirm('El proyecto se ha sido eliminado correctamente');
+										if(vm.bsTableApp.options.data[i]._id == row._id){
+											vm.bsTableApp.options.data.splice(i, 1);
+											$ngConfirm('La aplicación se ha sido eliminado correctamente');
 										}
 									}
                 				});
