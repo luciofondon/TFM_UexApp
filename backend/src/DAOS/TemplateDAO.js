@@ -44,9 +44,15 @@ function generateTemplateCSV(req, res){
 		template:
 			{ 	name:'Nombre Plantilla',
 			 	description:'Descripcion',
-			 	topics:[ 	{name:'Topic1', questions: [{description: "Pregunta"}, {description: "Pregunta"}]},
-							{name:'Topic2', questions: [{description: "Pregunta"}]},
-							{name:'Topic3', questions: []}
+			 	topics:[ 	{name:'Topic1', children: {	name: "questions", 
+													   	children: {
+															name: "question", 
+															text: "¿Esto es una pregunta?"
+														} 
+													  },
+							},
+							{name:'Topic2'},
+							{name:'Topic3'}
 					   ]
 			}
 	});
