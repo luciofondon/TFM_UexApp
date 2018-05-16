@@ -11,6 +11,10 @@ var topicSchema = new Schema({
 		ref: 'Project',
 		required: true
 	},
+	aplication: {
+		type: Schema.ObjectId,
+		ref: 'Project',
+	},
 	created: {
 		type: Date,
 		default: Date.now
