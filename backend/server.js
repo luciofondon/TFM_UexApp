@@ -33,6 +33,7 @@ require('./src/routes/AnswerRoute')(api);
 require('./src/routes/TemplateRoute')(api);
 require('./src/routes/DashboardRoute')(api);
 require('./src/routes/MediatoryRoute')(api);
+require('./src/routes/AplicationRoute')(api);
 
 //Control de token
 app.route('/auth/login').post(userController.login);

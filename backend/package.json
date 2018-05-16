@@ -24,6 +24,7 @@
     "crypto": "^1.0.1",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
+    "ga-api": "0.0.4",
     "json-2-csv": "^2.2.0",
     "jsontoxml": "^1.0.0",
     "jwt-simple": "^0.5.1",

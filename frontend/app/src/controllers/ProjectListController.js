@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'UploadService',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, UploadService){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm){
 	var vm = this;
 
     vm.bsTableProject = {};

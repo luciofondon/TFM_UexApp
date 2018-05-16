@@ -98,6 +98,76 @@
 														</div>
 														<!--Inicio: Preguntas relacionadas a la respuesta-->
 														Aqui van las preguntas relacionadas {{answer.questions.length}}
+
+
+
+
+
+
+
+
+														<div class="row" ng-repeat="question in topic.questions">
+															<div class="col-md-1"></div>
+															<div class="panel panel-default col-md-10">
+																<div class="panel-heading">
+																	<div class="row">
+																		<table class="col-sm-10">
+																			<tbody>
+																				<tr>
+																					<td class="col-sm-1">
+																						<h4>{{$index + 1}}.</h4>
+																					</td>
+																					<td class="col-sm-5 col-md-6 col-lg-7">
+																						{{question.description}}
+																					</td>
+																					<td class="col-sm-6 col-md-5 col-lg-4 text-right">
+																						<a href class="text-primary infoBulle a_edit" data-id="2885924" data-placement="top" ng-click="readQuestion(question._id, 2);" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-question">
+																							<span class="fa fa-pencil fa-lg"></span>
+																						</a>
+																						<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" ng-click="deleteQuestion(question._id);" data-original-title="Eliminar">
+																							<span class="fa fa-trash fa-lg"></span>
+																						</a>
+																						<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="selectQuestion(question._id);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
+																							<span class="fa fa-plus fa-lg"></span>
+																						</a>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div><!-- panel-heading-->
+																<div class="panel-body">
+																	<div class="row" ng-repeat="answer in question.answers">
+																		<div class="col-xs-12  content-quest ">
+																			<div class="box-mobil box-mobil-btn btn-block">
+																				<input disabled type="radio" name="{{question._id}}" id="radio_9558915">
+																				<label for="radio_9558915">
+																					&nbsp;&nbsp;{{answer.description}}
+																				</label>
+																				<div class="text-right">
+																					<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="readAnswer(question._id, answer._id, 2);" data-placement="top" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-answer">
+																						<span class="fa fa-pencil fa-lg"></span>
+																					</a>
+																					<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(question._id, answer._id);" data-id="2885924" data-original-title="Eliminar">
+																						<span class="fa fa-trash fa-lg"></span>
+																					</a>
+																				</div>
+
+
+																			</div>
+																		</div>
+																	</div>
+																</div><!-- panel-body-->
+															</div>
+															<div class="col-md-1"></div>
+
+														</div>
+
+
+
+
+
+
 														<!--Fin: Preguntas relacionadas a la respuesta-->
 
 													</div>

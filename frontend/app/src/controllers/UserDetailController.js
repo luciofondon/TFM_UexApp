@@ -23,9 +23,9 @@ angular.module('tfm.uex').controller('UserDetailController',
 
 	vm.updateUser = function(){
 		if(validateUser()){
-			if(vm.user.image != undefined)
+			if(vm.user.image != undefined){
 				UploadService.uploadImage.then(function(response){
-				
+
 				});
 			}
 
@@ -38,8 +38,9 @@ angular.module('tfm.uex').controller('UserDetailController',
 					$ngConfirm(response.data.error)
 				});
 			});
-		}else
+		}else{
 			$ngConfirm(vm.error)
+		}
 	}
 
 	function validateUser(){
@@ -57,5 +58,5 @@ angular.module('tfm.uex').controller('UserDetailController',
 			vm.error ="El teléfono facilitado no es válido";
 		return vm.error == null ? true : false;
 	}
-			
+
 }]);
