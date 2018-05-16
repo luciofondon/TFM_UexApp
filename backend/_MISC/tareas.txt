@@ -26,17 +26,17 @@ DASHBOARD (80%)
 1 **LUNES** Script DB
 
 ->SEMANA 14 - 20
+ **DOMINGO** - Importar plantilla (30 min)
+ **SABADO**- Menu lateral (Loading (fixed cabecera))
+ **SABADO** Mocha (rol, aplicacion, user, login, proyecto), cambiar carpeta
  **VIERNES**- Preguntas asociadas: contestar, actualizar, eliminar 
- **VIERNES** - Importar plantilla (30 min)
- **MIERCOLES**- Menu lateral (Loading (fixed cabecera))
- ** DAO -> Model, validate (1 hora)
- **VIERNES** X del tablero
- **VIERNES** Mocha
- 
- 6 ->**MIERCOLES** Grunt indexPro
- 5 ->**MIERCOLES** Pintar pregunta asociada
- 4 ->**MIERCOLES** Subir plantilla al proyecto
- 3 ->**MIERCOLES** Exportar plantilla
- 2 ->**MIERCOLES** Foto usuario
+ **VIERNES** -> Model, validate (1 hora)
+
+ 7 ->**JUEVES** Grunt indexPro
+ 6 ->**JUEVES** Pintar pregunta asociada
+ 5 ->**JUEVES** Subir plantilla al proyecto
+ 4 ->**MIERCOLES** Exportar plantilla
+ 3 ->**MIERCOLES** Foto usuario
+ 2 ->**MIERCOLES** X del tablero
  1 ->**MIERCOLES** Actualizar, eliminar APP
 
