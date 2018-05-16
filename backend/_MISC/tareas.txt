@@ -10,45 +10,33 @@ MODULO TEMPLATE (85%)
 MODULO MEDIATORY (85%)
 DASHBOARD (80%)
 
-REFACTOR
-TFMUEX
-- ROUTES Y CONTROLLERS
-- DAOS, CONTROLLERS Y MODEL
-- SERVICES
-
-MEDIATORY
-- SERVICES
-- MAIN
-- HTML
-
-
 ->SEMANA 28 - 3
-** JSDOC y readme
-** Autenticacion entre servicios
-** Jasmine
+- Refactor DAOS, CONTROLLERS Y MODEL
 
 ->SEMANA 21 - 27
-**MIERCOLES** Mocha
-**VIERNES** Dashboard(Plantillas generadas, donut estilo, (1 hora)
-**VIERNES** Asociar elemento a entidad app
-** DAO -> Model, validate (1 hora)
+- Refactor servicios front, routes y app.js (front y back de los dos)
+ **VIERNES** Dashboard(Plantillas generadas, pefil usuario) (1 hora)
+ ** Autenticacion entre servicios
+1 **VIERNES** Asociar elemento a entidad app (crear nueva entidad)
 
-4 **MIERCOLES** controllerAs
-3 **MIERCOLES** Eliminar codigo HTML (ng-init)
-2 **MIERCOLES** Script DB
-1 **MIERCOLES**- Menu lateral (Loading (fixed cabecera))
-
+6 **JUEVES** Jasmine
+5 **JUEVES** JSDOC y readme
+4 **MIERCOLES** Mocha
+3 **MIERCOLES** controllerAs
+2 **MIERCOLES** Eliminar codigo HTML (ng-init)
+1 **LUNES** Script DB
 
 ->SEMANA 14 - 20
- **VIERNES**- Preguntas asociadas: contestar, actualizar, eliminar (1 hora)
- **VIERNES** - App: actualizar, eliminar (30 min)
+ **VIERNES**- Preguntas asociadas: contestar, actualizar, eliminar 
  **VIERNES** - Importar plantilla (30 min)
-
-
- 6 ->**MIERCOLES** Pintar pregunta asociada
- 5 ->**MIERCOLES** Subir plantilla al proyecto
- 4 ->**MIERCOLES** Grunt indexPro
- 3 ->**MIERCOLES** Foto usuario
- 2 ->**MIERCOLES** Exportar plantilla
- 1 ->**MIERCOLES** Pintar apps (poner filtro proyecto)
+ **MIERCOLES**- Menu lateral (Loading (fixed cabecera))
+ ** DAO -> Model, validate (1 hora)
+ **VIERNES** X del tablero
+ 
+ 6 ->**MIERCOLES** Grunt indexPro
+ 5 ->**MIERCOLES** Pintar pregunta asociada
+ 4 ->**MIERCOLES** Subir plantilla al proyecto
+ 3 ->**MIERCOLES** Exportar plantilla
+ 2 ->**MIERCOLES** Foto usuario
+ 1 ->**MIERCOLES** Actualizar, eliminar APP
 
