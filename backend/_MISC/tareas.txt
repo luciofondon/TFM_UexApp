@@ -21,7 +21,6 @@ DASHBOARD (80%)
 
 6 **JUEVES** Jasmine
 5 **JUEVES** JSDOC y readme
-4 **MIERCOLES** Mocha
 3 **MIERCOLES** controllerAs
 2 **MIERCOLES** Eliminar codigo HTML (ng-init)
 1 **LUNES** Script DB
@@ -32,6 +31,7 @@ DASHBOARD (80%)
  **MIERCOLES**- Menu lateral (Loading (fixed cabecera))
  ** DAO -> Model, validate (1 hora)
  **VIERNES** X del tablero
+ **VIERNES** Mocha
  
  6 ->**MIERCOLES** Grunt indexPro
  5 ->**MIERCOLES** Pintar pregunta asociada
