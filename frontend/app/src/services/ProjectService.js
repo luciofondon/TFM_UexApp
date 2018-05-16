@@ -40,19 +40,19 @@ angular.module('tfm.uex').factory('ProjectService', ['$http', function($http){
 	}
 	
 	function getAplicationFromProject(projectId, aplicationId){
-		return $http.get('/api/projects/apps' + projectId + '/' + aplicationId);
+		return $http.get('/api/project/' + projectId + '/aplication/' + aplicationId);
 	}
 	
 	function deleteAplicationProject(projectId, aplicationId){
-		return $http.delete('/api/projects/apps' +projectId + '/' + aplicationId);
+		return $http.delete('/api/project/' + projectId + '/aplication/' + aplicationId);
 	}
 	
 	function updateAppProject(projectId, aplication){
-		return $http.put('/api/project/aplication/' + projectId + '/' + aplication._id, aplication);
+		return $http.put('/api/project/' + projectId + '/aplication/' + aplication._id, aplication);
 	}
 
 	function createAppProject(projectId, aplication){
-		return $http.post('/api/project/aplications/' + projectId, aplication);
+		return $http.post('/api/project/ ' projectId + 'aplication' + , aplication);
 	}
 
 	function generateProject(templateId, project){
