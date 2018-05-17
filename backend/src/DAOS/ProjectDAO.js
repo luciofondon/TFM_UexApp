@@ -27,10 +27,10 @@ exports.createProject = function(req, res) {
 exports.updateProject = function(req, res) {
     updateProject(req, res);
 }
-
+/*
 exports.exportData = function(req, res) {
     exportData(req, res);
-}
+}*/
 
 exports.generateProject = function(req, res) {
     generateProject(req, res);
@@ -207,6 +207,7 @@ function readAllProject(req, res){
     });
 }
 
+/*
 function exportData(req, res){
     request(
         {
@@ -222,7 +223,7 @@ function exportData(req, res){
 
         }
     );
-}
+}*/
 
 function updateProject(req, res){
     let project = _.extend(req.project, req.body);

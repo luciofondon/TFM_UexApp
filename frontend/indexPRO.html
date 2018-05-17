@@ -8,9 +8,31 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-		<link rel="stylesheet" href="css/app.min.css">
-		<link rel="stylesheet" href="css/bootstrap-nav-wizard.css">
-		<link rel="stylesheet" href="css/assets.css">
+		<link rel="stylesheet" href="app/styles/css/app.css">
+		<link rel="stylesheet" href="app/styles/css/bootstrap-nav-wizard.css">
+
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
+		<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
+		<link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
+		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/bootstrap-table.min.css" />
+
+		<script>
+				(function(i, s, o, g, r, a, m) {
+						  i['GoogleAnalyticsObject'] = r;
+						  i[r] = i[r] || function() {
+							  (i[r].q = i[r].q || []).push(arguments)
+						  }, i[r].l = 1 * new Date();
+						  a = s.createElement(o),
+							  m = s.getElementsByTagName(o)[0];
+						  a.async = 1;
+						  a.src = g;
+						  m.parentNode.insertBefore(a, m)
+					  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		</script>
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 		<div class="wrapper">
@@ -25,7 +47,8 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
 					<div class="pull-left image">
-					<img src="images/userDefault.png" class="img-circle" alt="User Image">
+						<img ng-if="LoginUser.image == undefined"src="images/userDefault.png" class="img-circle" alt="User Image">
+						<img ng-if="LoginUser.image != undefined" src="images/{{LoginUser.image}}" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 					<p>{{LoginUser.name}}</p>
@@ -115,6 +138,7 @@
 
 		<ng-include src="'app/views/layouts/_footer.html'"></ng-include>
 
+		<!--<div class="control-sidebar-bg"></div>-->
 
 
 		</div>
@@ -128,35 +152,38 @@
 
 		<script type="text/javascript" src="js/assets.min.js"></script>
 
-		<!-- Inicio: Controladores angular -->
-		<script src="js/app.js"></script>
-		<script src="js/SystemConstant.js"></script>
-		<script src="js/ProjectListController.js"></script>
-		<script src="js/ConfiguratorManagementController.js"></script>
-		<script src="js/GeneratorManagementController.js"></script>
-		<script src="js/RolListController.js"></script>
-		<script src="js/UserListController.js"></script>
-		<script src="js/UserDetailController.js"></script>
-		<script src="js/TemplateDetailController.js"></script>
-		<script src="js/TemplateListController.js"></script>
-		<script src="js/LoginController.js"></script>
-		<script src="js/MainController.js"></script>
-		<script src="js/HttpErrorController.js"></script>
-		<script src="js/DashboardController.js"></script>
-		<script src="js/SignupController.js"></script>
-		<script src="js/AmChartService.js"></script>
-		<script src="js/UserService.js"></script>
-		<script src="js/RolService.js"></script>
-		<script src="js/ProjectService.js"></script>
-		<script src="js/QuestionService.js"></script>
-		<script src="js/TopicService.js"></script>
-		<script src="js/AnswerService.js"></script>
-		<script src="js/BootstrapTableService.js"></script>
-		<script src="js/DashboardService.js"></script>
-		<script src="js/TemplateService.js"></script>
-		<script src="js/MediatoryService.js"></script>
-		<!-- Fin: Controladores angular -->
 
+		<!-- Inicio: Controladores angular -->
+		<script src="app/src/app.js"></script>
+		<script src="app/src/constants/SystemConstant.js"></script>
+		<script src="app/src/controllers/ProjectListController.js"></script>
+		<script src="app/src/controllers/ConfiguratorManagementController.js"></script>
+		<script src="app/src/controllers/GeneratorManagementController.js"></script>
+		<script src="app/src/controllers/RolListController.js"></script>
+		<script src="app/src/controllers/UserListController.js"></script>
+		<script src="app/src/controllers/UserDetailController.js"></script>
+		<script src="app/src/controllers/TemplateDetailController.js"></script>
+		<script src="app/src/controllers/TemplateListController.js"></script>
+		<script src="app/src/controllers/LoginController.js"></script>
+		<script src="app/src/controllers/MainController.js"></script>
+		<script src="app/src/controllers/HttpErrorController.js"></script>
+		<script src="app/src/controllers/DashboardController.js"></script>
+		<script src="app/src/controllers/SignupController.js"></script>
+		<script src="app/src/services/AmChartService.js"></script>
+		<script src="app/src/services/UserService.js"></script>
+		<script src="app/src/services/RolService.js"></script>
+		<script src="app/src/services/ProjectService.js"></script>
+		<script src="app/src/services/QuestionService.js"></script>
+		<script src="app/src/services/TopicService.js"></script>
+		<script src="app/src/services/AnswerService.js"></script>
+		<script src="app/src/services/BootstrapTableService.js"></script>
+		<script src="app/src/services/DashboardService.js"></script>
+		<script src="app/src/services/TemplateService.js"></script>
+		<script src="app/src/services/MediatoryService.js"></script>
+		<script src="app/src/services/UploadService.js"></script>
+		<script src="app/src/services/AplicationService.js"></script>
+
+		<!-- Fin: Controladores angular -->
 		<script>
 		$(document).ready(function () {
 			$('.sidebar-menu').tree()

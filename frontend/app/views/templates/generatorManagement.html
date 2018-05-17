@@ -271,7 +271,7 @@
 												</div>
 												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
 													<div class="callout callout-info" ng-repeat="item in gm.listRequirement">
-														<button ng-click="gm.addRequirement(item._id)" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<button ng-click="gm.addRequirement(item)" type="button" class="close" data-dismiss="alert" aria-hidden="true">></button>
 														<h4>{{item.title}}</h4>
 														<p>{{item.description}}</p>
 													</div>
@@ -296,7 +296,7 @@
 												<div class="box-body" style="background-color: #e3e3e3; height: 650px;">
 
 													<div class="callout callout-info" ng-repeat="item in gm.listRequirementExport">
-														<button ng-click="gm.deleteRequirement(item._id)" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+														<button ng-click="gm.deleteRequirement(item._id)" type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
 														<h4>{{item.title}}</h4>
 														<p>{{item.description}}</p>
 													</div>

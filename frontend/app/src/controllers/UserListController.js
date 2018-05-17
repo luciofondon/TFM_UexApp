@@ -1,7 +1,7 @@
 
 angular.module('tfm.uex').controller('UserListController',
-    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm', '$scope', 'Upload',
-        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm, $scope, Upload){
+    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm', '$scope', 'Upload', 'UploadService',
+        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm, $scope, Upload, UploadService){
 	var vm = this;
 	vm.mode = 1;
 	vm.user = {};
@@ -107,7 +107,7 @@ angular.module('tfm.uex').controller('UserListController',
 				$ngConfirm("La contraseña ha sido actualizada correctamente");
                 $('#modal-password').modal('hide');
             }).catch(function(data) {
-                alert(data[0].msg);
+                $ngConfirm(data);
             });
         }
     }
@@ -152,10 +152,6 @@ angular.module('tfm.uex').controller('UserListController',
         if(validateUser()){
 			console.log(vm.user)
 			upload(function(status, nameImage){
-				console.log(vm.user)
-
-				debugger
-				console.log(status == 200 && nameImage != undefined)
 				if(status == 200 && nameImage != undefined)
 					vm.user.image = nameImage;
 				console.log(vm.user)
@@ -197,6 +193,6 @@ angular.module('tfm.uex').controller('UserListController',
 		}else{
 			callback(200, "");
 		}
-    };
+    }
 
 }]);

@@ -168,6 +168,13 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 		});
 	}
 
+	$scope.readQuestionAsociate = function(questionId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
+		QuestionService.readQuestion(questionId).then(function(response){
+			$scope.question = response.data;
+		});
+	}
+
 	$scope.updateQuestion = function(){
 		QuestionService.updateQuestion($scope.question).then(function(response){
 			$ngConfirm('La pregunta se ha actualizado correctamente');
@@ -176,7 +183,38 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 		});
 	}
 
+	$scope.updateQuestionAsociate = function(){
+		QuestionService.updateQuestion($scope.question).then(function(response){
+			$ngConfirm('La pregunta se ha actualizado correctamente');
+			$('#modal-question').modal('hide');
+			$scope.init();
+		});
+	}
+
 	$scope.deleteQuestion = function(questionId){
+		$ngConfirm({
+			title: 'Pregunta',
+			content: '¿Deseas eliminar la pregunta?',
+			buttons: {
+				aceptar: {
+					text: 'Eliminar',
+					btnClass: 'btn-blue',
+					action: function(scope, button){
+						QuestionService.deleteQuestion(questionId).then(function(response){
+							$ngConfirm('La pregunta se ha eliminado correctamente');
+							$scope.init();
+						});
+					}
+				},
+				cerrar: {
+					text: 'Cancelar',
+					btnClass: 'btn-orange',
+				}
+			}
+		});
+	}
+
+	$scope.deleteQuestionAsociate = function(questionId){
 		$ngConfirm({
 			title: 'Pregunta',
 			content: '¿Deseas eliminar la pregunta?',
@@ -215,7 +253,21 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 		$scope.answerId = answerId;
 	};
 
+	$scope.selectAnswerAsociate = function(answerId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
+		$scope.answerId = answerId;
+	};
+
+
 	$scope.readAnswer = function(questionId, answerId, mode){
+		$scope.mode = mode != undefined ? mode : 1;
+		$scope.questionId = questionId;
+		AnswerService.readAnswer(questionId, answerId).then(function(response){
+			$scope.answer = response.data;
+		});
+	}
+
+	$scope.readAnswerAsociate = function(questionId, answerId, mode){
 		$scope.mode = mode != undefined ? mode : 1;
 		$scope.questionId = questionId;
 		AnswerService.readAnswer(questionId, answerId).then(function(response){

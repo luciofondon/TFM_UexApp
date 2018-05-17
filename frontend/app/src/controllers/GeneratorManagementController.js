@@ -17,20 +17,19 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	gm.projectIdTaskManager = ""; //Identificador del proyecto seleccionado en redmine/jira
 
  	gm.deleteRequirement = function(requirementId){
-		console.log("entra del")
-
-		gm.listRequirement.forEach(function(requirement){
-			for(let i = 0; i < gm.listRequirement.length; i++){
-				if(gm.listRequirement[i]._id == requirementId){
-					gm.listRequirement.splice(i, 1);
+		gm.listRequirementExport.forEach(function(requirement){
+			for(let i = 0; i < gm.listRequirementExport.length; i++){
+				if(gm.listRequirementExport[i]._id == requirementId){
+					gm.listRequirement.push(gm.listRequirementExport[i]);
+					gm.listRequirementExport.splice(i, 1);
 				}
 			}
 		});
 	}
 
 
-	gm.addRequirement = function(requirementId){
-		console.log("entra add")
+	gm.addRequirement = function(requirement){
+		gm.listRequirementExport.push(requirement);
 	}
 
 	gm.refreshListRequirementExport = function(){

@@ -10,15 +10,15 @@ MODULO TEMPLATE (85%)
 MODULO MEDIATORY (85%)
 DASHBOARD (80%)
 
+************************************************************
 ->SEMANA 28 - 3
+************************************************************
 - Refactor DAOS, CONTROLLERS Y MODEL
 
 ->SEMANA 21 - 27
-4 **MIERCOLES** controllerAs
-3 **MIERCOLES** Eliminar codigo HTML (ng-init)
-2 **MIERCOLES** Script DB
 - Refactor servicios front, routes y app.js (front y back de los dos)
  ** Autenticacion entre servicios
+ **VIERNES** Dashboard(Plantillas generadas, pefil usuario)
 
 6 **JUEVES** Jasmine
 5 **JUEVES** JSDOC y readme
@@ -26,22 +26,35 @@ DASHBOARD (80%)
 2 **MIERCOLES** Eliminar codigo HTML (ng-init)
 1 **LUNES** Script DB
 
+************************************************************
 ->SEMANA 14 - 20
+************************************************************
  **DOMINGO** - Importar plantilla
  **SABADO**- Menu lateral (Loading (fixed cabecera))
- **SABADO** Mocha (rol, aplicacion, user, login, proyecto), cambiar carpeta
- **VIERNES** -> Model, validate (1 hora)
- **VIERNES** Dashboard(Plantillas generadas, pefil usuario) (1 hora)
+
 
  **VIERNES** Integracion con Jira
- **VIERNES** Asociar elemento a entidad app (crear nueva entidad)
- **VIERNES**- Preguntas asociadas: contestar, actualizar, eliminar
+ **VIERNES**- Preguntas asociadas: contestar
 
- 7 ->**JUEVES** Grunt indexPro
- 6 ->**JUEVES** Pintar pregunta asociada
- 5 ->**JUEVES** Subir plantilla al proyecto
+
+ 10  **VIERNES** Mocha (rol, aplicacion, user, login, proyecto)
+
+
+ 4 ->**VIERNES** Asociar elemento a entidad app (crear nueva entidad, eliminar en app)
+ 4 ->**VIERNES** -> Model, validate 
+
+
  4 ->**MIERCOLES** Exportar plantilla
- 3 ->**MIERCOLES** Foto usuario (CAMBIAR NOMBRE IMAGEN)
+ 8 ->**JUEVES** Pregunta asociada: actualizar, eliminar
+
+
+ 5 ->**JUEVES** Subir plantilla al proyecto
+ 3 ->**MIERCOLES** Foto usuario (CAMBIAR NOMBRE IMAGEN) ng-src
+ 6 ->**JUEVES** Pintar pregunta asociada
+
+
+ 3 ->**MIERCOLES** Actualizar, eliminar APP
  2 ->**MIERCOLES** X y add del tablero
- 1 ->**MIERCOLES** Actualizar, eliminar APP
+ 1 ->**JUEVES** Grunt indexPro
+
 

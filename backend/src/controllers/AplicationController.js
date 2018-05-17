@@ -1,16 +1,20 @@
-var aplicationMiddleware = require('../middlewares/QuestionMiddleware');
+var aplicationMiddleware = require('../middlewares/AplicationMiddleware'),
     aplicationDAO = require('../DAOS/AplicationDAO');
 
 module.exports = function() {
 
     return {
 
-        loadAplication: function(req, res, next, questionId) {
-            aplicationMiddleware.loadQuestion(req, res, next, questionId);
+        loadAplication: function(req, res, next, aplicationId) {
+            aplicationMiddleware.loadAplication(req, res, next, aplicationId);
         },
 
         readAplication: function(req, res) {
-			      aplicationDAO.readAplication(req, res);
+            res.json(req.project);
+        },
+
+        readAllAplication: function(req, res) {
+            aplicationDAO.readAllAplication(req, res);
         },
 
         createAplication: function(req, res) {
@@ -22,8 +26,8 @@ module.exports = function() {
         },
 
         deleteAplication: function(req, res) {
-			      aplicationDAO.deleteAplication(req, res);
-		    }
+			aplicationDAO.deleteAplication(req, res);
+		}
 
     }
 }

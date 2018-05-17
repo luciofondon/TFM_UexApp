@@ -16,7 +16,8 @@ var userSchema = new Schema({
 		type: String
 	},
 	image: {
-		type: String
+		type: String,
+		default: "user_default.png"
 	},
 	hashedPassword: {
 		type: String,
@@ -39,21 +40,7 @@ var userSchema = new Schema({
 });
 
 userSchema.methods = require("./UserModelController");
-/*UserSchema.methods = {
-  // Codificar contrasena
-  encodePassword: function(password) {
-    let saltGenerate = crypto.randomBytes(16).toString('base64');
-    this.salt = saltGenerate;
-    if (!password || !this.salt)
-      	return '';
-    this.hashedPassword = crypto.pbkdf2Sync(password, saltGenerate, 10000, 64, 'sha512').toString('base64');
-  },
 
-  // Comparar la contrasena con la de BD
-  equalPassword: function(password){
-    return (crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64') == this.hashedPassword);
-  }
-};*/
 
 userSchema.statics.load = function(userId, callback) {
   this.findOne({ _id: userId})

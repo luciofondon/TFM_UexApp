@@ -1,7 +1,7 @@
-var rolMiddleware = require('../middlewares/RolMiddleware');
+var rolMiddleware = require('../middlewares/RolMiddleware'),
     rolDAO = require('../DAOS/RolDAO');
 
-var Rol = require('../models/RolModel');
+var Rol = require('../models/RolModel'),
     Rol = mongoose.model('Rol');
 
 
@@ -18,7 +18,10 @@ module.exports = function() {
         },
 
         readAll: function(req, res) {
-            rolDAO.readAllRol(req, res);
+            //rolDAO.readAllRol(req, res);
+            Rol.readAllRoles(function(data, err){
+                res.json(data);
+            });
         },
 
         create: function(req, res) {

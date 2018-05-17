@@ -1,15 +1,15 @@
 angular.module('tfm.uex').factory('AplicationService', ['$http', function($http){
     return {
-      getAplications: function(){
+      readAllAplications: function(){
         return getAplications();
       },
-      getAplication: function(aplicationId){
+      readAplication: function(aplicationId){
         return getAplication(aplicationId);
       },
-      addAplication: function(aplication){
-        return addAplicationr(aplication);
+      createAplication: function(aplication){
+        return createAplicationr(aplication);
       },
-      removeAplication: function(aplicationId){
+      deleteAplication: function(aplicationId){
         return removeAplication(aplicationId);
       },
       updateAplication: function(aplication){

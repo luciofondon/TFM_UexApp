@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'AplicationService',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, AplicationService){
 	var vm = this;
 
     vm.bsTableProject = {};
@@ -18,20 +18,13 @@ angular.module('tfm.uex').controller('ProjectListController',
         ProjectService.getProjects().then(function(response){
 			vm.projects = response.data;
 			vm.loadProjectList();
-			vm.loadProjectAppList();
+			vm.loadAplicationsList();
         });
 		TemplateService.getTemplates().then(function(response){
 			vm.templates = response.data;
 			vm.templates.push({nameTemplate: "Adjuntar plantila", _id: "upload" })
 		});
 	};
-
-	vm.createAppProject = function (){
-		ProjectService.createAppProject(vm.projectId, vm.app).then(function(response){
-			$('#modal-app').modal('hide');
-			$ngConfirm("Aplicación creada correctamente");
-        });
-	}
 
     vm.createProject = function (){
         if(validate()){
@@ -87,81 +80,7 @@ angular.module('tfm.uex').controller('ProjectListController',
             });
         }
     };
-	vm.loadProjectAppList = function(){
-		ProjectService.getAplicationsFromProjects().then(function(response) {
-			var apps = response.data;
 
-			var projectsFilter = [];
-            vm.projects.forEach(function(project){
-				projectsFilter.push(project.name)
-			});
-			console.log(projectsFilter)
-
-
-			var actionFormatterProjects= function(value, row, index) {
-                return [
-                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-app">',
-                    	'<i class="glyphicon glyphicon-edit"></i>',
-                    '</a>',
-					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
-                        '<i class="glyphicon glyphicon-remove"></i>',
-                    '</a>'
-                ].join('');
-			}
-
-			var columns = [
-				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
-                {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-                {field: "projectName", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
-				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
-                {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
-            ];
-
-            vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
-
-		});
-		window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
-			vm.mode = 2;
-			vm.errores = [];
-                ProjectService.getProject(row._id).then(function(response) {
-                    vm.project = response.data;
-                });
-            },'click .configurator': function (e, value, row, index) {
-              	//Cambiar de estado
-			    $state.go('configuratorManagement', {projectId:row._id});
-			},'click .remove': function (e, value, row, index) {
-				$ngConfirm({
-					title: 'Aplicación',
-					content: '¿Deseas eliminar la aplicación del proyecto?',
-					buttons: {
-						aceptar: {
-							text: 'Eliminar',
-							btnClass: 'btn-blue',
-							action: function(scope, button){
-								ProjectService.deleteAplicationFromProject(row.projectId, row._id).then(function(response) {
-                   					for(var i = vm.bsTableProject.options.data.length; i--;){
-										if(vm.bsTableApp.options.data[i]._id == row._id){
-											vm.bsTableApp.options.data.splice(i, 1);
-											$ngConfirm('La aplicación se ha sido eliminado correctamente');
-										}
-									}
-                				});
-							}
-						},
-						cerrar: {
-							text: 'Cancelar',
-							btnClass: 'btn-orange',
-						}
-					}
-				});
-
-
-			},'click .generator': function (e, value, row, index) {
-                //Cambiar de estado
-              $state.go('generatorManagement', {projectId:row._id});
-          }
-        };
-	}
 
 	vm.loadProjectList = function(){
         ProjectService.getProjects().then(function(response) {
@@ -242,8 +161,108 @@ angular.module('tfm.uex').controller('ProjectListController',
               $state.go('generatorManagement', {projectId:row._id});
           }
         };
-    };
+	};
+	
 
+
+//*************************************************************************/
+//***********************************APLICATION****************************/
+//*************************************************************************/
+	vm.loadAplicationsList = function(){
+		AplicationService.readAllAplications().then(function(response) {
+			var apps = response.data;
+			var projectsFilter = [];
+			vm.projects.forEach(function(project){
+				projectsFilter.push(project.name)
+			});
+
+			var actionFormatterProjects= function(value, row, index) {
+				return [
+					'<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-app">',
+						'<i class="glyphicon glyphicon-edit"></i>',
+					'</a>',
+					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
+						'<i class="glyphicon glyphicon-remove"></i>',
+					'</a>'
+				].join('');
+			}
+
+			var columns = [
+				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
+				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
+				{field: "projectName", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
+				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
+				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
+			];
+
+			vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
+
+		});
+		window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
+			vm.mode = 2;
+			vm.errores = [];
+				AplicationService.readAplication(row._id).then(function(response) {
+					vm.app = response.data;
+				});
+			},'click .configurator': function (e, value, row, index) {
+				//Cambiar de estado
+				$state.go('configuratorManagement', {projectId:row._id});
+			},'click .remove': function (e, value, row, index) {
+				$ngConfirm({
+					title: 'Aplicación',
+					content: '¿Deseas eliminar la aplicación del proyecto?',
+					buttons: {
+						aceptar: {
+							text: 'Eliminar',
+							btnClass: 'btn-blue',
+							action: function(scope, button){
+								AplicationService.deleteAplication(row._id).then(function(response) {
+									for(var i = vm.bsTableProject.options.data.length; i--;){
+										if(vm.bsTableApp.options.data[i]._id == row._id){
+											vm.bsTableApp.options.data.splice(i, 1);
+											$ngConfirm('La aplicación se ha sido eliminado correctamente');
+										}
+									}
+								});
+							}
+						},
+						cerrar: {
+							text: 'Cancelar',
+							btnClass: 'btn-orange',
+						}
+					}
+				});
+
+
+			},'click .generator': function (e, value, row, index) {
+				//Cambiar de estado
+			$state.go('generatorManagement', {projectId:row._id});
+		}
+		};
+	}
+
+	vm.createApp = function (){
+		AplicationService.createApp(vm.app).then(function(response){
+			$('#modal-app').modal('hide');
+			$ngConfirm("Aplicación creada correctamente");
+        });
+	}
+
+	vm.updateApp = function (){
+		AplicationService.updateApp(vm.app).then(function(response){
+			$('#modal-app').modal('hide');
+			$ngConfirm("Aplicación creada correctamente");
+        });
+	}
+
+	function validateAplication(){
+		vm.error = null;
+        if(vm.app.name == undefined || vm.app.name == "")
+			vm.error = "El campo nombre de la aplicacion es obligatorio";
+		
+		return vm.error == null ? true : false;
+
+	}
 
 
 }]);

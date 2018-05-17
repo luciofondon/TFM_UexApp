@@ -95,7 +95,10 @@ module.exports = function(grunt){
                     'bower_components/bootstrap-table/dist/extensions/angular/bootstrap-table-angular.min.js',
                     'bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js',
                     'bower_components/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js',
-					'bower_components/tableexport.jquery.plugin/tableExport.min.js'
+                    'bower_components/tableexport.jquery.plugin/tableExport.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/select2-filter/bootstrap-table-select2-filter.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js',
+                    'bower_components/bootstrap-table/dist/extensions/filter/bootstrap-table-filter.min.js'
 				],
                 dest: 'public/dist/js/assets.min.js'
             }

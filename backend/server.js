@@ -18,7 +18,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Simula POST
 app.use(methodOverride()); // Simula DELETE y PUT
-app.use(express.static(__dirname + '/../frontend'));
+app.use(express.static(__dirname + '/../frontend/public/dist'));
 app.use(logger('dev'));
 
 var router = express.Router();

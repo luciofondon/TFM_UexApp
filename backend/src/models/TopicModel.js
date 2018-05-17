@@ -13,7 +13,7 @@ var topicSchema = new Schema({
 	},
 	aplication: {
 		type: Schema.ObjectId,
-		ref: 'Project',
+		ref: 'Aplication',
 	},
 	created: {
 		type: Date,

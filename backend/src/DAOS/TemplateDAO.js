@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     request = require('request'),
 	Promise = require('promise'),
 	path = require('path');
+
 const fs = require('fs');
 
 var jsonxml = require('jsontoxml');
@@ -44,44 +45,27 @@ function generateTemplateCSV(req, res){
 		template:
 			{ 	name:'Nombre Plantilla',
 			 	description:'Descripcion',
-			 	topics:[ 	{name:'Topic1', children: {	name: "questions",
-													   	children: {
-															name: "question",
-															text: "¿Esto es una pregunta?"
-														}
-													  },
+				 topics:[ 	{	name: 'template', 
+								text: 'Topic1', 
+								children: {	
+									name: "questions",
+									children: {
+												name: "question",
+												text: "¿Esto es una pregunta?"
+											}
+								},
 							},
-							{name:'Topic2'},
-							{name:'Topic3'}
+							{	name: 'template', 
+								text: 'Topic2',
+								attrs: {type:2}
+							},
+							{	name: 'template', 
+								text: 'Topic3'
+							}
 					   ]
 			}
 	});
-	/*
-	<template>
-    <name>
-        Nombre Plantilla
-    </name>
-    <description>
-        Descripcion
-    </description>
-    <topics>
-        <Topic1>
-            <name>
-                questions
-            </name>
-            <children>
-                <name>
-                    question
-                </name>
-                <text>
-                    ¿Esto es una pregunta?
-                </text>
-            </children>
-        </Topic1>
-        <Topic2/>
-        <Topic3/>
-    </topics>
-</template>*/
+	
 	var formattedXml = format(xml);
 	console.log(formattedXml)
 

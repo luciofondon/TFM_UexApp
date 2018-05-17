@@ -5,12 +5,13 @@ module.exports = function(app){
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
 	app.route('/aplications')
-		.get(systemMiddleware.rolOperador, aplicationController.createAplication);
+		.get(systemMiddleware.rolOperador, aplicationController.readAllAplication)
+		.post(systemMiddleware.rolOperador, aplicationController.createAplication);
 
 	app.route('/aplication/:aplicationId')
 		.get(systemMiddleware.rolOperador, aplicationController.readAplication)
 		.put(systemMiddleware.rolOperador, aplicationController.updateAplication)
-    .delete(systemMiddleware.rolOperador, aplicationController.deleteAplication);
+    	.delete(systemMiddleware.rolOperador, aplicationController.deleteAplication);
 
 	app.param('aplicationId', aplicationController.loadAplication);
 

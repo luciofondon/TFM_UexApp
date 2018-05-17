@@ -25,6 +25,11 @@ var roles = [
 		description: "Consultor",
 		name: "Consultor",
 		level: 2
+	},
+	{
+		description: "Consultor",
+		name: "Consultor",
+		level: 3
 	}
 ];
 print("Lanzando script...")
