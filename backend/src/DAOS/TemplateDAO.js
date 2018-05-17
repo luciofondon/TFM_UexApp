@@ -45,9 +45,9 @@ function generateTemplateCSV(req, res){
 		template:
 			{ 	name:'Nombre Plantilla',
 			 	description:'Descripcion',
-				 topics:[ 	{	name: 'template', 
-								text: 'Topic1', 
-								children: {	
+				 topics:[ 	{	name: 'template',
+								text: 'Topic1',
+								children: {
 									name: "questions",
 									children: {
 												name: "question",
@@ -55,17 +55,17 @@ function generateTemplateCSV(req, res){
 											}
 								},
 							},
-							{	name: 'template', 
+							{	name: 'template',
 								text: 'Topic2',
 								attrs: {type:2}
 							},
-							{	name: 'template', 
+							{	name: 'template',
 								text: 'Topic3'
 							}
 					   ]
 			}
 	});
-	
+
 	var formattedXml = format(xml);
 	console.log(formattedXml)
 
@@ -76,6 +76,40 @@ function generateTemplateCSV(req, res){
 		res.json({nameFile: timeStamp + ".xml"});
 	});
 }
+
+/*
+
+<template>
+    <name>
+        Nombre Plantilla
+    </name>
+    <description>
+        Descripcion
+    </description>
+    <topics>
+        <template>
+            Topic1
+            <name>
+                questions
+            </name>
+            <children>
+                <name>
+                    question
+                </name>
+                <text>
+                    ¿Esto es una pregunta?
+                </text>
+            </children>
+        </template>
+        <template type="2">
+            Topic2
+        </template>
+        <template>
+            Topic3
+        </template>
+    </topics>
+</template>
+*/
 
 function createTemplate(req, res){
 	let template = req.body;

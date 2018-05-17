@@ -4,11 +4,11 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 chai.use(chaiHttp);
-const server= 'http://localhost:' + config.PORT;
+const server= 'http://localhost:' + config.SERVER_PORT;
 
-let login_details = {
-	'email': 'admin@1234.com',
-	'password': '12345'
+let loginUser = {
+	'email': config.USER_MAIL_TEST,
+	'password': config.USER_PASSWORD_TEST
 };
 
 describe('Insert a aplication: ',()=>{
@@ -18,17 +18,19 @@ describe('Insert a aplication: ',()=>{
             .send(login_details)
             .end((err, res) => {
 				console.log('this was run the login part');
-				res.should.have.status(200);
-				expect(res.body.state).to.be.true;
-				res.body.should.have.property('token'); 
-				
+				//res.should.have.status(200);
+				expect(res).to.have.status(200);
+
+				//expect(res.body.state).to.be.true;
+				//expect(res).have.property('token');
+
 				let token = res.body.token;
 
-				chai.request(url)
+				chai.request(server)
 				.post('/api/aplications')
-				.set('Authorization', token)
+				.set('authorization', token)
 				.send(
-					{ 
+					{
 						project: 'Id',
 						description: "Descripcion aplicacion"
 					}
@@ -39,8 +41,8 @@ describe('Insert a aplication: ',()=>{
 					done();
 				});
 			});
-			  
-		
+
+
 	});
 });
 

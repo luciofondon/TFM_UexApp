@@ -18,10 +18,10 @@ module.exports = function() {
         },
 
         readAll: function(req, res) {
-            //rolDAO.readAllRol(req, res);
-            Rol.readAllRoles(function(data, err){
+            rolDAO.readAllRol(req, res);
+           /* Rol.readAllRoles(function(data, err){
                 res.json(data);
-            });
+            });*/
         },
 
         create: function(req, res) {

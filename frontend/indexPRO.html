@@ -36,7 +36,7 @@
 	</head>
   	<body ng-app='tfm.uex' class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-class="isLoggedIn() ? 'skin-blue' : 'login-page'" ng-controller='MainController'>
 		<div class="wrapper">
-			<ng-include src="'app/views/layouts/_header.html'"></ng-include>
+			<ng-include src="'views/_header.html'"></ng-include>
 
 			<!-- Left side column. contains the logo and sidebar -->
 			<aside class="main-sidebar" ng-if="isLoggedIn()">
@@ -136,7 +136,7 @@
 		<!-- =============================================== -->
 
 
-		<ng-include src="'app/views/layouts/_footer.html'"></ng-include>
+		<ng-include src="'views/_footer.html'"></ng-include>
 
 		<!--<div class="control-sidebar-bg"></div>-->
 

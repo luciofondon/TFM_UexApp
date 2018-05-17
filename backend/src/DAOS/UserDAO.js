@@ -100,6 +100,7 @@ function updateMeUser(req, res){
 }
 
 function loginUser(req, res){
+	console.log(req.body)
     if(req.body.email != undefined && req.body.password != undefined){
         User.findOne({email: req.body.email.toLowerCase()}, function(err, user) {
             if(err || user == undefined)

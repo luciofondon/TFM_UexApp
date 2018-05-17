@@ -10,7 +10,7 @@ module.exports = function() {
         },
 
         readAplication: function(req, res) {
-            res.json(req.project);
+            res.json(req.aplication);
         },
 
         readAllAplication: function(req, res) {

@@ -11,7 +11,8 @@ var appSchema = new Schema({
 	},
 	project: {
 		type: Schema.ObjectId,
-		ref: "Project"
+		ref: "Project",
+		required: true
 	},
 	created: {
 		type: Date,
@@ -24,4 +25,4 @@ appSchema.statics.load = function(appId, callback){
 	this.findOne({_id: appId}).exec(callback);
 };
 
-module.exports = mongoose.model('App',appSchema);
+module.exports = mongoose.model('Aplication',appSchema);

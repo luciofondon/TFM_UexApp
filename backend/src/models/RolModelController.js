@@ -1,7 +1,7 @@
 module.exports = {
 
-	readAllRoles: function(){
-		return this.find({});
+	readAllRoles: function(callback){
+		readAllRoles(callback);
 	}
 
 };

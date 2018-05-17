@@ -145,21 +145,21 @@
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
 					<div class="col-md-7">
-						<input type="text" id="InputText" ng-model="vm.app.name" class="form-control"/>
+						<input type="text" id="InputText" ng-model="vm.aplication.name" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
 					<div class="col-md-7">
-						<textarea style="resize:none" id="InputText" ng-model="vm.app.description" class="form-control"/>
+						<textarea style="resize:none" id="InputText" ng-model="vm.aplication.description" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Proyecto (*) </label>
 					<div class="col-md-7">
-						<select required id="InputText" ng-model="vm.projectId" class="form-control" data-ng-options="project._id as project.name for project in vm.projects">
+						<select required id="InputText" ng-model="vm.aplication.project" class="form-control" data-ng-options="project._id as project.name for project in vm.projects">
 							<option value="" disabled="disabled">Seleccione un proyecto</option>
 						</select>
 					</div>

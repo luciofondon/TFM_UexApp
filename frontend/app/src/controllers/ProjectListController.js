@@ -7,14 +7,13 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.bsTableApp = {};
     vm.error = null;
     vm.project = {};
-	vm.app = {};
+	vm.aplication = {};
     vm.mode = 1;
 	vm.templates = [];
 	vm.projects = [];
 	vm.templateId = ""; //Plantilla seleccionada
 
 	vm.init = function(){
-
         ProjectService.getProjects().then(function(response){
 			vm.projects = response.data;
 			vm.loadProjectList();
@@ -162,7 +161,7 @@ angular.module('tfm.uex').controller('ProjectListController',
           }
         };
 	};
-	
+
 
 
 //*************************************************************************/
@@ -171,6 +170,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.loadAplicationsList = function(){
 		AplicationService.readAllAplications().then(function(response) {
 			var apps = response.data;
+			console.log(apps)
 			var projectsFilter = [];
 			vm.projects.forEach(function(project){
 				projectsFilter.push(project.name)
@@ -190,7 +190,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 			var columns = [
 				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
 				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
-				{field: "projectName", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
+				{field: "project.name", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
 				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
 				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
 			];
@@ -202,7 +202,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 			vm.mode = 2;
 			vm.errores = [];
 				AplicationService.readAplication(row._id).then(function(response) {
-					vm.app = response.data;
+					vm.aplication = response.data;
 				});
 			},'click .configurator': function (e, value, row, index) {
 				//Cambiar de estado
@@ -241,15 +241,16 @@ angular.module('tfm.uex').controller('ProjectListController',
 		};
 	}
 
-	vm.createApp = function (){
-		AplicationService.createApp(vm.app).then(function(response){
+	vm.createAplication = function (){
+		AplicationService.createAplication(vm.aplication).then(function(response){
+			vm.loadAplicationsList();
 			$('#modal-app').modal('hide');
 			$ngConfirm("Aplicación creada correctamente");
         });
 	}
 
-	vm.updateApp = function (){
-		AplicationService.updateApp(vm.app).then(function(response){
+	vm.updateAplication = function (){
+		AplicationService.updateAplication(vm.aplication).then(function(response){
 			$('#modal-app').modal('hide');
 			$ngConfirm("Aplicación creada correctamente");
         });
@@ -257,11 +258,10 @@ angular.module('tfm.uex').controller('ProjectListController',
 
 	function validateAplication(){
 		vm.error = null;
-        if(vm.app.name == undefined || vm.app.name == "")
+        if(vm.aplication.name == undefined || vm.aplication.name == "")
 			vm.error = "El campo nombre de la aplicacion es obligatorio";
-		
-		return vm.error == null ? true : false;
 
+		return vm.error == null ? true : false;
 	}
 
 

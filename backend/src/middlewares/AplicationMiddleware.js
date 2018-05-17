@@ -1,5 +1,5 @@
-var Aplication = require('../models/QuestionModel');
-    Aplication = mongoose.model('Question');
+var Aplication = require('../models/AplicationModel');
+    Aplication = mongoose.model('Aplication');
 
 
 exports.loadAplication = function(req, res, next, aplicationId) {
@@ -8,9 +8,9 @@ exports.loadAplication = function(req, res, next, aplicationId) {
 
 function loadAplication(req, res, next, aplicationId) {
     Aplication.load(aplicationId, function(err, aplication) {
-        if (err) 
+        if (err)
             return res.status(500).json({error: 'El identificador no es valido'});
-        if (aplication == undefined) 
+        if (aplication == undefined)
             return res.status(500).json({error: 'El identificador no existe'});
         req.aplication = aplication;
         next();

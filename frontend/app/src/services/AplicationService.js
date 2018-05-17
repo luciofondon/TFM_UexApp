@@ -1,35 +1,35 @@
 angular.module('tfm.uex').factory('AplicationService', ['$http', function($http){
     return {
-      readAllAplications: function(){
-        return getAplications();
-      },
-      readAplication: function(aplicationId){
-        return getAplication(aplicationId);
-      },
-      createAplication: function(aplication){
-        return createAplicationr(aplication);
-      },
-      deleteAplication: function(aplicationId){
-        return removeAplication(aplicationId);
-      },
-      updateAplication: function(aplication){
-        return updateAplicationr(aplication);
-      }
+		readAllAplications: function(){
+			return readAllAplications();
+		},
+		readAplication: function(aplicationId){
+			return readAplication(aplicationId);
+		},
+		createAplication: function(aplication){
+			return createAplication(aplication);
+		},
+		deleteAplication: function(aplicationId){
+			return deleteAplication(aplicationId);
+		},
+		updateAplication: function(aplication){
+			return updateAplication(aplication);
+		}
 	};
 
-	function getAplications(){
+	function readAllAplications(){
 		return $http.get('/api/aplications');
 	}
 
-	function getAplication(aplicationId){
+	function readAplication(aplicationId){
 		return $http.get('/api/aplication/' + aplicationId);
 	}
 
-	function addAplication(aplication){
+	function createAplication(aplication){
 		return $http.post('/api/aplications', aplication);
 	}
 
-	function removeAplication(aplicationId){
+	function deleteAplication(aplicationId){
 		return $http.delete('/api/aplication/' + aplicationId);
 	}
 

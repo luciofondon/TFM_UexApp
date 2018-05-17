@@ -4,8 +4,9 @@
   "description": "Backend encargado de comunicarse con el frontend",
   "main": "auth.js",
   "scripts": {
-    "test": "mocha",
-    "start": "pm2 start server.js"
+    "test": "mocha --recursive test",
+	"start-pro": "pm2 start server.js",
+	"start-dev": "node server.js"
   },
   "repository": {
     "type": "git",

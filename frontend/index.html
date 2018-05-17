@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
 		<link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
 		<link rel="stylesheet" href="bower_components/bootstrap-table/dist/bootstrap-table.min.css" />
- 
+
 		<script>
 				(function(i, s, o, g, r, a, m) {
 						  i['GoogleAnalyticsObject'] = r;
@@ -47,8 +47,7 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img ng-if="LoginUser.image == undefined"src="images/userDefault.png" class="img-circle" alt="User Image">
-						<img ng-if="LoginUser.image != undefined" src="images/{{LoginUser.image}}" class="img-circle" alt="User Image">
+						<img ng-src="images/{{LoginUser.image}}" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 					<p>{{LoginUser.name}}</p>

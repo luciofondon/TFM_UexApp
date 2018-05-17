@@ -1,13 +1,13 @@
 
+var _ = require('lodash');
 
-var Project = require('../models/ProjectModel'),
-    Project = mongoose.model('Project');
+var Project = require('../models/ProjectModel');
+var Aplication = require('../models/AplicationModel');
+var Topic = require('../models/TopicModel');
 
-var Aplication = require('../models/AplicationModel'),
-    Aplication = mongoose.model('Aplication');
-    
+
 module.exports = {
-	
+
 	createAplication: function(req, res) {
         createAplication(req, res);
 	},
@@ -93,7 +93,7 @@ function deleteAplication(req, res){
                     return res.status(500).json({error: 'Cannot delete the aplication'});
                 }
                 res.json(aplication);
-            });	
+            });
 		});
     });
 }

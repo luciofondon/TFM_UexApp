@@ -16,20 +16,22 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	gm.newProject = false; // Partir de un proyecto existente en jira/redmine o generar uno nuevo
 	gm.projectIdTaskManager = ""; //Identificador del proyecto seleccionado en redmine/jira
 
- 	gm.deleteRequirement = function(requirementId){
-		gm.listRequirementExport.forEach(function(requirement){
-			for(let i = 0; i < gm.listRequirementExport.length; i++){
-				if(gm.listRequirementExport[i]._id == requirementId){
-					gm.listRequirement.push(gm.listRequirementExport[i]);
-					gm.listRequirementExport.splice(i, 1);
-				}
+ 	gm.deleteRequirement = function(requirement){
+		for(let i = 0; i < gm.listRequirementExport.length; i++){
+			if(gm.listRequirementExport[i].id == requirement.id){
+				gm.listRequirement.push(requirement);
+				gm.listRequirementExport.splice(i, 1);
 			}
-		});
+		}
 	}
-
 
 	gm.addRequirement = function(requirement){
 		gm.listRequirementExport.push(requirement);
+		for(let i = 0; i < gm.listRequirement.length; i++){
+			if(gm.listRequirement[i].id == requirement.id){
+				gm.listRequirement.splice(i, 1);
+			}
+		}
 	}
 
 	gm.refreshListRequirementExport = function(){
