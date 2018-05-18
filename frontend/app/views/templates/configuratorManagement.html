@@ -97,18 +97,14 @@
 															</a>
 														</div>
 														<!--Inicio: Preguntas relacionadas a la respuesta-->
-														Aqui van las preguntas relacionadas {{answer.questions.length}}
 
 
 
 
 
-
-
-
-														<div class="row" ng-repeat="questionAsociate in answer.questions">
+														<div class="col-sm-10" ng-repeat="questionAsociate in answer.questions">
 															<div class="col-md-1"></div>
-															<div class="panel panel-default col-md-10">
+															<div class="panel panel-default ">
 																<div class="panel-heading">
 																	<div class="row">
 																		<table class="col-sm-10">
@@ -127,7 +123,7 @@
 																						<a href class="text-danger infoBulle a_supp" title="" data-placement="top" data-id="2885924" ng-click="deleteQuestionAsociate(questionAsociate._id);" data-original-title="Eliminar">
 																							<span class="fa fa-trash fa-lg"></span>
 																						</a>
-																						<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="selectQuestionAsociate(questionAsociate._id);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
+																						<a href class="text-success infoBulle a_dupli" data-id="2885924" ng-click="selectQuestion(questionAsociate._id, 3);" data-placement="top" title="Nueva respuesta"  data-toggle="modal" data-target="#modal-answer" data-original-title="Nueva respuesta">
 																							<span class="fa fa-plus fa-lg"></span>
 																						</a>
 																					</td>
@@ -145,7 +141,7 @@
 																					&nbsp;&nbsp;{{answerAsociate.description}}
 																				</label>
 																				<div class="text-right">
-																					<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="readAnswerAsociate(questionAsociate._id, answerAsociate._id, 2);" data-placement="top" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-answer">
+																					<a href class="text-primary infoBulle a_edit" data-id="2885924"  ng-click="readAnswerAsociate(questionAsociate._id, answerAsociate._id, 4);" data-placement="top" title="Modificar" data-original-title="Modificar" data-toggle="modal" data-target="#modal-answer">
 																						<span class="fa fa-pencil fa-lg"></span>
 																					</a>
 																					<a href class="text-danger infoBulle a_supp" title="" data-placement="top" ng-click="deleteAnswer(questionAsociate._id, answerAsociate._id);" data-id="2885924" data-original-title="Eliminar">
@@ -268,8 +264,10 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" ng-show="mode == 1">Crear respuesta</h4>
-				<h4 class="modal-title" ng-show="mode == 2">Actualizar respuesta</h4>
+				<h4 class="modal-title" ng-if="mode == 1">Crear respuesta</h4>
+				<h4 class="modal-title" ng-if="mode == 2">Actualizar respuesta</h4>
+				<h4 class="modal-title" ng-if="mode == 3">Crear respuesta asociada</h4>
+				<h4 class="modal-title" ng-if="mode == 4">Crear respuesta asociada</h4>
 			</div>
 			<div class="modal-body">
 					<div class="alert alert-danger alert-dismissible" ng-if="error!= null">
@@ -292,8 +290,10 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" ng-show="mode == 1" ng-click="createAnswer();">Crear respuesta</button>
-				<button type="button" class="btn btn-success" ng-show="mode == 2" ng-click="updateAnswer();">Actualizar respuesta</button>
+				<button type="button" class="btn btn-success" ng-if="mode == 1" ng-click="createAnswer();">Crear respuesta</button>
+				<button type="button" class="btn btn-success" ng-if="mode == 2" ng-click="updateAnswer();">Actualizar respuesta</button>
+				<button type="button" class="btn btn-success" ng-if="mode == 3" ng-click="createAnswer();">Crear respuesta asociada</button>
+				<button type="button" class="btn btn-success" ng-if="mode == 4" ng-click="updateAnswer();">Actualizar respuesta asociada</button>
 			</div>
 		</div>
 	</div>

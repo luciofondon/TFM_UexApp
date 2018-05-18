@@ -47,12 +47,47 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 						});
 
 						if(question.radio == answer._id){
-							gm.listRequirement.push({id: question._id, description: answer.description, title: answer.requirement})
+							gm.listRequirement.push({id: question._id, answerId: answer._id,  description: answer.description, title: answer.requirement})
 						}
+
+						answer.questions.forEach(function(questionAsociate){
+							if(question.radio){
+								questionAsociate.answers.forEach(function(answerAsociate){
+									//Eliminamos la opcion si ya se habia seleccionado previamente
+									gm.listRequirement.forEach(function(item, index){
+										if(item.id == answerAsociate._id && question.radio == answerAsociate._id){
+											gm.listRequirement.splice(index, 1);
+										}
+									});
+
+									if(questionAsociate.radio == answerAsociate._id){
+										gm.listRequirement.push({id: question._id, answerId: answer._id,  description: answer.description, title: answer.requirement})
+									}
+
+								});
+							}
+						});
+
+
+
+
+
+
 					});
 				}
 			});
 		});
+	}
+
+	// Comprobar si la respuesta es marcada por el usuario para pintar sus preguntas asociadas
+	gm.isRadioSelect = function(answerId){
+		var existe = false;
+		gm.listRequirement.forEach(function(item, index){
+			if(item.answerId.toString() == answerId.toString()){
+				existe = true;
+			}
+		});
+		return existe;
 	}
 
     TopicService.getTopics($stateParams.projectId).then(function(response) {

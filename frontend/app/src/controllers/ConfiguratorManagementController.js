@@ -21,6 +21,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
     $scope.init = function(){
         TopicService.getTopics($stateParams.projectId).then(function(response) {
+			console.log(response.data)
 			$scope.topics = response.data;
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
@@ -152,7 +153,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
 	$scope.createQuestionAsociate = function(){
         if(validateQuestion()){
-            QuestionService.createQuestionAsociate($scope.topicId, $scope.questionId, $scope.answerId, $scope.question).then(function(response) {
+            QuestionService.createQuestionAsociate($scope.questionId, $scope.answerId, $scope.question).then(function(response) {
                 $scope.question =  {};
 				$ngConfirm('La pregunta se ha creado correctamente');
                 $scope.init();
@@ -311,6 +312,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
     $scope.createAnswer = function(){
 		if(validateAnswer()){
 			AnswerService.createAnswer($scope.questionId, $scope.answer).then(function(question) {
+				$scope.answer = {};
 				$scope.init();
 				$('#modal-answer').modal('hide');
 			});

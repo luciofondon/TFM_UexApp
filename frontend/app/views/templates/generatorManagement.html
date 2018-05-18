@@ -67,6 +67,79 @@
 														<label for="{{question._id}}">
 															&nbsp;&nbsp;{{answer.description}}
 														</label>
+														<br>
+
+<!--Inicio: Preguntas relacionadas a la respuesta-->
+
+
+
+
+<div class="col-sm-10" ng-repeat="questionAsociate in answer.questions" ng-if="gm.isRadioSelect(answer._id)">
+		<div class="col-md-1"></div>
+		<div class="panel panel-default ">
+			<div class="panel-heading">
+				<div class="row">
+					<table class="col-sm-10">
+						<tbody>
+							<tr>
+								<td class="col-sm-1">
+									<h4>{{$index + 1}}.</h4>
+								</td>
+								<td class="col-sm-5 col-md-6 col-lg-7">
+									{{questionAsociate.description}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div><!-- panel-heading-->
+			<div class="panel-body">
+				<div class="row" ng-repeat="answerAsociate in questionAsociate.answers">
+					<div class="col-xs-12  content-quest ">
+						<div class="box-mobil box-mobil-btn btn-block">
+							<input type="radio" ng-click="gm.refreshListRequirementExport();" ng-model="questionAsociate.radio" ng-value="answerAsociate._id" name="{{questionAsociate._id}}" id="{{questionAsociate._id}}">
+
+							<label for="{{questionAsociate._id}}">
+								&nbsp;&nbsp;{{answerAsociate.description}}
+							</label>
+						</div>
+					</div>
+				</div>
+			</div><!-- panel-body-->
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+
+
+
+
+
+
+	<!--Fin: Preguntas relacionadas a la respuesta-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 													</div>
 												</div>
 											</div>

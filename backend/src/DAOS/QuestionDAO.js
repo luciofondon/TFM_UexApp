@@ -42,17 +42,33 @@ exports.readQuestionAsociate = function(req, res) {
     readQuestionAsociate(req, res);
 };
 
+exports.createAnswerAsociate = function(req, res) {
+    createAnswerAsociate(req, res);
+};
+
+
+function createAnswerAsociate(req, res){
+	let question = req.question;
+	question.answers.forEach(function(answer){
+		if(answer._id.toString() == req.params.answerId.toString()){
+			answer.question.answers.forEach(funciton(an))
+			answer.questions.push(questionAsociate._id);
+		}
+	});
+
+}
+
+
 function deleteQuestionAsociate(req, res){
 }
 
 function createQuestionAsociate(req, res){
 	var question = req.question;
 	let questionAsociate = new Question(req.body);
-	questionAsociate.topic = question.topic;
 	question.answers.forEach(function(answer){
 		if(answer._id.toString() == req.params.answerId.toString()){
 			console.log("Igual")
-			answer.questions.push(questionAsociate);
+			answer.questions.push(questionAsociate._id);
 		}
 	});
 
@@ -61,7 +77,6 @@ function createQuestionAsociate(req, res){
 			return res.status(500).json({error: 'Cannot update the question'});
 		}
 		question.save(function(err) {
-			console.log(err)
 
 			if (err) {
 				return res.status(500).json({error: 'Cannot update the question'});

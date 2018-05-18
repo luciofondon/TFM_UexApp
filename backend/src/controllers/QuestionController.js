@@ -11,7 +11,7 @@ module.exports = function() {
         createByTopic: function(req, res) {
             questionDAO.createByTopic(req,res);
         },
-		
+
         loadQuestion: function(req, res, next, projectId) {
             questionMiddleware.loadQuestion(req, res, next, projectId);
         },
@@ -27,21 +27,25 @@ module.exports = function() {
         deleteQuestion: function(req, res) {
             questionDAO.deleteQuestion(req, res);
         },
-		
+
 		createQuestionAsociate: function(req, res) {
             questionDAO.createQuestionAsociate(req, res);
         },
-		
+
 		deleteQuestionAsociate: function(req, res) {
             questionDAO.deleteQuestionAsociate(req, res);
         },
-		
+
 	 	updateQuestionAsociate: function(req, res) {
             questionDAO.updateQuestionAsociate(req, res);
         },
-		
+
 	 	readQuestionAsociate: function(req, res) {
             questionDAO.readQuestionAsociate(req, res);
-        }
+		},
+
+		createAnswerAsociate: function(req, res) {
+            questionDAO.createAnswerAsociate(req, res);
+		}
     }
 }

@@ -183,6 +183,12 @@ angular.module('tfm.uex').controller('ProjectListController',
 					'</a>',
 					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
 						'<i class="glyphicon glyphicon-remove"></i>',
+					'</a>',
+					'<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador">',
+						'<i class="fa fa-cogs"></i>',
+					'</a>',
+					'<a class="generator" style="margin-right: 10px;cursor:pointer;" title="Generador">',
+						'<i class="fa fa-calendar-check-o"></i>',
 					'</a>'
 				].join('');
 			}

@@ -31,7 +31,7 @@ exports.updateTopic = function(req, res) {
 
 function deleteTopic(req, res){
 	let topic = req.topic;
-	
+
 	//Eliminar preguntas asociadas al topic
 	Question.remove({topic: topic._id}, function(err){
 		topic.remove(function(err){
@@ -59,7 +59,8 @@ function readAllByProject(req, res){
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the topics' });
 		}
-		Question.find({}).exec(function(err, questions) {
+		Question.find({ topic: { $ne: null } }).populate("answers.questions").exec(function(err, questions) {
+			console.log(JSON.stringify(questions))
 			let topicsFormat = [];
 			topics.forEach(function(topic){
 				let topicFormat = JSON.parse(JSON.stringify(topic));

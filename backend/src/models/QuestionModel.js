@@ -18,14 +18,20 @@ var questionSchema = new Schema({
 			ref: 'Question',
   		}],
 	}],
-  	topic: {
+  	topic: { // Las preguntas que no tienen topic estan asocidas a otra pregunta
 		type: Schema.ObjectId,
 		ref: 'Topic',
-		required: true
   	},
 	created: {
 		type: Date,
 		default: Date.now
+	},
+
+},
+{
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
 	}
 });
 
