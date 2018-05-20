@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 var userMiddleware = require('../middlewares/UserMiddleware'),
     userDAO = require('../DAOS/UserDAO');
-	userRepository = require('../repositories/userRepository');
+	userRepository = require('../repositories/UserRepository');
 
 module.exports = function() {
 

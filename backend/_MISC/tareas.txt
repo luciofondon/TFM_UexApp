@@ -46,8 +46,6 @@ Vista Dashboard
 
  Vista list usuario
 
-
-
  Vista generador Integracion con Jira
  Vista plantilla
  Vista template
