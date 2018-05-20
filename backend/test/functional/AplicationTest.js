@@ -15,26 +15,16 @@ describe('Insert a aplication: ',()=>{
 	it('should insert a aplication', (done) => {
 		chai.request(server)
 			.post('/auth/login')
-            .send(login_details)
+            .send(loginUser)
             .end((err, res) => {
-				console.log('this was run the login part');
-				//res.should.have.status(200);
+				console.log( res.body.token);
 				expect(res).to.have.status(200);
-
-				//expect(res.body.state).to.be.true;
-				//expect(res).have.property('token');
-
 				let token = res.body.token;
 
 				chai.request(server)
-				.post('/api/aplications')
+				.get('/api/aplications')
 				.set('authorization', token)
-				.send(
-					{
-						project: 'Id',
-						description: "Descripcion aplicacion"
-					}
-				)
+
 				.end( function(err,res){
 					console.log(res.body)
 					expect(res).to.have.status(200);
@@ -42,7 +32,12 @@ describe('Insert a aplication: ',()=>{
 				});
 			});
 
-
+	/*.send(
+					{
+						project: 'Id',
+						description: "Descripcion aplicacion"
+					}
+				)*/
 	});
 });
 

@@ -19,7 +19,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 			vm.loadProjectList();
 			vm.loadAplicationsList();
         });
-		TemplateService.getTemplates().then(function(response){
+		TemplateService.readAllTemplates().then(function(response){
 			vm.templates = response.data;
 			vm.templates.push({nameTemplate: "Adjuntar plantila", _id: "upload" })
 		});
@@ -156,10 +156,6 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.loadAplicationsList = function(){
 		AplicationService.readAllAplications().then(function(response) {
 			var apps = response.data;
-			var projectsFilter = [];
-			vm.projects.forEach(function(project){
-				projectsFilter.push(project.name)
-			});
 
 			var actionFormatterAplications= function(value, row, index) {
 				return [
@@ -177,6 +173,10 @@ angular.module('tfm.uex').controller('ProjectListController',
 					'</a>'
 				].join('');
 			}
+			var projectsFilter = [];
+			vm.projects.forEach(function(project){
+				projectsFilter.push(project.name)
+			});
 
 			var columns = [
 				{align: 'center', valign: 'middle', formatter: actionFormatterAplications, events:'actionEventsAplication' },

@@ -35,6 +35,7 @@ exports.forbidden = function(req, res, next){
 
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 function ensureAuthenticated(req, res, next) {
+	console.log(req.headers.authorization)
     if(!req.headers.authorization) {
         unauthorized(req, res, next);
     } else {
