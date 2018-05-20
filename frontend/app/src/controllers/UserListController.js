@@ -19,11 +19,11 @@ angular.module('tfm.uex').controller('UserListController',
 	}
 
     vm.init = function() {
-        RolService.getRoles().then(function(response) {
+        RolService.readAllRoles().then(function(response) {
             vm.roles = response.data;
         });
 
-        ProjectService.getProjects().then(function(projects) {
+        ProjectService.readAllProjects().then(function(projects) {
             vm.projects = projects;
         });
     }
@@ -150,17 +150,14 @@ angular.module('tfm.uex').controller('UserListController',
 
     vm.createUser = function() {
         if(validateUser()){
-			console.log(vm.user)
 			upload(function(status, nameImage){
 				if(status == 200 && nameImage != undefined)
 					vm.user.image = nameImage;
-				console.log(vm.user)
 
 				UserService.addUser(vm.user).then(function(project) {
 					vm.user = {};
 					vm.loadUserList();
-					vm.alerts = [];
-					vm.alertas.push("Usuario creado correctamente");
+					$ngConfirm("Usuario creado correctamente");
 					$('#modal-user').modal('hide');
 				});
 
@@ -187,8 +184,6 @@ angular.module('tfm.uex').controller('UserListController',
 				callback(response.status, response.data.name);
 			}, function (response) { // Error
 				callback(response.status);
-			}, function (evt) {
-				var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 			});
 		}else{
 			callback(200, "");

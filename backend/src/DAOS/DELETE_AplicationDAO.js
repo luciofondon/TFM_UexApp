@@ -7,53 +7,13 @@ var Topic = require('../models/TopicModel');
 
 
 module.exports = {
-
-	createAplication: function(req, res) {
-        createAplication(req, res);
-	},
-
     readAllAplication: function(req, res){
         readAllAplication(req, res);
-    },
-
-    updateAplication: function(req, res){
-        updateAplication(req, res);
-    },
-
-    deleteAplication: function(req, res){
-        deleteAplication(req, res);
     },
 
     generateAplicationFromTempate: function(req, res){
         generateAplicationFromTempate(req, res);
     }
-}
-
-function createAplication(req, res){
-
-    let aplication = new Aplication(req.body);
-    if(validateAplication(aplication)){
-        aplication.save(function(err) {
-            if (err) {
-                return res.status(500).json({error: 'Cannot save the aplication'});
-            }
-            res.json(aplication);
-        });
-    }else
-        return res.status(500).json({ error: "Parametros de la API no validos"});
-}
-
-function updateAplication(req, res){
-    let aplication = _.extend(req.aplication, req.body);
-    if(validateAplication(aplication)){
-        aplication.save(function(err) {
-            if (err) {
-                return res.status(500).json({error: 'Cannot update the project'});
-            }
-            res.json(aplication);
-        });
-    }else
-        return res.status(500).json({ error: "Parametros de la API no validos"});
 }
 
 
@@ -79,24 +39,7 @@ function readAllAplication(req, res){
     });
 }
 
-function deleteAplication(req, res){
-    let aplication = req.aplication;
-	Topic.find({aplication: aplication._id}, {"__v":0}).exec(function(err, topics){
-		topics.forEach(function(topic){
-			Question.remove({topic: topic._id}, function(err){
 
-			});
-		});
-		Topic.remove({aplication: aplication._id}, function(err){
-            aplication.remove(function(err){
-                if (err) {
-                    return res.status(500).json({error: 'Cannot delete the aplication'});
-                }
-                res.json(aplication);
-            });
-		});
-    });
-}
 
 function generateAplicationFromTempate(req, res){
 	let template = req.body;
@@ -135,3 +78,61 @@ function generateAplicationFromTempate(req, res){
 function validateAplication(aplication){
     return true;
 }
+
+
+
+/*
+
+
+
+function deleteAplication(req, res){
+    let aplication = req.aplication;
+	Topic.find({aplication: aplication._id}, {"__v":0}).exec(function(err, topics){
+		topics.forEach(function(topic){
+			Question.remove({topic: topic._id}, function(err){
+
+			});
+		});
+		Topic.remove({aplication: aplication._id}, function(err){
+            aplication.remove(function(err){
+                if (err) {
+                    return res.status(500).json({error: 'Cannot delete the aplication'});
+                }
+                res.json(aplication);
+            });
+		});
+    });
+}
+
+
+
+
+function createAplication(req, res){
+
+    let aplication = new Aplication(req.body);
+    if(validateAplication(aplication)){
+        aplication.save(function(err) {
+            if (err) {
+                return res.status(500).json({error: 'Cannot save the aplication'});
+            }
+            res.json(aplication);
+        });
+    }else
+        return res.status(500).json({ error: "Parametros de la API no validos"});
+}
+
+function updateAplication(req, res){
+    let aplication = _.extend(req.aplication, req.body);
+    if(validateAplication(aplication)){
+        aplication.save(function(err) {
+            if (err) {
+                return res.status(500).json({error: 'Cannot update the project'});
+            }
+            res.json(aplication);
+        });
+    }else
+        return res.status(500).json({ error: "Parametros de la API no validos"});
+}
+
+
+*/

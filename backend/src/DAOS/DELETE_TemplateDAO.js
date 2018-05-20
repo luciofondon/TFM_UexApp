@@ -77,40 +77,6 @@ function generateTemplateCSV(req, res){
 	});
 }
 
-/*
-
-<template>
-    <name>
-        Nombre Plantilla
-    </name>
-    <description>
-        Descripcion
-    </description>
-    <topics>
-        <template>
-            Topic1
-            <name>
-                questions
-            </name>
-            <children>
-                <name>
-                    question
-                </name>
-                <text>
-                    ¿Esto es una pregunta?
-                </text>
-            </children>
-        </template>
-        <template type="2">
-            Topic2
-        </template>
-        <template>
-            Topic3
-        </template>
-    </topics>
-</template>
-*/
-
 function createTemplate(req, res){
 	let template = req.body;
 	let projectCopy = JSON.parse(JSON.stringify(req.project));
@@ -144,42 +110,4 @@ function createTemplate(req, res){
 	});
 }
 
-/*
-	Promise.all(promisesTopic).then(function(values){
-	}).catch(function(err){
-	});
-*/
 
-function readAllTemplate(req, res){
-    // Comprobar los proyectos a los que el usuario tiene permisos
-    Project.find({isTemplate: true}).sort({name:1}).exec(function(err, projects) {
-        if (err) {
-            return res.status(500).json({ error: 'Cannot list all the projects' });
-        }
-        res.json(projects);
-    });
-}
-
-function deleteTemplate(req, res){
-	var project = req.project;
-	Topic.find({project: project._id}, {"__v":0}).exec(function(err, topics){
-		topics.forEach(function(topic){
-			console.log("Eliminar " + topic._id)
-			Question.remove({topic: topic._id}, function(err){
-
-			});
-		});
-		Topic.remove({project: project._id}, function(err){
-			project.remove(function(err){
-				if (err) {
-					return res.status(500).json({error: 'Cannot delete the user'});
-				}
-				res.json(project);
-			});
-		});
-	});
-}
-
-function validateTemplate(template){
-    return true;
-}

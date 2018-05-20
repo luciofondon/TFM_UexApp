@@ -1,33 +1,33 @@
 angular.module('tfm.uex').service('TemplateService', ['$http', function($http){
 	return {
-		createTemplate: function(projectId, template){
-			return createTemplate(projectId, template);
+		createTemplate: function(aplicationId, template){
+			return createTemplate(aplicationId, template);
 		},
-		getTemplates: function(){
-			return getTemplates();
+		readAllTemplates: function(){
+			return readAllTemplates();
 		},
-		deleteTemplate: function(projectId){
-			return deleteTemplate(projectId);
+		deleteTemplate: function(aplicationId){
+			return deleteTemplate(aplicationId);
 		},
-		generateTemplateCSV: function(projectId){
-			return generateTemplateCSV(projectId);
+		generateTemplateXML: function(aplicationId){
+			return generateTemplateXML(aplicationId);
 		}
 	};
 
-	function generateTemplateCSV(projectId){
-		return $http.get('/api/template/generate/' + projectId);
+	function generateTemplateXML(aplicationId){
+		return $http.get('/api/template/generate/' + aplicationId);
 	}
 
-	function getTemplates(){
+	function readAllTemplates(){
 		return $http.get('/api/templates');
 	}
 
-	function createTemplate(projectId, template){
-		return $http.post('/api/templates/' + projectId, template);
+	function createTemplate(aplicationId, template){
+		return $http.post('/api/templates/' + aplicationId, template);
 	}
 
-	function deleteTemplate(projectId){
-		return $http.delete('/api/template/' + projectId);
+	function deleteTemplate(aplicationId){
+		return $http.delete('/api/template/' + aplicationId);
 	}
 
 }]);

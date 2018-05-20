@@ -1,12 +1,12 @@
 angular.module('tfm.uex').service('RolService', ['$http', function($http){
 
 	return {
-		getRoles: function(){
-			return getRoles();
+		readAllRoles: function(){
+			return readAllRoles();
 		}
 	};
 
-	function getRoles(){
+	function readAllRoles(){
 		return $http.get('/api/roles');
 	}
 

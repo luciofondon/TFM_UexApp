@@ -13,17 +13,9 @@ exports.createAnswer = function(req, res) {
     createAnswer(req, res);
 };
 
-exports.updateAnswer = function(req, res) {
-    updateAnswer(req, res);
-};
 
-exports.deleteAnswer = function(req, res) {
-    deleteAnswer(req, res);
-};
 
-exports.readAnswer = function(req, res) {
-    readAnswer(req, res);
-}
+/*
 
 function deleteAnswer(req, res){
 
@@ -39,8 +31,8 @@ function deleteAnswer(req, res){
 		}
 		return res.json(question);
 	});
-}
-
+}*/
+/*
 function updateAnswer(req, res){
 	let question = req.question;
 	let answer = req.body;
@@ -58,8 +50,9 @@ function updateAnswer(req, res){
 		});
 	}else
 		return res.status(500).json({error: "Parametros de la API no validos"});
-}
+} */
 
+/*
 function readAnswer(req, res){
 	let question = req.question;
 	for(let i = 0; i < question.answers.length; i++){
@@ -68,7 +61,7 @@ function readAnswer(req, res){
 		}
 	}
 	return res.status(500).json({error: "Parametros de la API no validos"});
-}
+}*/
 
 function createAnswer(req, res){
 	let question = req.question;

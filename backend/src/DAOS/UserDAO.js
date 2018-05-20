@@ -19,29 +19,25 @@ var Rol = require('../models/RolModel');
 var Project = require('../models/ProjectModel');
     Project = mongoose.model('Project');
 
-exports.readAllUser = function(req, res) {
-    readAllUser(req, res);
-};
-
 exports.createUser = function(req, res) {
     createUser(req, res);
 };
 
-exports.updateUser = function(req, res) {
-    updateUser(req, res);
-};
-
-exports.deleteUser = function(req, res) {
-    deleteUser(req, res);
-};
-
-exports.signupUser = function(req, res) {
-    signupUser(req, res);
+exports.updateMeUser = function(req, res) {
+    updateMeUser(req, res);
 };
 
 exports.resetPasswordUser = function(req, res) {
 	resetPasswordUser(req, res);
 };
+
+
+
+
+exports.signupUser = function(req, res) {
+    signupUser(req, res);
+};
+
 
 exports.loginUser = function(req, res) {
     loginUser(req, res);
@@ -51,13 +47,11 @@ exports.uploadImageUser = function(req, res) {
     uploadImageUser(req, res);
 };
 
-exports.updateMeUser = function(req, res) {
-    updateMeUser(req, res);
-};
+
 
 function uploadImageUser(req, res) {
 	var file = req.files.file;
-
+console.log(file)
 	//Ruta temporal donde se ha almacenado el fichero
 	var tmpPath = file.path;
 
@@ -65,7 +59,7 @@ function uploadImageUser(req, res) {
 	//let target_path = '../../../frontend/images/' + file.name;
 	let timeStamp = new Date().getTime();
 
-    let targetPath = path.join(__dirname,'../../../frontend/images/' + timeStamp + "." + file.name.split(".")[2]);
+    let targetPath = path.join(__dirname,'../../../frontend/images/' + timeStamp + "." + file.type.split("/")[1]);
 
    	// Comprobamos que el fichero es de tipo imagen
     if (file.type.indexOf('image')==-1){
@@ -133,7 +127,7 @@ function signupUser(req, res){
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
 }
-
+/*
 function readAllUser(req, res){
     let usersFormat = [];
     User.find({},{"__v" : 0}).sort({name:1}).populate("rol").exec(function(err, users){
@@ -149,6 +143,8 @@ function readAllUser(req, res){
 		res.json(usersFormat);
 	});
 }
+*/
+
 
 function createUser(req, res){
     let user = new User(req.body);
@@ -165,22 +161,7 @@ function createUser(req, res){
         return res.status(500).json({ error: "Parametros de la API no validos"});
 }
 
-function createUser(req, res){
-    let user = new User(req.body);
-    //Codificar la password
-    user.encodePassword(req.body.password);
-    if(validateUser(user)){
-        user.save(function(err) {
-            if (err) {
-                return res.status(500).json({error: 'Cannot save the user'});
-            }
-            res.json(user);
-        });
-    }else
-        return res.status(500).json({ error: "Parametros de la API no validos"});
-}
-
-
+/*
 function updateUser(req, res){
 	let user = _.extend(req.user, req.body);
 	console.log(user)
@@ -194,8 +175,10 @@ function updateUser(req, res){
         });
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
-}
+}*/
 
+
+/*
 
 function deleteUser(req, res){
     var user = req.user;
@@ -205,7 +188,7 @@ function deleteUser(req, res){
         }
         res.json(user);
     });
-}
+}*/
 
 function resetPasswordUser(req, res){
     User.findOne({_id: req.params.userId}, function(err, user) {

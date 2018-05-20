@@ -5,21 +5,20 @@
 
 module.exports = function(app){
 
-	var projectController = require('../controllers/ProjectController')(),
-		templateController = require('../controllers/TemplateController')(),
+	var templateController = require('../controllers/TemplateController')(),
 		systemMiddleware = require('../middlewares/SystemMiddleware');
 
-	app.route('/templates/:projectId')
+	app.route('/templates/:aplicationId')
 		.post(systemMiddleware.rolOperador, templateController.createTemplate)
 
-	app.route('/template/:projectId')
+	app.route('/template/:aplicationId')
 		.delete(systemMiddleware.rolAdmin, templateController.deleteTemplate);
 
 	app.route('/templates')
-		.get(systemMiddleware.rolConsultor, templateController.readAllTemplate);
+		.get(systemMiddleware.rolConsultor, templateController.readAllTemplates);
 
-	app.route('/template/generate/:projectId')
-		.get(systemMiddleware.rolConsultor, templateController.generateTemplateCSV);
+	app.route('/template/generate/:aplicationId')
+		.get(systemMiddleware.rolConsultor, templateController.generateTemplateXML);
 
-	app.param('projectId', projectController.loadProject);
+	app.param('aplicationId', templateController.loadAplication);
 };

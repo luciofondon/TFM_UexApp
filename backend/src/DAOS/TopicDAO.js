@@ -9,58 +9,23 @@ var mongoose = require('mongoose'),
 var Topic = require('../models/TopicModel');
 	Topic = mongoose.model('Topic');
 
-
 var Question = require('../models/QuestionModel');
 	Question = mongoose.model('Question');
 
-exports.readAllByProject = function(req, res) {
-    readAllByProject(req, res);
+module.exports = {
+	readAllByAplication: function(req, res) {
+		readAllByAplication(req, res);
+	}
+
 }
 
-exports.createTopicByProject = function(req, res) {
-    createTopicByProject(req, res);
-}
 
-exports.deleteTopic = function(req, res) {
-    deleteTopic(req, res);
-}
-
-exports.updateTopic = function(req, res) {
-    updateTopic(req, res);
-}
-
-function deleteTopic(req, res){
-	let topic = req.topic;
-
-	//Eliminar preguntas asociadas al topic
-	Question.remove({topic: topic._id}, function(err){
-		topic.remove(function(err){
-			return res.json({info: 'Delete topic ok'});
-		});
-	});
-}
-
-function updateTopic(req, res){
- 	let topic = _.extend(req.topic, req.body);
-    if(validateTopic(topic)){
-        topic.save(function(err) {
-            if (err) {
-                return res.status(500).json({error: 'Cannot update the topic'});
-            }
-
-            res.json(topic);
-        });
-    }else
-        return res.status(500).json({ error: "Parametros de la API no validos"});
-}
-
-function readAllByProject(req, res){
-    Topic.find({project: req.params.projectId}).sort({name:1}).exec(function(err, topics) {
+function readAllByAplication(req, res){
+    Topic.find({aplication: req.params.aplicationId}).sort({name:1}).exec(function(err, topics) {
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the topics' });
 		}
 		Question.find({ topic: { $ne: null } }).populate("answers.questions").exec(function(err, questions) {
-			console.log(JSON.stringify(questions))
 			let topicsFormat = [];
 			topics.forEach(function(topic){
 				let topicFormat = JSON.parse(JSON.stringify(topic));
@@ -77,10 +42,10 @@ function readAllByProject(req, res){
 		});
     });
 }
-
-function createTopicByProject(req, res){
+/*
+function createTopicByAplication(req, res){
     let topic = new Topic(req.body);
-    topic.project = req.params.projectId; 
+    topic.aplication = req.params.aplicationId; 
     if(validateTopic(topic)){
         topic.save(function(err) {
             if (err) {
@@ -90,7 +55,7 @@ function createTopicByProject(req, res){
         });
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
-}
+}*/
 
 function validateTopic(topic){
     return true;

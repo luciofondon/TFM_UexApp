@@ -3,10 +3,18 @@ angular.module('tfm.uex').service('UploadService', ['Upload', function(Upload) {
 	return {
 		uploadFile: function(file){
 			return uploadFile(file);
+		},
+		uploadXML: function(file){
+			return uploadXML(file);
 		}
 	};
 
-  function upload(callback){
+	function uploadXML(file){
+		return Upload.upload({url: '/api/upload/xml',file: file});
+	}
+
+
+  	function upload(callback){
 		if(vm.user.image != undefined){
 			Upload.upload({
 				url: '/api/user/upload',

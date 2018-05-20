@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ConfiguratorManagementController',
-	['$scope', '$stateParams', 'ProjectService', 'projectData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', '$ngConfirm',
-		function($scope, $stateParams, ProjectService, projectData, TemplateService, QuestionService, AnswerService, TopicService, $ngConfirm){
+	['$scope', '$stateParams', 'aplicationData', 'TemplateService', 'QuestionService', 'AnswerService', 'TopicService', '$ngConfirm',
+		function($scope, $stateParams, aplicationData, TemplateService, QuestionService, AnswerService, TopicService, $ngConfirm){
 	var conf = this;
 
 	$scope.tab = 0; //Tab que se mostrara en la vistas
@@ -9,7 +9,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.question = {};
 	$scope.answer = {};
 	$scope.template = {};
-	$scope.project = projectData.data;
+	$scope.aplication = aplicationData.data;
     $scope.topicId = ""; //Pestana de topic seleccionada
 	$scope.questionId = ""; //Pregunta seleccionada para crear respuestas
     $scope.topics = [];
@@ -20,8 +20,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 	$scope.answerId = "";
 
     $scope.init = function(){
-        TopicService.getTopics($stateParams.projectId).then(function(response) {
-			console.log(response.data)
+        TopicService.getTopics($stateParams.aplicationId).then(function(response) {
 			$scope.topics = response.data;
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
@@ -46,7 +45,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
 	$scope.createTemplate = function(){
 		if(validateTemplate()){
-			TemplateService.createTemplate($stateParams.projectId, $scope.template).then(function(response) {
+			TemplateService.createTemplate($stateParams.aplicationId, $scope.template).then(function(response) {
 				//$scope.topics = response.data;
 				$scope.template =  {};
 				$ngConfirm('Plantilla guardada correctamente.');
@@ -80,7 +79,7 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 
     $scope.createTopic = function(){
         if(validateTopic()){
-            TopicService.createTopic($stateParams.projectId, $scope.topic).then(function(response) {
+            TopicService.createTopic($stateParams.aplicationId, $scope.topic).then(function(response) {
                 $scope.topic =  {};
 				$ngConfirm('Topic creado correctamente.');
                 $scope.init();

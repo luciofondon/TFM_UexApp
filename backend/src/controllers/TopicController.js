@@ -1,6 +1,10 @@
-var topicMiddleware = require('../middlewares/TopicMiddleware'),
-	topicDAO = require('../DAOS/TopicDAO');
+var _ = require('lodash');
 
+var Topic = require('../models/TopicModel');
+
+var topicMiddleware = require('../middlewares/TopicMiddleware'),
+	topicDAO = require('../DAOS/TopicDAO'),
+	topicRepository = require('../repositories/TopicRepository');
 
 module.exports = function() {
 
@@ -9,22 +13,35 @@ module.exports = function() {
             topicMiddleware.loadTopic(req, res, next, topicId);
         },
 
-        readAllByProject: function(req, res) {
-            topicDAO.readAllByProject(req,res);
+        readAllByAplication: function(req, res) {
+            topicDAO.readAllByAplication(req,res);
         },
 
-        createTopicByProject: function(req, res) {
-            topicDAO.createTopicByProject(req, res);
+        createTopicByAplication: function(req, res) {
+			topicRepository.createTopicByAplication(req.authUser, new Topic(req.body), req.params.aplicationId).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         deleteTopic: function(req, res) {
-            topicDAO.deleteTopic(req, res);
-        },
+			topicRepository.deleteTopic(req.authUser, req.topic).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
+		},
 
         updateTopic: function(req, res) {
-            topicDAO.updateTopic(req, res);
+			topicRepository.updateTopic(req.authUser, _.extend(req.topic, req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
 		},
-		getTopic: function(req, res) {
+
+		readTopic: function(req, res) {
 			res.json(req.topic);
 		}
 

@@ -102,21 +102,6 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
-					<label for="InputText" class="col-md-4 control-label">Elejir plantilla (*) </label>
-					<div class="col-md-7">
-						<select required id="InputText"  ng-model="vm.templateId" class="form-control" data-ng-options="template._id as template.nameTemplate for template in vm.templates">
-							<option value="">-- No indicar plantilla previa --</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group row" ng-if="vm.templateId == 'upload'">
-					<label for="InputText" class="col-md-4 control-label">Adjuntar plantilla (*) </label>
-					<div class="col-md-7">
-						<button type="button" class="btn btn-default" ngf-select ng-model="vm.template">Adjuntar plantilla</button>
-					</div>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createProject();">Crear proyecto</button>
@@ -127,7 +112,7 @@
 </div>
 <!-- Fin: Popup para crear/actualizar un proyecto-->
 
-<!-- Inicio: Popup para crear/actualizar un proyecto-->
+<!-- Inicio: Popup para crear/actualizar una aplicacion-->
 <div id="modal-app" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -177,7 +162,7 @@
 				<div class="form-group row" ng-if="vm.templateId == 'upload'">
 					<label for="InputText" class="col-md-4 control-label">Adjuntar plantilla (*) </label>
 					<div class="col-md-7">
-						<button type="button" class="btn btn-default" ngf-select ng-model="vm.template">Adjuntar plantilla</button>
+						<input type="file" ngf-select ng-model="vm.templateUpload" name="file" ngf-pattern="'.xml'"   ngf-max-size="20MB"/>
 					</div>
 				</div>
 

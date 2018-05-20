@@ -1,11 +1,11 @@
 angular.module('tfm.uex').controller('GeneratorManagementController',
-    ['$stateParams', 'ProjectService', 'projectData', '$ngConfirm', 'TopicService', 'MediatoryService',
-        function($stateParams, ProjectService, projectData, $ngConfirm, TopicService, MediatoryService){
+    ['$stateParams', 'ProjectService', 'aplicationData', '$ngConfirm', 'TopicService', 'MediatoryService',
+        function($stateParams, ProjectService, aplicationData, $ngConfirm, TopicService, MediatoryService){
 	var gm = this;
 
     gm.tab = 0; //Tab que se mostrara en la vista
     gm.topics = [];
-	gm.project = projectData.data;
+	gm.aplication = aplicationData.data;
     gm.topicId = ""; //Pestana de topic seleccionada
 	gm.apps = [];
 	gm.projects = [];
@@ -50,6 +50,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 							gm.listRequirement.push({id: question._id, answerId: answer._id,  description: answer.description, title: answer.requirement})
 						}
 
+						// Preguntas asociadas
 						answer.questions.forEach(function(questionAsociate){
 							if(question.radio){
 								questionAsociate.answers.forEach(function(answerAsociate){
@@ -90,7 +91,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 		return existe;
 	}
 
-    TopicService.getTopics($stateParams.projectId).then(function(response) {
+    TopicService.getTopics($stateParams.aplicationId).then(function(response) {
         gm.topics = response.data;
     }).catch(function(response){
 		$ngConfirm(response.data.error);
@@ -142,7 +143,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 
 
 	gm.init = function(){
-        TopicService.getTopics($stateParams.projectId).then(function(response) {
+        TopicService.getTopics($stateParams.aplicationData).then(function(response) {
 			gm.topics = response.data;
 			if(gm.topics.length > 0)
 				gm.topicId = gm.topics[0]._id;

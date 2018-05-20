@@ -33,20 +33,31 @@ DASHBOARD (80%)
 
  **DOMINGO** - Importar plantilla
  4 ->**VIERNES** -> Model, validate
-
  1 ->**JUEVES** Grunt indexPro
+Vista detalle usuario
+Vista registro usuario
+Vista Dashboard
 
 
 
- 4 ->**MIERCOLES** Exportar plantilla
- **VIERNES** Integracion con Jira
+
+ **VIERNES** Mocha (rol, aplicacion, user, login, proyecto)
 
 
- 4 ->**VIERNES** Asociar elemento a entidad app (crear nueva entidad, eliminar en app)
- 10  **VIERNES** Mocha (rol, aplicacion, user, login, proyecto)
- 5 ->**JUEVES** Subir plantilla al proyecto
- 3 ->**MIERCOLES** Foto usuario (CAMBIAR NOMBRE IMAGEN)
- **VIERNES**- Preguntas asociadas: contesta
+ Vista generador  **VIERNES** Integracion con Jira
+ Vista list usuario
+
+
+ Vista plantilla
+ Vista template
+ Vista configurador
+ Vista proyecto/app
+
+
+
+
+
+
 
 
 

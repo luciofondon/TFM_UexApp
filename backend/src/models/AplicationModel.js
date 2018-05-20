@@ -18,6 +18,13 @@ var appSchema = new Schema({
 		type: Date,
 		default: Date.now,
 		required:true
+	},
+	isTemplate: { // Indica si el proyecto es es una plantilla
+		type: Boolean,
+		default: false
+	},
+	nameTemplate: {
+		type: String
 	}
 });
 

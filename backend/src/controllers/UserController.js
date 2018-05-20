@@ -1,5 +1,8 @@
+var _ = require('lodash');
+
 var userMiddleware = require('../middlewares/UserMiddleware'),
     userDAO = require('../DAOS/UserDAO');
+	userRepository = require('../repositories/userRepository');
 
 module.exports = function() {
 
@@ -8,27 +11,39 @@ module.exports = function() {
             userMiddleware.loadUser(req, res, next, userId);
         },
 
-        read: function(req, res){
+        readUser: function(req, res){
             res.json(req.user);
         },
 
-        readAll: function(req, res){
-            userDAO.readAllUser(req, res);
+        readAllUser: function(req, res){
+			userRepository.readAllUser(req.authUser).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
-        create: function(req, res){
+        createUser: function(req, res){
             userDAO.createUser(req, res);
         },
 
-        update: function(req, res){
-            userDAO.updateUser(req, res);
+        updateUser: function(req, res){
+			userRepository.updateUser(req.authUser, _.extend(req.user, req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
-        delete: function(req, res){
-            userDAO.deleteUser(req, res);
-        },
+        deleteUser: function(req, res){
+			userRepository.deleteUser(req.authUser, req.user).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
+		},
 
-        resetPassword: function(req, res){
+        resetPasswordUser: function(req, res){
             userDAO.resetPasswordUser(req, res);
         },
 

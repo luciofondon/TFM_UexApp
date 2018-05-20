@@ -80,17 +80,26 @@
 						<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
-					<ul class="treeview-menu">
+	 				<ul class="treeview-menu">
 						<li class="treeview" ng-repeat="project in projects">
-						<a href="#"><i class="fa fa-circle-o"></i> {{project.name}}
-							<span class="pull-right-container">
-							<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li ng-if="LoginUser.rol.level == 1"><a ui-sref="configuratorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
-							<li><a ui-sref="generatorManagement({projectId: project._id})"><i class="fa fa-circle-o"></i> Generador</a></li>
-						</ul>
+							<a href="#"><i class="fa fa-circle-o"></i> {{project.name}}
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<li class="treeview"  ng-repeat="aplication in project.aplications">
+									<a href> <i class="fa fa-circle-o"></i> {{aplication.name}}
+										<span class="pull-right-container">
+											<i class="fa fa-angle-left pull-right"></i>
+										</span>
+									</a>
+									<ul class="treeview-menu">
+										<li><a ui-sref="configuratorManagement({aplicationId: aplication._id})"><i class="fa fa-circle-o"></i> Configurador</a></li>
+										<li><a ui-sref="generatorManagement({aplicationId: aplication._id})"><i class="fa fa-circle-o"></i> Generador</a></li>
+									</ul>
+								</li>
+							</ul>
 						</li>
 						<li><a ui-sref="projectList"><i class="fa fa-edit"></i>Configuración</a></li>
 					</ul>

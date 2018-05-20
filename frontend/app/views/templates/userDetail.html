@@ -88,11 +88,11 @@
 						</div>
 					</div>
 
-					<div class="form-group row" ng-show="mode == 1">
+					<div class="form-group row">
 						<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
 						<div class="col-md-7">
-							<img ngf-thumbnail="vm.user.image" height="100">
-							<input type="file" ngf-select ng-model="vm.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
+							<img ng-hid="vm.disabled"  ngf-thumbnail="vm.user.image" height="100">
+							<input ng-disabled="vm.disabled"  type="file" ngf-select ng-model="vm.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
 						</div>
 					</div>
 

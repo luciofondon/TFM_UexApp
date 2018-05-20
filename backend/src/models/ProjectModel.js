@@ -10,13 +10,6 @@ var projectSchema = new Schema({
 		type: String,
 		required: true
 	},
-	isTemplate: { // Indica si el proyecto es es una plantilla
-		type: Boolean,
-		default: false
-	},
-	nameTemplate: {
-		type: String
-	},
 	lead: {
 		type: String
 	},
@@ -50,10 +43,13 @@ var projectSchema = new Schema({
 			required:true
 		}
 	}]
+},
+{
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
+	}
 });
-
-projectSchema.methods = require("./ProjectModelController");
-
 
 projectSchema.statics.load = function(projectId, callback){
 	this.findOne({_id: projectId}).exec(callback);

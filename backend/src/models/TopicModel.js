@@ -8,8 +8,7 @@ var topicSchema = new Schema({
 	},
 	project: {
 		type: Schema.ObjectId,
-		ref: 'Project',
-		required: true
+		ref: 'Project'
 	},
 	aplication: {
 		type: Schema.ObjectId,

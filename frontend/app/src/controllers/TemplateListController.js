@@ -14,7 +14,7 @@ angular.module('tfm.uex').controller('TemplateListController',
 	};
 
 	vm.loadProjectList = function(){
-        TemplateService.getTemplates().then(function(response) {
+        TemplateService.readAllTemplates().then(function(response) {
 			var templates = response.data;
             templates.forEach(function(template){
                 var created = new Date(template.created);
@@ -77,7 +77,7 @@ angular.module('tfm.uex').controller('TemplateListController',
 				//Cambiar de estado
 				$state.go('templateDetail', {templateId: row._id});
 		  	},'click .download': function (e, value, row, index) {
-				TemplateService.generateTemplateCSV(row._id).then(function(response) {
+				TemplateService.generateTemplateXML(row._id).then(function(response) {
 					window.location = '/download/file/' + response.data.nameFile;
 				});
 

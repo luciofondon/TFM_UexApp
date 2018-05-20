@@ -1,6 +1,6 @@
 app.controller('MainController',
-	['$scope', '$http', '$rootScope', '$timeout', '$interval', '$auth', 'UserService', '$state',
-		function($scope, $http, $rootScope, $timeout, $interval, $auth, UserService, $state) {
+	['$scope', '$rootScope', '$timeout', '$interval', '$auth', 'UserService', '$state', 'AplicationService', 'ProjectService',
+		function($scope, $rootScope, $timeout, $interval, $auth, UserService, $state, AplicationService, ProjectService) {
 
 	$rootScope.LoginUser = null;
 	var projectsSrc = [];
@@ -9,9 +9,21 @@ app.controller('MainController',
 	// Actualizar automaticamente la cabecera
 	$interval(updateHeader, 60*1000);
 
-	$http.get('/api/projects').then(function(response) {
-		$rootScope.projects = response.data;
-		projectsSrc = $rootScope.projects;
+	ProjectService.readAllProjects().then(function(responseProjects) {
+		AplicationService.readAllAplications().then(function(responseAplications) {
+			var projects = responseProjects.data;
+			var aplications = responseAplications.data;
+			projects.forEach(function(project){
+				project.aplications = [];
+				aplications.forEach(function(aplication){
+					if(project._id.toString() == aplication.project._id.toString())
+						project.aplications.push(aplication);
+				});
+			});
+			$rootScope.projects = projects;
+			projectsSrc = $rootScope.projects;
+
+		});
 	});
 
 	$scope.$on('login', function(){
@@ -30,10 +42,10 @@ app.controller('MainController',
 	$rootScope.logout = function(){
 		$auth.logout()
 		.then(function() {
-				// Desconectamos al usuario y lo redirijimos
-				$state.go("login")
-				$rootScope.LoginUser = null;
-				$rootScope.LoginUserLevel = 0;
+			// Desconectamos al usuario y lo redirijimos
+			$state.go("login")
+			$rootScope.LoginUser = null;
+			$rootScope.LoginUserLevel = 0;
 		});
 	}
 
@@ -78,7 +90,6 @@ app.controller('MainController',
 	function getUser(){
 		if ($auth.isAuthenticated()){
 			UserService.getMe().then(function(response) {
-				console.log(response.data)
 				$rootScope.LoginUser = response.data;
 			}).catch(function (error){
 				console.log(error);

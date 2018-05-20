@@ -1,9 +1,5 @@
 var rolMiddleware = require('../middlewares/RolMiddleware'),
-    rolDAO = require('../DAOS/RolDAO');
-
-var Rol = require('../models/RolModel'),
-    Rol = mongoose.model('Rol');
-
+	rolRepository = require('../repositories/RolRepository');
 
 module.exports = function() {
 
@@ -13,28 +9,30 @@ module.exports = function() {
             rolMiddleware.loadRol(req, res, next, rolId);
         },
 
-        read: function(req, res) {
-            res.json(req.project);
+        readRol: function(req, res) {
+     		//No permitir crear nuevos roles
+			return res.status(500).json({ error: "API no disponible"});
+	    },
+
+        readAllRol: function(req, res) {
+			rolRepository.readAllRol(req.authUser).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
-        readAll: function(req, res) {
-            rolDAO.readAllRol(req, res);
-           /* Rol.readAllRoles(function(data, err){
-                res.json(data);
-            });*/
-        },
-
-        create: function(req, res) {
+        createRol: function(req, res) {
             //No permitir crear nuevos roles
             return res.status(500).json({ error: "API no disponible"});
         },
 
-        update: function(req, res) {
+        updateRol: function(req, res) {
             //No permitir modificar los roles
             return res.status(500).json({ error: "API no disponible"});
         },
 
-        delete: function(req, res) {
+        deleteRol: function(req, res) {
             //No permitir eliminar roles
             return res.status(500).json({ error: "API no disponible"});
         }

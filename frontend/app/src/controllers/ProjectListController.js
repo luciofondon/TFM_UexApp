@@ -1,6 +1,6 @@
 angular.module('tfm.uex').controller('ProjectListController',
-    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'AplicationService',
-        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, AplicationService){
+    ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'AplicationService', 'UploadService',
+        function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, AplicationService, UploadService){
 	var vm = this;
 
     vm.bsTableProject = {};
@@ -14,7 +14,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.templateId = ""; //Plantilla seleccionada
 
 	vm.init = function(){
-        ProjectService.getProjects().then(function(response){
+        ProjectService.readAllProjects().then(function(response){
 			vm.projects = response.data;
 			vm.loadProjectList();
 			vm.loadAplicationsList();
@@ -37,7 +37,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 					vm.project =  {};
 					vm.loadProjectList();
 					$('#modal-project').modal('hide');
-					ProjectService.getProjects().then(function(response) {
+					ProjectService.readAllProjects().then(function(response) {
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
 					});
 					$ngConfirm("Proyecto creado correctamente con plantilla importada");
@@ -47,7 +47,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 					vm.project =  {};
 					vm.loadProjectList();
 					$('#modal-project').modal('hide');
-					ProjectService.getProjects().then(function(response) {
+					ProjectService.readAllProjects().then(function(response) {
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
 					});
 					$ngConfirm("Proyecto creado correctamente");
@@ -69,11 +69,11 @@ angular.module('tfm.uex').controller('ProjectListController',
 
     vm.updateProject = function() {
         if(validate()){
-            ProjectService.updateProject(vm.project).then(function(alarm, status) {
+            ProjectService.updateProject(vm.project).then(function(response, status) {
                 vm.loadProjectList();
                 $('#modal-project').modal('hide');
-                //Actualizamos el menu lateral
-                $http.get('/api/projects').then(function(response) {
+				//Actualizamos el menu lateral
+				ProjectService.readAllProjects().then(function(response, status) {
                     $rootScope.projects = response.data;
                 });
             });
@@ -82,7 +82,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 
 
 	vm.loadProjectList = function(){
-        ProjectService.getProjects().then(function(response) {
+        ProjectService.readAllProjects().then(function(response) {
 
             var projects = response.data;
             projects.forEach(function(project){
@@ -92,17 +92,11 @@ angular.module('tfm.uex').controller('ProjectListController',
 
             var actionFormatterProjects= function(value, row, index) {
                 return [
-                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-project">',
+                    '<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Editar" data-toggle="modal" data-target="#modal-project">',
                     	'<i class="glyphicon glyphicon-edit"></i>',
                     '</a>',
 					'<a class="remove" style="margin-right: 10px;" href="javascript:void(0)" title="Eliminar">',
                         '<i class="glyphicon glyphicon-remove"></i>',
-                    '</a>',
-                    '<a class="configurator" style="margin-right: 10px;cursor:pointer;" title="Configurador">',
-                        '<i class="fa fa-cogs"></i>',
-                    '</a>',
-                    '<a class="generator" style="margin-right: 10px;cursor:pointer;" title="Generador">',
-                        '<i class="fa fa-calendar-check-o"></i>',
                     '</a>'
                 ].join('');
             }
@@ -111,7 +105,6 @@ angular.module('tfm.uex').controller('ProjectListController',
                 {align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
                 {field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
                 {field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
-				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
                 {field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
                 {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
             ];
@@ -120,15 +113,13 @@ angular.module('tfm.uex').controller('ProjectListController',
         });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
-			vm.mode = 2;
-			vm.errores = [];
-                ProjectService.getProject(row._id).then(function(response) {
+			console.log("entra")
+				vm.mode = 2;
+				vm.errores = [];
+                ProjectService.readProject(row._id).then(function(response) {
                     vm.project = response.data;
                 });
-            },'click .configurator': function (e, value, row, index) {
-              	//Cambiar de estado
-			    $state.go('configuratorManagement', {projectId:row._id});
-			},'click .remove': function (e, value, row, index) {
+           },'click .remove': function (e, value, row, index) {
 				$ngConfirm({
 					title: 'Proyecto',
 					content: '¿Deseas eliminar el proyecto?',
@@ -153,12 +144,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 						}
 					}
 				});
-
-
-			},'click .generator': function (e, value, row, index) {
-                //Cambiar de estado
-              $state.go('generatorManagement', {projectId:row._id});
-          }
+			}
         };
 	};
 
@@ -170,13 +156,12 @@ angular.module('tfm.uex').controller('ProjectListController',
 	vm.loadAplicationsList = function(){
 		AplicationService.readAllAplications().then(function(response) {
 			var apps = response.data;
-			console.log(apps)
 			var projectsFilter = [];
 			vm.projects.forEach(function(project){
 				projectsFilter.push(project.name)
 			});
 
-			var actionFormatterProjects= function(value, row, index) {
+			var actionFormatterAplications= function(value, row, index) {
 				return [
 					'<a class="edit" style="margin-right: 10px;cursor:pointer;" title="Edit" data-toggle="modal" data-target="#modal-app">',
 						'<i class="glyphicon glyphicon-edit"></i>',
@@ -194,7 +179,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 			}
 
 			var columns = [
-				{align: 'center', valign: 'middle', formatter:actionFormatterProjects, events:'actionEventsProjects' },
+				{align: 'center', valign: 'middle', formatter: actionFormatterAplications, events:'actionEventsAplication' },
 				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
 				{field: "project.name", title: "Proyecto", filter: {type: "select", data: projectsFilter}, align: 'center', valign: 'middle', sortable: true},
 				{field: "name", title: "Aplicación", align: 'center', valign: 'middle', sortable: true},
@@ -204,7 +189,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 			vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
 
 		});
-		window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
+		window.actionEventsAplication = {'click .edit': function (e, value, row, index) {
 			vm.mode = 2;
 			vm.errores = [];
 				AplicationService.readAplication(row._id).then(function(response) {
@@ -212,7 +197,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 				});
 			},'click .configurator': function (e, value, row, index) {
 				//Cambiar de estado
-				$state.go('configuratorManagement', {projectId:row._id});
+				$state.go('configuratorManagement', {aplicationId:row._id});
 			},'click .remove': function (e, value, row, index) {
 				$ngConfirm({
 					title: 'Aplicación',
@@ -242,17 +227,54 @@ angular.module('tfm.uex').controller('ProjectListController',
 
 			},'click .generator': function (e, value, row, index) {
 				//Cambiar de estado
-			$state.go('generatorManagement', {projectId:row._id});
-		}
+				$state.go('generatorManagement', {aplicationId: row._id});
+			}
 		};
 	}
 
 	vm.createAplication = function (){
-		AplicationService.createAplication(vm.aplication).then(function(response){
-			vm.loadAplicationsList();
-			$('#modal-app').modal('hide');
-			$ngConfirm("Aplicación creada correctamente");
-        });
+		/*UploadService.uploadXML(vm.templateUpload).then(function (response) {
+			console.log("subido ok")
+		});*/
+		if(validateAplication()){
+			AplicationService.createAplication(vm.aplication).then(function(response){
+				vm.aplication = {};
+				vm.loadAplicationsList();
+				$('#modal-app').modal('hide');
+				$ngConfirm("Aplicación creada correctamente");
+			});
+		}
+
+
+		/*
+
+		if(vm.templateId == 'upload'){
+				UploadService.uploadXML(vm.templateUpload).then(function(response){
+					vm.project.templateUpload = response.name;
+				});
+			}else if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
+				ProjectService.generateProject(vm.templateId, vm.project).then(function(response) {
+					vm.templateId = "";
+					vm.project =  {};
+					vm.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.getProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente con plantilla importada");
+				});
+			}else{
+				ProjectService.createProject(vm.project).then(function(response) {
+					vm.project =  {};
+					vm.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.getProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente");
+				});
+			}
+			*/
 	}
 
 	vm.updateAplication = function (){
@@ -266,7 +288,10 @@ angular.module('tfm.uex').controller('ProjectListController',
 		vm.error = null;
         if(vm.aplication.name == undefined || vm.aplication.name == "")
 			vm.error = "El campo nombre de la aplicacion es obligatorio";
-
+		else if(vm.aplication.description == undefined || vm.aplication.description == "")
+			vm.error = "El campo descripción de la aplicacion es obligatorio";
+		else if(vm.aplication.project == undefined || vm.aplication.project == "")
+			vm.error = "El campo proyecto de la aplicacion es obligatorio";
 		return vm.error == null ? true : false;
 	}
 

@@ -86,12 +86,12 @@ var app = angular.module('tfm.uex',
 				}
 			})
 			.state('configuratorManagement', {
-				url: "/configuratorManagement/:projectId",
+				url: "/configuratorManagement/:aplicationId",
 				templateUrl : cfg.pathTemplates + '/configuratorManagement.html',
 				controller 	: 'ConfiguratorManagementController as conf',
 				resolve:{
 					loginRequired: loginRequired,
-					projectData: projectData
+					aplicationData: aplicationData
 				}
 			})
 			.state('templateDetail', {
@@ -104,19 +104,19 @@ var app = angular.module('tfm.uex',
 				}
 			})
 			.state('generatorManagement', {
-				url: "/generatorManagement/:projectId",
+				url: "/generatorManagement/:aplicationId",
 				templateUrl : cfg.pathTemplates + '/generatorManagement.html',
 				controller 	: 'GeneratorManagementController as gm',
 				resolve:{
 					loginRequired: loginRequired,
-					projectData: projectData
+					aplicationData: aplicationData
 				}
 			});
 
 		$urlRouterProvider.otherwise("dashboard");
 
-		function projectData(ProjectService, $stateParams){
-			return ProjectService.getProject($stateParams.projectId).then(function(response){
+		function aplicationData(AplicationService, $stateParams){
+			return AplicationService.readAplication($stateParams.aplicationId).then(function(response){
 				return response;
 			}).catch(function(err) {
 				return null;
@@ -141,36 +141,13 @@ var app = angular.module('tfm.uex',
 			return deferred.promise;
 		}
 
-		/*$rootScope.$on('$stateChangeSuccess', function(event){
-        	if (!$window.ga)
-            	return;
-          	$window.ga('send', 'pageview', { page: $location.path() });
-        });*/
-		/*
-
-			$window.ga('create', 'UA-118019427-1', 'auto');
-
-		// track pageview on state change
-		$rootScope.$on('$stateChangeSuccess', function (event) {
-			$window.ga('send', 'pageview', $location.path());
-		});
-		*/
-
 }).run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
 	$window.ga('create', 'UA-118019427-1', 'auto');
-	/*
-	$rootScope.$on('$stateChangeSuccess', function(event){
-		console.log("stateChangeSuccess")
-		if (!$window.ga)
-			return;
-		$window.ga('send', 'pageview', { page: $location.path() });
-	});*/
+
 	$rootScope.$on('$locationChangeSuccess', function(event) {
-		console.log('locationChangeSuccess');
 		if (!$window.ga)
 			return;
 		$window.ga('send', 'pageview', { page: $location.path() });
 	});
-
 
 }]);

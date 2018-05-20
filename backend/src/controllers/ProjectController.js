@@ -1,6 +1,11 @@
-var projectMiddleware = require('../middlewares/ProjectMiddleware');
-    projectDAO = require('../DAOS/ProjectDAO');
 
+
+var _ = require('lodash');
+
+var Project = require('../models/ProjectModel');
+
+var projectMiddleware = require('../middlewares/ProjectMiddleware'),
+	projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = function() {
 
@@ -15,48 +20,36 @@ module.exports = function() {
         },
 
         readAllProject: function(req, res) {
-            projectDAO.readAllProject(req,res);
+			projectRepository.readAllProject(req.authUser).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         createProject: function(req, res) {
-            projectDAO.createProject(req,res);
+			projectRepository.createProject(req.authUser, new Project(req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         updateProject: function(req, res) {
-            projectDAO.updateProject(req,res);
-        },
+			projectRepository.createProject(req.authUser, _.extend(req.project, req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
+		},
 
         deleteProject: function(req, res) {
-        	projectDAO.deleteProject(req,res);
-        },
-
-        exportData: function(req, res) {
-            projectDAO.exportData(req,res);
-		},
-
-		generateProject: function(req, res){
-            projectDAO.generateProject(req,res);
-		},
-
-		readAplicationFromProject: function(req, res) {
-            projectDAO.readAplicationFromProject(req,res);
-        },
-
-        createAplicationFromProject: function(req, res) {
-            projectDAO.createAplicationFromProject(req,res);
-        },
-
-        updateAplicationFromProject: function(req, res) {
-            projectDAO.updateAplicationFromProject(req,res);
-        },
-
-        deleteAplicationFromProject: function(req, res) {
-        	projectDAO.deleteAplicationFromProject(req,res);
-        },
-		
-		readAplicationsFromProjects: function(req, res) {
-        	projectDAO.readAplicationsFromProjects(req,res);
-        }
+			projectRepository.deleteProject(req.authUser, req.project).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
+		}
 
     }
 }
