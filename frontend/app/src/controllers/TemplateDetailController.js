@@ -1,12 +1,12 @@
 angular.module('tfm.uex').controller('TemplateDetailController',
-    ['$stateParams', 'ProjectService', 'templateData', '$ngConfirm', 'TopicService',
-        function($stateParams, ProjectService, templateData, $ngConfirm, TopicService){
+    ['$stateParams', 'templateData', '$ngConfirm', 'TopicService',
+        function($stateParams, templateData, $ngConfirm, TopicService){
 	var td = this;
-
     td.tab = 0; //Tab que se mostrara en la vista
     td.topics = [];
 	td.project = templateData.data;
     td.topicId = ""; //Pestana de topic seleccionada
+	console.log(td.project)
 
     TopicService.getTopics($stateParams.templateId).then(function(response) {
         td.topics = response.data;
@@ -20,12 +20,14 @@ angular.module('tfm.uex').controller('TemplateDetailController',
         return td.tab === tabNum;
 	};
 
-	td.init = function(){
-        TopicService.getTopics($stateParams.templateId).then(function(response) {
-			td.topics = response.data;
-			if(td.topics.length > 0)
+	TopicService.getTopics($stateParams.templateId).then(function(response) {
+		console.log(response.data)
+		td.topics = response.data;
+		if(td.topics.length > 0)
 			td.topicId = $scope.topics[0]._id;
-        });
-    }
+	}).catch(function(err){
+		$ngConfirm(err)
+	});
+
 
 }]);

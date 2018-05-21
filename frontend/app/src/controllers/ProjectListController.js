@@ -49,6 +49,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 					$('#modal-project').modal('hide');
 					ProjectService.readAllProjects().then(function(response) {
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+						vm.projects = response.data;
 					});
 					$ngConfirm("Proyecto creado correctamente");
 				});
@@ -208,7 +209,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 							btnClass: 'btn-blue',
 							action: function(scope, button){
 								AplicationService.deleteAplication(row._id).then(function(response) {
-									for(var i = vm.bsTableProject.options.data.length; i--;){
+									for(var i = vm.bsTableApp.options.data.length; i--;){
 										if(vm.bsTableApp.options.data[i]._id == row._id){
 											vm.bsTableApp.options.data.splice(i, 1);
 											$ngConfirm('La aplicación se ha sido eliminado correctamente');
@@ -279,6 +280,8 @@ angular.module('tfm.uex').controller('ProjectListController',
 
 	vm.updateAplication = function (){
 		AplicationService.updateAplication(vm.aplication).then(function(response){
+			vm.aplication = {};
+			vm.loadAplicationsList();
 			$('#modal-app').modal('hide');
 			$ngConfirm("Aplicación creada correctamente");
         });

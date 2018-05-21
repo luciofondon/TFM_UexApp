@@ -8,7 +8,6 @@ module.exports = function(){
     return {
 
 		loadAplication: function(req, res, next, aplicationId) {
-			console.log("carga")
             aplicationMiddleware.loadAplication(req, res, next, aplicationId);
 		},
 

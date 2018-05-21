@@ -176,10 +176,10 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
 	function upload(callback){
-		if(vm.user.image != undefined){
+		if(vm.imageUpload != undefined){
 			Upload.upload({
 				url: '/api/user/upload',
-				file: vm.user.image
+				file: vm.imageUpload
 			}).then(function (response) {
 				callback(response.status, response.data.name);
 			}, function (response) { // Error

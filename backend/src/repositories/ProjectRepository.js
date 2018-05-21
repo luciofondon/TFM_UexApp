@@ -1,9 +1,12 @@
 
 var Promise = require('promise');
 
-var Project = require('../models/ProjectModel');
-var Aplication = require('../models/AplicationModel');
-var Topic = require('../models/TopicModel');
+var Project = require('../models/ProjectModel'),
+	Aplication = require('../models/AplicationModel'),
+	Topic = require('../models/TopicModel');
+
+//var aplicationRepository = require('../repositories/AplicationRepository');
+
 
 module.exports = {
 	readAllProject: function(authUser) {
@@ -47,19 +50,21 @@ function deleteProject(authUser, project){
 		Aplication.find({project: project._id}, {"__v":0}).then(function(aplications){
 			let promisesDeleteAplications = [];
 			aplications.forEach(function(aplication){
-				promisesDeleteAplications.push(AplicationRepositoryRepository.deleteAplication(aplication._id));
-			})
+				//promisesDeleteAplications.push(aplicationRepository.deleteAplication(authUser, aplication._id));
+			});
 			Promise.all(promisesDeleteAplications).then(function(data){
 				Project.remove({_id: project._id}, function(err){
-					/*if (err) {
+					if (err) {
 						reject({error: 'Cannot delete the project'});
-					}*/
+					}
 					resolve(project);
 				});
 			}).catch(function(err){
 				reject({error: 'Cannot delete the project'});
 			});
-		}).then(function(err){
+		}).catch(function(err){
+			console.log(err)
+
 			reject({error: 'Cannot delete the project'});
 		});
 	});

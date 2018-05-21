@@ -37,6 +37,12 @@ var userSchema = new Schema({
 		default: Date.now,
 		required:true
 	}
+},
+{
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
+	}
 });
 
 userSchema.methods = require("./UserModelController");

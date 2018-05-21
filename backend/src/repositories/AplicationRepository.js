@@ -2,7 +2,8 @@ var Promise = require('promise');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
-	Topic = require('../models/TopicModel');
+	Topic = require('../models/TopicModel'),
+	Question = require('../models/QuestionModel');
 
 var projectRepository = require('../repositories/ProjectRepository');
 
@@ -33,7 +34,7 @@ function readAllAplication(authUser){
 			projects.forEach(function(project){
 				projectsIds.push(project._id);
 			});
-			Aplication.find({project: {$in: projectsIds}}).populate("project").sort({name:1}).then(function(aplications) {
+			Aplication.find({isTemplate: false, project: {$in: projectsIds}}).populate("project").sort({name:1}).then(function(aplications) {
 				resolve(aplications);
 			}).catch(function(err){
 				reject({error: 'Cannot list the aplications'});
@@ -48,19 +49,23 @@ function readAllAplication(authUser){
 function deleteAplication(authUser, aplication){
 	let promise = new Promise(function(resolve, reject){
 		Topic.find({aplication: aplication._id}, {"__v":0}).then(function(topics){
+			console.log(topics)
 			topics.forEach(function(topic){
 				Question.remove({topic: topic._id}, function(err){
 				});
 			});
-			Topic.remove({aplication: aplication_.id}, function(err){
+			Topic.remove({aplication: aplication._id}, function(err){
 				Aplication.remove({_id: aplication._id}, function(err){
 					if (err) {
+						console.log(err)
 						reject({error: 'Cannot delete the aplication'});
 					}
 					resolve(aplication);
 				});
 			});
 		}).catch(function(err){
+			console.log(err)
+
 			reject({error: 'Cannot delete the aplication'});
 		});
 	});

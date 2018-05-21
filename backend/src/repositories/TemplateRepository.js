@@ -54,7 +54,7 @@ function createTemplate(authUser, template, aplication){
 				topics.forEach(function(topic){
 					let topicCopy = JSON.parse(JSON.stringify(topic));
 					let topicTemplate = new Topic(topicCopy);
-					topicTemplate.project = aplicationTemplate._id;
+					topicTemplate.aplication = aplicationTemplate._id;
 					topicTemplate._id = mongoose.Types.ObjectId();
 					topicTemplate.save(function(err){
 						Question.find({topic: topicCopy._id}, {"__v":0}).exec(function(err, questions){
@@ -78,13 +78,20 @@ function createTemplate(authUser, template, aplication){
 }
 
 function generateTemplateXML(authUser, aplication){
+
 	let promise = new Promise(function(resolve, reject){
-		var xml = jsonxml({
+		var templateJson = {
 			template:
-				{ 	name:'Nombre Plantilla',
-					 description:'Descripcion',
-					 topics:[ 	{	name: 'template',
-									text: 'Topic1',
+				{ 	name: aplication.name,
+					description: aplication.descripction != undefined ? aplication.descripction : "",
+					topics:[]
+				}
+		};
+
+		/*
+		{	name: 'topic',
+									attrs: {name: 'Topic1'},
+
 									children: {
 										name: "questions",
 										children: {
@@ -92,25 +99,43 @@ function generateTemplateXML(authUser, aplication){
 													text: "¿Esto es una pregunta?"
 												}
 									},
-								},
-								{	name: 'template',
-									text: 'Topic2',
-									attrs: {type:2}
-								},
-								{	name: 'template',
-									text: 'Topic3'
 								}
-						   ]
-				}
-		});
+								*/
+		Topic.find({aplication: aplication._id}).sort({name:1}).then(function(topics) {
+			Question.find({topic: {$ne: null}}).populate("answers.questions").then(function(questions) {
+				topics.forEach(function(topic){
+					let questionsExport = [];
+					for(let i = 0; i < questions.length; i++){
+						if(questions[i].topic.toString() == topic._id.toString()){
+							console.log(questions[i])
+							questionsExport.push({
+									name: "question",
+									text: questions[i].description
 
-		var formattedXml = format(xml);
-		console.log(formattedXml)
+							});
+						}
+					}
+					console.log(questionsExport)
+					templateJson.template.topics.push({
+						name: 'topic',
+						attrs: {name: topic.name},
+						questions: questionsExport
 
-		let timeStamp = new Date().getTime();
-		let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
-		fs.writeFile(targetPath, formattedXml, function (err) {
-			resolve({nameFile: timeStamp + ".xml"});
+					});
+					console.log(JSON.stringify(templateJson))
+				});
+
+				var xml = jsonxml(templateJson);
+
+				var formattedXml = format(xml);
+				console.log(formattedXml)
+
+				let timeStamp = new Date().getTime();
+				let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
+				fs.writeFile(targetPath, formattedXml, function (err) {
+					resolve({nameFile: timeStamp + ".xml"});
+				});
+			});
 		});
 	});
 	return promise;

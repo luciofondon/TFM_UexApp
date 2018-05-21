@@ -1,6 +1,5 @@
 
-var mediatoryDAO = require('../DAOS/MediatoryDAO'),
-    mediatoryService = require('../services/MediatoryService');
+var mediatoryService = require('../services/MediatoryService');
 
 module.exports = function() {
 
@@ -27,7 +26,7 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
-            });		
+            });
         },
 
 		createProject: function(req, res) {
@@ -35,7 +34,7 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
-            });		
+            });
         },
 
 		readAllIssues: function(req, res){
@@ -43,7 +42,7 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
-            });		
+            });
         },
 
 		createIssues: function(req, res){
@@ -51,7 +50,7 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
-            });		
+            });
         }
 
     }

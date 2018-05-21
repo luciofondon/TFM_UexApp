@@ -15,13 +15,12 @@ let loginUser = {
 	'password': config.USER_PASSWORD_TEST
 };
 
-function login(callback){
+function login(){
 	let promise = new Promise(function(resolve, reject){
 		chai.request(server)
 		.post('/auth/login')
 		.send(loginUser)
 		.end((err, res) => {
-			console.log( res.body.token);
 			expect(res).to.have.status(200);
 			let token = res.body.token;
 			resolve(token);
@@ -30,36 +29,41 @@ function login(callback){
 	return promise;
 }
 
-describe('Insert a aplication: ',()=>{
+describe('get all aplications: ',()=>{
 	it('should insert a aplication', (done) => {
-		
-		chai.request(server)
-			.post('/auth/login')
-            .send(loginUser)
-            .end((err, res) => {
-				console.log( res.body.token);
+		login().then(function(token){
+			chai.request(server)
+			.get('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.end( function(err,res){
 				expect(res).to.have.status(200);
-				let token = res.body.token;
-
-				chai.request(server)
-				.get('/api/aplications')
-				.set('authorization', token)
-
-				.end( function(err,res){
-					console.log(res.body)
-					expect(res).to.have.status(200);
-					done();
-				});
+				done();
 			});
-
-	/*.send(
-					{
-						project: 'Id',
-						description: "Descripcion aplicacion"
-					}
-				)*/
+		});
 	});
 });
+
+describe('insert a aplication: ',()=>{
+	it('should insert a aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.get('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.send(
+				{
+					project: 'Id',
+					description: "Descripcion aplicacion"
+				}
+			)
+			.end( function(err,res){
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+});
+
+
 
 /*
 describe('Insert a aplication with error: ',()=>{

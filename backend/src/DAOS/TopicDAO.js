@@ -25,7 +25,7 @@ function readAllByAplication(req, res){
         if (err) {
             return res.status(500).json({ error: 'Cannot list all the topics' });
 		}
-		Question.find({ topic: { $ne: null } }).populate("answers.questions").exec(function(err, questions) {
+		Question.find({topic: {$ne: null}}).populate("answers.questions").exec(function(err, questions) {
 			let topicsFormat = [];
 			topics.forEach(function(topic){
 				let topicFormat = JSON.parse(JSON.stringify(topic));

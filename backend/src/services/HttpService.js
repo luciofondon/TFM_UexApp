@@ -1,7 +1,7 @@
 
 
 var request = require('request'),
-    Promise = require('promise'),
+    Promise = require('promise');
 
 const config = require('../../config/config');
 
@@ -29,7 +29,7 @@ function post(url, data){
                     resolve({error: "No se ha podido establecer conexion con el traductor"});
                 else
                     resolve(body);
-    
+
             }
         );
     });

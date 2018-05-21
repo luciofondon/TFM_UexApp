@@ -13,7 +13,7 @@ module.exports = {
 		return readAllUser(authUser);
 	},
 
-	createUser = function(authUser, user, password) {
+	createUser: function(authUser, user, password) {
 		return createUser(authUser, user, password);
 	},
 

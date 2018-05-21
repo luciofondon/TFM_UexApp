@@ -32,7 +32,7 @@ DASHBOARD (80%)
  **SABADO**- Menu lateral (Loading (fixed cabecera))
 
  **DOMINGO** - Importar plantilla
- 4 ->**VIERNES** -> Model, validate
+ Validatealidate
  1 ->**JUEVES** Grunt indexPro
 Vista detalle usuario
 Vista registro usuario
@@ -43,13 +43,16 @@ Vista Dashboard
 
 
 
+
+ Vista generador Integracion con Jira
+
+
  Vista list usuario
  Mocha (rol, aplicacion, user, login, proyecto)
- Vista generador Integracion con Jira
- Vista plantilla
- Vista template
+ Vista template (comprobar el eliminar)
+ Vista proyecto/app (Comprobar que al eliminar el proyecto se elimina app)
  Vista configurador
- Vista proyecto/app
+
 
 
 

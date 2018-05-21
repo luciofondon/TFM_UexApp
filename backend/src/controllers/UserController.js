@@ -1,5 +1,7 @@
 var _ = require('lodash');
 
+var User = require('../models/UserModel');
+
 var userMiddleware = require('../middlewares/UserMiddleware'),
     userDAO = require('../DAOS/UserDAO'),
 	userRepository = require('../repositories/UserRepository');
