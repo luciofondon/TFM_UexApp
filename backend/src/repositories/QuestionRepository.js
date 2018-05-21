@@ -13,6 +13,10 @@ module.exports = {
 		return createByTopic(authUser, question, topicId);
 	},
 
+	createQuestionAsociate: function(authUser, question, questionAsociate) {
+		return createQuestionAsociate(authUser, question, questionAsociate);
+	},
+
 	updateQuestion: function(authUser, question) {
 		return updateQuestion(authUser, question);
 	},
@@ -46,6 +50,30 @@ function createByTopic(authUser, question, topicId){
 			});
 		}else
 		reject({ error: "Parametros de la API no validos"});
+	});
+	return promise;
+}
+
+function createQuestionAsociate(authUser, question, questionAsociate){
+	let promise = new Promise(function(resolve, reject){
+		question.answers.forEach(function(answer){
+			if(answer._id.toString() == req.params.answerId.toString()){
+				answer.questions.push(questionAsociate._id);
+			}
+		});
+
+		questionAsociate.save(function(err) {
+			if (err) {
+				reject({error: 'Cannot update the question'});
+			}
+			question.save(function(err) {
+
+				if (err) {
+					reject({error: 'Cannot update the question'});
+				}
+				resolve(question);
+			});
+		});
 	});
 	return promise;
 }

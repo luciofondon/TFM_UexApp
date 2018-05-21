@@ -13,25 +13,28 @@ var Rol = require('../models/RolModel');
 User = mongoose.model('User');
 Rol = mongoose.model('Rol');
 
-exports.ensureAuthenticated = function(req, res, next){
-	ensureAuthenticated(req, res, next);
-};
+module.exports = {
 
-exports.rolAdmin = function(req, res, next){
-	rolAdmin(req, res, next);
-};
+    ensureAuthenticated = function(req, res, next){
+        ensureAuthenticated(req, res, next);
+    },
 
-exports.rolOperador = function(req, res, next){
-	rolOperador(req, res, next);
-};
+    rolAdmin = function(req, res, next){
+        rolAdmin(req, res, next);
+    },
 
-exports.rolConsultor = function(req, res, next){
-	rolConsultor(req, res, next);
-};
+    rolOperador = function(req, res, next){
+        rolOperador(req, res, next);
+    },
 
-exports.forbidden = function(req, res, next){
-	forbidden(req, res, next);
-};
+    rolConsultor = function(req, res, next){
+        rolConsultor(req, res, next);
+    },
+
+    forbidden = function(req, res, next){
+        forbidden(req, res, next);
+    }
+}
 
 //Comprobar que en la ruta /api el usuario esta autenticado (este middlware se lanza en cada peticion)
 function ensureAuthenticated(req, res, next) {

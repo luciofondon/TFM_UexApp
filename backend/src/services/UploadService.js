@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	uploadImage: function(tmpPath, targetPath){
-		upload(false, true, tmpPath, targetPath);
+		upload(tmpPath, targetPath);
 	}
 }
 

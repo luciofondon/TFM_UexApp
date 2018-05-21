@@ -33,7 +33,6 @@ module.exports = function() {
 			});
         },
 
-
         readQuestion: function(req, res) {
             res.json(req.question);
         },
@@ -55,8 +54,12 @@ module.exports = function() {
 		},
 
 		createQuestionAsociate: function(req, res) {
-            questionDAO.createQuestionAsociate(req, res);
-        },
+			questionRepository.createQuestionAsociate(req.authUser, req.question, new Question(req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});        
+		},
 
 		deleteQuestionAsociate: function(req, res) {
             questionDAO.deleteQuestionAsociate(req, res);

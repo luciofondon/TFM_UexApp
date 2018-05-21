@@ -41,11 +41,10 @@ Vista Dashboard
 
 
 
- **VIERNES** Mocha (rol, aplicacion, user, login, proyecto)
 
 
  Vista list usuario
-
+ Mocha (rol, aplicacion, user, login, proyecto)
  Vista generador Integracion con Jira
  Vista plantilla
  Vista template

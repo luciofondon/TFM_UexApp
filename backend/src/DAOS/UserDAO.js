@@ -19,25 +19,10 @@ var Rol = require('../models/RolModel');
 var Project = require('../models/ProjectModel');
     Project = mongoose.model('Project');
 
-exports.createUser = function(req, res) {
-    createUser(req, res);
-};
-
-exports.updateMeUser = function(req, res) {
-    updateMeUser(req, res);
-};
-
-exports.resetPasswordUser = function(req, res) {
-	resetPasswordUser(req, res);
-};
-
-
-
 
 exports.signupUser = function(req, res) {
     signupUser(req, res);
 };
-
 
 exports.loginUser = function(req, res) {
     loginUser(req, res);
@@ -79,7 +64,7 @@ console.log(file)
          });
      }
 }
-
+/*
 function updateMeUser(req, res){
 	let user = req.authUser;
 	user.name = req.body.name;
@@ -91,7 +76,7 @@ function updateMeUser(req, res){
 		}
 		res.json(user);
 	});
-}
+}*/
 
 function loginUser(req, res){
 	console.log(req.body)
@@ -145,7 +130,7 @@ function readAllUser(req, res){
 }
 */
 
-
+/*
 function createUser(req, res){
     let user = new User(req.body);
     //Codificar la password
@@ -159,7 +144,7 @@ function createUser(req, res){
         });
     }else
         return res.status(500).json({ error: "Parametros de la API no validos"});
-}
+}*/
 
 /*
 function updateUser(req, res){
@@ -189,7 +174,7 @@ function deleteUser(req, res){
         res.json(user);
     });
 }*/
-
+/*
 function resetPasswordUser(req, res){
     User.findOne({_id: req.params.userId}, function(err, user) {
         if (err || user == undefined) {
@@ -207,7 +192,7 @@ function resetPasswordUser(req, res){
             res.json(user);
         });
     });
-}
+}*/
 
 function validateUser(user){
     return true;

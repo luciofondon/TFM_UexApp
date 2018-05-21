@@ -19,7 +19,6 @@ module.exports = {
 	deleteAnswer: function(authUser, question, answerId) {
 		return deleteAnswer(authUser, question, answerId);
 	}
-
 }
 
 function readAnswer(authUser, question, answerId){

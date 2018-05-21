@@ -1,34 +1,58 @@
 
-var mediatoryDAO = require('../DAOS/MediatoryDAO');
-
+var mediatoryDAO = require('../DAOS/MediatoryDAO'),
+    mediatoryService = require('../services/MediatoryService');
 
 module.exports = function() {
 
     return {
 
         getProjects: function(req, res) {
-            mediatoryDAO.getProjects(req,res);
+            mediatoryService.getProjects(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         getApps: function(req, res) {
-            mediatoryDAO.getApps(req,res);
+            mediatoryService.getApps(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         checkComunication: function(req, res) {
-            mediatoryDAO.checkComunication(req,res);
-		},
+            mediatoryService.checkComunication(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+            });		
+        },
 
 		createProject: function(req, res) {
-            mediatoryDAO.createProject(req,res);
-		},
+            mediatoryService.createProject(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+            });		
+        },
 
 		readAllIssues: function(req, res){
-            mediatoryDAO.readAllIssues(req,res);
-		},
+            mediatoryService.readAllIssues(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+            });		
+        },
 
 		createIssues: function(req, res){
-            mediatoryDAO.createIssues(req,res);
-		}
+            mediatoryService.createIssues(req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+            });		
+        }
 
     }
 }

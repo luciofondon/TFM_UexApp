@@ -7,7 +7,7 @@ var Promise = require('promise'),
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
-	Topic = require('../models/TopicModel')
+	Topic = require('../models/TopicModel'),
 	Question = require('../models/QuestionModel');
 
 var projectRepository = require('../repositories/ProjectRepository');

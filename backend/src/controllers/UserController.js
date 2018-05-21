@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 var userMiddleware = require('../middlewares/UserMiddleware'),
-    userDAO = require('../DAOS/UserDAO');
+    userDAO = require('../DAOS/UserDAO'),
 	userRepository = require('../repositories/UserRepository');
 
 module.exports = function() {
@@ -24,7 +24,11 @@ module.exports = function() {
         },
 
         createUser: function(req, res){
-            userDAO.createUser(req, res);
+            userRepository.createUser(req.authUser, new User(req.body), req.body.password).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         updateUser: function(req, res){
@@ -44,7 +48,11 @@ module.exports = function() {
 		},
 
         resetPasswordUser: function(req, res){
-            userDAO.resetPasswordUser(req, res);
+            userRepository.deleteUser(req.authUser, req.user,  req.body.password).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         login: function(req, res) {
@@ -60,7 +68,11 @@ module.exports = function() {
 		},
 
 		updateMeUser: function(req, res) {
-            userDAO.updateMeUser(req, res);
+            userRepository.updateMeUser(req.authUser, req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
 		},
 
 		uploadImageUser: function(req, res){

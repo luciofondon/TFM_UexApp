@@ -17,10 +17,6 @@ exports.updateQuestionAsociate = function(req, res) {
     updateQuestionAsociate(req, res);
 };
 
-exports.createQuestionAsociate = function(req, res) {
-    createQuestionAsociate(req, res);
-};
-
 exports.readQuestionAsociate = function(req, res) {
     readQuestionAsociate(req, res);
 };
@@ -44,6 +40,7 @@ function createAnswerAsociate(req, res){
 function deleteQuestionAsociate(req, res){
 }
 
+/*
 function createQuestionAsociate(req, res){
 	var question = req.question;
 	let questionAsociate = new Question(req.body);
@@ -66,7 +63,7 @@ function createQuestionAsociate(req, res){
 			res.json(question);
 		});
 	});
-}
+}*/
 
 function updateQuestionAsociate(req, res){
 }

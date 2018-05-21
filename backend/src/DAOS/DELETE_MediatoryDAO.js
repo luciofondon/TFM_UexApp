@@ -11,10 +11,6 @@ exports.getProjects = function(req, res) {
     getProjects(req, res);
 };
 
-exports.getApps = function(req, res) {
-    getApps(req, res);
-};
-
 exports.createProject = function(req, res) {
     createProject(req, res);
 };
@@ -64,8 +60,6 @@ function createIssues(req, res){
 
         }
     );
-
-
 }
 
 function createProject(req, res){
@@ -81,11 +75,10 @@ function createProject(req, res){
 				res.status(500).json({error: "No se ha podido establecer conexion con el traductor"});
 			else
 				res.status(response.statusCode).json(body);
-
         }
     );
 }
-
+/*
 
 function getApps(req, res){
 	request(
@@ -101,7 +94,7 @@ function getApps(req, res){
 				res.status(500).json({error: "No se ha podido establecer conexion con el traductor"});
         }
     );
-}
+}*/
 
 function getProjects(req, res){
 	request(
