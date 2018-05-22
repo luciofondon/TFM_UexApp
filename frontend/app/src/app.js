@@ -71,7 +71,7 @@ var app = angular.module('tfm.uex',
 			})
 			.state('dashboard', {
 				url : '/dashboard',
-				templateUrl : cfg.pathTemplates + '/templates/dashboard.html',
+				templateUrl : cfg.pathTemplates + '/dashboard.html',
 				controller 	: 'DashboardController as da',
 				resolve:{
 					loginRequired: loginRequired

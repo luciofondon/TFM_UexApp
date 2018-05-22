@@ -122,7 +122,7 @@ angular.module('tfm.uex').controller('UserListController',
 			ul.error = "Las dos contraseñas especificadas no coinciden";
 
 		return ul.error != null ? true : false;
-	} 
+	}
 
     function validateUser(){
 		ul.error = null;
@@ -175,7 +175,6 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
 	function upload(callback){
-<<<<<<< HEAD
 		if(ul.imageUpload != undefined){
             UploadService.uploadImage(ul.imageUpload ).then(function(data){
                 callback(200, data.name);
@@ -193,12 +192,10 @@ angular.module('tfm.uex').controller('UserListController',
 Upload.upload({
 				url: '/api/user/upload',
 				file: ul.user.image
-=======
 		if(vm.imageUpload != undefined){
 			Upload.upload({
 				url: '/api/user/upload',
 				file: vm.imageUpload
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 			}).then(function (response) {
 				callback(response.status, response.data.name);
 			}, function (response) { // Error

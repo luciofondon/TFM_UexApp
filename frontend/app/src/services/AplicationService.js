@@ -22,7 +22,12 @@ angular.module('tfm.uex').factory('AplicationService', ['$http', function($http)
 
 		generateAplication: function(aplicationId, template){
 			return generateAplication(aplicationId, template);
+		},
+
+		generateAplicationFromXML: function(nameFile){
+			return generateAplicationFromXML(nameFile);
 		}
+
 	};
 
 	function readAllAplications(){
@@ -46,7 +51,11 @@ angular.module('tfm.uex').factory('AplicationService', ['$http', function($http)
 	}
 
 	function generateAplication(aplicationId, template){
-		return $http.put('/api/aplication/' + aplication._id, template);
+		return $http.post('/api/aplication/template/' + aplicationId, template);
+	}
+
+	function generateAplicationFromXML(nameFile){
+		return $http.post('/api/aplication/xml', nameFile);
 	}
 
 }]);
