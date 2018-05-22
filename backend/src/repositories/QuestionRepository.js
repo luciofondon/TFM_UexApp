@@ -105,8 +105,12 @@ function deleteQuestion(authUser, question){
 	return promise;
 }
 
+<<<<<<< HEAD
 function validateQuestion(question){
 	if(question.description == undefined || question.description == "")
 		return false;
+=======
+function validateQuestion(topic){
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
     return true;
 }

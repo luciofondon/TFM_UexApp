@@ -43,7 +43,7 @@ module.exports = function() {
         },
 
         deleteAplication: function(req, res) {
-			aplicationRepository.updateAplication(req.authUser, req.aplication).then(function(data){
+			aplicationRepository.deleteAplication(req.authUser, req.aplication).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);

@@ -20,7 +20,4 @@ var rolSchema = new Schema({
 	}
 });
 
-rolSchema.methods = require("./RolModelController");
-
-
 module.exports = mongoose.model('Rol', rolSchema);

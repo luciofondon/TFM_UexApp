@@ -20,6 +20,7 @@ Directiva
 ************************************************************
 ->SEMANA 14 - 20
 ************************************************************
+
 Vista Dashboard
 Grunt indexPro
 Vista detalle usuario
@@ -34,6 +35,7 @@ Vista detalle usuario
  Vista configurador
  Vista proyecto/app
  Vista list usuario
+
 
 
 

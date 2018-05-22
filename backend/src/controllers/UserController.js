@@ -3,6 +3,10 @@ var _ = require('lodash');
 var User = require('../models/UserModel');
 
 var userMiddleware = require('../middlewares/UserMiddleware'),
+<<<<<<< HEAD
+=======
+    userDAO = require('../DAOS/UserDAO'),
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	userRepository = require('../repositories/UserRepository');
 
 module.exports = function() {
@@ -82,6 +86,13 @@ module.exports = function() {
 			}).catch(function(err){
 				return res.status(500).json(err);
 			});
+<<<<<<< HEAD
+=======
+		},
+
+		uploadImageUser: function(req, res){
+			userDAO.uploadImageUser(req, res);
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		}
     }
 }

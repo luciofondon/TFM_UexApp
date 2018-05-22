@@ -1,6 +1,10 @@
 
+<<<<<<< HEAD
 var mediatoryDAO = require('../DAOS/MediatoryDAO'),
     mediatoryService = require('../services/MediatoryService');
+=======
+var mediatoryService = require('../services/MediatoryService');
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 
 module.exports = function() {
 
@@ -27,7 +31,11 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
+<<<<<<< HEAD
             });		
+=======
+            });
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
         },
 
 		createProject: function(req, res) {
@@ -35,7 +43,11 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
+<<<<<<< HEAD
             });		
+=======
+            });
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
         },
 
 		readAllIssues: function(req, res){
@@ -43,7 +55,11 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
+<<<<<<< HEAD
             });		
+=======
+            });
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
         },
 
 		createIssues: function(req, res){
@@ -51,7 +67,11 @@ module.exports = function() {
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
+<<<<<<< HEAD
             });		
+=======
+            });
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
         }
 
     }

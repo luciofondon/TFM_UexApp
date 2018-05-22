@@ -6,17 +6,20 @@ var topicSchema = new Schema({
 		type: String,
 		required: true
 	},
-	project: {
-		type: Schema.ObjectId,
-		ref: 'Project'
-	},
 	aplication: {
 		type: Schema.ObjectId,
 		ref: 'Aplication',
+		required: true,
 	},
 	created: {
 		type: Date,
 		default: Date.now
+	}
+},
+{
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
 	}
 });
 

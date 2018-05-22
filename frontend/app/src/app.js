@@ -123,8 +123,8 @@ var app = angular.module('tfm.uex',
 			});
 		}
 
-		function templateData(ProjectService, $stateParams){
-			return ProjectService.getProject($stateParams.templateId).then(function(response){
+		function templateData(AplicationService, $stateParams){
+			return AplicationService.readAplication($stateParams.templateId).then(function(response){
 				return response;
 			}).catch(function(err) {
 				return null;

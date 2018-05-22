@@ -9,8 +9,13 @@ module.exports = {
 		uploadXML(file);
 	},
 
+<<<<<<< HEAD
 	uploadImage: function(file){
 		return uploadImage(file);
+=======
+	uploadImage: function(tmpPath, targetPath){
+		upload(tmpPath, targetPath);
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	}
 }
 function uploadImage(file){

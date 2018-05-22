@@ -15,6 +15,7 @@ let loginUser = {
 	'password': config.USER_PASSWORD_TEST
 };
 
+<<<<<<< HEAD
 function login(callback){
 	let promise = new Promise(function(resolve, reject){
 		chai.request(server)
@@ -33,33 +34,57 @@ function login(callback){
 describe('Insert a aplication: ',()=>{
 	it('should insert a aplication', (done) => {
 		
+=======
+function login(){
+	let promise = new Promise(function(resolve, reject){
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		chai.request(server)
-			.post('/auth/login')
-            .send(loginUser)
-            .end((err, res) => {
-				console.log( res.body.token);
+		.post('/auth/login')
+		.send(loginUser)
+		.end((err, res) => {
+			expect(res).to.have.status(200);
+			let token = res.body.token;
+			resolve(token);
+		});
+	});
+	return promise;
+}
+
+describe('get all aplications: ',()=>{
+	it('should insert a aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.get('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.end( function(err,res){
 				expect(res).to.have.status(200);
-				let token = res.body.token;
-
-				chai.request(server)
-				.get('/api/aplications')
-				.set('authorization', token)
-
-				.end( function(err,res){
-					console.log(res.body)
-					expect(res).to.have.status(200);
-					done();
-				});
+				done();
 			});
-
-	/*.send(
-					{
-						project: 'Id',
-						description: "Descripcion aplicacion"
-					}
-				)*/
+		});
 	});
 });
+
+describe('insert a aplication: ',()=>{
+	it('should insert a aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.get('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.send(
+				{
+					project: 'Id',
+					description: "Descripcion aplicacion"
+				}
+			)
+			.end( function(err,res){
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+});
+
+
 
 /*
 describe('Insert a aplication with error: ',()=>{

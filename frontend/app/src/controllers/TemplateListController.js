@@ -40,7 +40,6 @@ angular.module('tfm.uex').controller('TemplateListController',
 				{field: "created", title: "Creación", align: 'center', valign: 'middle', sortable: true},
 				{field: "nameTemplate", title: "Plantilla", align: 'center', valign: 'middle', sortable: true},
 				{field: "name", title: "Proyecto", align: 'center', valign: 'middle', sortable: true},
-				{field: "key", title: "KEY", align: 'center', valign: 'middle', sortable: true},
 				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
 			];
 

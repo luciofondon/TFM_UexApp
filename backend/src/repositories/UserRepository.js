@@ -2,8 +2,12 @@
 var Promise = require('promise');
 
 var mailService = require('../services/MailService'),
+<<<<<<< HEAD
 	systemService = require('../services/SystemService'),
 	uploadService = require('../services/UploadService');
+=======
+	systemService = require('../services/SystemService');
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 
 var User = require('../models/UserModel');
 	User = mongoose.model('User');
@@ -14,7 +18,11 @@ module.exports = {
 		return readAllUser(authUser);
 	},
 
+<<<<<<< HEAD
 	createUser = function(authUser, user, password) {
+=======
+	createUser: function(authUser, user, password) {
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		return createUser(authUser, user, password);
 	},
 
@@ -36,10 +44,13 @@ module.exports = {
 
 	loginUser: function(email, password) {
 		return loginUser(email, password);
+<<<<<<< HEAD
 	},
 
 	signupUser: function(user, password) {
 		return signupUser(user, password);
+=======
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	}
 }
 
@@ -162,6 +173,7 @@ function loginUser(email, password){
 	return promise;
 }
 
+<<<<<<< HEAD
 function signupUser(user, password){
 	let promise = new Promise(function(resolve, reject){
 		//Codificar la password
@@ -211,5 +223,9 @@ function validateUser(user){
 		return false;
 	else if(user.password == undefined || user.password == "")
 		return false;
+=======
+
+function validateUser(user){
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	return true;
 }

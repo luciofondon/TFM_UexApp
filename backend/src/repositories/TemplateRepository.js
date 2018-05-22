@@ -54,7 +54,11 @@ function createTemplate(authUser, template, aplication){
 				topics.forEach(function(topic){
 					let topicCopy = JSON.parse(JSON.stringify(topic));
 					let topicTemplate = new Topic(topicCopy);
+<<<<<<< HEAD
 					topicTemplate.project = aplicationTemplate._id;
+=======
+					topicTemplate.aplication = aplicationTemplate._id;
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 					topicTemplate._id = mongoose.Types.ObjectId();
 					topicTemplate.save(function(err){
 						Question.find({topic: topicCopy._id}, {"__v":0}).exec(function(err, questions){
@@ -78,6 +82,7 @@ function createTemplate(authUser, template, aplication){
 }
 
 function generateTemplateXML(authUser, aplication){
+<<<<<<< HEAD
 	let promise = new Promise(function(resolve, reject){
 		var xml = jsonxml({
 			template:
@@ -85,6 +90,22 @@ function generateTemplateXML(authUser, aplication){
 					 description:'Descripcion',
 					 topics:[ 	{	name: 'template',
 									text: 'Topic1',
+=======
+
+	let promise = new Promise(function(resolve, reject){
+		var templateJson = {
+			template:
+				{ 	name: aplication.name,
+					description: aplication.descripction != undefined ? aplication.descripction : "",
+					topics:[]
+				}
+		};
+
+		/*
+		{	name: 'topic',
+									attrs: {name: 'Topic1'},
+
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 									children: {
 										name: "questions",
 										children: {
@@ -92,6 +113,7 @@ function generateTemplateXML(authUser, aplication){
 													text: "¿Esto es una pregunta?"
 												}
 									},
+<<<<<<< HEAD
 								},
 								{	name: 'template',
 									text: 'Topic2',
@@ -111,6 +133,45 @@ function generateTemplateXML(authUser, aplication){
 		let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
 		fs.writeFile(targetPath, formattedXml, function (err) {
 			resolve({nameFile: timeStamp + ".xml"});
+=======
+								}
+								*/
+		Topic.find({aplication: aplication._id}).sort({name:1}).then(function(topics) {
+			Question.find({topic: {$ne: null}}).populate("answers.questions").then(function(questions) {
+				topics.forEach(function(topic){
+					let questionsExport = [];
+					for(let i = 0; i < questions.length; i++){
+						if(questions[i].topic.toString() == topic._id.toString()){
+							console.log(questions[i])
+							questionsExport.push({
+									name: "question",
+									text: questions[i].description
+
+							});
+						}
+					}
+					console.log(questionsExport)
+					templateJson.template.topics.push({
+						name: 'topic',
+						attrs: {name: topic.name},
+						questions: questionsExport
+
+					});
+					console.log(JSON.stringify(templateJson))
+				});
+
+				var xml = jsonxml(templateJson);
+
+				var formattedXml = format(xml);
+				console.log(formattedXml)
+
+				let timeStamp = new Date().getTime();
+				let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
+				fs.writeFile(targetPath, formattedXml, function (err) {
+					resolve({nameFile: timeStamp + ".xml"});
+				});
+			});
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		});
 	});
 	return promise;
@@ -128,7 +189,10 @@ function deleteTemplate(authUser, aplication){
 }
 
 function validateTemplate(template){
+<<<<<<< HEAD
 	if(template.name == undefined || template.name == "")
     	return false;
+=======
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
     return true;
 }

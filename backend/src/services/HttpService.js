@@ -1,7 +1,11 @@
 
 
 var request = require('request'),
+<<<<<<< HEAD
     Promise = require('promise'),
+=======
+    Promise = require('promise');
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 
 const config = require('../../config/config');
 
@@ -29,7 +33,11 @@ function post(url, data){
                     resolve({error: "No se ha podido establecer conexion con el traductor"});
                 else
                     resolve(body);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
             }
         );
     });
@@ -53,4 +61,8 @@ function get(url){
         );
     });
     return promise;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5

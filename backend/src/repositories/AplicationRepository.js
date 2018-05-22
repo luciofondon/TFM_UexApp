@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 var Promise = require('promise'),
 	mongoose = require('mongoose');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
 	Topic = require('../models/TopicModel');
+=======
+var Promise = require('promise');
+
+var Project = require('../models/ProjectModel'),
+	Aplication = require('../models/AplicationModel'),
+	Topic = require('../models/TopicModel'),
+	Question = require('../models/QuestionModel');
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 
 var projectRepository = require('../repositories/ProjectRepository');
 
@@ -23,10 +32,13 @@ module.exports = {
 
 	deleteAplication: function(authUser, aplication) {
 		return deleteAplication(authUser, aplication);
+<<<<<<< HEAD
 	},
 
 	generateAplication(authUser, aplication, template){
 		return generateAplication(authUser, aplication, template);
+=======
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	}
 
 }
@@ -38,7 +50,11 @@ function readAllAplication(authUser){
 			projects.forEach(function(project){
 				projectsIds.push(project._id);
 			});
+<<<<<<< HEAD
 			Aplication.find({project: {$in: projectsIds}}).populate("project").sort({name:1}).then(function(aplications) {
+=======
+			Aplication.find({isTemplate: false, project: {$in: projectsIds}}).populate("project").sort({name:1}).then(function(aplications) {
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 				resolve(aplications);
 			}).catch(function(err){
 				reject({error: 'Cannot list the aplications'});
@@ -53,19 +69,35 @@ function readAllAplication(authUser){
 function deleteAplication(authUser, aplication){
 	let promise = new Promise(function(resolve, reject){
 		Topic.find({aplication: aplication._id}, {"__v":0}).then(function(topics){
+<<<<<<< HEAD
+=======
+			console.log(topics)
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 			topics.forEach(function(topic){
 				Question.remove({topic: topic._id}, function(err){
 				});
 			});
+<<<<<<< HEAD
 			Topic.remove({aplication: aplication_.id}, function(err){
 				Aplication.remove({_id: aplication._id}, function(err){
 					if (err) {
+=======
+			Topic.remove({aplication: aplication._id}, function(err){
+				Aplication.remove({_id: aplication._id}, function(err){
+					if (err) {
+						console.log(err)
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 						reject({error: 'Cannot delete the aplication'});
 					}
 					resolve(aplication);
 				});
 			});
 		}).catch(function(err){
+<<<<<<< HEAD
+=======
+			console.log(err)
+
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 			reject({error: 'Cannot delete the aplication'});
 		});
 	});
@@ -88,6 +120,7 @@ function updateAplication(authUser, aplication){
 	return promise;
 }
 
+<<<<<<< HEAD
 function generateAplication(authUser, aplication, template){
 	let promise = new Promise(function(resolve, reject){
 		let aplicationCopy = JSON.parse(JSON.stringify(aplication));
@@ -129,5 +162,8 @@ function validateAplication(aplication){
 		return false;
 	else if(aplication.project == undefined || aplication.project == "")
 		return false;
+=======
+function validateAplication(aplication){
+>>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	return true;
 }
