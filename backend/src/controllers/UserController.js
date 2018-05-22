@@ -3,10 +3,6 @@ var _ = require('lodash');
 var User = require('../models/UserModel');
 
 var userMiddleware = require('../middlewares/UserMiddleware'),
-<<<<<<< HEAD
-=======
-    userDAO = require('../DAOS/UserDAO'),
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	userRepository = require('../repositories/UserRepository');
 
 module.exports = function() {
@@ -61,15 +57,15 @@ module.exports = function() {
         },
 
         login: function(req, res) {
-			userRepository.login(req.body.email,  req.body.password).then(function(data){
+			userRepository.loginUser(req.body.email, req.body.password).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
-			});        
+			});
 		},
 
 		signup: function(req, res) {
-			userRepository.signup(new User(req.body),  req.body.password).then(function(data){
+			userRepository.signupUser(new User(req.body),  req.body.password).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
@@ -86,14 +82,8 @@ module.exports = function() {
 			}).catch(function(err){
 				return res.status(500).json(err);
 			});
-<<<<<<< HEAD
-=======
-		},
-
-		uploadImageUser: function(req, res){
-			userDAO.uploadImageUser(req, res);
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		}
+
     }
 }
 

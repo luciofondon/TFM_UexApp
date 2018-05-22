@@ -15,8 +15,12 @@ module.exports = function(app){
 
 	//Generar a partir a partir de una plantilla (aplication)
 	app.route('/aplication/template/:aplicationId')
-		.post(systemMiddleware.rolOperador, aplicationController.generateAplication)
-	
+		.post(systemMiddleware.rolOperador, aplicationController.generateAplication);
+
+	// Generar a partir de una plantilla xml subida
+	app.route('/aplication/xml')
+		.post(systemMiddleware.rolOperador, aplicationController.generateAplicationFromXML);
+
 	app.param('aplicationId', aplicationController.loadAplication);
 
 }

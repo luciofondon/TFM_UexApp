@@ -15,25 +15,6 @@ Rol = mongoose.model('Rol');
 
 module.exports = {
 
-<<<<<<< HEAD
-    ensureAuthenticated = function(req, res, next){
-        ensureAuthenticated(req, res, next);
-    },
-
-    rolAdmin = function(req, res, next){
-        rolAdmin(req, res, next);
-    },
-
-    rolOperador = function(req, res, next){
-        rolOperador(req, res, next);
-    },
-
-    rolConsultor = function(req, res, next){
-        rolConsultor(req, res, next);
-    },
-
-    forbidden = function(req, res, next){
-=======
     ensureAuthenticated: function(req, res, next){
         ensureAuthenticated(req, res, next);
     },
@@ -51,7 +32,6 @@ module.exports = {
     },
 
     forbidden: function(req, res, next){
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
         forbidden(req, res, next);
     }
 }

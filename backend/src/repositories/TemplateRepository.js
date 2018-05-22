@@ -54,11 +54,7 @@ function createTemplate(authUser, template, aplication){
 				topics.forEach(function(topic){
 					let topicCopy = JSON.parse(JSON.stringify(topic));
 					let topicTemplate = new Topic(topicCopy);
-<<<<<<< HEAD
-					topicTemplate.project = aplicationTemplate._id;
-=======
 					topicTemplate.aplication = aplicationTemplate._id;
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 					topicTemplate._id = mongoose.Types.ObjectId();
 					topicTemplate.save(function(err){
 						Question.find({topic: topicCopy._id}, {"__v":0}).exec(function(err, questions){
@@ -82,16 +78,6 @@ function createTemplate(authUser, template, aplication){
 }
 
 function generateTemplateXML(authUser, aplication){
-<<<<<<< HEAD
-	let promise = new Promise(function(resolve, reject){
-		var xml = jsonxml({
-			template:
-				{ 	name:'Nombre Plantilla',
-					 description:'Descripcion',
-					 topics:[ 	{	name: 'template',
-									text: 'Topic1',
-=======
-
 	let promise = new Promise(function(resolve, reject){
 		var templateJson = {
 			template:
@@ -101,41 +87,7 @@ function generateTemplateXML(authUser, aplication){
 				}
 		};
 
-		/*
-		{	name: 'topic',
-									attrs: {name: 'Topic1'},
 
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
-									children: {
-										name: "questions",
-										children: {
-													name: "question",
-													text: "¿Esto es una pregunta?"
-												}
-									},
-<<<<<<< HEAD
-								},
-								{	name: 'template',
-									text: 'Topic2',
-									attrs: {type:2}
-								},
-								{	name: 'template',
-									text: 'Topic3'
-								}
-						   ]
-				}
-		});
-
-		var formattedXml = format(xml);
-		console.log(formattedXml)
-
-		let timeStamp = new Date().getTime();
-		let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');
-		fs.writeFile(targetPath, formattedXml, function (err) {
-			resolve({nameFile: timeStamp + ".xml"});
-=======
-								}
-								*/
 		Topic.find({aplication: aplication._id}).sort({name:1}).then(function(topics) {
 			Question.find({topic: {$ne: null}}).populate("answers.questions").then(function(questions) {
 				topics.forEach(function(topic){
@@ -171,7 +123,6 @@ function generateTemplateXML(authUser, aplication){
 					resolve({nameFile: timeStamp + ".xml"});
 				});
 			});
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 		});
 	});
 	return promise;
@@ -189,10 +140,7 @@ function deleteTemplate(authUser, aplication){
 }
 
 function validateTemplate(template){
-<<<<<<< HEAD
 	if(template.name == undefined || template.name == "")
     	return false;
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
     return true;
 }

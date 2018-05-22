@@ -51,12 +51,20 @@ module.exports = function() {
 		},
 
 		generateAplication: function(req, res){
-			aplicationRepository.generateAplication(req.authUser, req.aplication, req.body).then(function(data){
+			aplicationRepository.generateAplication(req.authUser, req.body, req.aplication).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);
 			});
-		}
+		},
+
+		generateAplicationFromXML: function(req, res){
+			aplicationRepository.generateAplicationFromXML(req.authUser, req.body.name).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
+		},
 
     }
 }

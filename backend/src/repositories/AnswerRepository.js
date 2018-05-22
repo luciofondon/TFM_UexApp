@@ -95,12 +95,9 @@ function deleteAnswer(authUser, question, answerId){
 
 
 function validateAnswer(answer){
-<<<<<<< HEAD
 	if(answer.description == undefined || answer.description == "")
 		return false;
 	else if(answer.requirement == undefined || answer.requirement == "")
 		return false;
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	return true;
 }

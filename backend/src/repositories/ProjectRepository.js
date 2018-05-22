@@ -1,18 +1,12 @@
 
 var Promise = require('promise');
 
-<<<<<<< HEAD
-var Project = require('../models/ProjectModel');
-var Aplication = require('../models/AplicationModel');
-var Topic = require('../models/TopicModel');
-=======
+
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
 	Topic = require('../models/TopicModel');
 
 //var aplicationRepository = require('../repositories/AplicationRepository');
-
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 
 module.exports = {
 	readAllProject: function(authUser) {
@@ -56,35 +50,21 @@ function deleteProject(authUser, project){
 		Aplication.find({project: project._id}, {"__v":0}).then(function(aplications){
 			let promisesDeleteAplications = [];
 			aplications.forEach(function(aplication){
-<<<<<<< HEAD
 				promisesDeleteAplications.push(AplicationRepositoryRepository.deleteAplication(aplication._id));
 			})
-			Promise.all(promisesDeleteAplications).then(function(data){
-				Project.remove({_id: project._id}, function(err){
-					/*if (err) {
-						reject({error: 'Cannot delete the project'});
-					}*/
-=======
-				//promisesDeleteAplications.push(aplicationRepository.deleteAplication(authUser, aplication._id));
-			});
+
 			Promise.all(promisesDeleteAplications).then(function(data){
 				Project.remove({_id: project._id}, function(err){
 					if (err) {
 						reject({error: 'Cannot delete the project'});
 					}
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 					resolve(project);
 				});
 			}).catch(function(err){
 				reject({error: 'Cannot delete the project'});
 			});
-<<<<<<< HEAD
-		}).then(function(err){
-=======
-		}).catch(function(err){
-			console.log(err)
 
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
+		}).catch(function(err){
 			reject({error: 'Cannot delete the project'});
 		});
 	});
@@ -109,14 +89,11 @@ function updateProject(authUser, project){
 }
 
 function validateProject(project){
-<<<<<<< HEAD
 	if(project.name == undefined || project.name == "")
 		return false;
 	else if(project.key == undefined || project.key == "")
 		return false;
 	else if(project.description == undefined || project.description == "")
 		return false;
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	return true;
 }

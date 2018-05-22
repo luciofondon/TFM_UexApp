@@ -7,13 +7,10 @@ var Question = require('../models/QuestionModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
-<<<<<<< HEAD
 	readAllByAplication: function(authUser, aplicationId) {
 		return readAllByAplication(authUser, aplicationId);
 	},
 
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	createTopicByAplication: function(authUser, topic, aplicationId) {
 		return createTopicByAplication(authUser, topic, aplicationId);
 	},
@@ -27,7 +24,6 @@ module.exports = {
 	}
 }
 
-<<<<<<< HEAD
 function readAllByAplication(authUser, aplicationId){
 	let promise = new Promise(function(resolve, reject){
 		Topic.find({aplication: aplicationId}).sort({name:1}).then(function(topics) {
@@ -44,7 +40,7 @@ function readAllByAplication(authUser, aplicationId){
 					}
 					topicsFormat.push(topicFormat);
 				});
-				res.json(topicsFormat);
+				resolve(topicsFormat);
 			});
 		}).catch(function(err){
 			reject({ error: 'Cannot list all the topics' });
@@ -53,8 +49,6 @@ function readAllByAplication(authUser, aplicationId){
 	return promise;
 }
 
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 function createTopicByAplication(authUser, topic, aplicationId){
 	let promise = new Promise(function(resolve, reject){
 		topic.aplication = aplicationId; 
@@ -101,10 +95,7 @@ function updateTopic(authUser, topic){
 }
 
 function validateTopic(topic){
-<<<<<<< HEAD
 	if(topic.name == undefined || topic.name == "")
 		return false;
-=======
->>>>>>> effc82b2ade007cd6c4ef069e7cb91e507db9ab5
 	return true;
 }
