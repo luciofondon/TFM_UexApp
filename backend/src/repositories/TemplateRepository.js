@@ -7,7 +7,7 @@ var Promise = require('promise'),
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
-	Topic = require('../models/TopicModel')
+	Topic = require('../models/TopicModel'),
 	Question = require('../models/QuestionModel');
 
 var projectRepository = require('../repositories/ProjectRepository');
@@ -128,5 +128,7 @@ function deleteTemplate(authUser, aplication){
 }
 
 function validateTemplate(template){
+	if(template.name == undefined || template.name == "")
+    	return false;
     return true;
 }

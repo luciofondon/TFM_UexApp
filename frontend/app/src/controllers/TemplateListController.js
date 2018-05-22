@@ -2,18 +2,18 @@ angular.module('tfm.uex').controller('TemplateListController',
 	['$rootScope', '$http', 'BootstrapTableService', 'TemplateService', '$state', '$ngConfirm', '$window',
 		function($rootScope, $http, BootstrapTableService, TemplateService, $state, $ngConfirm, $window){
 
-	var vm = this;
+	var tl = this;
 
-    vm.bsTableTemplate = {};
-    vm.alerts = [];
-    vm.errores = [];
-    vm.mode = 1;
+    tl.bsTableTemplate = {};
+    tl.alerts = [];
+    tl.errores = [];
+    tl.mode = 1;
 
-	vm.init = function(){
-		vm.loadProjectList();
+	tl.init = function(){
+		tl.loadProjectList();
 	};
 
-	vm.loadProjectList = function(){
+	tl.loadProjectList = function(){
         TemplateService.readAllTemplates().then(function(response) {
 			var templates = response.data;
             templates.forEach(function(template){
@@ -44,7 +44,7 @@ angular.module('tfm.uex').controller('TemplateListController',
 				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
 			];
 
-			vm.bsTableTemplate = BootstrapTableService.createTableSimple(templates, "PlantillaTFM-Uex", columns);
+			tl.bsTableTemplate = BootstrapTableService.createTableSimple(templates, "PlantillaTFM-Uex", columns);
 
         });
 
@@ -58,9 +58,9 @@ angular.module('tfm.uex').controller('TemplateListController',
 							btnClass: 'btn-blue',
 							action: function(scope, button){
 								TemplateService.deleteTemplate(row._id).then(function(response) {
-									for(var i = vm.bsTableTemplate.options.data.length; i--;){
-										if(vm.bsTableTemplate.options.data[i]._id == row._id){
-											vm.bsTableTemplate.options.data.splice(i, 1);
+									for(var i = tl.bsTableTemplate.options.data.length; i--;){
+										if(tl.bsTableTemplate.options.data[i]._id == row._id){
+											tl.bsTableTemplate.options.data.splice(i, 1);
 											$ngConfirm('La plantilla ha sido eliminado correctamente');
 										}
 									}

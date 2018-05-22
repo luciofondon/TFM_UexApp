@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="vm.init();">
+<section class="content-header" ng-init="pl.init();">
 	<h1>
 		Proyectos
 		<small>Mantenimiento y gestión de proyectos</small>
@@ -19,12 +19,12 @@
 			<h3 class="box-title">Configuración de proyectos</h3>
 		</div>
 		<div class="box-body" >
-			<button id="crear-project" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="vm.mode = 1;"  >
+			<button id="crear-project" class="btn btn-default" data-toggle="modal" data-target="#modal-project"  ng-click="pl.mode = 1;"  >
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear proyecto
 			</button>
 
 			<div class="table-responsive my-table">
-				<table id="table" bs-table-control="vm.bsTableProject"></table>
+				<table id="table" bs-table-control="pl.bsTableProject"></table>
 			</div>
 
 		</div>
@@ -46,12 +46,12 @@
 		</div>
 		<div class="box-body" >
 
-			<button id="crear-app" class="btn btn-default" data-toggle="modal" data-target="#modal-app"  ng-click="vm.mode = 1;"  >
+			<button id="crear-app" class="btn btn-default" data-toggle="modal" data-target="#modal-app"  ng-click="pl.mode = 1;"  >
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Crear aplicación
 			</button>
 
 			<div class="table-responsive my-table">
-				<table id="table" bs-table-control="vm.bsTableApp"></table>
+				<table id="table" bs-table-control="pl.bsTableApp"></table>
 			</div>
 
 		</div>
@@ -72,40 +72,40 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" ng-show="vm.mode == 1">Crear proyecto</h4>
-				<h4 class="modal-title" ng-show="vm.mode == 2">Actualizar proyecto</h4>
+				<h4 class="modal-title" ng-show="pl.mode == 1">Crear proyecto</h4>
+				<h4 class="modal-title" ng-show="pl.mode == 2">Actualizar proyecto</h4>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-if="vm.error != null">
+				<div class="alert alert-danger alert-dismissible"  ng-if="pl.error != null">
 					<div>
-						<strong>Error!</strong> {{vm.error}}.
+						<strong>Error!</strong> {{pl.error}}.
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
 					<div class="col-md-7">
-						<input type="text" id="InputText" ng-model="vm.project.name" class="form-control"/>
+						<input type="text" id="InputText" ng-model="pl.project.name" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">KEY (*)</label>
 					<div class="col-md-7">
-						<input type="text" id="InputText" ng-model="vm.project.key" class="form-control"/>
+						<input type="text" id="InputText" ng-model="pl.project.key" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
 					<div class="col-md-7">
-						<textarea style="resize:none" id="InputText" ng-model="vm.project.description" class="form-control"/>
+						<textarea style="resize:none" id="InputText" ng-model="pl.project.description" class="form-control"/>
 					</div>
 				</div>
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createProject();">Crear proyecto</button>
-				<button type="button" ng-show="vm.mode == 2" class="btn btn-success" ng-click="vm.updateProject();">Actualizar proyecto</button>
+				<button type="button" ng-show="pl.mode == 1" class="btn btn-success" ng-click="pl.createProject();">Crear proyecto</button>
+				<button type="button" ng-show="pl.mode == 2" class="btn btn-success" ng-click="pl.updateProject();">Actualizar proyecto</button>
 			</div>
 		</div>
 	</div>
@@ -118,33 +118,33 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" ng-show="vm.mode == 1">Crear aplicación</h4>
-				<h4 class="modal-title" ng-show="vm.mode == 2">Actualizar aplicación</h4>
+				<h4 class="modal-title" ng-show="pl.mode == 1">Crear aplicación</h4>
+				<h4 class="modal-title" ng-show="pl.mode == 2">Actualizar aplicación</h4>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible"  ng-if="vm.error != null">
+				<div class="alert alert-danger alert-dismissible"  ng-if="pl.error != null">
 					<div>
-						<strong>Error!</strong> {{vm.error}}.
+						<strong>Error!</strong> {{pl.error}}.
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Nombre (*)</label>
 					<div class="col-md-7">
-						<input type="text" id="InputText" ng-model="vm.aplication.name" class="form-control"/>
+						<input type="text" id="InputText" ng-model="pl.aplication.name" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Descripción (*)</label>
 					<div class="col-md-7">
-						<textarea style="resize:none" id="InputText" ng-model="vm.aplication.description" class="form-control"/>
+						<textarea style="resize:none" id="InputText" ng-model="pl.aplication.description" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Proyecto (*) </label>
 					<div class="col-md-7">
-						<select required id="InputText" ng-model="vm.aplication.project" class="form-control" data-ng-options="project._id as project.name for project in vm.projects">
+						<select required id="InputText" ng-model="pl.aplication.project" class="form-control" data-ng-options="project._id as project.name for project in pl.projects">
 							<option value="" disabled="disabled">Seleccione un proyecto</option>
 						</select>
 					</div>
@@ -153,23 +153,23 @@
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Elejir plantilla (*) </label>
 					<div class="col-md-7">
-						<select required id="InputText"  ng-model="vm.templateId" class="form-control" data-ng-options="template._id as template.nameTemplate for template in vm.templates">
+						<select required id="InputText"  ng-model="pl.templateId" class="form-control" data-ng-options="template._id as template.nameTemplate for template in pl.templates">
 							<option value="">-- No indicar plantilla previa --</option>
 						</select>
 					</div>
 				</div>
 
-				<div class="form-group row" ng-if="vm.templateId == 'upload'">
+				<div class="form-group row" ng-if="pl.templateId == 'upload'">
 					<label for="InputText" class="col-md-4 control-label">Adjuntar plantilla (*) </label>
 					<div class="col-md-7">
-						<input type="file" ngf-select ng-model="vm.templateUpload" name="file" ngf-pattern="'.xml'"   ngf-max-size="20MB"/>
+						<input type="file" ngf-select ng-model="pl.templateUpload" name="file" ngf-pattern="'.xml'"   ngf-max-size="20MB"/>
 					</div>
 				</div>
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createAplication();">Crear aplicación</button>
-				<button type="button" ng-show="vm.mode == 2" class="btn btn-success" ng-click="vm.updateAplication();">Actualizar Aplicación</button>
+				<button type="button" ng-show="pl.mode == 1" class="btn btn-success" ng-click="pl.createAplication();">Crear aplicación</button>
+				<button type="button" ng-show="pl.mode == 2" class="btn btn-success" ng-click="pl.updateAplication();">Actualizar Aplicación</button>
 			</div>
 		</div>
 	</div>

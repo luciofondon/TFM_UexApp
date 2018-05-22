@@ -13,6 +13,10 @@ module.exports = function(app){
 		.put(systemMiddleware.rolOperador, aplicationController.updateAplication)
     	.delete(systemMiddleware.rolOperador, aplicationController.deleteAplication);
 
+	//Generar a partir a partir de una plantilla (aplication)
+	app.route('/aplication/template/:aplicationId')
+		.post(systemMiddleware.rolOperador, aplicationController.generateAplication)
+	
 	app.param('aplicationId', aplicationController.loadAplication);
 
 }

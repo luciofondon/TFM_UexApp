@@ -40,7 +40,7 @@ var app = angular.module('tfm.uex',
 			.state('userList', {
 				url: "/userList",
 				templateUrl: cfg.pathTemplates + "/userList.html",
-				controller 	: 'UserListController as vm',
+				controller 	: 'UserListController as ul',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -56,7 +56,7 @@ var app = angular.module('tfm.uex',
 			.state('templateList', {
 				url: "/templateList",
 				templateUrl: cfg.pathTemplates + "/templateList.html",
-				controller 	: 'TemplateListController as vm',
+				controller 	: 'TemplateListController as tl',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -64,7 +64,7 @@ var app = angular.module('tfm.uex',
 			.state('rolList', {
 				url : '/rolList',
 				templateUrl : cfg.pathTemplates + '/rolList.html',
-				controller 	: 'RolListController as vm',
+				controller 	: 'RolListController as rl',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -72,7 +72,7 @@ var app = angular.module('tfm.uex',
 			.state('dashboard', {
 				url : '/dashboard',
 				templateUrl : cfg.pathTemplates + '/templates/dashboard.html',
-				controller 	: 'DashboardController as vm',
+				controller 	: 'DashboardController as da',
 				resolve:{
 					loginRequired: loginRequired
 				}
@@ -80,7 +80,7 @@ var app = angular.module('tfm.uex',
 			.state('projectList', {
 				url : '/projectList',
 				templateUrl : cfg.pathTemplates + '/projectList.html',
-				controller 	: 'ProjectListController as vm',
+				controller 	: 'ProjectListController as pl',
 				resolve:{
 					loginRequired: loginRequired
 				}

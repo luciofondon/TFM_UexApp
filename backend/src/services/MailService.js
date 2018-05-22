@@ -29,18 +29,18 @@ function sendMail(email, head, body){
         subject: head, 
         html: body + footer,
         attachments: [{
-            filename: 'logogamma.png',
+            filename: 'uex.png',
             path: ruta,
-            cid: 'logogamma.png'
+            cid: 'uex.png'
         }]
     };
 
 
     transporter.sendMail(mailOptions, function(err, info){
-    if(err){ 
-        console.log("ERROR! El mensaje no ha podido enviarse"); 
-    }else{ 
-        console.log("INFO! Nuevo mensaje enviado: " + info.response); 
-    }
+        if(err){ 
+            console.log("ERROR! El mensaje no ha podido enviarse"); 
+        }else{ 
+            console.log("INFO! Nuevo mensaje enviado: " + info.response); 
+        }
     });      
 } 

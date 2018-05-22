@@ -1,76 +1,47 @@
 angular.module('tfm.uex').controller('ProjectListController',
     ['$rootScope', 'ProjectService', 'BootstrapTableService', '$state', 'TemplateService', '$ngConfirm', 'AplicationService', 'UploadService',
         function($rootScope, ProjectService, BootstrapTableService, $state, TemplateService, $ngConfirm, AplicationService, UploadService){
-	var vm = this;
+	var pl = this;
+    pl.bsTableProject = {};
+	pl.bsTableApp = {};
+    pl.error = null;
+    pl.project = {};
+	pl.aplication = {};
+    pl.mode = 1;
+	pl.templates = [];
+	pl.projects = [];
+	pl.templateId = ""; //Plantilla seleccionada
 
-    vm.bsTableProject = {};
-	vm.bsTableApp = {};
-    vm.error = null;
-    vm.project = {};
-	vm.aplication = {};
-    vm.mode = 1;
-	vm.templates = [];
-	vm.projects = [];
-	vm.templateId = ""; //Plantilla seleccionada
-
-	vm.init = function(){
+	pl.init = function(){
         ProjectService.readAllProjects().then(function(response){
-			vm.projects = response.data;
-			vm.loadProjectList();
-			vm.loadAplicationsList();
+			pl.projects = response.data;
+			pl.loadProjectList();
+			pl.loadAplicationsList();
         });
 		TemplateService.readAllTemplates().then(function(response){
-			vm.templates = response.data;
-			vm.templates.push({nameTemplate: "Adjuntar plantila", _id: "upload" })
+			pl.templates = response.data;
+			pl.templates.push({nameTemplate: "Adjuntar plantila", _id: "upload" })
 		});
 	};
 
-    vm.createProject = function (){
-        if(validate()){
-			if(vm.templateId == 'upload'){
-				UploadService.uploadXML(vm.templateUpload).then(function(response){
-					vm.project.templateUpload = response.name;
+    pl.createProject = function (){
+        if(validateProject()){
+			ProjectService.createProject(pl.project).then(function(response) {
+				pl.project =  {};
+				pl.loadProjectList();
+				$('#modal-project').modal('hide');
+				ProjectService.readAllProjects().then(function(response) {
+					$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
 				});
-			}else if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
-				ProjectService.generateProject(vm.templateId, vm.project).then(function(response) {
-					vm.templateId = "";
-					vm.project =  {};
-					vm.loadProjectList();
-					$('#modal-project').modal('hide');
-					ProjectService.readAllProjects().then(function(response) {
-						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
-					});
-					$ngConfirm("Proyecto creado correctamente con plantilla importada");
-				});
-			}else{
-				ProjectService.createProject(vm.project).then(function(response) {
-					vm.project =  {};
-					vm.loadProjectList();
-					$('#modal-project').modal('hide');
-					ProjectService.readAllProjects().then(function(response) {
-						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
-					});
-					$ngConfirm("Proyecto creado correctamente");
-				});
-			}
+				$ngConfirm("Proyecto creado correctamente");
+			});
 		}
-    }
-
-    function validate(){
-		vm.error = null;
-        if(vm.project.name == undefined || vm.project.name == "")
-			vm.error = "El campo nombre de proyecto es obligatorio";
-		else if(vm.project.key == undefined || vm.project.key == "")
-			vm.error = "El campo nombre de proyecto es obligatorio";
-		else if(vm.project.description == undefined || vm.project.description == "")
-			vm.error = "El campo nombre de proyecto es obligatorio";
-		return vm.error != null ? false : true;
-    }
-
-    vm.updateProject = function() {
-        if(validate()){
-            ProjectService.updateProject(vm.project).then(function(response, status) {
-                vm.loadProjectList();
+	}
+	
+	pl.updateProject = function() {
+        if(validateProject()){
+            ProjectService.updateProject(pl.project).then(function(response, status) {
+                pl.loadProjectList();
                 $('#modal-project').modal('hide');
 				//Actualizamos el menu lateral
 				ProjectService.readAllProjects().then(function(response, status) {
@@ -80,8 +51,18 @@ angular.module('tfm.uex').controller('ProjectListController',
         }
     };
 
+    function validateProject(){
+		pl.error = null;
+        if(pl.project.name == undefined || pl.project.name == "")
+			pl.error = "El campo nombre de proyecto es obligatorio";
+		else if(pl.project.key == undefined || pl.project.key == "")
+			pl.error = "El campo nombre de proyecto es obligatorio";
+		else if(pl.project.description == undefined || pl.project.description == "")
+			pl.error = "El campo nombre de proyecto es obligatorio";
+		return pl.error != null ? false : true;
+    }
 
-	vm.loadProjectList = function(){
+	pl.loadProjectList = function(){
         ProjectService.readAllProjects().then(function(response) {
 
             var projects = response.data;
@@ -109,15 +90,15 @@ angular.module('tfm.uex').controller('ProjectListController',
                 {field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
             ];
 
-            vm.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
+            pl.bsTableProject = BootstrapTableService.createTableSimple(projects, "ProyectosTFM-Uex", columns);
         });
 
         window.actionEventsProjects = {'click .edit': function (e, value, row, index) {
 			console.log("entra")
-				vm.mode = 2;
-				vm.errores = [];
+				pl.mode = 2;
+				pl.errores = [];
                 ProjectService.readProject(row._id).then(function(response) {
-                    vm.project = response.data;
+                    pl.project = response.data;
                 });
            },'click .remove': function (e, value, row, index) {
 				$ngConfirm({
@@ -129,9 +110,9 @@ angular.module('tfm.uex').controller('ProjectListController',
 							btnClass: 'btn-blue',
 							action: function(scope, button){
 								ProjectService.deleteProject(row._id).then(function(response) {
-                   					for(var i = vm.bsTableProject.options.data.length; i--;){
-										if(vm.bsTableProject.options.data[i]._id == row._id){
-											vm.bsTableProject.options.data.splice(i, 1);
+                   					for(var i = pl.bsTableProject.options.data.length; i--;){
+										if(pl.bsTableProject.options.data[i]._id == row._id){
+											pl.bsTableProject.options.data.splice(i, 1);
 											$ngConfirm('El proyecto se ha sido eliminado correctamente');
 										}
 									}
@@ -148,12 +129,10 @@ angular.module('tfm.uex').controller('ProjectListController',
         };
 	};
 
-
-
 //*************************************************************************/
 //***********************************APLICATION****************************/
 //*************************************************************************/
-	vm.loadAplicationsList = function(){
+	pl.loadAplicationsList = function(){
 		AplicationService.readAllAplications().then(function(response) {
 			var apps = response.data;
 
@@ -174,7 +153,7 @@ angular.module('tfm.uex').controller('ProjectListController',
 				].join('');
 			}
 			var projectsFilter = [];
-			vm.projects.forEach(function(project){
+			pl.projects.forEach(function(project){
 				projectsFilter.push(project.name)
 			});
 
@@ -186,14 +165,14 @@ angular.module('tfm.uex').controller('ProjectListController',
 				{field: "description", title: "Descripción", align: 'center', valign: 'middle', sortable: true},
 			];
 
-			vm.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
+			pl.bsTableApp = BootstrapTableService.createTableSimple(apps, "AplicacionesTFM-Uex", columns, true);
 
 		});
 		window.actionEventsAplication = {'click .edit': function (e, value, row, index) {
-			vm.mode = 2;
-			vm.errores = [];
+			pl.mode = 2;
+			pl.errores = [];
 				AplicationService.readAplication(row._id).then(function(response) {
-					vm.aplication = response.data;
+					pl.aplication = response.data;
 				});
 			},'click .configurator': function (e, value, row, index) {
 				//Cambiar de estado
@@ -208,9 +187,9 @@ angular.module('tfm.uex').controller('ProjectListController',
 							btnClass: 'btn-blue',
 							action: function(scope, button){
 								AplicationService.deleteAplication(row._id).then(function(response) {
-									for(var i = vm.bsTableProject.options.data.length; i--;){
-										if(vm.bsTableApp.options.data[i]._id == row._id){
-											vm.bsTableApp.options.data.splice(i, 1);
+									for(var i = pl.bsTableProject.options.data.length; i--;){
+										if(pl.bsTableApp.options.data[i]._id == row._id){
+											pl.bsTableApp.options.data.splice(i, 1);
 											$ngConfirm('La aplicación se ha sido eliminado correctamente');
 										}
 									}
@@ -232,31 +211,47 @@ angular.module('tfm.uex').controller('ProjectListController',
 		};
 	}
 
-	vm.createAplication = function (){
-		/*UploadService.uploadXML(vm.templateUpload).then(function (response) {
+	pl.createAplication = function (){
+		/*UploadService.uploadXML(pl.templateUpload).then(function (response) {
 			console.log("subido ok")
 		});*/
 		if(validateAplication()){
-			AplicationService.createAplication(vm.aplication).then(function(response){
-				vm.aplication = {};
-				vm.loadAplicationsList();
-				$('#modal-app').modal('hide');
-				$ngConfirm("Aplicación creada correctamente");
-			});
+			if(pl.templateId == 'upload'){
+				UploadService.uploadXML(pl.templateUpload).then(function(response){
+					pl.project.templateUpload = response.name;
+				});
+			}else if(pl.templateId != "" && pl.templateId != undefined && pl.templateId.length > 0){
+				AplicationService.generateAplication(pl.templateId, pl.template).then(function(response) {
+					pl.templateId = "";
+					pl.loadAplicationsList();
+					$('#modal-app').modal('hide');
+					AplicationService.readAllAplications().then(function(response) {
+					});
+					$ngConfirm("Proyecto creado correctamente con plantilla importada");
+				});
+			}else{
+				AplicationService.createAplication(pl.aplication).then(function(response){
+					pl.aplication = {};
+					pl.loadAplicationsList();
+					$('#modal-app').modal('hide');
+					$ngConfirm("Aplicación creada correctamente");
+				});
+			}
 		}
+	}
 
 
 		/*
 
-		if(vm.templateId == 'upload'){
-				UploadService.uploadXML(vm.templateUpload).then(function(response){
-					vm.project.templateUpload = response.name;
+		if(pl.templateId == 'upload'){
+				UploadService.uploadXML(pl.templateUpload).then(function(response){
+					pl.project.templateUpload = response.name;
 				});
-			}else if(vm.templateId != "" && vm.templateId != undefined && vm.templateId.length > 0){
-				ProjectService.generateProject(vm.templateId, vm.project).then(function(response) {
-					vm.templateId = "";
-					vm.project =  {};
-					vm.loadProjectList();
+			}else if(pl.templateId != "" && pl.templateId != undefined && pl.templateId.length > 0){
+				ProjectService.generateProject(pl.templateId, pl.project).then(function(response) {
+					pl.templateId = "";
+					pl.project =  {};
+					pl.loadProjectList();
 					$('#modal-project').modal('hide');
 					ProjectService.getProjects().then(function(response) {
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
@@ -264,9 +259,9 @@ angular.module('tfm.uex').controller('ProjectListController',
 					$ngConfirm("Proyecto creado correctamente con plantilla importada");
 				});
 			}else{
-				ProjectService.createProject(vm.project).then(function(response) {
-					vm.project =  {};
-					vm.loadProjectList();
+				ProjectService.createProject(pl.project).then(function(response) {
+					pl.project =  {};
+					pl.loadProjectList();
 					$('#modal-project').modal('hide');
 					ProjectService.getProjects().then(function(response) {
 						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
@@ -276,24 +271,59 @@ angular.module('tfm.uex').controller('ProjectListController',
 			}
 			*/
 	}
-
-	vm.updateAplication = function (){
-		AplicationService.updateAplication(vm.aplication).then(function(response){
+ 
+	pl.updateAplication = function (){
+		AplicationService.updateAplication(pl.aplication).then(function(response){
 			$('#modal-app').modal('hide');
 			$ngConfirm("Aplicación creada correctamente");
         });
 	}
 
 	function validateAplication(){
-		vm.error = null;
-        if(vm.aplication.name == undefined || vm.aplication.name == "")
-			vm.error = "El campo nombre de la aplicacion es obligatorio";
-		else if(vm.aplication.description == undefined || vm.aplication.description == "")
-			vm.error = "El campo descripción de la aplicacion es obligatorio";
-		else if(vm.aplication.project == undefined || vm.aplication.project == "")
-			vm.error = "El campo proyecto de la aplicacion es obligatorio";
-		return vm.error == null ? true : false;
+		pl.error = null;
+        if(pl.aplication.name == undefined || pl.aplication.name == "")
+			pl.error = "El campo nombre de la aplicacion es obligatorio";
+		else if(pl.aplication.description == undefined || pl.aplication.description == "")
+			pl.error = "El campo descripción de la aplicacion es obligatorio";
+		else if(pl.aplication.project == undefined || pl.aplication.project == "")
+			pl.error = "El campo proyecto de la aplicacion es obligatorio";
+		return pl.error == null ? true : false;
 	}
 
 
 }]);
+
+/*
+
+pl.createProject = function (){
+        if(validate()){
+			if(pl.templateId == 'upload'){
+				UploadService.uploadXML(pl.templateUpload).then(function(response){
+					pl.project.templateUpload = response.name;
+				});
+			}else if(pl.templateId != "" && pl.templateId != undefined && pl.templateId.length > 0){
+				ProjectService.generateProject(pl.templateId, pl.project).then(function(response) {
+					pl.templateId = "";
+					pl.project =  {};
+					pl.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.readAllProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente con plantilla importada");
+				});
+			}else{
+				ProjectService.createProject(pl.project).then(function(response) {
+					pl.project =  {};
+					pl.loadProjectList();
+					$('#modal-project').modal('hide');
+					ProjectService.readAllProjects().then(function(response) {
+						$rootScope.projects = response.data; //Actualizar proyectos del menu lateral
+					});
+					$ngConfirm("Proyecto creado correctamente");
+				});
+			}
+		}
+	}
+	
+	*/

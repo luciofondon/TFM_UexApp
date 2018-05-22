@@ -1,10 +1,10 @@
 var User = require('../models/UserModel');
-    User = mongoose.model('User');
+   // User = mongoose.model('User');
 
 
 exports.loadUser = function(req, res, next, userId) {
     loadUser(req, res, next, userId);
-}
+};
 
 function loadUser(req, res, next, userId) {
     // Comprobar que el usuario registrado tiene acceso para consultar el usuario

@@ -1,34 +1,34 @@
 
 angular.module('tfm.uex').controller('UserListController',
-    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm', '$scope', 'Upload', 'UploadService',
-        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm, $scope, Upload, UploadService){
-	var vm = this;
-	vm.mode = 1;
-	vm.user = {};
-	vm.alerts = [];
-    vm.error = null;
-    vm.resetPassword = {};
-    vm.projects = [];
-    vm.bsTableUsers = {};
+    ['UserService', 'RolService', 'ProjectService', 'BootstrapTableService', '$ngConfirm', '$scope', 'UploadService',
+        function(UserService, RolService, ProjectService, BootstrapTableService, $ngConfirm, $scope, UploadService){
+	var ul = this;
+	ul.mode = 1;
+	ul.user = {};
+	ul.alerts = [];
+    ul.error = null;
+    ul.resetPassword = {};
+    ul.projects = [];
+    ul.bsTableUsers = {};
 
-	vm.reset = function(){
-		vm.mode = 1;
-		vm.user = {};
-		vm.error = null;
-		vm.alertas = [];
+	ul.reset = function(){
+		ul.mode = 1;
+		ul.user = {};
+		ul.error = null;
+		ul.alertas = [];
 	}
 
-    vm.init = function() {
+    ul.init = function() {
         RolService.readAllRoles().then(function(response) {
-            vm.roles = response.data;
+            ul.roles = response.data;
         });
 
         ProjectService.readAllProjects().then(function(projects) {
-            vm.projects = projects;
+            ul.projects = projects;
         });
     }
 
-	vm.loadUserList = function(){
+	ul.loadUserList = function(){
         UserService.getUsers().then(function(response) {
             var users = response.data;
             var actionFormatterUsers = function(value, row, index) {
@@ -58,12 +58,12 @@ angular.module('tfm.uex').controller('UserListController',
                 {field: "municipiosFormat", title: "Municipios", align: 'center', valign: 'middle', sortable: true, visible:false}
             ];
 
-            vm.bsTableUsers = BootstrapTableService.createTableSimple(users, "UsuariosTFM-Uex", columns);
+            ul.bsTableUsers = BootstrapTableService.createTableSimple(users, "UsuariosTFM-Uex", columns);
 
             window.actionEventsUsers = {'click .edit': function (e, value, row, index) {
-				vm.error = null;
-				vm.user = row;
-				vm.mode = 2;
+				ul.error = null;
+				ul.user = row;
+				ul.mode = 2;
 				$scope.$apply();
 
                 },'click .remove': function (e, value, row, index) {
@@ -76,9 +76,9 @@ angular.module('tfm.uex').controller('UserListController',
 								btnClass: 'btn-blue',
 								action: function(scope, button){
 									UserService.removeUser(row._id).then(function(user) {
-										for(var i = vm.bsTableUsers.options.data.length; i--;){
-											if(vm.bsTableUsers.options.data[i]._id == row._id){
-												vm.bsTableUsers.options.data.splice(i, 1);
+										for(var i = ul.bsTableUsers.options.data.length; i--;){
+											if(ul.bsTableUsers.options.data[i]._id == row._id){
+												ul.bsTableUsers.options.data.splice(i, 1);
 												$ngConfirm('El usuario ha sido eliminado correctamente');
 											}
 										}
@@ -92,18 +92,18 @@ angular.module('tfm.uex').controller('UserListController',
 						}
 					});
                 },'click .password': function (e, value, row, index) {
-                    vm.user = row;
-                    vm.resetPassword = {};
+                    ul.user = row;
+                    ul.resetPassword = {};
                     $scope.$apply();
                 }
             };
         });
     }
 
-    vm.resetPassword = function() {
-        vm.alerts = [];
+    ul.resetPassword = function() {
+        ul.alerts = [];
         if(validatePassword()){
-            UserService.resetPassword(vm.user._id, vm.resetPassword).then(function() {
+            UserService.resetPassword(ul.user._id, ul.resetPassword).then(function() {
 				$ngConfirm("La contraseña ha sido actualizada correctamente");
                 $('#modal-password').modal('hide');
             }).catch(function(data) {
@@ -113,50 +113,49 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
     function validatePassword(){
-		vm.error = null;
-        if((vm.resetPassword.password == undefined || vm.resetPassword.password == ""))
-			vm.error = "Se debe especificar una contraseña";
-        else if((vm.resetPassword.confirmPassword == undefined || vm.resetPassword.confirmPassword == ""))
-			vm.error = "Se debe completar el campo repetir contraseña";
-        else if((vm.resetPassword.password != vm.resetPassword.confirmPassword))
-			vm.error = "Las dos contraseñas especificadas no coinciden";
+		ul.error = null;
+        if((ul.resetPassword.password == undefined || ul.resetPassword.password == ""))
+			ul.error = "Se debe especificar una contraseña";
+        else if((ul.resetPassword.confirmPassword == undefined || ul.resetPassword.confirmPassword == ""))
+			ul.error = "Se debe completar el campo repetir contraseña";
+        else if((ul.resetPassword.password != ul.resetPassword.confirmPassword))
+			ul.error = "Las dos contraseñas especificadas no coinciden";
 
-		return vm.error != null ? true : false;
-	}
+		return ul.error != null ? true : false;
+	} 
 
     function validateUser(){
-		vm.error = null;
+		ul.error = null;
         var patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-        if(vm.user.email == undefined || vm.user.email == "")
-			vm.error ="Se debe indicar un email";
-        else if(vm.user.email.search(patronEmail) != 0)
-			vm.error ="Debe introducirse un email válido";
-        else if(vm.user.name == undefined || vm.user.name == "")
-			vm.error ="Se debe indicar un nombre para el usuario";
-        else if(vm.user.userName == undefined || vm.user.userName == "")
-			vm.error ="Se debe indicar un nombre de usuario";
-        else if((vm.user.phoneNumber != undefined && vm.user.phoneNumber != "") && (vm.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(vm.user.phone))))
-			vm.error ="El teléfono facilitado no es válido";
-        else if((vm.user.password == undefined || vm.user.password == "") && vm.mode == 1)
-			vm.error ="Se debe especificar una contraseña";
-        else if((vm.user.confirmPassword == undefined || vm.user.confirmPassword == "") && vm.mode == 1)
-			vm.error ="Se debe completar el campo repetir contraseña";
-        else if((vm.user.password != vm.user.confirmPassword) && vm.mode == 1)
-			vm.error ="Las dos contraseñas especificadas no coinciden";
+        if(ul.user.email == undefined || ul.user.email == "")
+			ul.error ="Se debe indicar un email";
+        else if(ul.user.email.search(patronEmail) != 0)
+			ul.error ="Debe introducirse un email válido";
+        else if(ul.user.name == undefined || ul.user.name == "")
+			ul.error ="Se debe indicar un nombre para el usuario";
+        else if(ul.user.userName == undefined || ul.user.userName == "")
+			ul.error ="Se debe indicar un nombre de usuario";
+        else if((ul.user.phoneNumber != undefined && ul.user.phoneNumber != "") && (ul.user.phoneNumber.length < 9 || !Number.isInteger(parseInt(ul.user.phone))))
+			ul.error ="El teléfono facilitado no es válido";
+        else if((ul.user.password == undefined || ul.user.password == "") && ul.mode == 1)
+			ul.error ="Se debe especificar una contraseña";
+        else if((ul.user.confirmPassword == undefined || ul.user.confirmPassword == "") && ul.mode == 1)
+			ul.error ="Se debe completar el campo repetir contraseña";
+        else if((ul.user.password != ul.user.confirmPassword) && ul.mode == 1)
+			ul.error ="Las dos contraseñas especificadas no coinciden";
 
-		return vm.error == null ? true : false;
+		return ul.error == null ? true : false;
     }
 
-    vm.createUser = function() {
+    ul.createUser = function() {
         if(validateUser()){
 			upload(function(status, nameImage){
 				if(status == 200 && nameImage != undefined)
-					vm.user.image = nameImage;
-
-				UserService.addUser(vm.user).then(function(project) {
-					vm.user = {};
-					vm.loadUserList();
+					ul.user.image = nameImage;
+				UserService.addUser(ul.user).then(function(project) {
+					ul.user = {};
+					ul.loadUserList();
 					$ngConfirm("Usuario creado correctamente");
 					$('#modal-user').modal('hide');
 				});
@@ -165,10 +164,10 @@ angular.module('tfm.uex').controller('UserListController',
         }
     }
 
-    vm.updateUser = function() {
+    ul.updateUser = function() {
         if(validateUser()){
-            UserService.updateUser(vm.user).then(function(){
-                vm.loadUserList();
+            UserService.updateUser(ul.user).then(function(){
+                ul.loadUserList();
 				$ngConfirm("Usuario actualizado correctamente");
                 $('#modal-user').modal('hide')
             });
@@ -176,10 +175,23 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
 	function upload(callback){
-		if(vm.user.image != undefined){
-			Upload.upload({
+		if(ul.imageUpload != undefined){
+            UploadService.uploadImage(ul.imageUpload ).then(function(data){
+                callback(200, data.name);
+            }).catch(function(err){
+                callback(500, err);
+            });
+        }else
+            callback(200, "");
+    }
+
+}]);
+
+/*
+
+Upload.upload({
 				url: '/api/user/upload',
-				file: vm.user.image
+				file: ul.user.image
 			}).then(function (response) {
 				callback(response.status, response.data.name);
 			}, function (response) { // Error
@@ -187,7 +199,5 @@ angular.module('tfm.uex').controller('UserListController',
 			});
 		}else{
 			callback(200, "");
-		}
-    }
-
-}]);
+        }
+        */

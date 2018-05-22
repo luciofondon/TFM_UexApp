@@ -48,6 +48,14 @@ module.exports = function() {
 			}).catch(function(err){
 				return res.status(500).json(err);
 			});
+		},
+
+		generateAplication: function(req, res){
+			aplicationRepository.generateAplication(req.authUser, req.aplication, req.body).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
 		}
 
     }

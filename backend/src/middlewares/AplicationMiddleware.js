@@ -1,6 +1,5 @@
 var Aplication = require('../models/AplicationModel');
-    Aplication = mongoose.model('Aplication');
-
+   // Aplication = mongoose.model('Aplication');
 
 exports.loadAplication = function(req, res, next, aplicationId) {
     loadAplication(req, res, next, aplicationId);

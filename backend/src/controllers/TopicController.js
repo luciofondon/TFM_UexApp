@@ -3,7 +3,6 @@ var _ = require('lodash');
 var Topic = require('../models/TopicModel');
 
 var topicMiddleware = require('../middlewares/TopicMiddleware'),
-	topicDAO = require('../DAOS/TopicDAO'),
 	topicRepository = require('../repositories/TopicRepository');
 
 module.exports = function() {
@@ -14,7 +13,11 @@ module.exports = function() {
         },
 
         readAllByAplication: function(req, res) {
-            topicDAO.readAllByAplication(req,res);
+			topicRepository.readAllByAplication(req.authUser, req.params.aplicationId).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});
         },
 
         createTopicByAplication: function(req, res) {

@@ -4,15 +4,15 @@
 */
 
 module.exports = function(app){
-	var multiparty = require('connect-multiparty'),
-		multipartyMiddleware = multiparty();
+	/*var multiparty = require('connect-multiparty'),
+		multipartyMiddleware = multiparty();*/
 
     var userController = require('../controllers/UserController')(),
   		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     // CRUD usuario
     app.route('/users')
-		.get(systemMiddleware.rolAdmin, userController.readAllUser)
+			.get(systemMiddleware.rolAdmin, userController.readAllUser)
 		.post(systemMiddleware.rolAdmin, userController.createUser);
 
     // CRUD usuario
@@ -29,9 +29,9 @@ module.exports = function(app){
     // Modificar la contrasena del usuario
     app.route('/user/resetPassword/:userId')
       	.put(systemMiddleware.rolAdmin, userController.resetPasswordUser);
-
-    app.route('/user/upload')
+ 
+    /*app.route('/user/upload')
     	.post(multipartyMiddleware, userController.uploadImageUser);
-
+*/
     app.param('userId', userController.loadUser);
   }

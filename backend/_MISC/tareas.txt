@@ -1,24 +1,13 @@
-CONFIGURACION (95%)
-- Directiva
-Selenium
->>TRABAJO- Desplegar Jira
 
-MODULO USUARIO (95%)
-MODULO CONFIGURADOR (95%)
-MODULO GENERADOR (95%)
-MODULO TEMPLATE (85%)
-MODULO MEDIATORY (85%)
-DASHBOARD (80%)
 
 ************************************************************
 ->SEMANA 28 - 3
 ************************************************************
-- Refactor DAOS, CONTROLLERS Y MODEL
-
-->SEMANA 21 - 27
 - Refactor servicios front, routes y app.js (front y back de los dos)
  ** Autenticacion entre servicios
  **VIERNES** Dashboard(Plantillas generadas, pefil usuario)
+Selenium
+Directiva
 
 6 **JUEVES** Jasmine
 5 **JUEVES** JSDOC y readme
@@ -26,31 +15,25 @@ DASHBOARD (80%)
 2 **MIERCOLES** Eliminar codigo HTML (ng-init)
 1 **LUNES** Script DB
 
+
+
 ************************************************************
 ->SEMANA 14 - 20
 ************************************************************
- **SABADO**- Menu lateral (Loading (fixed cabecera))
-
- **DOMINGO** - Importar plantilla
- 4 ->**VIERNES** -> Model, validate
- 1 ->**JUEVES** Grunt indexPro
-Vista detalle usuario
-Vista registro usuario
 Vista Dashboard
+Grunt indexPro
+Vista detalle usuario
 
 
+ Vista registro usuario
+ Mocha (rol, aplicacion, user, login, proyecto)
+ Vista generador (Integracion con Jira)
 
 
- **VIERNES** Mocha (rol, aplicacion, user, login, proyecto)
-
-
- Vista list usuario
-
- Vista generador Integracion con Jira
- Vista plantilla
- Vista template
+ Vista template (descargar y subir)
  Vista configurador
  Vista proyecto/app
+ Vista list usuario
 
 
 

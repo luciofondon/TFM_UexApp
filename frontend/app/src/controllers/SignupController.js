@@ -12,8 +12,7 @@ angular.module('tfm.uex').controller('SignupController',
 		if(validateUser()){
 			$auth.signup(signup.user).then(function(){
 				$state.go('login');
-			})
-			.catch(function(response){
+			}).catch(function(response){
 				signup.error = response.data.error;
 			});
 		}

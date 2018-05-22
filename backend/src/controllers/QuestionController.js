@@ -4,8 +4,7 @@ var _ = require('lodash');
 
 var Question = require('../models/QuestionModel');
 
-var questionDAO = require('../DAOS/QuestionDAO'),
-    questionMiddleware = require('../middlewares/QuestionMiddleware');
+var questionMiddleware = require('../middlewares/QuestionMiddleware'),
 	questionRepository = require('../repositories/QuestionRepository');
 
 
@@ -33,7 +32,6 @@ module.exports = function() {
 			});
         },
 
-
         readQuestion: function(req, res) {
             res.json(req.question);
         },
@@ -55,10 +53,14 @@ module.exports = function() {
 		},
 
 		createQuestionAsociate: function(req, res) {
-            questionDAO.createQuestionAsociate(req, res);
-        },
+			questionRepository.createQuestionAsociate(req.authUser, req.question, new Question(req.body)).then(function(data){
+				return res.status(200).json(data);
+			}).catch(function(err){
+				return res.status(500).json(err);
+			});        
+		},
 
-		deleteQuestionAsociate: function(req, res) {
+		/*deleteQuestionAsociate: function(req, res) {
             questionDAO.deleteQuestionAsociate(req, res);
         },
 
@@ -72,6 +74,6 @@ module.exports = function() {
 
 		createAnswerAsociate: function(req, res) {
             questionDAO.createAnswerAsociate(req, res);
-		}
+		}*/
     }
 }

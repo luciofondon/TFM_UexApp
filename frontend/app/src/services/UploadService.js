@@ -1,8 +1,8 @@
 angular.module('tfm.uex').service('UploadService', ['Upload', function(Upload) {
 
 	return {
-		uploadFile: function(file){
-			return uploadFile(file);
+		uploadImage: function(file){
+			return uploadImage(file);
 		},
 		uploadXML: function(file){
 			return uploadXML(file);
@@ -13,6 +13,11 @@ angular.module('tfm.uex').service('UploadService', ['Upload', function(Upload) {
 		return Upload.upload({url: '/api/upload/xml',file: file});
 	}
 
+	function uploadImage(file){
+		return Upload.upload({url: '/api/upload/image',file: file});
+	}
+
+	/*
 
   	function upload(callback){
 		if(vm.user.image != undefined){
@@ -29,7 +34,7 @@ angular.module('tfm.uex').service('UploadService', ['Upload', function(Upload) {
 		}else{
 			callback(200, "");
 		}
-  }
+  }*/
 
 }]);
 

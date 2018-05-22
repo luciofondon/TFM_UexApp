@@ -19,7 +19,6 @@ module.exports = {
 	deleteAnswer: function(authUser, question, answerId) {
 		return deleteAnswer(authUser, question, answerId);
 	}
-
 }
 
 function readAnswer(authUser, question, answerId){
@@ -96,5 +95,9 @@ function deleteAnswer(authUser, question, answerId){
 
 
 function validateAnswer(answer){
+	if(answer.description == undefined || answer.description == "")
+		return false;
+	else if(answer.requirement == undefined || answer.requirement == "")
+		return false;
 	return true;
 }

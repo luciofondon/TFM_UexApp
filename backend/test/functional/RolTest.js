@@ -1,18 +1,45 @@
-/*"use strict"
+"use strict"
 
- const config = require('../../config/config.js');
- var assert = require('assert');
- var request = require('supertest')
- var app = require('../app.js')
+let chai = require('chai'),
+    chaiHttp = require('chai-http'),
+    expect = require('chai').expect,
+    Promise = require('promise');
 
- var request = request("http://localhost:" + config.PORT)
+chai.use(chaiHttp);
 
- describe('Get roles', function() {
-     describe('GET', function(){
-         it('Should return json as default data format', function(done){
-             request.get('/api/roles')
-                 .expect('Content-Type', /json/)
-                 .expect(200, done);
-         });
-     });
- });*/
+const config = require('../../config/config.js');
+const server= 'http://localhost:' + config.SERVER_PORT;
+
+let loginUser = {
+    'email': config.USER_MAIL_TEST,
+    'password': config.USER_PASSWORD_TEST
+};
+
+function login(){
+    let promise = new Promise(function(resolve, reject){
+        chai.request(server)
+        .post('/auth/login')
+        .send(loginUser)
+        .end((err, res) => {
+            console.log( res.body.token);
+            expect(res).to.have.status(200);
+            let token = res.body.token;
+            resolve(token);
+        });
+    });
+    return promise;
+}
+
+describe('Read a roles: ',()=>{
+    it('should read a roles', (done) => {
+        login().then(function(token){
+            chai.request(server)
+            .get('/api/roles')
+            .set('authorization', token)
+            .end( function(err,res){
+                expect(res).to.have.status(200);
+                done();
+            });
+        });
+    });   
+});

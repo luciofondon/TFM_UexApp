@@ -1,9 +1,13 @@
 /// https://www.paradigmadigital.com/dev/testeo-api-rest-mocha-chai-http/
-const config = require('../../config/config.js');
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-const expect = require('chai').expect;
+
+let chai = require('chai'),
+	chaiHttp = require('chai-http'),
+	expect = require('chai').expect,
+    Promise = require('promise');
+
 chai.use(chaiHttp);
+
+const config = require('../../config/config.js');
 const server= 'http://localhost:' + config.SERVER_PORT;
 
 let loginUser = {
@@ -11,8 +15,24 @@ let loginUser = {
 	'password': config.USER_PASSWORD_TEST
 };
 
+function login(callback){
+	let promise = new Promise(function(resolve, reject){
+		chai.request(server)
+		.post('/auth/login')
+		.send(loginUser)
+		.end((err, res) => {
+			console.log( res.body.token);
+			expect(res).to.have.status(200);
+			let token = res.body.token;
+			resolve(token);
+		});
+	});
+	return promise;
+}
+
 describe('Insert a aplication: ',()=>{
 	it('should insert a aplication', (done) => {
+		
 		chai.request(server)
 			.post('/auth/login')
             .send(loginUser)

@@ -19,22 +19,22 @@
       <div class="box-header with-border">
         <h3 class="box-title">Gestión de usuarios</h3>
       </div>
-      <div class="box-body" ng-init="vm.loadUserList(); vm.init();">
+      <div class="box-body" ng-init="ul.loadUserList(); ul.init();">
 
-			<div class="alert alert-info alert-success alert-dismissible" ng-repeat="alert in vm.alertas">
+			<div class="alert alert-info alert-success alert-dismissible" ng-repeat="alert in ul.alertas">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>Info!</strong> {{alert}}.
 			</div>
 
 			<div  id="crear" class="columns columns-right btn-group pull-right">
-				<button id="crear" class="btn btn-default" ng-click="vm.reset();" data-toggle="modal" data-target="#modal-user" >
+				<button id="crear" class="btn btn-default" ng-click="ul.reset();" data-toggle="modal" data-target="#modal-user" >
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"/>
 					Nuevo usuario
 				</button>
 			</div>
 
 			<div class="table-responsive my-table">
-				<table id="table" bs-table-control="vm.bsTableUsers"></table>
+				<table id="table" bs-table-control="ul.bsTableUsers"></table>
 			</div>
 
       </div>
@@ -57,34 +57,34 @@
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 ng-show="vm.mode == 1" class="modal-title">Crear usuario</h4>
-                  <h4 ng-show="vm.mode == 2" class="modal-title">Actualizar usuario </h4>
+                  <h4 ng-show="ul.mode == 1" class="modal-title">Crear usuario</h4>
+                  <h4 ng-show="ul.mode == 2" class="modal-title">Actualizar usuario </h4>
               </div>
               <div class="modal-body">
-				<div class="alert alert-danger alert-dismissible" ng-if="vm.error != null">
+				<div class="alert alert-danger alert-dismissible" ng-if="ul.error != null">
 					<div>
-						<strong>Error!</strong> {{vm.error}}.
+						<strong>Error!</strong> {{ul.error}}.
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="name" class="col-md-4 control-label">Nombre (*)</label>
 					<div class="col-md-7">
-						<input required type="text" id="name" ng-model="vm.user.name" class="form-control"/>
+						<input required type="text" id="name" ng-model="ul.user.name" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="lastName" class="col-md-4 control-label">Apellidos (*)</label>
 					<div class="col-md-7">
-						<input required type="text" id="lastName" ng-model="vm.user.lastName" class="form-control"/>
+						<input required type="text" id="lastName" ng-model="ul.user.lastName" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label  class="col-md-4 control-label">Rol (*)</label>
 					<div class="col-md-7">
-						<select ng-model="vm.user.rol._id" style="width:100%" ng-options="rol._id as rol.name for rol in vm.roles">
+						<select ng-model="ul.user.rol._id" style="width:100%" ng-options="rol._id as rol.name for rol in ul.roles">
 							<option value="" disabled>-- Selecciona rol --</option>
 						</select>
 					</div>
@@ -93,48 +93,48 @@
 				<div class="form-group row">
 					<label for="userName" class="col-md-4 control-label">Usuario (*)</label>
 					<div class="col-md-7">
-						<input required type="text" id="userName" ng-model="vm.user.userName" class="form-control"/>
+						<input required type="text" id="userName" ng-model="ul.user.userName" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="email" class="col-md-4 control-label">Email (*)</label>
 					<div class="col-md-7">
-						<input required type="text" id="email" ng-model="vm.user.email" class="form-control"/>
+						<input required type="text" id="email" ng-model="ul.user.email" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="phoneNumber" class="col-md-4 control-label">Teléfono </label>
 					<div class="col-md-7">
-						<input required type="text" id="phoneNumber" ng-model="vm.user.phoneNumber" class="form-control"/>
+						<input required type="text" id="phoneNumber" ng-model="ul.user.phoneNumber" class="form-control"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
 					<div class="col-md-7">
-						<img ngf-thumbnail="vm.user.image" height="100">
-						<input type="file" ngf-select ng-model="vm.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
+						<img ngf-thumbnail="ul.user.image" height="100">
+						<input type="file" ngf-select ng-model="ul.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
 					</div>
 				</div>
-				<div class="form-group row" ng-show="vm.mode == 1">
+				<div class="form-group row" ng-show="ul.mode == 1">
 					<label for="password" class="col-md-4 control-label">Constraseña (*) </label>
 					<div class="col-md-7">
-						<input required type="password" id="password"  ng-model="vm.user.password" class="form-control"/>
+						<input required type="password" id="password"  ng-model="ul.user.password" class="form-control"/>
 					</div>
 				</div>
 
-				<div class="form-group row" ng-show="vm.mode == 1">
+				<div class="form-group row" ng-show="ul.mode == 1">
 					<label for="confirmPassword" class="col-md-4 control-label">Repetir contraseña (*) </label>
 					<div class="col-md-7">
-						<input required type="password" id="confirmPassword"  ng-model="vm.user.confirmPassword" class="form-control"/>
+						<input required type="password" id="confirmPassword"  ng-model="ul.user.confirmPassword" class="form-control"/>
 					</div>
 				</div>
               </div>
               <div class="modal-footer">
-                  <button type="button" ng-show="vm.mode == 1" class="btn btn-success" ng-click="vm.createUser();">Crear usuario </button>
-                  <button type="button" ng-show="vm.mode == 2" class="btn btn-success" ng-click="vm.updateUser();" >Actualizar usuario</button>
+                  <button type="button" ng-show="ul.mode == 1" class="btn btn-success" ng-click="ul.createUser();">Crear usuario </button>
+                  <button type="button" ng-show="ul.mode == 2" class="btn btn-success" ng-click="ul.updateUser();" >Actualizar usuario</button>
               </div>
           </div>
       </div>
@@ -155,7 +155,7 @@
 
               </div>
               <div class="modal-body">
-                      <div class="alert alert-danger alert-dismissible"  ng-repeat="error in vm.errores">
+                      <div class="alert alert-danger alert-dismissible"  ng-repeat="error in ul.errores">
                           <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                           <div>
                               <strong>Error!</strong> {{error}}.
@@ -165,21 +165,21 @@
                       <div class="form-group row">
                           <label for="password" class="col-md-4 control-label">Constraseña (*) </label>
                           <div class="col-md-7">
-                              <input required type="password" id="InputText" ng-model="vm.resetPassword.password" class="form-control"/>
+                              <input required type="password" id="InputText" ng-model="ul.resetPassword.password" class="form-control"/>
                           </div>
                       </div>
 
                       <div class="form-group row">
                           <label for="confirmPassword" class="col-md-4 control-label">Repite contraseña (*) </label>
                           <div class="col-md-7">
-                              <input required type="confirmPassword" id="InputText"  ng-model="vm.resetPassword.confirmPassword" class="form-control"/>
+                              <input required type="confirmPassword" id="InputText"  ng-model="ul.resetPassword.confirmPassword" class="form-control"/>
                           </div>
                       </div>
 
                   </form>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-success" ng-click="vm.resetPassword();" >Actualizar contraseña</button>
+                  <button type="button" class="btn btn-success" ng-click="ul.resetPassword();" >Actualizar contraseña</button>
               </div>
           </div>
       </div>

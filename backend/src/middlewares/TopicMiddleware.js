@@ -1,11 +1,10 @@
 var Topic = require('../models/TopicModel');
-    Topic = mongoose.model('Topic');
+   // Topic = mongoose.model('Topic');
 
 
 exports.loadTopic = function(req, res, next, topicId) {
     loadTopic(req, res, next, topicId);
-}
-
+};
 
 function loadTopic(req, res, next, topicId) {
     // Comprobar que el usuario registrado tiene acceso al proyecto

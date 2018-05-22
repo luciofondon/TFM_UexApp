@@ -1,4 +1,5 @@
-var Promise = require('promise');
+var Promise = require('promise'),
+	mongoose = require('mongoose');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
@@ -22,6 +23,10 @@ module.exports = {
 
 	deleteAplication: function(authUser, aplication) {
 		return deleteAplication(authUser, aplication);
+	},
+
+	generateAplication(authUser, aplication, template){
+		return generateAplication(authUser, aplication, template);
 	}
 
 }
@@ -83,6 +88,46 @@ function updateAplication(authUser, aplication){
 	return promise;
 }
 
+function generateAplication(authUser, aplication, template){
+	let promise = new Promise(function(resolve, reject){
+		let aplicationCopy = JSON.parse(JSON.stringify(aplication));
+		let aplicationTemplate = new Aplication(aplicationCopy);
+		aplicationTemplate.isTemplate = false;
+		aplicationTemplate.creator = authUser._id;
+		aplicationTemplate.nameTemplate = undefined;
+		aplicationTemplate._id = mongoose.Types.ObjectId();
+		aplicationTemplate.save(function(err){
+			Topic.find({aplication: aplicationCopy._id}, {"__v":0}).exec(function(err, topics){
+				topics.forEach(function(topic){
+					let topicCopy = JSON.parse(JSON.stringify(topic));
+					let topicTemplate = new Topic(topicCopy);
+					topicTemplate.aplication = aplicationTemplate._id;
+					topicTemplate._id = mongoose.Types.ObjectId();
+					topicTemplate.save(function(err){
+						Question.find({topic: topicCopy._id}, {"__v":0}).exec(function(err, questions){
+							questions.forEach(function(question){
+								let questionCopy = JSON.parse(JSON.stringify(question));
+								let questionTemplate = new Question(questionCopy);
+								questionTemplate._id = mongoose.Types.ObjectId();
+								questionTemplate.topic = topicTemplate._id;
+								questionTemplate.save();
+							});
+						});
+					});
+				});
+				resolve({state: "ok"});
+			});
+		});
+	});
+	return promise;
+}
+
 function validateAplication(aplication){
+	if(aplication.name == undefined || aplication.name == "")
+		return false;
+	else if(aplication.description == undefined || aplication.description == "")
+		return false;
+	else if(aplication.project == undefined || aplication.project == "")
+		return false;
 	return true;
 }

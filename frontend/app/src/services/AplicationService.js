@@ -3,17 +3,25 @@ angular.module('tfm.uex').factory('AplicationService', ['$http', function($http)
 		readAllAplications: function(){
 			return readAllAplications();
 		},
+
 		readAplication: function(aplicationId){
 			return readAplication(aplicationId);
 		},
+
 		createAplication: function(aplication){
 			return createAplication(aplication);
 		},
+
 		deleteAplication: function(aplicationId){
 			return deleteAplication(aplicationId);
 		},
+
 		updateAplication: function(aplication){
 			return updateAplication(aplication);
+		},
+
+		generateAplication: function(aplicationId, template){
+			return generateAplication(aplicationId, template);
 		}
 	};
 
@@ -37,5 +45,8 @@ angular.module('tfm.uex').factory('AplicationService', ['$http', function($http)
 		return $http.put('/api/aplication/' + aplication._id, aplication);
 	}
 
+	function generateAplication(aplicationId, template){
+		return $http.put('/api/aplication/' + aplication._id, template);
+	}
 
 }]);

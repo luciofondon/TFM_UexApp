@@ -84,5 +84,11 @@ function updateProject(authUser, project){
 }
 
 function validateProject(project){
+	if(project.name == undefined || project.name == "")
+		return false;
+	else if(project.key == undefined || project.key == "")
+		return false;
+	else if(project.description == undefined || project.description == "")
+		return false;
 	return true;
 }

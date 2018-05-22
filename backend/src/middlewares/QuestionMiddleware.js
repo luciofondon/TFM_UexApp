@@ -1,11 +1,9 @@
 var Question = require('../models/QuestionModel');
-    Question = mongoose.model('Question');
-
+   // Question = mongoose.model('Question');
 
 exports.loadQuestion = function(req, res, next, questionId) {
     loadQuestion(req, res, next, questionId);
-}
-
+};
 
 function loadQuestion(req, res, next, questionId) {
     Question.load(questionId, function(err, question) {

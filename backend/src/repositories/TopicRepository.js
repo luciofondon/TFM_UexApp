@@ -7,6 +7,10 @@ var Question = require('../models/QuestionModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
+	readAllByAplication: function(authUser, aplicationId) {
+		return readAllByAplication(authUser, aplicationId);
+	},
+
 	createTopicByAplication: function(authUser, topic, aplicationId) {
 		return createTopicByAplication(authUser, topic, aplicationId);
 	},
@@ -18,6 +22,31 @@ module.exports = {
 	deleteTopic: function(authUser, topic) {
 		return deleteTopic(authUser, topic);
 	}
+}
+
+function readAllByAplication(authUser, aplicationId){
+	let promise = new Promise(function(resolve, reject){
+		Topic.find({aplication: aplicationId}).sort({name:1}).then(function(topics) {
+			Question.find({ topic: { $ne: null } }).populate("answers.questions").exec(function(err, questions) {
+				let topicsFormat = [];
+				topics.forEach(function(topic){
+					let topicFormat = JSON.parse(JSON.stringify(topic));
+					topicFormat.questions = [];
+
+					for(let i = 0; i < questions.length; i++){
+						if(questions[i].topic.toString() == topic._id.toString()){
+							topicFormat.questions.push(questions[i]);
+						}
+					}
+					topicsFormat.push(topicFormat);
+				});
+				res.json(topicsFormat);
+			});
+		}).catch(function(err){
+			reject({ error: 'Cannot list all the topics' });
+		});
+	});
+	return promise;
 }
 
 function createTopicByAplication(authUser, topic, aplicationId){
@@ -66,5 +95,7 @@ function updateTopic(authUser, topic){
 }
 
 function validateTopic(topic){
+	if(topic.name == undefined || topic.name == "")
+		return false;
 	return true;
 }

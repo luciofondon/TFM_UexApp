@@ -13,6 +13,10 @@ module.exports = {
 		return createByTopic(authUser, question, topicId);
 	},
 
+	createQuestionAsociate: function(authUser, question, questionAsociate) {
+		return createQuestionAsociate(authUser, question, questionAsociate);
+	},
+
 	updateQuestion: function(authUser, question) {
 		return updateQuestion(authUser, question);
 	},
@@ -50,6 +54,30 @@ function createByTopic(authUser, question, topicId){
 	return promise;
 }
 
+function createQuestionAsociate(authUser, question, questionAsociate){
+	let promise = new Promise(function(resolve, reject){
+		question.answers.forEach(function(answer){
+			if(answer._id.toString() == req.params.answerId.toString()){
+				answer.questions.push(questionAsociate._id);
+			}
+		});
+
+		questionAsociate.save(function(err) {
+			if (err) {
+				reject({error: 'Cannot update the question'});
+			}
+			question.save(function(err) {
+
+				if (err) {
+					reject({error: 'Cannot update the question'});
+				}
+				resolve(question);
+			});
+		});
+	});
+	return promise;
+}
+
 function updateQuestion(authUser, question){
 	let promise = new Promise(function(resolve, reject){
 		if(validateQuestion(question)){
@@ -77,6 +105,8 @@ function deleteQuestion(authUser, question){
 	return promise;
 }
 
-function validateQuestion(topic){
+function validateQuestion(question){
+	if(question.description == undefined || question.description == "")
+		return false;
     return true;
 }
