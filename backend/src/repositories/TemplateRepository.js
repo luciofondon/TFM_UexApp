@@ -1,4 +1,9 @@
 
+/**
+ *	@author Lucio David Fondon Terron - 2018
+ *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto Template
+ */
+
 var Promise = require('promise'),
 	path = require('path'),
 	fs = require('fs'),
@@ -13,18 +18,38 @@ var Project = require('../models/ProjectModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @description Leer todas las plantillas que hay en el sistema
+	 */
 	readAllTemplates: function(authUser) {
 		return readAllTemplate(authUser);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} template Parametros de la plantilla
+	 * @param  {} aplication Aplicacion que se desea copiar para generar la plantilla
+	 * @description Generar una plantilla a partir de una aplicacion
+	 */
 	createTemplate: function(authUser, template, aplication) {
 		return createTemplate(authUser, template, aplication);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication Plantilla que se va a eliminar
+	 * @description Elimina una plantilla que corresponde a una aplicacion y todos sus topic, preguntas y respuestas
+	 */
 	deleteTemplate: function(authUser, aplication) {
 		return deleteTemplate(authUser, aplication);
 	},
 
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication Parametro de la nueva aplicacion que se va a crear
+	 * @description Genera la plantilla XML a partir de la aplicacion y generar el fichero
+	 */
 	generateTemplateXML: function(authUser, aplication){
 		return generateTemplateXML(authUser, aplication);
 	}
@@ -86,7 +111,6 @@ function generateTemplateXML(authUser, aplication){
 					topics:[]
 				}
 		};
-
 
 		Topic.find({aplication: aplication._id}).sort({name:1}).then(function(topics) {
 			Question.find({topic: {$ne: null}}).populate("answers.questions").then(function(questions) {

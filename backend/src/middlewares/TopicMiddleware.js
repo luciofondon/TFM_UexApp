@@ -1,7 +1,18 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Middleware de Topic
+ */
+
 var Topic = require('../models/TopicModel');
-   // Topic = mongoose.model('Topic');
 
-
+/**
+ * @param  {} req
+ * @param  {} res
+ * @param  {} next
+ * @param  {} topicId
+ * @description Middleware que carga el identificador pasado por parametro en la url
+ */
 exports.loadTopic = function(req, res, next, topicId) {
     loadTopic(req, res, next, topicId);
 };

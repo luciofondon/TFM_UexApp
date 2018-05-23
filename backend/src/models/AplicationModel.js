@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para Aplication
+ */
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
@@ -9,7 +15,7 @@ var appSchema = new Schema({
 	description: {
 		type: String
 	},
-	project: {
+	project: { // Proyecto al que pertenece la aplicacion
 		type: Schema.ObjectId,
 		ref: "Project",
 		required: true
@@ -23,7 +29,7 @@ var appSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	nameTemplate: {
+	nameTemplate: { // Nombre de la plantilla si isTemplate == true
 		type: String
 	}
 },

@@ -1,14 +1,27 @@
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Servicio para subir ficheros al servidor
+ */
+
 var systemService = require('../services/SystemService'),
 	fs = require('fs'),
 	path = require('path'),
     Promise = require('promise');
 
 module.exports = {
+	/**
+	 * @param  {} file Fichero que se va a subir al servidor
+     * @description Subida de un fichero XML
+	 */
 	uploadXML: function(file){
 		return uploadXML(file);
-	},
-
+    },
+    
+	/**
+	 * @param  {} file Fichero que se va a subir al servidor
+     * @description Subida de una imagen
+	 */
 	uploadImage: function(file){
 		return uploadImage(file);
 	}

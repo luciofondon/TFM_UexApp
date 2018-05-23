@@ -1,6 +1,10 @@
 
-var Promise = require('promise');
+/**
+ *	@author Lucio David Fondon Terron - 2018
+ *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto Project
+ */
 
+var Promise = require('promise');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
@@ -9,18 +13,38 @@ var Project = require('../models/ProjectModel'),
 //var aplicationRepository = require('../repositories/AplicationRepository');
 
 module.exports = {
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @description Lee todos los proyectos de la aplicacion a los que usuario logueado tiene acceso (authUser)
+	 */
 	readAllProject: function(authUser) {
 		return readAllProject(authUser);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} project Objeto project que se va a crear
+	 * @description Crear un nuevo proyecto en la plataforma
+	 */
 	createProject: function(authUser, project) {
 		return updateProject(authUser, project);
 	},
 
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} project Objeto project que se va a actualizar
+	 * @description Actualiza los atributos de un proyecto
+	 */
 	updateProject: function(authUser, project) {
 		return updateProject(authUser, project);
 	},
 
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} project Objeto project que se va a eliminar
+	 * @description Elimina un proyecto con todas sus aplicaciones asociadas y preguntas/respuestas
+	 */
 	deleteProject: function(authUser, project) {
 		return deleteProject(authUser, project);
 	}

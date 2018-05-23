@@ -1,11 +1,11 @@
-/*
-* @author luciofondon
-* @date 2018
-*/
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Configuracion del servidor
+ */
 
 var express = require("express"),
 	bodyParser  = require("body-parser"),
-	methodOverride = require("method-override");
+	methodOverride = require("method-override"),
 	mongoose = require('mongoose'),
 	logger = require('morgan'),
 	config = require('./config/config'),

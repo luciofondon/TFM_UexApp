@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para Rol
+ */
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 

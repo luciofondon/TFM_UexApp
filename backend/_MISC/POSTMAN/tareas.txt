@@ -7,13 +7,11 @@
  ** Autenticacion entre servicios
  **VIERNES** Dashboard(Plantillas generadas, pefil usuario)
 Selenium
-Directiva
 
-6 **JUEVES** Jasmine
-5 **JUEVES** JSDOC y readme
-3 **MIERCOLES** controllerAs
-2 **MIERCOLES** Eliminar codigo HTML (ng-init)
-1 **LUNES** Script DB
+** Directiva
+** Jasmine
+** Eliminar codigo HTML (ng-init), controllerAs
+** Script DB y postman
 
 
 
@@ -26,23 +24,12 @@ Grunt indexPro
 Vista detalle usuario
 
 
- Vista registro usuario
+ JSDOC y readme
  Mocha (rol, aplicacion, user, login, proyecto)
+
  Vista generador (Integracion con Jira)
-
-
- Vista template (descargar y subir)
- Vista configurador
- Vista proyecto/app
- Vista list usuario
-
-
-
-
-
-
-
-
-
-
-
+ ok - Vista registro usuario
+ Vista template 
+ ok - Vista configurador
+ ok - Vista proyecto/app
+ ok - Vista list usuario

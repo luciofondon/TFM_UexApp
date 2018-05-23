@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para Topic
+ */
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
@@ -26,6 +32,5 @@ var topicSchema = new Schema({
 topicSchema.statics.load = function(topicId, callback) {
 	this.findOne({_id: topicId}).exec(callback);
 };
-
 
 module.exports = mongoose.model('Topic', topicSchema);

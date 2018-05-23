@@ -1,4 +1,9 @@
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Servicio para comunicarse con el componente Mediatory
+ */
+
 var Promise = require('promise');
 
 var http = require('./HttpService');

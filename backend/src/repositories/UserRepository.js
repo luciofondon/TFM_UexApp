@@ -1,4 +1,9 @@
 
+/**
+ *	@author Lucio David Fondon Terron - 2018
+ *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto User
+ */
+
 var Promise = require('promise');
 
 var mailService = require('../services/MailService'),
@@ -9,34 +14,75 @@ var User = require('../models/UserModel');
 
 
 module.exports = {
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @description Lee todos los usuarios de la BD
+	 */
 	readAllUser: function(authUser) {
 		return readAllUser(authUser);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} user Usuario que se desea crear
+	 * @param  {} password Contrasena sin cifrar del nuevo usuario que se desea crear
+	 * @description Crea un usuario nuevo
+	 */
 	createUser: function(authUser, user, password) {
 		return createUser(authUser, user, password);
 	},
 
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} user Usuario que se desea actualizar
+	 * @description Actualiza los parametros de un usuario
+	 */
 	updateUser: function(authUser, user) {
 		return updateUser(authUser, user);
 	},
 
-	updateMeUser: function(req, res) {
-		return updateMeUser(req, res);
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} user Usuario que se desea actualizar
+	 * @description Actualiza el propio usuario que esta logueado (authUser)
+	 */
+	updateMeUser: function(authUser, user) {
+		return updateMeUser(authUser, user);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} user Usuario que se desea eliminar
+	 * @description Elimina un usuario
+	 */
 	deleteUser: function(authUser, user) {
 		return deleteUser(authUser, user);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} user Usuario que se desea actualizar su contrasena
+	 * @param  {} password Nueva contrasena que se desea aplicar al usuario (sin cifrar)
+	 * @description Modificar la contrasena de un usuario
+	 */
 	resetPasswordUser: function(authUser, user, password) {
 		return resetPasswordUser(authUser, user, password);
 	},
-
+	
+	/**
+	 * @param  {} email Email de acceso a la plataforma
+	 * @param  {} password Contrasena de acceso a la plataforma
+	 * @description Funcion para validar si un usuario existe, generar un token y acceder a la plataforma
+	 */
 	loginUser: function(email, password) {
 		return loginUser(email, password);
 	},
 
+	/**
+	 * @param  {} user Usuario que se desea dar de alta
+	 * @param  {} password Contrasena del usuario que se desea dar de alta
+	 * @description Registrar un nuevo usuario
+	 */
 	signupUser: function(user, password) {
 		return signupUser(user, password);
 	}
@@ -208,6 +254,5 @@ function validateUser(user){
 		return false;
 	else if((user.phoneNumber != undefined && user.phoneNumber != "") && (user.phoneNumber.length < 9 || !Number.isInteger(parseInt(user.phone))))
 		return false;
-	else if(user.password == undefined || user.password == "")
-		return false;
+	return true;
 }

@@ -1,3 +1,7 @@
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Servicio para descargar un fichero en el navegador
+ */
 
 var path = require('path');
 

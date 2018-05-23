@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Servicio para enviar email
+ */
+
 const nodemailer = require('nodemailer'),
     path = require('path'),
     config = require('../../config/config');

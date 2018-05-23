@@ -1,5 +1,10 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Middleware de Project
+ */
+
 var Project = require('../models/ProjectModel');
-  //  Project = mongoose.model('Project');
 
 exports.loadProject = function(req, res, next, projectId) {
     loadProject(req, res, next, projectId);

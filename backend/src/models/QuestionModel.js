@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para Question
+ */
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
@@ -26,7 +32,6 @@ var questionSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-
 },
 {
 	timestamps: {

@@ -1,7 +1,12 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    crypto = require('crypto');
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para User
+ */
+
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
+	
 var userSchema = new Schema({
 	name: {
 		type: String
@@ -46,7 +51,6 @@ var userSchema = new Schema({
 });
 
 userSchema.methods = require("./UserModelController");
-
 
 userSchema.statics.load = function(userId, callback) {
   this.findOne({ _id: userId})

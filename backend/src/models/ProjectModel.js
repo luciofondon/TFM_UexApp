@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Modelo de mongoose para Project
+ */
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
@@ -28,21 +34,7 @@ var projectSchema = new Schema({
 		type: Date,
 		default: Date.now,
 		required:true
-	},
-	apps: [{
-		name: {
-			type: String,
-			required: true
-		},
-		description: {
-			type: String
-		},
-		created: {
-			type: Date,
-			default: Date.now,
-			required:true
-		}
-	}]
+	}
 },
 {
 	timestamps: {

@@ -12,27 +12,56 @@ var Project = require('../models/ProjectModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
-
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @description Lee todas las aplicaciones de la BD
+	 */
 	readAllAplication: function(authUser) {
 		return readAllAplication(authUser);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication Nueva aplicacion que se va a crear
+	 * @description Crea una nueva aplicacion
+	 */
 	createAplication: function(authUser, aplication) {
 		return updateAplication(authUser, aplication);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication Aplicacion que se va actualizar
+	 * @description Actualiza una aplicacion
+	 */
 	updateAplication: function(authUser, aplication) {
 		return updateAplication(authUser, aplication);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication
+	 * @description Elimina una aplicacion de la BD
+	 */
 	deleteAplication: function(authUser, aplication) {
 		return deleteAplication(authUser, aplication);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplication Datos generares de los atributos de la aplicacion
+	 * @param  {} template Aplicacion que esta almacenada como plantilla (isTemplate = true)
+	 * @description Generar una nueva aplicacion a partir de una plantilla (es una aplicacion), asignandole todos sus parametros (topic, preguntas y respuestas)
+	 */
 	generateAplication(authUser, aplication, template){
 		return generateAplication(authUser, aplication, template);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} nameFile Nombre del fichero XML que contiene los atributos de la aplicacion
+	 * @description Crea una nueva aplicacion en BD leyendo los atributos a partir de un fichero XML
+	 */
 	generateAplicationFromXML(authUser, nameFile){
 		return generateAplicationFromXML(authUser, nameFile);
 	}

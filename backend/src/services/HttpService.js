@@ -1,4 +1,8 @@
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Servicio para realizar peticion HTTP
+ */
 
 var request = require('request'),
     Promise = require('promise');
@@ -6,10 +10,20 @@ var request = require('request'),
 const config = require('../../config/config');
 
 module.exports = {
+    
+	/**
+	 * @param  {} url Recurso al que realizar la peticion
+	 * @param  {} data JSON que se enviara en la peticion
+     * @description Realizar peticion post
+	 */
 	post: function(url, data) {
 		return post(url, data);
-	},
-
+    },
+    
+	/**
+	 * @param  {} url Recurso al que realizar la peticion
+     * @description Realizar una peticion get
+	 */
 	get: function(url) {
 		return get(url);
 	}

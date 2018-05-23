@@ -1,4 +1,9 @@
 
+/**
+ *	@author Lucio David Fondon Terron - 2018
+ *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto Topic
+ */
+
 var Promise = require('promise');
 
 var Question = require('../models/QuestionModel'),
@@ -7,18 +12,40 @@ var Question = require('../models/QuestionModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} aplicationId Identificador de la aplicacion a la que se desea leer los topic
+	 * @description Lee todos los topic con sus preguntas, respuestas y preguntas/respuesta asociadas a una aplicacion
+	 */
 	readAllByAplication: function(authUser, aplicationId) {
 		return readAllByAplication(authUser, aplicationId);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} topic Objeto topic que se va a crear
+	 * @param  {} aplicationId Identificador de la aplicacion a la que se desea asociar el topic
+	 * @description Crea un topic asociado a una aplicacion
+	 */
 	createTopicByAplication: function(authUser, topic, aplicationId) {
 		return createTopicByAplication(authUser, topic, aplicationId);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} topic Objeto topic que se va a actualizar
+	 * @description Actualiza los atributos de un topic
+	 */
 	updateTopic: function(authUser, topic) {
 		return updateTopic(authUser, topic);
 	},
 
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} topic Objeto topic que se va a eliminar
+	 * @description Elimina un topic
+	 */
 	deleteTopic: function(authUser, topic) {
 		return deleteTopic(authUser, topic);
 	}

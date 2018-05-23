@@ -1,26 +1,57 @@
 
+/**
+ *	@author Lucio David Fondon Terron - 2018
+ *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto Question
+ */
+
 var Promise = require('promise');
 
 var Question = require('../models/AplicationModel');
 
 module.exports = {
-
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} topicId
+	 * @description
+	 */
 	readAllByTopic: function(authUser, topicId) {
 		return readAllByTopic(authUser, topicId);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} question
+	 * @param  {} topicId
+	 * @description
+	 */
 	createByTopic: function(authUser, question, topicId) {
 		return createByTopic(authUser, question, topicId);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} question
+	 * @param  {} questionAsociate
+	 * @description
+	 */
 	createQuestionAsociate: function(authUser, question, questionAsociate) {
 		return createQuestionAsociate(authUser, question, questionAsociate);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} question Pregunta que se desa actualizar
+	 * @description Actualiza una pregunta
+	 */
 	updateQuestion: function(authUser, question) {
 		return updateQuestion(authUser, question);
 	},
-
+	
+	/**
+	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
+	 * @param  {} question Pregunta que se desea eliminar
+	 * @description Elimina una pregunta de la BD
+	 */
 	deleteQuestion: function(authUser, question) {
 		return deleteQuestion(authUser, question);
 	}

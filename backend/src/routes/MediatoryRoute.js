@@ -1,3 +1,9 @@
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Rutas disponibles para comunicarse con el compomente Mediatory para acceder a Jira/Redmine...
+ */
+
 module.exports = function(app) {
     var mediatoryController = require('../controllers/MediatoryController')();
 

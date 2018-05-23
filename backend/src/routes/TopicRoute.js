@@ -1,7 +1,8 @@
-/*
-* @author luciofondon
-* @date 2017
-*/
+
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Rutas disponibles para el objeto Topic
+ */
 
 module.exports = function(app){
 

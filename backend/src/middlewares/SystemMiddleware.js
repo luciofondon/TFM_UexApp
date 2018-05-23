@@ -1,36 +1,64 @@
+
 /**
- * @author GammaSolutions - Departamento i + d - 2018
- * @description Middleware para comprobar que todas las llamadas HTTP tienen un token valido y controlar el acceso por rol
+ * @author Lucio David Fondon Terron - 2018
+ * @description Middleware con acciones generales del sistema
  */
 
-var config = require('../../config/config');
-var jwt = require('jwt-simple');
-var moment = require('moment');
-var mongoose = require('mongoose');
-var User = require('../models/UserModel');
-var Rol = require('../models/RolModel');
+const config = require('../../config/config');
 
-User = mongoose.model('User');
-Rol = mongoose.model('Rol');
+var jwt = require('jwt-simple'),
+    moment = require('moment');
+
+var User = require('../models/UserModel'),
+    Rol = require('../models/RolModel');
 
 module.exports = {
-
+    /**
+     * @param  {} req
+     * @param  {} res
+     * @param  {} next
+     * @description Middleware que comprueba que la peticion contiene un token valido y anade en la peticion el usuario al que pertenece el token
+     */
     ensureAuthenticated: function(req, res, next){
         ensureAuthenticated(req, res, next);
     },
-
+    
+    /**
+     * @param  {} req
+     * @param  {} res
+     * @param  {} next
+     * @description Middleware que compruebas que el usuario logueado tiene permiso de rol administrador
+     */
     rolAdmin: function(req, res, next){
         rolAdmin(req, res, next);
     },
-
+    
+    /**
+     * @param  {} req
+     * @param  {} res
+     * @param  {} next
+     * @description Middleware que compruebas que el usuario logueado tiene permiso de rol operador
+     */
     rolOperador: function(req, res, next){
         rolOperador(req, res, next);
     },
-
+    
+    /**
+     * @param  {} req
+     * @param  {} res
+     * @param  {} next
+     * @description Middleware que compruebas que el usuario logueado tiene permiso de rol consultor
+     */
     rolConsultor: function(req, res, next){
         rolConsultor(req, res, next);
     },
-
+    
+    /**
+     * @param  {} req
+     * @param  {} res
+     * @param  {} next
+     * @description Middleware que rechaza la peticion, no la deja pasar hacia delante y la cancela
+     */
     forbidden: function(req, res, next){
         forbidden(req, res, next);
     }

@@ -1,6 +1,18 @@
-var Aplication = require('../models/AplicationModel');
-   // Aplication = mongoose.model('Aplication');
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Middleware de Aplication
+ */
+
+var Aplication = require('../models/AplicationModel');
+
+/**
+ * @param  {} req
+ * @param  {} res
+ * @param  {} next
+ * @param  {} topicId
+ * @description Middleware que carga el identificador pasado por parametro en la url
+ */
 exports.loadAplication = function(req, res, next, aplicationId) {
     loadAplication(req, res, next, aplicationId);
 };

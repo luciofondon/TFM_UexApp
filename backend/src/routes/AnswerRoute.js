@@ -1,4 +1,9 @@
 
+/**
+ * @author Lucio David Fondon Terron - 2018
+ * @description Rutas disponibles para el objeto Answer
+ */
+
 module.exports = function(app){
 
 	var answerController = require('../controllers/AnswerController')(),
