@@ -4,14 +4,15 @@
  *  @description Funciones que se encargan de manejar el acceso a MongoDB sobre el objeto User
  */
 
-var Promise = require('promise');
+var Promise = require('promise'),
+	mongoose = require('mongoose');
 
 var mailService = require('../services/MailService'),
 	systemService = require('../services/SystemService');
 
-var User = require('../models/UserModel');
-	User = mongoose.model('User');
-
+var User = require('../models/UserModel'),
+	User = mongoose.model('User'),
+	Rol = require('../models/RolModel')
 
 module.exports = {
 	/**
@@ -21,7 +22,7 @@ module.exports = {
 	readAllUser: function(authUser) {
 		return readAllUser(authUser);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} user Usuario que se desea crear
@@ -49,7 +50,7 @@ module.exports = {
 	updateMeUser: function(authUser, user) {
 		return updateMeUser(authUser, user);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} user Usuario que se desea eliminar
@@ -58,7 +59,7 @@ module.exports = {
 	deleteUser: function(authUser, user) {
 		return deleteUser(authUser, user);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} user Usuario que se desea actualizar su contrasena
@@ -68,7 +69,7 @@ module.exports = {
 	resetPasswordUser: function(authUser, user, password) {
 		return resetPasswordUser(authUser, user, password);
 	},
-	
+
 	/**
 	 * @param  {} email Email de acceso a la plataforma
 	 * @param  {} password Contrasena de acceso a la plataforma
@@ -192,13 +193,13 @@ function loginUser(email, password){
 	let promise = new Promise(function(resolve, reject){
 		if(email != undefined && password != undefined){
 			User.findOne({email: email.toLowerCase()}, function(err, user) {
-				if(err || user == undefined)
+				if(err || user == undefined || user == null){
 					reject({ error: 'Usuario no encontrado' });
-
-				if(!user.equalPassword(password))
-					reject({ error: 'Clave de usuario no valida'});
-
-				resolve({token: systemService.createToken(user)});
+				}else{
+					if(!user.equalPassword(password))
+						reject({ error: 'Clave de usuario no valida'});
+					resolve({token: systemService.createToken(user)});
+				}
 			});
 		}else{
 			reject({error: "Parametros de la API no validos"});
@@ -210,11 +211,10 @@ function loginUser(email, password){
 function signupUser(user, password){
 	let promise = new Promise(function(resolve, reject){
 		//Codificar la password
-		user.encodePassword(rpassword);
+		user.encodePassword(password);
 		if(validateUser(user)){
 			//Le colocamos el rol de consultor
-			Rol.findOne({level:2}).exec(function(err, rol) {
-				console.log(rol)
+			Rol.findOne({level:2}).then(function(rol) {
 				user.rol = rol._id;
 				user.save(function(err) {
 					if (err) {
@@ -222,9 +222,12 @@ function signupUser(user, password){
 					}
 					resolve(user);
 				});
+			}).catch(function(err){
+				reject({error: 'Cannot save the user'});
 			});
-		}else
+		}else{
 			reject({ error: "Parametros de la API no validos"});
+		}
 	});
 	return promise;
 }

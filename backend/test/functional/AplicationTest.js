@@ -11,10 +11,11 @@ const config = require('../../config/config.js');
 const server= 'http://localhost:' + config.SERVER_PORT;
 
 let loginUser = {
-	'email': config.USER_MAIL_TEST,
-	'password': config.USER_PASSWORD_TEST
+	'email': config.USER_MAIL_TEST_ADMIN,
+	'password': config.USER_PASSWORD_TEST_ADMIN
 };
 
+let aplicationCreate;
 
 function login(){
 	let promise = new Promise(function(resolve, reject){
@@ -30,11 +31,62 @@ function login(){
 	return promise;
 }
 
-describe('get all aplications: ',()=>{
-	it('should insert a aplication', (done) => {
+describe('APLICATION: ',()=>{
+	it('read aplications', (done) => {
 		login().then(function(token){
 			chai.request(server)
 			.get('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.end( function(err,res){
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+
+	it('create aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.post('/api/aplications')
+			.set('authorization', "Bearer " + token)
+			.send(
+				{
+					project: "5b05c2e59c0721f88f2ddb1e",
+					name: 'Nombre proyecto',
+					description: "Descripcion aplicacion"
+				}
+			)
+			.end( function(err,res){
+				aplicationCreate = res.body;
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+
+	it('update aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.put('/api/aplication/' + aplicationCreate._id )
+			.send(
+				{
+					project: "5b05c2e59c0721f88f2ddb1e",
+					name: 'Nombre proyecto2',
+					description: "Descripcion aplicacion2"
+				}
+			)
+			.set('authorization', "Bearer " + token)
+			.end( function(err,res){
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+
+	it('delete aplication', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.delete('/api/aplication/' + aplicationCreate._id )
 			.set('authorization', "Bearer " + token)
 			.end( function(err,res){
 				expect(res).to.have.status(200);
@@ -44,25 +96,6 @@ describe('get all aplications: ',()=>{
 	});
 });
 
-describe('insert a aplication: ',()=>{
-	it('should insert a aplication', (done) => {
-		login().then(function(token){
-			chai.request(server)
-			.get('/api/aplications')
-			.set('authorization', "Bearer " + token)
-			.send(
-				{
-					project: 'Id',
-					description: "Descripcion aplicacion"
-				}
-			)
-			.end( function(err,res){
-				expect(res).to.have.status(200);
-				done();
-			});
-		});
-	});
-});
 
 
 

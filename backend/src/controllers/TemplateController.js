@@ -12,7 +12,6 @@ module.exports = function(){
 		},
 
         createTemplate: function(req, res) {
-			console.log(req.aplication)
 			templateRepository.createTemplate(req.authUser, req.body, req.aplication).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){

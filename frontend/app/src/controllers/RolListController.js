@@ -5,7 +5,7 @@ angular.module('tfm.uex').controller('RolListController',
 	var rl = this;
     rl.bsTableRoles = {}
 	rl.loadRolList = function(){
-        RolService.getRoles().then(function(response) {
+        RolService.readAllRoles().then(function(response) {
             var roles = response.data;
             roles.forEach(function(rol){
                 var created = new Date(rol.created);

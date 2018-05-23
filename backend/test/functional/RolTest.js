@@ -11,8 +11,8 @@ const config = require('../../config/config.js');
 const server= 'http://localhost:' + config.SERVER_PORT;
 
 let loginUser = {
-    'email': config.USER_MAIL_TEST,
-    'password': config.USER_PASSWORD_TEST
+    'email': config.USER_MAIL_TEST_ADMIN,
+    'password': config.USER_PASSWORD_TEST_ADMIN
 };
 
 function login(){
@@ -21,7 +21,6 @@ function login(){
         .post('/auth/login')
         .send(loginUser)
         .end((err, res) => {
-            console.log( res.body.token);
             expect(res).to.have.status(200);
             let token = res.body.token;
             resolve(token);
@@ -30,16 +29,16 @@ function login(){
     return promise;
 }
 
-describe('Read a roles: ',()=>{
-    it('should read a roles', (done) => {
+describe('ROL: ',()=>{
+    it('read roles', (done) => {
         login().then(function(token){
             chai.request(server)
             .get('/api/roles')
-            .set('authorization', token)
+            .set('authorization', "Bearer " + token)
             .end( function(err,res){
                 expect(res).to.have.status(200);
                 done();
             });
         });
-    });   
+    });
 });

@@ -8,7 +8,9 @@ var Promise = require('promise'),
 	path = require('path'),
 	fs = require('fs'),
 	jsonxml = require('jsontoxml'),
-	format = require('xml-formatter');
+	format = require('xml-formatter'),
+	js2xmlparser = require("js2xmlparser"),
+	mongoose = require('mongoose');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
@@ -25,7 +27,7 @@ module.exports = {
 	readAllTemplates: function(authUser) {
 		return readAllTemplate(authUser);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} template Parametros de la plantilla
@@ -35,7 +37,7 @@ module.exports = {
 	createTemplate: function(authUser, template, aplication) {
 		return createTemplate(authUser, template, aplication);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplication Plantilla que se va a eliminar
@@ -67,14 +69,26 @@ function readAllTemplate(authUser){
 }
 
 function createTemplate(authUser, template, aplication){
+	console.log("entra")
 	let promise = new Promise(function(resolve, reject){
+		console.log("entrade")
+
 		let aplicationCopy = JSON.parse(JSON.stringify(aplication));
 		let aplicationTemplate = new Aplication(aplicationCopy);
+		console.log("entrade")
+
 		aplicationTemplate.isTemplate = true;
 		aplicationTemplate.creator = undefined;
 		aplicationTemplate.nameTemplate = template.name;
 		aplicationTemplate._id = mongoose.Types.ObjectId();
+		console.log("ante")
+
 		aplicationTemplate.save(function(err){
+			if (err) {
+				reject({ error: "Cannot save the template"});
+			}
+			console.log("guarda")
+
 			Topic.find({aplication: aplicationCopy._id}, {"__v":0}).exec(function(err, topics){
 				topics.forEach(function(topic){
 					let topicCopy = JSON.parse(JSON.stringify(topic));

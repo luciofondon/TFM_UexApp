@@ -1,10 +1,10 @@
 
 
-var User = require('../models/UserModel');
-    User = mongoose.model('User');
-
 var Project = require('../models/ProjectModel');
-    Project = mongoose.model('Project');
+var mongoose = require('mongoose');
+
+var User = require('../models/UserModel'),
+	User = mongoose.model('User');
 
 module.exports = function() {
 
@@ -22,6 +22,6 @@ module.exports = function() {
                 res.json(response);
             });
         }
-        
+
     }
 }

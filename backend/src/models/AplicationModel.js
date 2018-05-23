@@ -13,7 +13,8 @@ var appSchema = new Schema({
 		required: true
 	},
 	description: {
-		type: String
+		type: String,
+		required: true
 	},
 	project: { // Proyecto al que pertenece la aplicacion
 		type: Schema.ObjectId,

@@ -43,8 +43,8 @@ const config = require('../../config/config.js');
 const server= 'http://localhost:' + config.SERVER_PORT;
 
 let loginUser = {
-    'email': config.USER_MAIL_TEST,
-    'password': config.USER_PASSWORD_TEST
+	'email': config.USER_MAIL_TEST_ADMIN,
+	'password': config.USER_PASSWORD_TEST_ADMIN
 };
 
 function login(){
@@ -53,7 +53,6 @@ function login(){
         .post('/auth/login')
         .send(loginUser)
         .end((err, res) => {
-            console.log( res.body.token);
             expect(res).to.have.status(200);
             let token = res.body.token;
             resolve(token);
@@ -62,18 +61,17 @@ function login(){
     return promise;
 }
 
-describe('projects', function() {
-    describe('GET', function(){
-        login().then(function(token){
-            it('Should return json as default data format', function(done){
-                chai.request(server)
-                .get('/api/projects')
-                .set('authorization', token)
-                .end( function(err,res){
-                    expect(res).to.have.status(200);
-                    done();
-                });
-            });
-        });
-    });
+describe('PROJECT:', function() {
+    it('read projects', (done) => {
+		login().then(function(token){
+			chai.request(server)
+			.get('/api/projects')
+			.set('authorization', "Bearer " + token)
+			.end( function(err,res){
+				expect(res).to.have.status(200);
+				done();
+			});
+		});
+	});
+
 });

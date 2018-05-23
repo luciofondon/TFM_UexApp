@@ -10,7 +10,7 @@ var request = require('request'),
 const config = require('../../config/config');
 
 module.exports = {
-    
+
 	/**
 	 * @param  {} url Recurso al que realizar la peticion
 	 * @param  {} data JSON que se enviara en la peticion
@@ -19,7 +19,7 @@ module.exports = {
 	post: function(url, data) {
 		return post(url, data);
     },
-    
+
 	/**
 	 * @param  {} url Recurso al que realizar la peticion
      * @description Realizar una peticion get

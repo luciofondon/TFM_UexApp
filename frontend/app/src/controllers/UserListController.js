@@ -100,7 +100,7 @@ angular.module('tfm.uex').controller('UserListController',
         });
     }
 
-    ul.resetPassword = function() {
+    ul.resetPasswordUser = function() {
         ul.alerts = [];
         if(validatePassword()){
             UserService.resetPassword(ul.user._id, ul.resetPassword).then(function() {
@@ -121,7 +121,7 @@ angular.module('tfm.uex').controller('UserListController',
         else if((ul.resetPassword.password != ul.resetPassword.confirmPassword))
 			ul.error = "Las dos contraseñas especificadas no coinciden";
 
-		return ul.error != null ? true : false;
+		return ul.error == null ? true : false;
 	}
 
     function validateUser(){
@@ -149,11 +149,14 @@ angular.module('tfm.uex').controller('UserListController',
     }
 
     ul.createUser = function() {
-        if(validateUser()){
+		debugger
+		if(validateUser()){
 			upload(function(status, nameImage){
 				if(status == 200 && nameImage != undefined)
 					ul.user.image = nameImage;
-				UserService.addUser(ul.user).then(function(project) {
+
+				UserService.createUser(ul.user).then(function(project) {
+					ul.imageUpload = "";
 					ul.user = {};
 					ul.loadUserList();
 					$ngConfirm("Usuario creado correctamente");
@@ -176,8 +179,8 @@ angular.module('tfm.uex').controller('UserListController',
 
 	function upload(callback){
 		if(ul.imageUpload != undefined){
-            UploadService.uploadImage(ul.imageUpload ).then(function(data){
-                callback(200, data.name);
+            UploadService.uploadImage(ul.imageUpload).then(function(response){
+                callback(200, response.data.name);
             }).catch(function(err){
                 callback(500, err);
             });
@@ -187,21 +190,3 @@ angular.module('tfm.uex').controller('UserListController',
 
 }]);
 
-/*
-
-Upload.upload({
-				url: '/api/user/upload',
-				file: ul.user.image
-		if(vm.imageUpload != undefined){
-			Upload.upload({
-				url: '/api/user/upload',
-				file: vm.imageUpload
-			}).then(function (response) {
-				callback(response.status, response.data.name);
-			}, function (response) { // Error
-				callback(response.status);
-			});
-		}else{
-			callback(200, "");
-        }
-        */

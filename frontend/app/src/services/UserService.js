@@ -6,8 +6,8 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 		getUser: function(userId){
 			return getUser(userId);
 		},
-		addUser: function(user){
-			return addUser(user);
+		createUser: function(user){
+			return createUser(user);
 		},
 		signup: function(user){
 			return signup(user);
@@ -37,8 +37,7 @@ angular.module('tfm.uex').factory('UserService', ['$http', function($http){
 		return $http.get('/api/user/' + userId);
 	}
 
-	function addUser(user){
-		console.log(user)
+	function createUser(user){
 		return $http.post('/api/users', user);
 	}
 

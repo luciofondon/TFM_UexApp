@@ -17,7 +17,7 @@ module.exports = {
 	uploadXML: function(file){
 		return uploadXML(file);
     },
-    
+
 	/**
 	 * @param  {} file Fichero que se va a subir al servidor
      * @description Subida de una imagen
@@ -28,6 +28,7 @@ module.exports = {
 
 }
 function uploadImage(file){
+	console.log("Subiendo imagen")
 	let promise = new Promise(function(resolve, reject){
         //Ruta temporal donde se ha almacenado el fichero
         let tmpPath = file.path;
@@ -41,6 +42,8 @@ function uploadImage(file){
             reject({error: 'El fichero que deseas subir no es una imagen'});
         } else {
             upload(tmpPath, targetPath, timeStamp + "." + file.type.split("/")[1]).then(function(data){
+				console.log("devolviendo")
+				console.log(data)
                 resolve(data);
             }).catch(function(err){
                 reject(err);
@@ -70,7 +73,6 @@ function uploadXML(file){
                 resolve(data);
             }).catch(function(err){
 				console.log("err")
-
                 reject(err);
             });
         }

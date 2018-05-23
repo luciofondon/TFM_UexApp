@@ -5,7 +5,8 @@
  */
 
 module.exports = function(app) {
-    var mediatoryController = require('../controllers/MediatoryController')();
+    var mediatoryController = require('../controllers/MediatoryController')(),
+		systemMiddleware = require('../middlewares/SystemMiddleware');
 
     app.route('/mediatory/check')
         .post(systemMiddleware.rolOperador, mediatoryController.checkComunication);

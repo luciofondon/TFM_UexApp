@@ -112,10 +112,12 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="InputText" class="col-md-4 control-label">Imagen (*)</label>
+					<label for="InputText" class="col-md-4 control-label">Imagen </label>
 					<div class="col-md-7">
-						<img ngf-thumbnail="ul.user.image" height="100">
-						<input type="file" ngf-select ng-model="ul.user.image" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
+						<img ngf-thumbnail="ul.user.image" height="100" ng-if="ul.user.image != undefined">
+						<img ngf-thumbnail="ul.imageUpload" height="100" ng-if="ul.imageUpload != undefined">
+
+						<input type="file" ngf-select ng-model="ul.imageUpload" name="file" ngf-pattern="'image/*'"  accept="image/*" ngf-max-size="20MB"/>
 					</div>
 				</div>
 				<div class="form-group row" ng-show="ul.mode == 1">
@@ -142,9 +144,6 @@
   <!-- Fin: Popup para crear/actualizar usuario-->
 
 
-
-
-
   <!-- Inicio: Popup para actualizar contrasena-->
   <div id="modal-password" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -155,12 +154,11 @@
 
               </div>
               <div class="modal-body">
-                      <div class="alert alert-danger alert-dismissible"  ng-repeat="error in ul.errores">
-                          <a  href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                          <div>
-                              <strong>Error!</strong> {{error}}.
-                          </div>
-                      </div>
+					<div class="alert alert-danger alert-dismissible" ng-if="ul.error != null">
+						<div>
+							<strong>Error!</strong> {{ul.error}}.
+						</div>
+					</div>
 
                       <div class="form-group row">
                           <label for="password" class="col-md-4 control-label">Constraseña (*) </label>
@@ -170,16 +168,16 @@
                       </div>
 
                       <div class="form-group row">
-                          <label for="confirmPassword" class="col-md-4 control-label">Repite contraseña (*) </label>
+                          <label for="confirmPassword2" class="col-md-4 control-label">Repite contraseña (*) </label>
                           <div class="col-md-7">
-                              <input required type="confirmPassword" id="InputText"  ng-model="ul.resetPassword.confirmPassword" class="form-control"/>
+                              <input required type="password" id="confirmPassword2"  ng-model="ul.resetPassword.confirmPassword" class="form-control"/>
                           </div>
                       </div>
 
                   </form>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-success" ng-click="ul.resetPassword();" >Actualizar contraseña</button>
+                  <button type="button" class="btn btn-success" ng-click="ul.resetPasswordUser();" >Actualizar contraseña</button>
               </div>
           </div>
       </div>

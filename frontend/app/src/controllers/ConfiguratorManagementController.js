@@ -24,7 +24,9 @@ angular.module('tfm.uex').controller('ConfiguratorManagementController',
 			$scope.topics = response.data;
 			if($scope.topics.length > 0)
 				$scope.topicId = $scope.topics[0]._id;
-        });
+        }).catch(function(err){
+			console.log("Error al cargar los topic")
+		});;
     }
 
 	$scope.marcarPregunta = function(questionId){

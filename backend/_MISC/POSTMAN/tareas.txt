@@ -28,8 +28,8 @@ Vista detalle usuario
  Mocha (rol, aplicacion, user, login, proyecto)
 
  Vista generador (Integracion con Jira)
+ Vista template
  ok - Vista registro usuario
- Vista template 
  ok - Vista configurador
  ok - Vista proyecto/app
  ok - Vista list usuario

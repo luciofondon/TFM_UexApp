@@ -16,6 +16,12 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	gm.newProject = false; // Partir de un proyecto existente en jira/redmine o generar uno nuevo
 	gm.projectIdTaskManager = ""; //Identificador del proyecto seleccionado en redmine/jira
 
+	TopicService.getTopics($stateParams.aplicationId).then(function(response) {
+        gm.topics = response.data;
+    }).catch(function(response){
+		console.log("Error al cargar los topic")
+	});
+
  	gm.deleteRequirement = function(requirement){
 		for(let i = 0; i < gm.listRequirementExport.length; i++){
 			if(gm.listRequirementExport[i].id == requirement.id){
@@ -71,9 +77,6 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 
 
 
-
-
-
 					});
 				}
 			});
@@ -90,12 +93,6 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 		});
 		return existe;
 	}
-
-    TopicService.getTopics($stateParams.aplicationId).then(function(response) {
-        gm.topics = response.data;
-    }).catch(function(response){
-		$ngConfirm(response.data.error);
-	});
 
     gm.setTab = function(newTab){
 		var validate = true;
@@ -143,7 +140,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 
 
 	gm.init = function(){
-        TopicService.getTopics($stateParams.aplicationData).then(function(response) {
+        TopicService.getTopics($stateParams.aplicationId).then(function(response) {
 			gm.topics = response.data;
 			if(gm.topics.length > 0)
 				gm.topicId = gm.topics[0]._id;
@@ -200,6 +197,7 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 	// Llamarlo impor
 	gm.getProjects = function(){
 		MediatoryService.getProjects(gm.export).then(function(response){
+			console.log(response.data)
 			gm.projects = response.data;
 		}).catch(function(response){
 			$ngConfirm(response.data.error);

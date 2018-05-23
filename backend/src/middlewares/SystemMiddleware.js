@@ -7,10 +7,13 @@
 const config = require('../../config/config');
 
 var jwt = require('jwt-simple'),
-    moment = require('moment');
+	moment = require('moment'),
+	mongoose = require('mongoose');
 
 var User = require('../models/UserModel'),
-    Rol = require('../models/RolModel');
+	User = mongoose.model('User');
+
+var Rol = require('../models/RolModel');
 
 module.exports = {
     /**
@@ -22,7 +25,7 @@ module.exports = {
     ensureAuthenticated: function(req, res, next){
         ensureAuthenticated(req, res, next);
     },
-    
+
     /**
      * @param  {} req
      * @param  {} res
@@ -32,7 +35,7 @@ module.exports = {
     rolAdmin: function(req, res, next){
         rolAdmin(req, res, next);
     },
-    
+
     /**
      * @param  {} req
      * @param  {} res
@@ -42,7 +45,7 @@ module.exports = {
     rolOperador: function(req, res, next){
         rolOperador(req, res, next);
     },
-    
+
     /**
      * @param  {} req
      * @param  {} res
@@ -52,7 +55,7 @@ module.exports = {
     rolConsultor: function(req, res, next){
         rolConsultor(req, res, next);
     },
-    
+
     /**
      * @param  {} req
      * @param  {} res

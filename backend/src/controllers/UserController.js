@@ -1,6 +1,8 @@
-var _ = require('lodash');
+var _ = require('lodash'),
+	mongoose = require('mongoose');
 
-var User = require('../models/UserModel');
+var User = require('../models/UserModel'),
+	User = mongoose.model('User');
 
 var userMiddleware = require('../middlewares/UserMiddleware'),
 	userRepository = require('../repositories/UserRepository');
@@ -65,7 +67,7 @@ module.exports = function() {
 		},
 
 		signup: function(req, res) {
-			userRepository.signupUser(new User(req.body),  req.body.password).then(function(data){
+			userRepository.signupUser(new User(req.body), req.body.password).then(function(data){
 				return res.status(200).json(data);
 			}).catch(function(err){
 				return res.status(500).json(err);

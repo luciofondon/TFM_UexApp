@@ -15,9 +15,12 @@ module.exports = function() {
         },
 
         getApps: function(req, res) {
-            mediatoryService.getApps(req.body).then(function(data){
+            mediatoryService.getApps().then(function(data){
+				console.log(data)
 				return res.status(200).json(data);
 			}).catch(function(err){
+				console.log(err)
+
 				return res.status(500).json(err);
 			});
         },
