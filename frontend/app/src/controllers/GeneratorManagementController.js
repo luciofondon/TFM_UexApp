@@ -97,7 +97,10 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
     gm.setTab = function(newTab){
 		var validate = true;
 		//Validacion para ver si puede cambiar de pagina
-		if((newTab - 1) < gm.topics.length){  // Es una vista de un cuestionario
+		console.log(newTab)
+		console.log(gm.topics.length)
+
+		if(gm.topics.length > 0 && ((newTab - 1) < gm.topics.length)){  // Es una vista de un cuestionario
 			gm.topics[(newTab - 1)].questions.forEach(function(question){
 				if(question.answers.length > 0) // Si tiene respuestas
 					if(question.radio == undefined || question.radio == null || question.radio == "")

@@ -18,7 +18,7 @@ module.exports = {
     },
 
     getProjects: function(config) {
-		return requestPOST("/api/projects/allk", config);
+		return requestPOST("/api/projects/all", config);
     },
 
     createProject: function(config) {
@@ -37,7 +37,7 @@ module.exports = {
 function requestPOST(url, data){
     let promise = new Promise(function(resolve, reject){
         http.post(url, data).then(function(response){
-            resolve(response);
+            resolve(response.data);
         }).catch(function(err){
             reject({error: "No se ha podido establecer conexion con el traductor"});
         });
@@ -49,7 +49,7 @@ function requestPOST(url, data){
 function requestGET(url){
     let promise = new Promise(function(resolve, reject){
         http.get(url).then(function(response){
-            resolve(response);
+            resolve(response.data);
         }).catch(function(err){
             reject({error: "No se ha podido establecer conexion con el traductor"});
         });
