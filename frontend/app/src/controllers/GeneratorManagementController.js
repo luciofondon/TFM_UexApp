@@ -179,8 +179,9 @@ angular.module('tfm.uex').controller('GeneratorManagementController',
 			}).catch(function(response){
 				$ngConfirm(response.data.error)
 			});
-		}else
+		}else{
 			$ngConfirm(gm.error)
+		}
 	}
 
 	function validateProject(){

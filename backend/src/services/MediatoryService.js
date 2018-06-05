@@ -38,8 +38,8 @@ function requestPOST(url, data){
     let promise = new Promise(function(resolve, reject){
         http.post(url, data).then(function(response){
             resolve(response.data);
-        }).catch(function(err){
-            reject({error: "No se ha podido establecer conexion con el traductor"});
+        }).catch(function(data){
+            reject({error: data.error});
         });
     });
     return promise;

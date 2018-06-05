@@ -39,10 +39,13 @@ function post(url, data){
                 json: data
             },
             function (error, response, body) {
-                if(error)
-                    resolve({error: "No se ha podido establecer conexion con el traductor"});
-                else
-                    resolve(body);
+                if(error){
+					reject({error: "No se ha podido establecer conexion con el traductor"});
+				}else if(body.error != undefined){
+					reject({error: body.error});
+				}else{
+					resolve(body);
+				}
             }
         );
     });
