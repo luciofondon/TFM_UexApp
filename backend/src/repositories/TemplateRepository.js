@@ -7,10 +7,8 @@
 var Promise = require('promise'),
 	path = require('path'),
 	fs = require('fs'),
-	jsonxml = require('jsontoxml'),
-	format = require('xml-formatter'),
-	js2xmlparser = require("js2xmlparser"),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	convert = require('xml-js');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
@@ -81,13 +79,11 @@ function createTemplate(authUser, template, aplication){
 		aplicationTemplate.creator = undefined;
 		aplicationTemplate.nameTemplate = template.name;
 		aplicationTemplate._id = mongoose.Types.ObjectId();
-		console.log("ante")
 
 		aplicationTemplate.save(function(err){
 			if (err) {
 				reject({ error: "Cannot save the template"});
 			}
-			console.log("guarda")
 
 			Topic.find({aplication: aplicationCopy._id}, {"__v":0}).exec(function(err, topics){
 				topics.forEach(function(topic){
@@ -119,11 +115,9 @@ function createTemplate(authUser, template, aplication){
 function generateTemplateXML(authUser, aplication){
 	let promise = new Promise(function(resolve, reject){
 		var templateJson = {
-			template:
-				{ 	name: aplication.name,
-					description: aplication.descripction != undefined ? aplication.descripction : "",
-					topics:[]
-				}
+			root: {
+				topics: []
+			}
 		};
 
 		Topic.find({aplication: aplication._id}).sort({name:1}).then(function(topics) {
@@ -132,28 +126,29 @@ function generateTemplateXML(authUser, aplication){
 					let questionsExport = [];
 					for(let i = 0; i < questions.length; i++){
 						if(questions[i].topic.toString() == topic._id.toString()){
-							console.log(questions[i])
-							questionsExport.push({
-									name: "question",
-									text: questions[i].description
 
+							let answersExport = [];
+							questions[i].answers.forEach(function(answer){
+								answersExport.push({
+									description: answer.description,
+									requirement: answer.requirement
+								});
+							});
+
+							questionsExport.push({
+								description: questions[i].description,
+								answers: answersExport
 							});
 						}
 					}
-					console.log(questionsExport)
-					templateJson.template.topics.push({
-						name: 'topic',
-						attrs: {name: topic.name},
+					templateJson.root.topics.push({
+						name: topic.name,
 						questions: questionsExport
 
 					});
-					console.log(JSON.stringify(templateJson))
 				});
 
-				var xml = jsonxml(templateJson);
-
-				var formattedXml = format(xml);
-				console.log(formattedXml)
+				var formattedXml = convert.json2xml(templateJson,  {compact: true, spaces: 4});
 
 				let timeStamp = new Date().getTime();
 				let targetPath = path.join(__dirname,'../../tmp/' + timeStamp + '.xml');

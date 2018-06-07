@@ -12,7 +12,7 @@ var Question = require('../models/QuestionModel'),
 var projectRepository = require('../repositories/ProjectRepository');
 
 module.exports = {
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplicationId Identificador de la aplicacion a la que se desea leer los topic
@@ -21,7 +21,7 @@ module.exports = {
 	readAllByAplication: function(authUser, aplicationId) {
 		return readAllByAplication(authUser, aplicationId);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} topic Objeto topic que se va a crear
@@ -31,7 +31,7 @@ module.exports = {
 	createTopicByAplication: function(authUser, topic, aplicationId) {
 		return createTopicByAplication(authUser, topic, aplicationId);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} topic Objeto topic que se va a actualizar

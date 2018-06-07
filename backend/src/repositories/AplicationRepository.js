@@ -2,7 +2,8 @@
 var Promise = require('promise'),
 	fs = require('fs'),
 	xml2js = require('xml2js'),
-	path = require('path');
+	path = require('path'),
+	convert = require('xml-js');
 
 var Project = require('../models/ProjectModel'),
 	Aplication = require('../models/AplicationModel'),
@@ -19,7 +20,7 @@ module.exports = {
 	readAllAplication: function(authUser) {
 		return readAllAplication(authUser);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplication Nueva aplicacion que se va a crear
@@ -28,7 +29,7 @@ module.exports = {
 	createAplication: function(authUser, aplication) {
 		return updateAplication(authUser, aplication);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplication Aplicacion que se va actualizar
@@ -37,7 +38,7 @@ module.exports = {
 	updateAplication: function(authUser, aplication) {
 		return updateAplication(authUser, aplication);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplication
@@ -46,7 +47,7 @@ module.exports = {
 	deleteAplication: function(authUser, aplication) {
 		return deleteAplication(authUser, aplication);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} aplication Datos generares de los atributos de la aplicacion
@@ -56,7 +57,7 @@ module.exports = {
 	generateAplication(authUser, aplication, template){
 		return generateAplication(authUser, aplication, template);
 	},
-	
+
 	/**
 	 * @param  {} authUser Usuario que ha hecho login y que esta realizando la peticion
 	 * @param  {} nameFile Nombre del fichero XML que contiene los atributos de la aplicacion
@@ -174,11 +175,27 @@ function generateAplicationFromXML(authUser, nameFile){
 	let promise = new Promise(function(resolve, reject){
 		var parser = new xml2js.Parser();
 		let targetPath = path.join(__dirname,'../../tmp/' + nameFile);
+		console.log(targetPath)
 		fs.readFile(targetPath, function(err, data) {
-			parser.parseString(data, function (err, result) {
-				console.dir(result);
-				resolve();
+			//parser.parseString(data, function (err, result) {
+			console.log(data)
+			var format = convert.xml2json(data, {compact: true, spaces: 4});
+			let template = JSON.parse(format);
+			template.root.topics.forEach(function(topic){
+				console.log(topic)
+				console.log(topic.name._text)
+
+				console.log(topic.questions)
+
+				//let topic = new Topic({description: topic.name._text});
+				if(topic.questions.length > 0){
+					topic.questions.forEach(function(question){
+						console.log(question)
+
+					});
+				}
 			});
+				//resolve();
 		});
 	});
 	return promise;
